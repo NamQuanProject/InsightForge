@@ -8,3 +8,6 @@ langchain
 langchain-litellm 
 langchain-mcp-adapters 
 ipython
+serpapi
+dotenv
+pathlib

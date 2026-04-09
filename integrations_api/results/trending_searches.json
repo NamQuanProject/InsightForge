@@ -1,0 +1,2559 @@
+[
+    {
+        "query": "barcelona đấu với atlético madrid",
+        "start_timestamp": 1775671200,
+        "active": true,
+        "search_volume": 100000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "trend_breakdown": [
+            "barca",
+            "barca vs atm",
+            "barca vs atm c1",
+            "c1",
+            "barca vs atletico",
+            "câu lạc bộ bóng đá atlético de madrid",
+            "atletico madrid",
+            "lịch c1",
+            "barca vs atletico madrid",
+            "bóng đá",
+            "atm vs barca",
+            "barcelona gặp atlético madrid",
+            "pau cubarsí",
+            "truc tiep c1",
+            "bar vs",
+            "bong da 24h",
+            "trực tiếp c1",
+            "câu lạc bộ bóng đá barcelona",
+            "atletico"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=barcelona+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+atl%C3%A9tico+madrid&tz=420",
+        "news_page_token": "dWIDg3ica1xTlFpYmlpcEp-SWJJ4h0Fx8nkGBgZGXrnQjYtS8xaF-UH4PEeafiDzwfJlmQh-01ZDZHk-Ts9eFD7_UwUU_W1ed1H4IP3I5oHkkflf6pSR-XxMQgYo8ltFuVD4fw2jUdTzPfJBkQf7rxjVvcjybncZUPTzP5VC4XOffocSPhc3GiObx7uS0QOFr2LiimIfODyKUd2TWYLgL9e6hKEe2X03f2Wj8Fv8dFH43w_lIvO5Par-ocjPZvFA4SeohKDwj6lbQPgAcb68EA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=dWIDg3ica1xTlFpYmlpcEp-SWJJ4h0Fx8nkGBgZGXrnQjYtS8xaF-UH4PEeafiDzwfJlmQh-01ZDZHk-Ts9eFD7_UwUU_W1ed1H4IP3I5oHkkflf6pSR-XxMQgYo8ltFuVD4fw2jUdTzPfJBkQf7rxjVvcjybncZUPTzP5VC4XOffocSPhc3GiObx7uS0QOFr2LiimIfODyKUd2TWYLgL9e6hKEe2X03f2Wj8Fv8dFH43w_lIvO5Par-ocjPZvFA4SeohKDwj6lbQPgAcb68EA"
+    },
+    {
+        "query": "psg đấu với liverpool",
+        "start_timestamp": 1775671800,
+        "active": true,
+        "search_volume": 50000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "trend_breakdown": [
+            "psg gặp liverpool",
+            "liverpool",
+            "psg vs",
+            "psg – liverpool",
+            "liverpool vs",
+            "liverpool vs psg",
+            "liverpool gặp psg",
+            "psg liverpool",
+            "psg vs liverpool lượt đi"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=psg+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+liverpool&tz=420",
+        "news_page_token": "hYRptnica1xTlFpYmlpcEp-SWJI4a_J5BgYGRt6mrYaLyjIXhflB-Hycnr3IfLB8ah6Cb6Eliczn4_i2HUVeKn4DMp-rb1krivwCzkko-vmfKqDwQfaD-QBBuzyA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=hYRptnica1xTlFpYmlpcEp-SWJI4a_J5BgYGRt6mrYaLyjIXhflB-Hycnr3IfLB8ah6Cb6Eliczn4_i2HUVeKn4DMp-rb1krivwCzkko-vmfKqDwQfaD-QBBuzyA"
+    },
+    {
+        "query": "tuyên án",
+        "start_timestamp": 1775710200,
+        "active": true,
+        "search_volume": 5000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=tuy%C3%AAn+%C3%A1n&tz=420",
+        "news_page_token": "_J36cnica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRt7_u7QWlWUuCvOD8v-c_IDM59lvexVF_vXqTlT1hetQ-NdzAyF8AN1mLEc",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=_J36cnica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRt7_u7QWlWUuCvOD8v-c_IDM59lvexVF_vXqTlT1hetQ-NdzAyF8AN1mLEc"
+    },
+    {
+        "query": "realme c100",
+        "start_timestamp": 1775701200,
+        "active": true,
+        "search_volume": 5000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 18,
+                "name": "Technology"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=realme+c100&tz=420",
+        "news_page_token": "sbbXq3ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRl4nf_1FqXmLwvwAygkLrA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=sbbXq3ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRl4nf_1FqXmLwvwAygkLrA"
+    },
+    {
+        "query": "đợt lạnh",
+        "start_timestamp": 1775708400,
+        "active": true,
+        "search_volume": 2000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=%C4%91%E1%BB%A3t+l%E1%BA%A1nh&tz=420",
+        "news_page_token": "-UK3o3ica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt7bAvMXlWUuCvOD8PmYhEQgfAC6xxDj",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=-UK3o3ica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt7bAvMXlWUuCvOD8PmYhEQgfAC6xxDj"
+    },
+    {
+        "query": "hdbank",
+        "start_timestamp": 1775691600,
+        "active": true,
+        "search_volume": 2000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=hdbank&tz=420",
+        "news_page_token": "wD7Wk3ica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRj62uWsWlWUuCvOD8HlOTdJB4e-ar4fM561l_ozCP_FPDMIHAL3DI4Q",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=wD7Wk3ica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRj62uWsWlWUuCvOD8HlOTdJB4e-ar4fM561l_ozCP_FPDMIHAL3DI4Q"
+    },
+    {
+        "query": "xổ số miền nam ngày 8 tháng 4",
+        "start_timestamp": 1775640000,
+        "active": true,
+        "search_volume": 20000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 6,
+                "name": "Games"
+            }
+        ],
+        "trend_breakdown": [
+            "xổ số ngày 8 tháng 4",
+            "xổ số sóc trăng ngày 8 tháng 4",
+            "xổ số cần thơ ngày 8 tháng 4",
+            "xsmn 8/4/2026",
+            "xsmb hôm qua",
+            "xổ số khánh hòa ngày 8 tháng 4",
+            "xổ số miền trung ngày 8 tháng 4",
+            "xổ số miền bắc ngày 8 tháng 4",
+            "xsmn 7/4",
+            "xsmn 8/4/26",
+            "kết quả xổ số khánh hòa",
+            "xổ số kiến thiết ngày 8 tháng 4",
+            "sxmb xsmb hôm nay trực tiếp mien bac",
+            "xsmn 8/4",
+            "xổ số kiến thiết miền nam ngày 8 tháng 4",
+            "xổ số kiến thiết miền trung hôm nay",
+            "xổ số miền trung xổ số miền trung",
+            "kết quả xổ số miền bắc ngày hôm nay",
+            "kết quả xổ số miền trung",
+            "kết quả xổ số miền trung hôm nay",
+            "xổ số đài bắc hôm nay",
+            "so xo mien bac hom nay",
+            "xổ số miền bắc thứ"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=x%E1%BB%95+s%E1%BB%91+mi%E1%BB%81n+nam+ng%C3%A0y+8+th%C3%A1ng+4&tz=420",
+        "news_page_token": "K5pYSnica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRt5d8YcXlWUuCvOD8Pk4t3Yj83kPaNxE4Z_vqkbhH_t7BoWvpG0O4QMAZdYp3g",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=K5pYSnica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRt5d8YcXlWUuCvOD8Pk4t3Yj83kPaNxE4Z_vqkbhH_t7BoWvpG0O4QMAZdYp3g"
+    },
+    {
+        "query": "agribank",
+        "start_timestamp": 1775686800,
+        "active": true,
+        "search_volume": 5000,
+        "increase_percentage": 500,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=agribank&tz=420",
+        "news_page_token": "Y7JRg3ica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt4HM_QXlWUuCvOD8r9I66LwNXmiUfipx66j8N81HEbhK7ZvQuH7Vf5E4U-_GAThAwDx_DT6",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=Y7JRg3ica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt4HM_QXlWUuCvOD8r9I66LwNXmiUfipx66j8N81HEbhK7ZvQuH7Vf5E4U-_GAThAwDx_DT6"
+    },
+    {
+        "query": "lễ cưới",
+        "start_timestamp": 1775656800,
+        "active": true,
+        "search_volume": 2000,
+        "increase_percentage": 600,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=l%E1%BB%85+c%C6%B0%E1%BB%9Bi&tz=420",
+        "news_page_token": "kiPbuHica1xTlFpYmlpcEp-SWJI4a_J5BgYGRt5rml2LyjIXhflB-Dz1h04i8_n4Hlkh83n_GhqhyPPqL0OR3zvJEoV_ZNFFFP6-yAQU_omsXSj8A18fQ_gAZqBBqg",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=kiPbuHica1xTlFpYmlpcEp-SWJI4a_J5BgYGRt5rml2LyjIXhflB-Dz1h04i8_n4Hlkh83n_GhqhyPPqL0OR3zvJEoV_ZNFFFP6-yAQU_omsXSj8A18fQ_gAZqBBqg"
+    },
+    {
+        "query": "lebanon",
+        "start_timestamp": 1775694000,
+        "active": true,
+        "search_volume": 2000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "trend_breakdown": [
+            "israel"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=lebanon&tz=420",
+        "news_page_token": "vKMav3ica1xTlFpYmlpcEp-SWJI4Z_J5BgYGRl4XoamLUvMWhflB-DxROkdR-L3XJyHzed8Zr0fhP2qSQ-ZzPdt8G5nP_WDaNRS-oewMFP3rNapR-C99PqPYX3lpM4q88cSrED4AQF1M-w",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=vKMav3ica1xTlFpYmlpcEp-SWJI4Z_J5BgYGRl4XoamLUvMWhflB-DxROkdR-L3XJyHzed8Zr0fhP2qSQ-ZzPdt8G5nP_WDaNRS-oewMFP3rNapR-C99PqPYX3lpM4q88cSrED4AQF1M-w"
+    },
+    {
+        "query": "barcelona – atlético madrid",
+        "start_timestamp": 1775669400,
+        "active": true,
+        "search_volume": 10000,
+        "increase_percentage": 800,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "trend_breakdown": [
+            "barcelona",
+            "barcelona vs atlético madrid",
+            "barcelona fc",
+            "julián álvarez"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=barcelona+%E2%80%93+atl%C3%A9tico+madrid&tz=420",
+        "news_page_token": "k1I9VXica1xTlFpYmlpcEp-SWJJ4h0Fs8nkGBgZG3pWMHotSixeF-UH5Z28rIfP5OMUmo8gvvS6Dwj_MoYDC3zPVCIW_oyoPmc9zcaMxqvkrM1D43DNmoOifI5OIIs8ucgRFvtc0DoWfsegrinrmy_Uo8iv4pVHcs2nLdxR5udCNKPzlWpdQ1K9qE0eR_xp2B5nPmVawBcIHACntgbg",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=k1I9VXica1xTlFpYmlpcEp-SWJJ4h0Fs8nkGBgZG3pWMHotSixeF-UH5Z28rIfP5OMUmo8gvvS6Dwj_MoYDC3zPVCIW_oyoPmc9zcaMxqvkrM1D43DNmoOifI5OIIs8ucgRFvtc0DoWfsegrinrmy_Uo8iv4pVHcs2nLdxR5udCNKPzlWpdQ1K9qE0eR_xp2B5nPmVawBcIHACntgbg"
+    },
+    {
+        "query": "tập đoàn fpt",
+        "start_timestamp": 1775655600,
+        "active": true,
+        "search_volume": 2000,
+        "increase_percentage": 600,
+        "categories": [
+            {
+                "id": 15,
+                "name": "Science"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=t%E1%BA%ADp+%C4%91o%C3%A0n+fpt&tz=420",
+        "news_page_token": "_EhLbXica1xTlFpYmlpcEp-SWJI4c_J5BgYGRt70KJ5FZZmLwvyg_Cse-5D5fPxPXqDyszlR1H_e_x2Zz7OmUwJVvbIdivz7TC8U_RoW_yF8AC90OSU",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=_EhLbXica1xTlFpYmlpcEp-SWJI4c_J5BgYGRt70KJ5FZZmLwvyg_Cse-5D5fPxPXqDyszlR1H_e_x2Zz7OmUwJVvbIdivz7TC8U_RoW_yF8AC90OSU"
+    },
+    {
+        "query": "giá cả",
+        "start_timestamp": 1775707200,
+        "active": true,
+        "search_volume": 2000,
+        "increase_percentage": 600,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            },
+            {
+                "id": 1,
+                "name": "Autos and Vehicles"
+            }
+        ],
+        "trend_breakdown": [
+            "giá xăng dầu hôm nay 8/4",
+            "gia xang dau hôm nay",
+            "giá xăng ngày 8/4/2026",
+            "dầu",
+            "giá xăng dầu ngày 8/4/2026",
+            "xăng dầu hôm nay giá"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=gi%C3%A1+c%E1%BA%A3&tz=420",
+        "news_page_token": "sC4iGHica1xTlFpYmlpcEp-SWJJ4h0Fw8nkGBgZG3lWNpovKMheF-UH5L5YdReG_9PmMwr-ey4TCt2ysRubzcfug8HlfzeNE4b8z7kHhn7pyHoVvvug6Mp_nbfAsFPnDrztQ-I-a5FDt79iIIv_j7C8UeWbpAhQ-yyNmCB8A5MJqVg",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=sC4iGHica1xTlFpYmlpcEp-SWJJ4h0Fw8nkGBgZG3lWNpovKMheF-UH5L5YdReG_9PmMwr-ey4TCt2ysRubzcfug8HlfzeNE4b8z7kHhn7pyHoVvvug6Mp_nbfAsFPnDrztQ-I-a5FDt79iIIv_j7C8UeWbpAhQ-yyNmCB8A5MJqVg"
+    },
+    {
+        "query": "phạm nhật vượng",
+        "start_timestamp": 1775647200,
+        "active": true,
+        "search_volume": 5000,
+        "increase_percentage": 800,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=ph%E1%BA%A1m+nh%E1%BA%ADt+v%C6%B0%E1%BB%A3ng&tz=420",
+        "news_page_token": "BHgDUHica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRl7pQL1FZZmLwvyg_H2Sq5H5PIueuKHIf5FWROH_KVyJwm8Sb0fhv-1ejsLfkdgC4QMAvIE0iQ",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=BHgDUHica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRl7pQL1FZZmLwvyg_H2Sq5H5PIueuKHIf5FWROH_KVyJwm8Sb0fhv-1ejsLfkdgC4QMAvIE0iQ"
+    },
+    {
+        "query": "satoshi nakamoto",
+        "start_timestamp": 1775703000,
+        "active": true,
+        "search_volume": 1000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=satoshi+nakamoto&tz=420",
+        "news_page_token": "BCi18nica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt4fxTcXpeYtCvOD8vtmOkD4ANUmEsM",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=BCi18nica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt4fxTcXpeYtCvOD8vtmOkD4ANUmEsM"
+    },
+    {
+        "query": "the boys",
+        "start_timestamp": 1775640600,
+        "active": true,
+        "search_volume": 2000,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "trend_breakdown": [
+            "the boys season 5 episode 1"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=the+boys&tz=420",
+        "news_page_token": "ovGigXica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRh79746LUvMWhflB-Hz8EguR-bznulah8Dt-74HwAakiHeA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=ovGigXica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRh79746LUvMWhflB-Hz8EguR-bznulah8Dt-74HwAakiHeA"
+    },
+    {
+        "query": "xe tải",
+        "start_timestamp": 1775708400,
+        "active": true,
+        "search_volume": 5000,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "trend_breakdown": [
+            "xe"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=xe+t%E1%BA%A3i&tz=420",
+        "news_page_token": "vR-J9nica1xTlFpYmlpcEp-SWJJ4h0Fw8nkGBgZG3sOvly4qy1wU5gfh83F8e4HM59243BdFnsf1IgpfmF8ZRf37Lf0o_E-vD6Hwry2agape_hMKn3XjDxT-lzMcqOZpuKDw40Rc0Nx3GkX--6FQFHnujk0o8kkpohA-ADVSacM",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=vR-J9nica1xTlFpYmlpcEp-SWJJ4h0Fw8nkGBgZG3sOvly4qy1wU5gfh83F8e4HM59243BdFnsf1IgpfmF8ZRf37Lf0o_E-vD6Hwry2agape_hMKn3XjDxT-lzMcqOZpuKDw40Rc0Nx3GkX--6FQFHnujk0o8kkpohA-ADVSacM"
+    },
+    {
+        "query": "trung đông",
+        "start_timestamp": 1775694000,
+        "active": true,
+        "search_volume": 2000,
+        "increase_percentage": 700,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "trend_breakdown": [
+            "dầu mỏ"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=trung+%C4%91%C3%B4ng&tz=420",
+        "news_page_token": "O6N_snica1xTlFpYmlpcEp-SWJI4b_J5BgYGRt5HTXKLyjIXhflB-S99PqPwXYSmovBns4Qi8_mYpQuQ-TwfBeJQ1L8xe4XCn3LlOAr_tb4fCl9VSBOFvyfxGwr_R_EZFL7slYWo8md_QfgAs0FX5A",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=O6N_snica1xTlFpYmlpcEp-SWJI4b_J5BgYGRt5HTXKLyjIXhflB-S99PqPwXYSmovBns4Qi8_mYpQuQ-TwfBeJQ1L8xe4XCn3LlOAr_tb4fCl9VSBOFvyfxGwr_R_EZFL7slYWo8md_QfgAs0FX5A"
+    },
+    {
+        "query": "xe máy",
+        "start_timestamp": 1775709000,
+        "active": true,
+        "search_volume": 1000,
+        "increase_percentage": 900,
+        "categories": [
+            {
+                "id": 1,
+                "name": "Autos and Vehicles"
+            }
+        ],
+        "trend_breakdown": [
+            "điện"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=xe+m%C3%A1y&tz=420",
+        "news_page_token": "4hqoIXica1xTlFpYmlpcEp-SWJJ4h0Fh8nkGBgZG3uRP9xaVZS4K84PyV_zehMzn8XzBjMJf9MQNhX9UXRtFv6vxdBT-qkZTZD4fT808FPnL3gtR5HmXRaHIF_Wmo_Df7ZyFwt8XmYfCj8h_jsJvWbUfhf_jnAKKffxZf1D8c9dEAkVe4BE3iv4nvA4o_DgRFxT-JlE2FP7Vu6tQ_b_DFkU-PUoWhb9rsz0K_--GJWjhk4UifyJrJgp_43JfFP4G8wIU_XyPWiB8AAuvvZs",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=4hqoIXica1xTlFpYmlpcEp-SWJJ4h0Fh8nkGBgZG3uRP9xaVZS4K84PyV_zehMzn8XzBjMJf9MQNhX9UXRtFv6vxdBT-qkZTZD4fT808FPnL3gtR5HmXRaHIF_Wmo_Df7ZyFwt8XmYfCj8h_jsJvWbUfhf_jnAKKffxZf1D8c9dEAkVe4BE3iv4nvA4o_DgRFxT-JlE2FP7Vu6tQ_b_DFkU-PUoWhb9rsz0K_--GJWjhk4UifyJrJgp_43JfFP4G8wIU_XyPWiB8AAuvvZs"
+    },
+    {
+        "query": "tuyệt chủng",
+        "start_timestamp": 1775645400,
+        "active": true,
+        "search_volume": 2000,
+        "increase_percentage": 500,
+        "categories": [
+            {
+                "id": 8,
+                "name": "Hobbies and Leisure"
+            },
+            {
+                "id": 13,
+                "name": "Pets and Animals"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=tuy%E1%BB%87t+ch%E1%BB%A7ng&tz=420",
+        "news_page_token": "f2JlVnica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt6LNk2LyjIXhflB-W-vzEHh7z_VB-EDADDHGWs",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=f2JlVnica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt6LNk2LyjIXhflB-W-vzEHh7z_VB-EDADDHGWs"
+    },
+    {
+        "query": "chung cư",
+        "start_timestamp": 1775662200,
+        "active": true,
+        "search_volume": 2000,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=chung+c%C6%B0&tz=420",
+        "news_page_token": "cSQLCHica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRl7LxupFZZmLwvyg_P-Bfsh8Pt4Hrijyu-LXQfgArwcdbQ",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=cSQLCHica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRl7LxupFZZmLwvyg_P-Bfsh8Pt4Hrijyu-LXQfgArwcdbQ"
+    },
+    {
+        "query": "vneid",
+        "start_timestamp": 1775709000,
+        "active": true,
+        "search_volume": 500,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=vneid&tz=420",
+        "news_page_token": "WvAdG3ica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRt4HM4oXlWUuCvOD8l2E9qDwPba5ovBjp-Wg8CfZCaLw_yVdRuG_vdIM4QMA01EvPw",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=WvAdG3ica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRt4HM4oXlWUuCvOD8l2E9qDwPba5ovBjp-Wg8CfZCaLw_yVdRuG_vdIM4QMA01EvPw"
+    },
+    {
+        "query": "thu nhập",
+        "start_timestamp": 1775707800,
+        "active": true,
+        "search_volume": 500,
+        "increase_percentage": 600,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=thu+nh%E1%BA%ADp&tz=420",
+        "news_page_token": "vynbS3ica1xTlFpYmlpcEp-SWJI4a_J5BgYGRp7Xp-4tKstcFOYH4fO2_HmHwn-yxBaZz8fx7TeKvIqJBIo8_8LLKPL7IhNQ5HmXBaDI72IRQOGX7jOE8AE2QUBQ",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=vynbS3ica1xTlFpYmlpcEp-SWJI4a_J5BgYGRp7Xp-4tKstcFOYH4fO2_HmHwn-yxBaZz8fx7TeKvIqJBIo8_8LLKPL7IhNQ5HmXBaDI72IRQOGX7jOE8AE2QUBQ"
+    },
+    {
+        "query": "trường học",
+        "start_timestamp": 1775713800,
+        "active": true,
+        "search_volume": 200,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=tr%C6%B0%E1%BB%9Dng+h%E1%BB%8Dc&tz=420",
+        "news_page_token": "2UjX4Xica1xTlFpYmlpcEp-SWJI4b_J5BgYGRj7-hZsWlWUuCvOD8Hm_H9JF5vMJbUTh817PFUSRZ_0XjSLvvDUehf-E1wBFvaCBP4p8zNNVKPxZXDHIfJ4XX71R5DP23UHhf66rQeHHJj-F8AFhBFZt",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=2UjX4Xica1xTlFpYmlpcEp-SWJI4b_J5BgYGRj7-hZsWlWUuCvOD8Hm_H9JF5vMJbUTh817PFUSRZ_0XjSLvvDUehf-E1wBFvaCBP4p8zNNVKPxZXDHIfJ4XX71R5DP23UHhf66rQeHHJj-F8AFhBFZt"
+    },
+    {
+        "query": "giá vàng miếng sjc",
+        "start_timestamp": 1775650200,
+        "active": true,
+        "search_volume": 2000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "trend_breakdown": [
+            "ga vang",
+            "vàng sjc giá vàng"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=gi%C3%A1+v%C3%A0ng+mi%E1%BA%BFng+sjc&tz=420",
+        "news_page_token": "u2pFSHica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt4Xy44uKstcFOYHANbyDUs",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=u2pFSHica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt4Xy44uKstcFOYHANbyDUs"
+    },
+    {
+        "query": "nguyễn đức mậu",
+        "start_timestamp": 1775707800,
+        "active": true,
+        "search_volume": 500,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "trend_breakdown": [
+            "nhà thơ nguyễn đức mậu"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=nguy%E1%BB%85n+%C4%91%E1%BB%A9c+m%E1%BA%ADu&tz=420",
+        "news_page_token": "dMEVx3ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt5vp3QXlWUuCvMDANRoDOU",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=dMEVx3ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt5vp3QXlWUuCvMDANRoDOU"
+    },
+    {
+        "query": "chú rể",
+        "start_timestamp": 1775712000,
+        "active": true,
+        "search_volume": 200,
+        "increase_percentage": 600,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=ch%C3%BA+r%E1%BB%83&tz=420",
+        "news_page_token": "eP-nFXica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRt73W_oXlWUuCvOD8vdFJqDw_xoaofCvaXah8G3iPZD5fCyPDCF8AE2lKJ0",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=eP-nFXica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRt73W_oXlWUuCvOD8vdFJqDw_xoaofCvaXah8G3iPZD5fCyPDCF8AE2lKJ0"
+    },
+    {
+        "query": "lợi nhuận",
+        "start_timestamp": 1775709600,
+        "active": true,
+        "search_volume": 1000,
+        "increase_percentage": 600,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "trend_breakdown": [
+            "cổ tức"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=l%E1%BB%A3i+nhu%E1%BA%ADn&tz=420",
+        "news_page_token": "pmXcsHica1xTlFpYmlpcEp-SWJI4b_J5BgYGRl7mY2WLyjIXhflB-ftPrUDhz_cWRuH_mjkfhX9dzxOZz8e_cBWK_E2LHyj8PYnfUNQLGrSgyL8vuoHCb68WROG38XOj6Oep-YnM5zk1SQfCBwCMvlbv",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=pmXcsHica1xTlFpYmlpcEp-SWJI4b_J5BgYGRl7mY2WLyjIXhflB-ftPrUDhz_cWRuH_mjkfhX9dzxOZz8e_cBWK_E2LHyj8PYnfUNQLGrSgyL8vuoHCb68WROG38XOj6Oep-YnM5zk1SQfCBwCMvlbv"
+    },
+    {
+        "query": "thông tư 29 về dạy thêm học thêm",
+        "start_timestamp": 1775645400,
+        "active": true,
+        "search_volume": 2000,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 9,
+                "name": "Jobs and Education"
+            }
+        ],
+        "trend_breakdown": [
+            "học thêm",
+            "thông tư 19 về dạy thêm học thêm"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=th%C3%B4ng+t%C6%B0+29+v%E1%BB%81+d%E1%BA%A1y+th%C3%AAm+h%E1%BB%8Dc+th%C3%AAm&tz=420",
+        "news_page_token": "7JZzqXica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt6MfXcWlWUuCvMDANPTDPo",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=7JZzqXica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt6MfXcWlWUuCvMDANPTDPo"
+    },
+    {
+        "query": "lê đức thái",
+        "start_timestamp": 1775650200,
+        "active": true,
+        "search_volume": 1000,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 14,
+                "name": "Politics"
+            },
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "trend_breakdown": [
+            "ông trần đức thắng",
+            "trần đức thắng bí thư thành ủy hà nội"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=l%C3%AA+%C4%91%E1%BB%A9c+th%C3%A1i&tz=420",
+        "news_page_token": "JzUFIHica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt4_7JcWlWUuCvOD8tekrILwAc5XEr8",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=JzUFIHica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt4_7JcWlWUuCvOD8tekrILwAc5XEr8"
+    },
+    {
+        "query": "nam bộ",
+        "start_timestamp": 1775683800,
+        "active": true,
+        "search_volume": 1000,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 20,
+                "name": "Climate"
+            }
+        ],
+        "trend_breakdown": [
+            "nhiệt độ tphcm"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=nam+b%E1%BB%99&tz=420",
+        "news_page_token": "-gAFenica1xTlFpYmlpcEp-SWJI4afJ5BgYGRj4mIZFFZZmLwvwgfN4PrOIQPgChZBBl",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=-gAFenica1xTlFpYmlpcEp-SWJI4afJ5BgYGRj4mIZFFZZmLwvwgfN4PrOIQPgChZBBl"
+    },
+    {
+        "query": "psg",
+        "start_timestamp": 1775673600,
+        "end_timestamp": 1775700600,
+        "active": false,
+        "search_volume": 10000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "trend_breakdown": [
+            "désiré doué"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=psg&tz=420",
+        "news_page_token": "7P1TSHica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRp4pvB6L0ooWhflB-Lw2m2eh8Ju2GqLwJ1n_R-bzCW_2QZHfta0dwgcA73wolQ",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=7P1TSHica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRp4pvB6L0ooWhflB-Lw2m2eh8Ju2GqLwJ1n_R-bzCW_2QZHfta0dwgcA73wolQ"
+    },
+    {
+        "query": "al hilal đấu với al-kholood club",
+        "start_timestamp": 1775670000,
+        "end_timestamp": 1775713800,
+        "active": false,
+        "search_volume": 2000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "trend_breakdown": [
+            "câu lạc bộ bóng đá al-hilal",
+            "al hilal"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=al+hilal+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+al-kholood+club&tz=420",
+        "news_page_token": "PcVxhXica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRt5793YsKstcFOaHxE_NQ_BDeztR-P29Pch8PqYAQxT5lfZrUfgnt0hD-ABwCy-s",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=PcVxhXica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRt5793YsKstcFOaHxE_NQ_BDeztR-P29Pch8PqYAQxT5lfZrUfgnt0hD-ABwCy-s"
+    },
+    {
+        "query": "velizar popov",
+        "start_timestamp": 1775653800,
+        "end_timestamp": 1775713200,
+        "active": false,
+        "search_volume": 5000,
+        "increase_percentage": 800,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=velizar+popov&tz=420",
+        "news_page_token": "4kbnpnica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt6_htGLUvMWhflB-HwC5echfADClhH4",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=4kbnpnica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt6_htGLUvMWhflB-HwC5echfADClhH4"
+    },
+    {
+        "query": "johnathan hạnh nguyễn",
+        "start_timestamp": 1775691600,
+        "active": true,
+        "search_volume": 500,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=johnathan+h%E1%BA%A1nh+nguy%E1%BB%85n&tz=420",
+        "news_page_token": "4SVlwHica1xTlFpYmlpcEp-SWJI4efJ5BgYGRl7PV38WlWUuCvOD8h1mJaPwP73eDeEDADFfGWw",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=4SVlwHica1xTlFpYmlpcEp-SWJI4efJ5BgYGRl7PV38WlWUuCvOD8h1mJaPwP73eDeEDADFfGWw"
+    },
+    {
+        "query": "ngân sách",
+        "start_timestamp": 1775633400,
+        "end_timestamp": 1775702400,
+        "active": false,
+        "search_volume": 10000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=ng%C3%A2n+s%C3%A1ch&tz=420",
+        "news_page_token": "QcFbmHica1xTlFpYmlpcEp-SWJI4d_J5BgYGRt78lvuLyjIXhflB-DyH6phQ-LL2s5D5fAIPPyHzeSfZZaPw23YUovB3sQig8Kt_vkTh7_bJROFPi3iGwq_pZkOxn-WRJIp8wLyvED4AuN9QzQ",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=QcFbmHica1xTlFpYmlpcEp-SWJI4d_J5BgYGRt78lvuLyjIXhflB-DyH6phQ-LL2s5D5fAIPPyHzeSfZZaPw23YUovB3sQig8Kt_vkTh7_bJROFPi3iGwq_pZkOxn-WRJIp8wLyvED4AuN9QzQ"
+    },
+    {
+        "query": "trần thị thanh thúy",
+        "start_timestamp": 1775710200,
+        "active": true,
+        "search_volume": 200,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=tr%E1%BA%A7n+th%E1%BB%8B+thanh+th%C3%BAy&tz=420",
+        "news_page_token": "lCfiaHica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt6VjV6LyjIXhflB-fLhGhA-ALyJEUI",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=lCfiaHica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt6VjV6LyjIXhflB-fLhGhA-ALyJEUI"
+    },
+    {
+        "query": "bảo trợ xã hội",
+        "start_timestamp": 1775709600,
+        "active": true,
+        "search_volume": 200,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=b%E1%BA%A3o+tr%E1%BB%A3+x%C3%A3+h%E1%BB%99i&tz=420",
+        "news_page_token": "6idvRnica1xTlFpYmlpcEp-SWJI4efJ5BgYGRj4-oSWLyjIXhflB-RzfHiPzefctmAbhAwACgRgD",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=6idvRnica1xTlFpYmlpcEp-SWJI4efJ5BgYGRj4-oSWLyjIXhflB-RzfHiPzefctmAbhAwACgRgD"
+    },
+    {
+        "query": "barca vs",
+        "start_timestamp": 1775673600,
+        "end_timestamp": 1775697600,
+        "active": false,
+        "search_volume": 5000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=barca+vs&tz=420",
+        "news_page_token": "aY31Z3ica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRp7rdyIXpeYtCg2G8HnPVquj8C20JFH4R2z-IPO5d3-B6gcAy_4jpw",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=aY31Z3ica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRp7rdyIXpeYtCg2G8HnPVquj8C20JFH4R2z-IPO5d3-B6gcAy_4jpw"
+    },
+    {
+        "query": "doanh nghiệp",
+        "start_timestamp": 1775709000,
+        "active": true,
+        "search_volume": 1000,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "trend_breakdown": [
+            "tổng cục thuế"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=doanh+nghi%E1%BB%87p&tz=420",
+        "news_page_token": "Ty4eznica1xTlFpYmlpcEp-SWJI4f_J5BgYGRl7_JqNFZZmLwvyg_Nf6fij8XzPnI_P5BB5-QuFz7bmEoj5a4zIK_6lVP4p64VoU83hvWuxF4d9wWonCTygJQeHvSfyGwp9y5Tea-1DlE3edhvABXEFfUw",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=Ty4eznica1xTlFpYmlpcEp-SWJI4f_J5BgYGRl7_JqNFZZmLwvyg_Nf6fij8XzPnI_P5BB5-QuFz7bmEoj5a4zIK_6lVP4p64VoU83hvWuxF4d9wWonCTygJQeHvSfyGwp9y5Tea-1DlE3edhvABXEFfUw"
+    },
+    {
+        "query": "ukraina",
+        "start_timestamp": 1775713200,
+        "active": true,
+        "search_volume": 100,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=ukraina&tz=420",
+        "news_page_token": "3r32KHica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRj7ujoWLUvMWhflB-Lyv9fNR-O8aNqLJF6Dw_51jR-Fbfa1E4e9b0ADhAwD-OS-0",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=3r32KHica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRj7ujoWLUvMWhflB-Lyv9fNR-O8aNqLJF6Dw_51jR-Fbfa1E4e9b0ADhAwD-OS-0"
+    },
+    {
+        "query": "tổng công ty cảng hàng không việt nam",
+        "start_timestamp": 1775715600,
+        "active": true,
+        "search_volume": 500,
+        "increase_percentage": 600,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "trend_breakdown": [
+            "lại xuân thanh"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=t%E1%BB%95ng+c%C3%B4ng+ty+c%E1%BA%A3ng+h%C3%A0ng+kh%C3%B4ng+vi%E1%BB%87t+nam&tz=420",
+        "news_page_token": "xMSDpHica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRp67JpKLyjIXhflB-Lw_SvhQ-NdSrFH4v4P-Q_gAsx0eBA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=xMSDpHica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRp67JpKLyjIXhflB-Lw_SvhQ-NdSrFH4v4P-Q_gAsx0eBA"
+    },
+    {
+        "query": "psg vs liver",
+        "start_timestamp": 1775671800,
+        "end_timestamp": 1775715600,
+        "active": false,
+        "search_volume": 5000,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "trend_breakdown": [
+            "liver vs psg",
+            "liver vs",
+            "liv vs psg"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=psg+vs+liver&tz=420",
+        "news_page_token": "snefU3ica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRl4LLclFqXmLwvyg_Kathih8qHxoMITPfe7wbmQ-zy6Ggyjyr5drIvN5731_D-EDAFhMLqc",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=snefU3ica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRl4LLclFqXmLwvyg_Kathih8qHxoMITPfe7wbmQ-zy6Ggyjyr5drIvN5731_D-EDAFhMLqc"
+    },
+    {
+        "query": "học phí",
+        "start_timestamp": 1775713800,
+        "active": true,
+        "search_volume": 100,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 9,
+                "name": "Jobs and Education"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=h%E1%BB%8Dc+ph%C3%AD&tz=420",
+        "news_page_token": "n5VMinica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt72Y0GLyjIXhflB-W_lNqDwj6kbofAPPj2Fwt_vtxHCBwDmWCR_",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=n5VMinica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt72Y0GLyjIXhflB-W_lNqDwj6kbofAPPj2Fwt_vtxHCBwDmWCR_"
+    },
+    {
+        "query": "braga đấu với betis",
+        "start_timestamp": 1775663400,
+        "end_timestamp": 1775703000,
+        "active": false,
+        "search_volume": 5000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "trend_breakdown": [
+            "real betis vs",
+            "braga – betis"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=braga+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+betis&tz=420",
+        "news_page_token": "T9waF3ica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt496x8vSs1bFOYH5Yd1G6PwQfJlmUA-AC3BGQA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=T9waF3ica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt496x8vSs1bFOYH5Yd1G6PwQfJlmUA-AC3BGQA"
+    },
+    {
+        "query": "nguyễn thùy linh",
+        "start_timestamp": 1775691000,
+        "active": true,
+        "search_volume": 200,
+        "increase_percentage": 100,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=nguy%E1%BB%85n+th%C3%B9y+linh&tz=420",
+        "news_page_token": "C_p-o3ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt5oTclFZZmLwvwAyWELlQ",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=C_p-o3ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt5oTclFZZmLwvwAyWELlQ"
+    },
+    {
+        "query": "toluca đấu với la galaxy",
+        "start_timestamp": 1775701800,
+        "end_timestamp": 1775714400,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 600,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "trend_breakdown": [
+            "la galaxy vs"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=toluca+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+la+galaxy&tz=420",
+        "news_page_token": "9qIC-nica1xTlFpYmlpcEp-SWJI4efJ5BgYGRj4mIYNFqXmLwvwgfN7N79Yh88HyZZlAPgDpYhYp",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=9qIC-nica1xTlFpYmlpcEp-SWJI4efJ5BgYGRj4mIYNFqXmLwvwgfN7N79Yh88HyZZlAPgDpYhYp"
+    },
+    {
+        "query": "hàng không",
+        "start_timestamp": 1775715000,
+        "active": true,
+        "search_volume": 200,
+        "increase_percentage": 100,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "trend_breakdown": [
+            "hãng hàng không"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=h%C3%A0ng+kh%C3%B4ng&tz=420",
+        "news_page_token": "9H1tgHica1xTlFpYmlpcEp-SWJI4f_J5BgYGRt6arpeLyjIXhflB-DwpGhbIfF7NCDEU-WMrZJD5fML8qOp_nHNBked7ZI0i_4EVxTzeN4fPoKhnm5uJIj-n4A8K__DrWajmB89Bkf8ibYLqnhI-CB8AdPZbCQ",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=9H1tgHica1xTlFpYmlpcEp-SWJI4f_J5BgYGRt6arpeLyjIXhflB-DwpGhbIfF7NCDEU-WMrZJD5fML8qOp_nHNBked7ZI0i_4EVxTzeN4fPoKhnm5uJIj-n4A8K__DrWajmB89Bkf8ibYLqnhI-CB8AdPZbCQ"
+    },
+    {
+        "query": "xổ số đồng nai ngày 8 tháng 4",
+        "start_timestamp": 1775643600,
+        "end_timestamp": 1775712600,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 6,
+                "name": "Games"
+            }
+        ],
+        "trend_breakdown": [
+            "xổ số miền nam 8 tây tháng 04"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=x%E1%BB%95+s%E1%BB%91+%C4%91%E1%BB%93ng+nai+ng%C3%A0y+8+th%C3%A1ng+4&tz=420",
+        "news_page_token": "NbKa3Xica1xTlFpYmlpcEp-SWJI4afJ5BgYGRl4lbfNFZZmLwvyg_F3xhyF8AK-FEZA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=NbKa3Xica1xTlFpYmlpcEp-SWJI4afJ5BgYGRl4lbfNFZZmLwvyg_F3xhyF8AK-FEZA"
+    },
+    {
+        "query": "nguyễn thị phương thảo",
+        "start_timestamp": 1775643000,
+        "end_timestamp": 1775701200,
+        "active": false,
+        "search_volume": 2000,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=nguy%E1%BB%85n+th%E1%BB%8B+ph%C6%B0%C6%A1ng+th%E1%BA%A3o&tz=420",
+        "news_page_token": "Hn-xDHica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRt5a5s-LyjIXhflB-Ws_XUPh_yjhQ-bzce25DuEDAOLKHqA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=Hn-xDHica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRt5a5s-LyjIXhflB-Ws_XUPh_yjhQ-bzce25DuEDAOLKHqA"
+    },
+    {
+        "query": "ô to",
+        "start_timestamp": 1775643600,
+        "end_timestamp": 1775699400,
+        "active": false,
+        "search_volume": 2000,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            },
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=%C3%B4+to&tz=420",
+        "news_page_token": "2PiuqXica1xTlFpYmlpcEp-SWJI4e_J5BgYGRt4vZzgWlWUuCvOD8r9rsCHz-Xj1r6HI_yg-gyLP9ygVhc_jehFFfVNOF4o8_8ITqPqDJ6Cov9PMg8JvboK6DwA37UQz",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=2PiuqXica1xTlFpYmlpcEp-SWJI4e_J5BgYGRt4vZzgWlWUuCvOD8r9rsCHz-Xj1r6HI_yg-gyLP9ygVhc_jehFFfVNOF4o8_8ITqPqDJ6Cov9PMg8JvboK6DwA37UQz"
+    },
+    {
+        "query": "nghị định 46",
+        "start_timestamp": 1775638200,
+        "end_timestamp": 1775700000,
+        "active": false,
+        "search_volume": 2000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "trend_breakdown": [
+            "nghị định 46/2026/nđ-cp"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=ngh%E1%BB%8B+%C4%91%E1%BB%8Bnh+46&tz=420",
+        "news_page_token": "uIexvnica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt6jWa2LyjIXhfkBANIXDKw",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=uIexvnica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt6jWa2LyjIXhfkBANIXDKw"
+    },
+    {
+        "query": "hồ tiêu",
+        "start_timestamp": 1775646600,
+        "end_timestamp": 1775696400,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 500,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=h%E1%BB%93+ti%C3%AAu&tz=420",
+        "news_page_token": "Tnbd8Xica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt5X81gXlWUuCvMDANGEDIU",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=Tnbd8Xica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt5X81gXlWUuCvMDANGEDIU"
+    },
+    {
+        "query": "thành phố hồ chí minh",
+        "start_timestamp": 1775713200,
+        "end_timestamp": 1775716200,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=th%C3%A0nh+ph%E1%BB%91+h%E1%BB%93+ch%C3%AD+minh&tz=420",
+        "news_page_token": "x6x6W3ica1xTlFpYmlpcEp-SWJI4a_J5BgYGRl6fZNFFZZmLwvwgfD7OrR0ofGH-BGQ-r8MsVPU8r1-iyE-LeIbC3xcpi8K3ny2Dwv8i9QeFr2IiBuEDAB2wPMQ",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=x6x6W3ica1xTlFpYmlpcEp-SWJI4a_J5BgYGRl6fZNFFZZmLwvwgfD7OrR0ofGH-BGQ-r8MsVPU8r1-iyE-LeIbC3xcpi8K3ny2Dwv8i9QeFr2IiBuEDAB2wPMQ"
+    },
+    {
+        "query": "taxi",
+        "start_timestamp": 1775706000,
+        "end_timestamp": 1775715000,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=taxi&tz=420",
+        "news_page_token": "8LJKR3ica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRj4e14uLyjIXhflB-Lwf1zIg8_l4Xr9GkV_yLgLCBwC8Bx4u",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=8LJKR3ica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRj4e14uLyjIXhflB-Lwf1zIg8_l4Xr9GkV_yLgLCBwC8Bx4u"
+    },
+    {
+        "query": "tháng 3",
+        "start_timestamp": 1775641800,
+        "end_timestamp": 1775698200,
+        "active": false,
+        "search_volume": 2000,
+        "increase_percentage": 500,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=th%C3%A1ng+3&tz=420",
+        "news_page_token": "xq8PR3ica1xTlFpYmlpcEp-SWJI4a_J5BgYGRt7SfYaLyjIXhflB-d812JD5PIueuCHz-XiLUfg8u1NT0OSVUMx7Y_YKhZ_fch-F799kgMKfclUAwgcAwb4-iQ",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=xq8PR3ica1xTlFpYmlpcEp-SWJI4a_J5BgYGRt7SfYaLyjIXhflB-d812JD5PIueuCHz-XiLUfg8u1NT0OSVUMx7Y_YKhZ_fch-F799kgMKfclUAwgcAwb4-iQ"
+    },
+    {
+        "query": "barcelona vs",
+        "start_timestamp": 1775676600,
+        "end_timestamp": 1775697600,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "trend_breakdown": [
+            "barcelona vs atl madrid"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=barcelona+vs&tz=420",
+        "news_page_token": "Z6mf_Hica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRp6LG40XpRYvCvOD8HlXMnqg8OVCNyLzeZ4apEH4AKltHMg",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=Z6mf_Hica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRp6LG40XpRYvCvOD8HlXMnqg8OVCNyLzeZ4apEH4AKltHMg"
+    },
+    {
+        "query": "đỗ duy mạnh",
+        "start_timestamp": 1775708400,
+        "end_timestamp": 1775714400,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 16,
+                "name": "Shopping"
+            }
+        ],
+        "trend_breakdown": [
+            "đồng hồ audemars piguet"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=%C4%91%E1%BB%97+duy+m%E1%BA%A1nh&tz=420",
+        "news_page_token": "Y9INknica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt43hy8vKstcFOYH5X96vRKZz8c0WQjCBwBOohkY",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=Y9INknica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt43hy8vKstcFOYH5X96vRKZz8c0WQjCBwBOohkY"
+    },
+    {
+        "query": "goztepe đấu với galatasaray",
+        "start_timestamp": 1775665200,
+        "end_timestamp": 1775695800,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=goztepe+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+galatasaray&tz=420",
+        "news_page_token": "aUeSg3ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt4jgfMXlWUuCvMDANH8DKw",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=aUeSg3ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt4jgfMXlWUuCvMDANH8DKw"
+    },
+    {
+        "query": "tigres đấu với seattle",
+        "start_timestamp": 1775694600,
+        "end_timestamp": 1775704800,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 500,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=tigres+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+seattle&tz=420",
+        "news_page_token": "4IApb3ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt4rHocWlWUuCvMDANM5DNY",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=4IApb3ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt4rHocWlWUuCvMDANM5DNY"
+    },
+    {
+        "query": "lamine yamal",
+        "start_timestamp": 1775681400,
+        "end_timestamp": 1775695200,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "trend_breakdown": [
+            "quyết toán"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=lamine+yamal&tz=420",
+        "news_page_token": "RIEj-Xica1xTlFpYmlpcEp-SWJI4a_J5BgYGRt59kQmLUvMWhflB-XKhG5H5fFx7fqPIfwhnR-GD9JdlIvgtf96h8P8aiqHw16hlovBfr_ZC4dt6BkH4ADDJP4c",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=RIEj-Xica1xTlFpYmlpcEp-SWJI4a_J5BgYGRt59kQmLUvMWhflB-XKhG5H5fFx7fqPIfwhnR-GD9JdlIvgtf96h8P8aiqHw16hlovBfr_ZC4dt6BkH4ADDJP4c"
+    },
+    {
+        "query": "trần nhượng",
+        "start_timestamp": 1775637000,
+        "end_timestamp": 1775695800,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=tr%E1%BA%A7n+nh%C6%B0%E1%BB%A3ng&tz=420",
+        "news_page_token": "lD2JZnica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt5jvT2LyjIXhfkBANNpDNc",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=lD2JZnica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt5jvT2LyjIXhfkBANNpDNc"
+    },
+    {
+        "query": "năng lượng mặt trời",
+        "start_timestamp": 1775630400,
+        "end_timestamp": 1775698200,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=n%C4%83ng+l%C6%B0%E1%BB%A3ng+m%E1%BA%B7t+tr%E1%BB%9Di&tz=420",
+        "news_page_token": "q4KmFHica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt4VvzctKstcFOYH5b_bOQuZz8e7LApFfl9kHgpf23klCv9RkyEKv2XVXRTzOJZ8gvABhrw1_w",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=q4KmFHica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt4VvzctKstcFOYH5b_bOQuZz8e7LApFfl9kHgpf23klCv9RkyEKv2XVXRTzOJZ8gvABhrw1_w"
+    },
+    {
+        "query": "pin điện",
+        "start_timestamp": 1775644200,
+        "end_timestamp": 1775697000,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=pin+%C4%91i%E1%BB%87n&tz=420",
+        "news_page_token": "NmdUBHica1xTlFpYmlpcEp-SWJI4Z_J5BgYGRt5TVz4uKstcFOYH5a_4vQmFv0-yAZnPJ2BzHkX-2iIUeZ67JhIo8sfU5VD4X52SUPil-wRR9Hu-YEZ1T-hJFPlFT9wgfADh5EyD",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=NmdUBHica1xTlFpYmlpcEp-SWJI4Z_J5BgYGRt5TVz4uKstcFOYH5a_4vQmFv0-yAZnPJ2BzHkX-2iIUeZ67JhIo8sfU5VD4X52SUPil-wRR9Hu-YEZ1T-hJFPlFT9wgfADh5EyD"
+    },
+    {
+        "query": "giỗ tổ hùng vương",
+        "start_timestamp": 1775641200,
+        "end_timestamp": 1775694600,
+        "active": false,
+        "search_volume": 2000,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "trend_breakdown": [
+            "30/4"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=gi%E1%BB%97+t%E1%BB%95+h%C3%B9ng+v%C6%B0%C6%A1ng&tz=420",
+        "news_page_token": "yckep3ica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt6WVbcXlWUuCvOD8q9vaUDh37TkRubzcWW0osi_MXuHwteMEEPhqwrZovDtZ8tA-AAPNDK6",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=yckep3ica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt6WVbcXlWUuCvOD8q9vaUDh37TkRubzcWW0osi_MXuHwteMEEPhqwrZovDtZ8tA-AAPNDK6"
+    },
+    {
+        "query": "giáo viên mầm non",
+        "start_timestamp": 1775647800,
+        "end_timestamp": 1775698200,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=gi%C3%A1o+vi%C3%AAn+m%E1%BA%A7m+non&tz=420",
+        "news_page_token": "9FHM23ica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt5gWY5FZZmLwvyg_NpV4hA-AKpEEOY",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=9FHM23ica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt5gWY5FZZmLwvyg_NpV4hA-AKpEEOY"
+    },
+    {
+        "query": "lee jung-soo",
+        "start_timestamp": 1775646000,
+        "end_timestamp": 1775659200,
+        "active": false,
+        "search_volume": 2000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "trend_breakdown": [
+            "lee jung soo",
+            "kim sang-sik"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=lee+jung-soo&tz=420",
+        "news_page_token": "0jO23Hica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt79Vb8WpeYtCvOD8h_-m4PCz2-5hcKPcn2Gwv8QrgDhAwAyiiUD",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=0jO23Hica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt79Vb8WpeYtCvOD8h_-m4PCz2-5hcKPcn2Gwv8QrgDhAwAyiiUD"
+    },
+    {
+        "query": "iphone 18 pro",
+        "start_timestamp": 1775712600,
+        "end_timestamp": 1775714400,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 18,
+                "name": "Technology"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=iphone+18+pro&tz=420",
+        "news_page_token": "YITsanica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt7TGfsWpeYtCvOD8g98PYPM577LJIbM53ndlIfCr2H5COEDAAhfJEs",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=YITsanica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt7TGfsWpeYtCvOD8g98PYPM577LJIbM53ndlIfCr2H5COEDAAhfJEs"
+    },
+    {
+        "query": "xác thực",
+        "start_timestamp": 1775632800,
+        "end_timestamp": 1775692800,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            },
+            {
+                "id": 1,
+                "name": "Autos and Vehicles"
+            },
+            {
+                "id": 9,
+                "name": "Jobs and Education"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=x%C3%A1c+th%E1%BB%B1c&tz=420",
+        "news_page_token": "0tF6cHica1xTlFpYmlpcEp-SWJI4efJ5BgYGRl5nEZFFZZmLwvyg_NhpOch8PoFHKhA-AOKFFkk",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=0tF6cHica1xTlFpYmlpcEp-SWJI4efJ5BgYGRl5nEZFFZZmLwvyg_NhpOch8PoFHKhA-AOKFFkk"
+    },
+    {
+        "query": "la galaxy",
+        "start_timestamp": 1775710800,
+        "end_timestamp": 1775713800,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=la+galaxy&tz=420",
+        "news_page_token": "3vjEV3ica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt7N79YtSs1bFOYH4fMxCRkg83kdPU6iyLNOuozCF5xjDOEDAKM1Ic4",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=3vjEV3ica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt7N79YtSs1bFOYH4fMxCRkg83kdPU6iyLNOuozCF5xjDOEDAKM1Ic4"
+    },
+    {
+        "query": "quả bóng vàng châu âu",
+        "start_timestamp": 1775683200,
+        "end_timestamp": 1775698800,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 100,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=qu%E1%BA%A3+b%C3%B3ng+v%C3%A0ng+ch%C3%A2u+%C3%A2u&tz=420",
+        "news_page_token": "-PfWsnica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt4P4eyLyjIXhflB-W1edyF8AMGtEis",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=-PfWsnica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt4P4eyLyjIXhflB-W1edyF8AMGtEis"
+    },
+    {
+        "query": "thuế điện tử",
+        "start_timestamp": 1775706000,
+        "end_timestamp": 1775709000,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 100,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=thu%E1%BA%BF+%C4%91i%E1%BB%87n+t%E1%BB%AD&tz=420",
+        "news_page_token": "8QWzg3ica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt45IgsWlWUuCvOD8HkO1TFB-AC-pRHB",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=8QWzg3ica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt45IgsWlWUuCvOD8HkO1TFB-AC-pRHB"
+    },
+    {
+        "query": "bộ tài chính",
+        "start_timestamp": 1775705400,
+        "end_timestamp": 1775709600,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 500,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=b%E1%BB%99+t%C3%A0i+ch%C3%ADnh&tz=420",
+        "news_page_token": "zWyE3nica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRt5vp7QWlWUuCvOD8HkO1TEh83lt4gtQ-N811FDUz87qRZG_neCGwn-92gvCBwDXuy61",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=zWyE3nica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRt5vp7QWlWUuCvOD8HkO1TEh83lt4gtQ-N811FDUz87qRZG_neCGwn-92gvCBwDXuy61"
+    },
+    {
+        "query": "álvaro arbeloa",
+        "start_timestamp": 1775688000,
+        "end_timestamp": 1775698800,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=%C3%A1lvaro+arbeloa&tz=420",
+        "news_page_token": "6iSe_Xica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRl6RromLUosXhflB-a-FGlD4n3L7UPjHkwVQ-Cd37kfm8zHwX0bm88hN_oyi_p_2YggfAPSyNK4",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=6iSe_Xica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRl6RromLUosXhflB-a-FGlD4n3L7UPjHkwVQ-Cd37kfm8zHwX0bm88hN_oyi_p_2YggfAPSyNK4"
+    },
+    {
+        "query": "bong ma hanh phuc",
+        "start_timestamp": 1775653800,
+        "end_timestamp": 1775668200,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 100,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=bong+ma+hanh+phuc&tz=420",
+        "news_page_token": "SD8eynica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt4mcc9FqXmLQoOh_IcTpCF8ALX2EY4",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=SD8eynica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt4mcc9FqXmLQoOh_IcTpCF8ALX2EY4"
+    },
+    {
+        "query": "angela phương trinh",
+        "start_timestamp": 1775653200,
+        "end_timestamp": 1775694600,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=angela+ph%C6%B0%C6%A1ng+trinh&tz=420",
+        "news_page_token": "gPdBEXica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt7bCbyLyjIXhflB-W5iwhA-ALecEOc",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=gPdBEXica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt7bCbyLyjIXhflB-W5iwhA-ALecEOc"
+    },
+    {
+        "query": "phùng ngọc huy",
+        "start_timestamp": 1775638200,
+        "end_timestamp": 1775661600,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=ph%C3%B9ng+ng%E1%BB%8Dc+huy&tz=420",
+        "news_page_token": "vErZ53ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt6vThqLyjIXhfkBAM_8DFc",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=vErZ53ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt6vThqLyjIXhfkBAM_8DFc"
+    },
+    {
+        "query": "đỗ thị hà",
+        "start_timestamp": 1775631600,
+        "end_timestamp": 1775657400,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=%C4%91%E1%BB%97+th%E1%BB%8B+h%C3%A0&tz=420",
+        "news_page_token": "Yw6SQ3ica1xTlFpYmlpcEp-SWJI4afJ5BgYGRl7nrbKLyjIXhflB-Q9mJEL4AL3IEh4",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=Yw6SQ3ica1xTlFpYmlpcEp-SWJI4afJ5BgYGRl7nrbKLyjIXhflB-Q9mJEL4AL3IEh4"
+    },
+    {
+        "query": "vinamilk",
+        "start_timestamp": 1775708400,
+        "end_timestamp": 1775712000,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 100,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=vinamilk&tz=420",
+        "news_page_token": "I9rWyHica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt5Pr_csKstcFOYH5f8OugvhAwDkXxPz",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=I9rWyHica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt5Pr_csKstcFOYH5f8OugvhAwDkXxPz"
+    },
+    {
+        "query": "phim bóng ma hạnh phúc",
+        "start_timestamp": 1775653200,
+        "end_timestamp": 1775667600,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "trend_breakdown": [
+            "truyền hình vĩnh long",
+            "phim bong ma hanh phuc"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=phim+b%C3%B3ng+ma+h%E1%BA%A1nh+ph%C3%BAc&tz=420",
+        "news_page_token": "FoD6xHica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRt6HE6QXlWUuCvOD8k9n9KDwm8Q9UfjH1CUgfAC7NhzS",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=FoD6xHica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRt6HE6QXlWUuCvOD8k9n9KDwm8Q9UfjH1CUgfAC7NhzS"
+    },
+    {
+        "query": "honor",
+        "start_timestamp": 1775630400,
+        "end_timestamp": 1775658000,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            },
+            {
+                "id": 9,
+                "name": "Jobs and Education"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=honor&tz=420",
+        "news_page_token": "akgu43ica1xTlFpYmlpcEp-SWJI4f_J5BgYGRj6mYNVFqXmLQoMhfN6td8RR-P8zU5H5fGxn56Cpn4Uizyj7E0X-nchcFH5WDIr5fKxCLSjyy1uCUPg1TluQ-Tx_pcRQ5JeKobiHM-AaCzKfK3bvQggfAFyqWZs",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=akgu43ica1xTlFpYmlpcEp-SWJI4f_J5BgYGRj6mYNVFqXmLQoMhfN6td8RR-P8zU5H5fGxn56Cpn4Uizyj7E0X-nchcFH5WDIr5fKxCLSjyy1uCUPg1TluQ-Tx_pcRQ5JeKobiHM-AaCzKfK3bvQggfAFyqWZs"
+    },
+    {
+        "query": "junior đấu với palmeiras",
+        "start_timestamp": 1775695200,
+        "end_timestamp": 1775705400,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=junior+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+palmeiras&tz=420",
+        "news_page_token": "UJ5sLHica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRj6-Rz6LyjIXhfkBAM3jDDU",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=UJ5sLHica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRj6-Rz6LyjIXhfkBAM3jDDU"
+    },
+    {
+        "query": "toyota land cruiser",
+        "start_timestamp": 1775638200,
+        "end_timestamp": 1775695200,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 1,
+                "name": "Autos and Vehicles"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=toyota+land+cruiser&tz=420",
+        "news_page_token": "hP3heHica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRl4NS75FqXmLwvyg_LcpLCj83T6OKPzDrpwo_LbWZxA-AFmnIao",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=hP3heHica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRl4NS75FqXmLwvyg_LcpLCj83T6OKPzDrpwo_LbWZxA-AFmnIao"
+    },
+    {
+        "query": "real betis",
+        "start_timestamp": 1775667600,
+        "end_timestamp": 1775677200,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 600,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "trend_breakdown": [
+            "betis"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=real+betis&tz=420",
+        "news_page_token": "pLNLjXica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt45C3oXpRYvCvOD8r9PfIfM52PdLo8in23sgSLP9vQ6ivzeSU4o8nxCESjyv5yMIHwADeozhA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=pLNLjXica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt45C3oXpRYvCvOD8r9PfIfM52PdLo8in23sgSLP9vQ6ivzeSU4o8nxCESjyv5yMIHwADeozhA"
+    },
+    {
+        "query": "cup fa",
+        "start_timestamp": 1775650800,
+        "end_timestamp": 1775691600,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=cup+fa&tz=420",
+        "news_page_token": "VoHRB3ica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRt6qdJ1FqXmLwvyg_B2nlqDwrRs-oMrvz0Lhx81cjsJv42eG8AE3pii9",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=VoHRB3ica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRt6qdJ1FqXmLwvyg_B2nlqDwrRs-oMrvz0Lhx81cjsJv42eG8AE3pii9"
+    },
+    {
+        "query": "giải bóng đá thế giới 2026",
+        "start_timestamp": 1775647200,
+        "end_timestamp": 1775658600,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=gi%E1%BA%A3i+b%C3%B3ng+%C4%91%C3%A1+th%E1%BA%BF+gi%E1%BB%9Bi+2026&tz=420",
+        "news_page_token": "pWrminica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRj6Bh78WlWUuCvOD8HlfMb1E4d8KU0Xhm77QhPAB3mQd_A",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=pWrminica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRj6Bh78WlWUuCvOD8HlfMb1E4d8KU0Xhm77QhPAB3mQd_A"
+    },
+    {
+        "query": "uefa champions league",
+        "start_timestamp": 1775691600,
+        "end_timestamp": 1775694600,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 600,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "trend_breakdown": [
+            "atm vs"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=uefa+champions+league&tz=420",
+        "news_page_token": "aM4fU3ica1xTlFpYmlpcEp-SWJJ4h0Fg8nkGBgZG3rPV6otS8xaFBkP4PNfvRCLzYfJhflC-hZYkMp8nWOc-irxc6EYUftNWQxT1UPPh8odDLJH5fBzzwlH4QmKTUfi8ip9R-PxPFVDMC-3tRJNnQuZznzu8G8IHAGHRXxk",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=aM4fU3ica1xTlFpYmlpcEp-SWJJ4h0Fg8nkGBgZG3rPV6otS8xaFBkP4PNfvRCLzYfJhflC-hZYkMp8nWOc-irxc6EYUftNWQxT1UPPh8odDLJH5fBzzwlH4QmKTUfi8ip9R-PxPFVDMC-3tRJNnQuZznzu8G8IHAGHRXxk"
+    },
+    {
+        "query": "băng hồ trọng sinh",
+        "start_timestamp": 1775652600,
+        "end_timestamp": 1775714400,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=b%C4%83ng+h%E1%BB%93+tr%E1%BB%8Dng+sinh&tz=420",
+        "news_page_token": "4DTkFHica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRl5VofxFZZmLwvwAyR0Lng",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=4DTkFHica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRl5VofxFZZmLwvwAyR0Lng"
+    },
+    {
+        "query": "xem bong da",
+        "start_timestamp": 1775675400,
+        "end_timestamp": 1775681400,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 100,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=xem+bong+da&tz=420",
+        "news_page_token": "Dnf_7Hica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRj6BRxqLyjIXhflB-NweVf-Q-bxudxlQ-P_Y_FD4cqEbkfk8tet3ocjLh6OYz9u01RDCBwCi6DLd",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=Dnf_7Hica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRj6BRxqLyjIXhflB-NweVf-Q-bxudxlQ-P_Y_FD4cqEbkfk8tet3ocjLh6OYz9u01RDCBwCi6DLd"
+    },
+    {
+        "query": "xem bóng đá trực",
+        "start_timestamp": 1775674800,
+        "end_timestamp": 1775683800,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "trend_breakdown": [
+            "futsal việt nam"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=xem+b%C3%B3ng+%C4%91%C3%A1+tr%E1%BB%B1c&tz=420",
+        "news_page_token": "T-yfgnica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRm6Pqn-LyjIXhflB-LxtXneR-Ty163ehyLvdZUDhy4VuROEfWdQM4QMAS8MpkA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=T-yfgnica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRm6Pqn-LyjIXhflB-LxtXneR-Ty163ehyLvdZUDhy4VuROEfWdQM4QMAS8MpkA"
+    },
+    {
+        "query": "hoàng thùy",
+        "start_timestamp": 1775651400,
+        "end_timestamp": 1775715600,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 2,
+                "name": "Beauty and Fashion"
+            },
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=ho%C3%A0ng+th%C3%B9y&tz=420",
+        "news_page_token": "PvEDPXica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt5593YsKstcFOYH4fPsDfwL4QMA2TcTbg",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=PvEDPXica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt5593YsKstcFOYH4fPsDfwL4QMA2TcTbg"
+    },
+    {
+        "query": "bảo hiểm xã hội việt nam",
+        "start_timestamp": 1775634000,
+        "end_timestamp": 1775646000,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 500,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=b%E1%BA%A3o+hi%E1%BB%83m+x%C3%A3+h%E1%BB%99i+vi%E1%BB%87t+nam&tz=420",
+        "news_page_token": "8-DEPXica1xTlFpYmlpcEp-SWJI4c_J5BgYGRt62HcmLyjIXhflB-d9OaSHzee7JdKLI_2MrReHvtGRD4U-58gyZz8fx7TGKvN-vHSj8sogcCB8A2HA7oA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=8-DEPXica1xTlFpYmlpcEp-SWJI4c_J5BgYGRt62HcmLyjIXhflB-d9OaSHzee7JdKLI_2MrReHvtGRD4U-58gyZz8fx7TGKvN-vHSj8sogcCB8A2HA7oA"
+    },
+    {
+        "query": "colombia",
+        "start_timestamp": 1775630400,
+        "end_timestamp": 1775695800,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=colombia&tz=420",
+        "news_page_token": "U8byd3ica1xTlFpYmlpcEp-SWJI4b_J5BgYGRt7933QWpRYvCvOD8u3zvVH46z-YIPP5BOxnI_N5Nu6MQ1Hvm5yNol5oNqp-9qfRKHxh_mRU9exfUMwL7OZClefgQ5E_u_YnijzbYR4IHwCM3FH-",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=U8byd3ica1xTlFpYmlpcEp-SWJI4b_J5BgYGRt7933QWpRYvCvOD8u3zvVH46z-YIPP5BOxnI_N5Nu6MQ1Hvm5yNol5oNqp-9qfRKHxh_mRU9exfUMwL7OZClefgQ5E_u_YnijzbYR4IHwCM3FH-"
+    },
+    {
+        "query": "ket qua cup c1",
+        "start_timestamp": 1775682600,
+        "end_timestamp": 1775695200,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 75,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=ket+qua+cup+c1&tz=420",
+        "news_page_token": "w8te_nica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRj7-p1KLyjIXhflB-LxyoRtR-E1bDVH4x9QtUPhtXneR-dweVf8gfADaCig7",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=w8te_nica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRj7-p1KLyjIXhflB-LxyoRtR-E1bDVH4x9QtUPhtXneR-dweVf8gfADaCig7"
+    },
+    {
+        "query": "michael carrick",
+        "start_timestamp": 1775688600,
+        "end_timestamp": 1775695800,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=michael+carrick&tz=420",
+        "news_page_token": "o-IuJnica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRt4D74oXpeYtCvOD8m9N6Ubh_7XbisznWeR2DkX-gm4GCv_O89sQPgCd2CuK",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=o-IuJnica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRt4D74oXpeYtCvOD8m9N6Ubh_7XbisznWeR2DkX-gm4GCv_O89sQPgCd2CuK"
+    },
+    {
+        "query": "aaron ramsey",
+        "start_timestamp": 1775656800,
+        "end_timestamp": 1775714400,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=aaron+ramsey&tz=420",
+        "news_page_token": "jgQEcXica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt57tjsWpeYtCvOD8e_tgvAB0uMTYQ",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=jgQEcXica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt57tjsWpeYtCvOD8e_tgvAB0uMTYQ"
+    },
+    {
+        "query": "gamba osaka đấu với bangkok utd",
+        "start_timestamp": 1775640600,
+        "end_timestamp": 1775652600,
+        "active": false,
+        "search_volume": 1000,
+        "increase_percentage": 600,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "trend_breakdown": [
+            "gamba osaka"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=gamba+osaka+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+bangkok+utd&tz=420",
+        "news_page_token": "u6qX0Xica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt7_gVaLUvMWhflB-TNqOlD40yrWIvP5OEwqUORB-ssygXwAvmYiyA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=u6qX0Xica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt7_gVaLUvMWhflB-TNqOlD40yrWIvP5OEwqUORB-ssygXwAvmYiyA"
+    },
+    {
+        "query": "xe tay ga",
+        "start_timestamp": 1775688000,
+        "end_timestamp": 1775695200,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 1,
+                "name": "Autos and Vehicles"
+            },
+            {
+                "id": 16,
+                "name": "Shopping"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=xe+tay+ga&tz=420",
+        "news_page_token": "rnj1B3ica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRt5792oWlWUuCvOD8usqP6LwozWlUfi7Ntuj8Oe-K0PhH-WdD-EDAGeuKe0",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=rnj1B3ica1xTlFpYmlpcEp-SWJI4bfJ5BgYGRt5792oWlWUuCvOD8usqP6LwozWlUfi7Ntuj8Oe-K0PhH-WdD-EDAGeuKe0"
+    },
+    {
+        "query": "kênh 14",
+        "start_timestamp": 1775632200,
+        "end_timestamp": 1775649600,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 16,
+                "name": "Shopping"
+            },
+            {
+                "id": 2,
+                "name": "Beauty and Fashion"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=k%C3%AAnh+14&tz=420",
+        "news_page_token": "gAzNdXica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt5_bHMWlWUuCvOD8r86uaHwv-cdReFf10tD4X8Ie4rC_yIthsJ_whuJwo_qewjhAwBaDDWV",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=gAzNdXica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt5_bHMWlWUuCvOD8r86uaHwv-cdReFf10tD4X8Ie4rC_yIthsJ_whuJwo_qewjhAwBaDDWV"
+    },
+    {
+        "query": "galatasaray",
+        "start_timestamp": 1775667000,
+        "end_timestamp": 1775678400,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=galatasaray&tz=420",
+        "news_page_token": "rMhd5nica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRp7ve3gWlRQtCvOD8vc7uyDz-Tg7tJD5vEcC56Pwly0xQ-Hfv5aLwl8S_xLCBwDenS96",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=rMhd5nica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRp7ve3gWlRQtCvOD8vc7uyDz-Tg7tJD5vEcC56Pwly0xQ-Hfv5aLwl8S_xLCBwDenS96"
+    },
+    {
+        "query": "công ty hóa chất đức giang",
+        "start_timestamp": 1775640000,
+        "end_timestamp": 1775654400,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=c%C3%B4ng+ty+h%C3%B3a+ch%E1%BA%A5t+%C4%91%E1%BB%A9c+giang&tz=420",
+        "news_page_token": "XPg5aXica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt7SfYKLyjIXhflB-U-t5qHwN0ZPhPABEjkYBg",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=XPg5aXica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt7SfYKLyjIXhflB-U-t5qHwN0ZPhPABEjkYBg"
+    },
+    {
+        "query": "phụ nữ",
+        "start_timestamp": 1775636400,
+        "end_timestamp": 1775651400,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=ph%E1%BB%A5+n%E1%BB%AF&tz=420",
+        "news_page_token": "77Vsx3ica1xTlFpYmlpcEp-SWJI4c_J5BgYGRt5n81cvKstcFOYH5Z_heYbM5-N9oIki72o8A4X_IVwEhf876AMK_-E_VPO_nOFGMZ9RqB7CBwDosztN",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=77Vsx3ica1xTlFpYmlpcEp-SWJI4c_J5BgYGRt5n81cvKstcFOYH5Z_heYbM5-N9oIki72o8A4X_IVwEhf876AMK_-E_VPO_nOFGMZ9RqB7CBwDosztN"
+    },
+    {
+        "query": "daniil medvedev",
+        "start_timestamp": 1775640600,
+        "end_timestamp": 1775647800,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 1000,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=daniil+medvedev&tz=420",
+        "news_page_token": "96fKT3ica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt57K-QWpeYtCvOD8Hl-dWqi8m-lQ_gAIsMYzQ",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=96fKT3ica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt57K-QWpeYtCvOD8Hl-dWqi8m-lQ_gAIsMYzQ"
+    },
+    {
+        "query": "gạo",
+        "start_timestamp": 1775653800,
+        "end_timestamp": 1775691600,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "trend_breakdown": [
+            "lúa"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=g%E1%BA%A1o&tz=420",
+        "news_page_token": "WdhJMnica1xTlFpYmlpcEp-SWJI4Z_J5BgYGRj72c28WlWUuCvOD8HmbJcNR-NN2f0fhf2B5j8I_OCEbhf-j-DMK_8YUAWQ-H4cVO4r886pGFP6m5q0o6vmCi1Hkdy9bDuEDALGSTMk",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=WdhJMnica1xTlFpYmlpcEp-SWJI4Z_J5BgYGRj72c28WlWUuCvOD8HmbJcNR-NN2f0fhf2B5j8I_OCEbhf-j-DMK_8YUAWQ-H4cVO4r886pGFP6m5q0o6vmCi1Hkdy9bDuEDALGSTMk"
+    },
+    {
+        "query": "đình tú",
+        "start_timestamp": 1775650200,
+        "end_timestamp": 1775662800,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=%C4%91%C3%ACnh+t%C3%BA&tz=420",
+        "news_page_token": "wAd6cHica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRt7K_g-LyjIXhflB-HyMFezIfN5Py5aj8L-r_4bwAcheHnE",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=wAd6cHica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRt7K_g-LyjIXhflB-HyMFezIfN5Py5aj8L-r_4bwAcheHnE"
+    },
+    {
+        "query": "giải vđqg ả rập xê út",
+        "start_timestamp": 1775673000,
+        "end_timestamp": 1775692200,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=gi%E1%BA%A3i+v%C4%91qg+%E1%BA%A3+r%E1%BA%ADp+x%C3%AA+%C3%BAt&tz=420",
+        "news_page_token": "q6N4Nnica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt67G14tKstcFOYH5d-7twPCBwDjRBQb",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=q6N4Nnica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt67G14tKstcFOYH5d-7twPCBwDjRBQb"
+    },
+    {
+        "query": "al-kholood club",
+        "start_timestamp": 1775697600,
+        "end_timestamp": 1775700600,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=al-kholood+club&tz=420",
+        "news_page_token": "RacZUnica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRj72316LUvMWhflB-Lz37u1A4S_exobC7-_tgfAB05seOA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=RacZUnica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRj72316LUvMWhflB-Lz37u1A4S_exobC7-_tgfAB05seOA"
+    },
+    {
+        "query": "bộ xây dựng",
+        "start_timestamp": 1775702400,
+        "end_timestamp": 1775704800,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            },
+            {
+                "id": 14,
+                "name": "Politics"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=b%E1%BB%99+x%C3%A2y+d%E1%BB%B1ng&tz=420",
+        "news_page_token": "hnoF6Xica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt6vTvWLyjIXhflB-Hxce3WQ-Tyzs3qR-bwPRRajqGdw40Tmc_-79wpF_fdDjSjqeVzXQ_gA68I0og",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=hnoF6Xica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt6vTvWLyjIXhflB-Hxce3WQ-Tyzs3qR-bwPRRajqGdw40Tmc_-79wpF_fdDjSjqeVzXQ_gA68I0og"
+    },
+    {
+        "query": "michal nguyễn",
+        "start_timestamp": 1775653800,
+        "end_timestamp": 1775662200,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=michal+nguy%E1%BB%85n&tz=420",
+        "news_page_token": "qIfCcXica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt4bb7QWpeYtCvMDANQUDNo",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=qIfCcXica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt4bb7QWpeYtCvMDANQUDNo"
+    },
+    {
+        "query": "dưới bóng điện hạ",
+        "start_timestamp": 1775654400,
+        "end_timestamp": 1775667000,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 100,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=d%C6%B0%E1%BB%9Bi+b%C3%B3ng+%C4%91i%E1%BB%87n+h%E1%BA%A1&tz=420",
+        "news_page_token": "bbmYf3ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt4I5qJFZZmLwvwAyoULxQ",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=bbmYf3ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt4I5qJFZZmLwvwAyoULxQ"
+    },
+    {
+        "query": "vix",
+        "start_timestamp": 1775702400,
+        "end_timestamp": 1775704200,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 100,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=vix&tz=420",
+        "news_page_token": "QWmZgHica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt7fV7wXpeYtCg2G8Hm-N4Yj8_mY7l5F5vO-UZ6AzOduz98D4QMACe4knA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=QWmZgHica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt7fV7wXpeYtCg2G8Hm-N4Yj8_mY7l5F5vO-UZ6AzOduz98D4QMACe4knA"
+    },
+    {
+        "query": "việt hương",
+        "start_timestamp": 1775631000,
+        "end_timestamp": 1775646600,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=vi%E1%BB%87t+h%C6%B0%C6%A1ng&tz=420",
+        "news_page_token": "5L9hUnica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt63crcWlWUuCvOD8o8s2gLhAwDSzhMv",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=5L9hUnica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt63crcWlWUuCvOD8o8s2gLhAwDSzhMv"
+    },
+    {
+        "query": "thịt",
+        "start_timestamp": 1775648400,
+        "end_timestamp": 1775656200,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            },
+            {
+                "id": 7,
+                "name": "Health"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=th%E1%BB%8Bt&tz=420",
+        "news_page_token": "nye6yXica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRl7nrfGLyjIXhflB-d8P6aLwX83jROH_XJGMzOfjsDwJ4QMA3fMjtQ",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=nye6yXica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRl7nrfGLyjIXhflB-d8P6aLwX83jROH_XJGMzOfjsDwJ4QMA3fMjtQ"
+    },
+    {
+        "query": "neymar",
+        "start_timestamp": 1775653800,
+        "end_timestamp": 1775661000,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=neymar&tz=420",
+        "news_page_token": "Z2Tk1Xica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt4bi9cuSi1eFOYH5U-9vBSFn8Cug8LfsM8Rmc_H_1QORf6FugMKP7LxHQq_ykgawgcAGW4zsA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=Z2Tk1Xica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt4bi9cuSi1eFOYH5U-9vBSFn8Cug8LfsM8Rmc_H_1QORf6FugMKP7LxHQq_ykgawgcAGW4zsA"
+    },
+    {
+        "query": "on live",
+        "start_timestamp": 1775642400,
+        "end_timestamp": 1775650200,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 500,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=on+live&tz=420",
+        "news_page_token": "3BQ7CHica1xTlFpYmlpcEp-SWJI4a_J5BgYGRt4Tp-sWpeYtCg2G8u_8nY_C_8i0A4V_mf8JCv-_tTYK__EXdxT-_SBOFL7ZCyFkPmfeFRT1PAH_vkP4AEjYQlA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=3BQ7CHica1xTlFpYmlpcEp-SWJI4a_J5BgYGRt4Tp-sWpeYtCg2G8u_8nY_C_8i0A4V_mf8JCv-_tTYK__EXdxT-_SBOFL7ZCyFkPmfeFRT1PAH_vkP4AEjYQlA"
+    },
+    {
+        "query": "nguyễn tiến linh",
+        "start_timestamp": 1775649600,
+        "end_timestamp": 1775655600,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 500,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=nguy%E1%BB%85n+ti%E1%BA%BFn+linh&tz=420",
+        "news_page_token": "4CAJk3ica1xTlFpYmlpcEp-SWJI4afJ5BgYGRj4-oU2LyjIXhflB-Ly7feIhfACzFRFp",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=4CAJk3ica1xTlFpYmlpcEp-SWJI4afJ5BgYGRj4-oU2LyjIXhflB-Ly7feIhfACzFRFp"
+    },
+    {
+        "query": "giá xăng 9/4",
+        "start_timestamp": 1775707200,
+        "end_timestamp": 1775708400,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 100,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=gi%C3%A1+x%C4%83ng+9%2F4&tz=420",
+        "news_page_token": "sZpWLXica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt6XPp8XlWUuCvOD8lc1miLz-fiElkL4ACV0F7Y",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=sZpWLXica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt6XPp8XlWUuCvOD8lc1miLz-fiElkL4ACV0F7Y"
+    },
+    {
+        "query": "huấn luyện viên",
+        "start_timestamp": 1775653200,
+        "end_timestamp": 1775658000,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 500,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=hu%E1%BA%A5n+luy%E1%BB%87n+vi%C3%AAn&tz=420",
+        "news_page_token": "ob9YDnica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt7vGlKLyjIXhflB-furfqHwlcreovCbthqi8OVCNyLzeRa5nUOR_2sYjcJ_-G8OhA8AIEE1tg",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=ob9YDnica1xTlFpYmlpcEp-SWJI4Y_J5BgYGRt7vGlKLyjIXhflB-furfqHwlcreovCbthqi8OVCNyLzeRa5nUOR_2sYjcJ_-G8OhA8AIEE1tg"
+    },
+    {
+        "query": "chủ tịch hà nội",
+        "start_timestamp": 1775636400,
+        "end_timestamp": 1775652600,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=ch%E1%BB%A7+t%E1%BB%8Bch+h%C3%A0+n%E1%BB%99i&tz=420",
+        "news_page_token": "nBsd23ica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRj5Oz_ZFZZmLwvwgfN5SibnIfD6emmso8jctNiPzeYLalkH4AIRpInw",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=nBsd23ica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRj5Oz_ZFZZmLwvwgfN5SibnIfD6emmso8jctNiPzeYLalkH4AIRpInw"
+    },
+    {
+        "query": "real betis vs braga",
+        "start_timestamp": 1775673000,
+        "end_timestamp": 1775678400,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 100,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=real+betis+vs+braga&tz=420",
+        "news_page_token": "fy7u93ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt6wbuNFqXmLQoMBzLwMBA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=fy7u93ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt6wbuNFqXmLQoMBzLwMBA"
+    },
+    {
+        "query": "đào hồng lan",
+        "start_timestamp": 1775630400,
+        "end_timestamp": 1775637600,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=%C4%91%C3%A0o+h%E1%BB%93ng+lan&tz=420",
+        "news_page_token": "_u_u6nica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt4bb2QWlWUuCvOD8m8nuCHzeWZn9UL4ACUrGFo",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=_u_u6nica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt4bb2QWlWUuCvOD8m8nuCHzeWZn9UL4ACUrGFo"
+    },
+    {
+        "query": "atlético madrid – barcelona",
+        "start_timestamp": 1775672400,
+        "end_timestamp": 1775676000,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=atl%C3%A9tico+madrid+%E2%80%93+barcelona&tz=420",
+        "news_page_token": "th_KcXica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt7lWpcWpRYvCvOD8uVCN6LwVzJ6IPN5Lm40RuZzphVsgfABpaUiqA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=th_KcXica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt7lWpcWpRYvCvOD8uVCN6LwVzJ6IPN5Lm40RuZzphVsgfABpaUiqA"
+    },
+    {
+        "query": "twitch",
+        "start_timestamp": 1775643600,
+        "end_timestamp": 1775647200,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=twitch&tz=420",
+        "news_page_token": "_2P1EXica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt4Hdo8XpeYtCvOD8s8sr4LwAdLwEwY",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=_2P1EXica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt4Hdo8XpeYtCvOD8s8sr4LwAdLwEwY"
+    },
+    {
+        "query": "777x",
+        "start_timestamp": 1775647800,
+        "end_timestamp": 1775651400,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            },
+            {
+                "id": 15,
+                "name": "Science"
+            },
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=777x&tz=420",
+        "news_page_token": "lTIDdHica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt6dSmKLUvMWhQZD-f1nQiB8ALhVEcA",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=lTIDdHica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt6dSmKLUvMWhQZD-f1nQiB8ALhVEcA"
+    },
+    {
+        "query": "manulife việt nam",
+        "start_timestamp": 1775656800,
+        "end_timestamp": 1775694600,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 100,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=manulife+vi%E1%BB%87t+nam&tz=420",
+        "news_page_token": "a9s2LXica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt6PmRWLyjIXhfkBANNADMo",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=a9s2LXica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt6PmRWLyjIXhfkBANNADMo"
+    },
+    {
+        "query": "lịch lck",
+        "start_timestamp": 1775631600,
+        "end_timestamp": 1775635200,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 6,
+                "name": "Games"
+            }
+        ],
+        "trend_breakdown": [
+            "lich lck"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=l%E1%BB%8Bch+lck&tz=420",
+        "news_page_token": "0DySWXica1xTlFpYmlpcEp-SWJI4afJ5BgYGRl7pQJ1FZZmLwvwgfJ7WNdshfACxlhGv",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=0DySWXica1xTlFpYmlpcEp-SWJI4afJ5BgYGRl7pQJ1FZZmLwvwgfJ7WNdshfACxlhGv"
+    },
+    {
+        "query": "nguyen duy ngoc",
+        "start_timestamp": 1775630400,
+        "end_timestamp": 1775654400,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            },
+            {
+                "id": 14,
+                "name": "Politics"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=nguyen+duy+ngoc&tz=420",
+        "news_page_token": "eAuvfXica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt7P-48sKstcFOYHANgWDW4",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=eAuvfXica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt7P-48sKstcFOYHANgWDW4"
+    },
+    {
+        "query": "trần bá dương",
+        "start_timestamp": 1775631000,
+        "end_timestamp": 1775639400,
+        "active": false,
+        "search_volume": 200,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=tr%E1%BA%A7n+b%C3%A1+d%C6%B0%C6%A1ng&tz=420",
+        "news_page_token": "03jt_Xica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt4Fl-IWlWUuCvOD8vdeioTwAc_JEug",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=03jt_Xica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt4Fl-IWlWUuCvOD8vdeioTwAc_JEug"
+    },
+    {
+        "query": "học sinh an ninh mạng 2026",
+        "start_timestamp": 1775653200,
+        "end_timestamp": 1775656800,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=h%E1%BB%8Dc+sinh+an+ninh+m%E1%BA%A1ng+2026&tz=420",
+        "news_page_token": "AxpzP3ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt6YpyWLyjIXhfkBANHHDK0",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=AxpzP3ica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt6YpyWLyjIXhfkBANHHDK0"
+    },
+    {
+        "query": "đôn tuấn phong",
+        "start_timestamp": 1775651400,
+        "end_timestamp": 1775654400,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            },
+            {
+                "id": 14,
+                "name": "Politics"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=%C4%91%C3%B4n+tu%E1%BA%A5n+phong&tz=420",
+        "news_page_token": "Sh0aAnica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt4fxa8XlWUuCvMDANb0DU4",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=Sh0aAnica1xTlFpYmlpcEp-SWJI4cfJ5BgYGRt4fxa8XlWUuCvMDANb0DU4"
+    },
+    {
+        "query": "tập đoàn điện lực việt nam",
+        "start_timestamp": 1775631600,
+        "end_timestamp": 1775635200,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 3,
+                "name": "Business and Finance"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=t%E1%BA%ADp+%C4%91o%C3%A0n+%C4%91i%E1%BB%87n+l%E1%BB%B1c+vi%E1%BB%87t+nam&tz=420",
+        "news_page_token": "0wCpMHica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRp4l7IWLyjIXhflB-LxPlrSg8DeYy6HwV_zehMJnu6eNwo9ZVoDC79z6HMIHAOzEL28",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=0wCpMHica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRp4l7IWLyjIXhflB-LxPlrSg8DeYy6HwV_zehMJnu6eNwo9ZVoDC79z6HMIHAOzEL28"
+    },
+    {
+        "query": "xổ số vietlott",
+        "start_timestamp": 1775650800,
+        "end_timestamp": 1775652000,
+        "active": false,
+        "search_volume": 500,
+        "increase_percentage": 50,
+        "categories": [
+            {
+                "id": 6,
+                "name": "Games"
+            }
+        ],
+        "trend_breakdown": [
+            "xổ số mega",
+            "6/45"
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=x%E1%BB%95+s%E1%BB%91+vietlott&tz=420",
+        "news_page_token": "gw59ZXica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt4DGjcXlWUuCvOD8nfFH0bhB9-9i8IHqU_Ng_P5mLo7IHwAAyEkQQ",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=gw59ZXica1xTlFpYmlpcEp-SWJI4dfJ5BgYGRt4DGjcXlWUuCvOD8nfFH0bhB9-9i8IHqU_Ng_P5mLo7IHwAAyEkQQ"
+    },
+    {
+        "query": "nguyen hai ninh",
+        "start_timestamp": 1775631600,
+        "end_timestamp": 1775634600,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=nguyen+hai+ninh&tz=420",
+        "news_page_token": "0oOmAHica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRj72c1MWlWUuCvOD8Hm-Pn2Lwp-d1YvM5_28_wiEDwD2mB_X",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=0oOmAHica1xTlFpYmlpcEp-SWJI4ZfJ5BgYGRj72c1MWlWUuCvOD8Hm-Pn2Lwp-d1YvM5_28_wiEDwD2mB_X"
+    },
+    {
+        "query": "ninh dương lan ngọc",
+        "start_timestamp": 1775651400,
+        "end_timestamp": 1775653200,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 400,
+        "categories": [
+            {
+                "id": 4,
+                "name": "Entertainment"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=ninh+d%C6%B0%C6%A1ng+lan+ng%E1%BB%8Dc&tz=420",
+        "news_page_token": "mWe9AHica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRt5PuUWLyjIXhflB-Hz8ytbIfB7ONB9kPu8-yX4U_nW9IBT-W7npKPyjJ1UhfABsbS1T",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=mWe9AHica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRt5PuUWLyjIXhflB-Hz8ytbIfB7ONB9kPu8-yX4U_nW9IBT-W7npKPyjJ1UhfABsbS1T"
+    },
+    {
+        "query": "bí thư hải phòng",
+        "start_timestamp": 1775630400,
+        "end_timestamp": 1775633400,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            },
+            {
+                "id": 14,
+                "name": "Politics"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=b%C3%AD+th%C6%B0+h%E1%BA%A3i+ph%C3%B2ng&tz=420",
+        "news_page_token": "n6DcTnica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt7bCW6LyjIXhflB-f93cUL4AMgWEnM",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=n6DcTnica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt7bCW6LyjIXhflB-f93cUL4AMgWEnM"
+    },
+    {
+        "query": "alexander zverev",
+        "start_timestamp": 1775647200,
+        "end_timestamp": 1775648400,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 500,
+        "categories": [
+            {
+                "id": 11,
+                "name": "Other"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=alexander+zverev&tz=420",
+        "news_page_token": "iAtv3Xica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRp5ft9IXpeYtCvOD8HmnPVRH4S9LeIfM5_nVqYnM52NhfYQi__0QG4o8I4sChA8AOscuOw",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=iAtv3Xica1xTlFpYmlpcEp-SWJI4ffJ5BgYGRp5ft9IXpeYtCvOD8HmnPVRH4S9LeIfM5_nVqYnM52NhfYQi__0QG4o8I4sChA8AOscuOw"
+    },
+    {
+        "query": "pham duc an",
+        "start_timestamp": 1775631000,
+        "end_timestamp": 1775632800,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 300,
+        "categories": [
+            {
+                "id": 10,
+                "name": "Law and Government"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=pham+duc+an&tz=420",
+        "news_page_token": "7MrxxHica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt4v0rqLUvMWhflB-Z8vXUXm88zO6oXwASJ0GKs",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=7MrxxHica1xTlFpYmlpcEp-SWJI4efJ5BgYGRt4v0rqLUvMWhflB-Z8vXUXm88zO6oXwASJ0GKs"
+    },
+    {
+        "query": "giải vô địch bóng đá asean 2026",
+        "start_timestamp": 1775659200,
+        "end_timestamp": 1775660400,
+        "active": false,
+        "search_volume": 100,
+        "increase_percentage": 200,
+        "categories": [
+            {
+                "id": 17,
+                "name": "Sports"
+            }
+        ],
+        "serpapi_google_trends_link": "https://serpapi.com/search.json?data_type=TIMESERIES&date=now+1-d&engine=google_trends&geo=VN&hl=en&q=gi%E1%BA%A3i+v%C3%B4+%C4%91%E1%BB%8Bch+b%C3%B3ng+%C4%91%C3%A1+asean+2026&tz=420",
+        "news_page_token": "R75qzXica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt4P4QqLyjIXhflB-NweVf8gfADEERJV",
+        "serpapi_news_link": "https://serpapi.com/search.json?engine=google_trends_news&page_token=R75qzXica1xTlFpYmlpcEp-SWJI4afJ5BgYGRt4P4QqLyjIXhflB-NweVf8gfADEERJV"
+    }
+]

@@ -1,0 +1,65 @@
+[
+    {
+        "geo": "VN",
+        "location": "Vietnam",
+        "max_value_index": 0,
+        "value": "100",
+        "extracted_value": 100
+    },
+    {
+        "geo": "LA",
+        "location": "Laos",
+        "max_value_index": 0,
+        "value": "23",
+        "extracted_value": 23
+    },
+    {
+        "geo": "KH",
+        "location": "Cambodia",
+        "max_value_index": 0,
+        "value": "7",
+        "extracted_value": 7
+    },
+    {
+        "geo": "KR",
+        "location": "South Korea",
+        "max_value_index": 0,
+        "value": "<1",
+        "extracted_value": 0
+    },
+    {
+        "geo": "TW",
+        "location": "Taiwan",
+        "max_value_index": 0,
+        "value": "<1",
+        "extracted_value": 0
+    },
+    {
+        "geo": "JP",
+        "location": "Japan",
+        "max_value_index": 0,
+        "value": "<1",
+        "extracted_value": 0
+    },
+    {
+        "geo": "DE",
+        "location": "Germany",
+        "max_value_index": 0,
+        "value": "<1",
+        "extracted_value": 0
+    },
+    {
+        "geo": "US",
+        "location": "United States",
+        "max_value_index": 0,
+        "value": "<1",
+        "extracted_value": 0
+    },
+    {
+        "geo": "GB",
+        "location": "United Kingdom",
+        "max_value_index": 0,
+        "value": "<1",
+        "extracted_value": 0
+    }
+]
