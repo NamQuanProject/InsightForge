@@ -1,0 +1,39 @@
+import requests
+import json
+import uuid
+
+def call_agent():
+    url = "http://localhost:9997/"
+    
+    # We generate a random UUID for the messageId to ensure it's always unique
+    msg_id = str(uuid.uuid4())
+    
+    payload = {
+        "jsonrpc": "2.0",
+        "method": "message/send",
+        "params": {
+            "message": {
+                "messageId": msg_id,
+                "role": "user",
+                "parts": [
+                    {"text": "I am based in Austin, TX. Are there any Psychiatrists near me?"}
+                ]
+            }
+        },
+        "id": "1"
+    }
+
+    print("Sending request to your running agent...\n")
+    
+    try:
+        response = requests.post(url, json=payload)
+        response.raise_for_status() 
+        
+        print("=== Agent Response ===")
+        print(json.dumps(response.json(), indent=2))
+        
+    except requests.exceptions.RequestException as e:
+        print(f"Connection error: {e}")
+
+if __name__ == "__main__":
+    call_agent()
