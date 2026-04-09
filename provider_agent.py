@@ -31,7 +31,8 @@ class ProviderAgent:
         tools = await self.mcp_client.get_tools()
         self.agent = create_agent(
             ChatLiteLLM(
-            model="gemini/gemini-3.1-flash-lite-preview",
+            # model="gemini/gemini-3.1-flash-lite-preview",
+            model = "gemini/gemini-2.5-flash",
             max_tokens=1000,
             ),
             tools,
