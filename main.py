@@ -50,6 +50,13 @@ async def main():
 
     await policy_agent.check_agent_exists()
     print("\tℹ️", f"{policy_agent.name} initialized")
+
+
+
+
+
+
+    
     think_tool = ThinkTool()
     healthcare_agent = RequirementAgent(
         name="Healthcare Agent",
