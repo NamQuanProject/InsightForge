@@ -6,9 +6,9 @@ async def call_healthcare_agent():
     client = A2AAgent(url="http://localhost:5000", memory=UnconstrainedMemory())
 
     await client.check_agent_exists()
-    print("✅ Connected to Healthcare Agent Server!\n")
+    print("✅ Connected to Product Agent Server!\n")
 
-    prompt = "Can I get trend about latest google trend and analysis content for it about sports?"
+    prompt = "Can I get trend about some products anlysis related to sports like rackets or badminton rackets?"
     print(f"Sending prompt: '{prompt}'...\n")
     
     response = await client.run(prompt)

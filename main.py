@@ -43,13 +43,13 @@ async def main():
     # =========================
     # Policy Agent (A2A)
     # =========================
-    policy_agent = A2AAgent(
+    trending_analysis_agent = A2AAgent(
         url="http://localhost:9997",
         memory=UnconstrainedMemory()
     )
 
-    await policy_agent.check_agent_exists()
-    print("\tℹ️", f"{policy_agent.name} initialized")
+    await trending_analysis_agent.check_agent_exists()
+    print("\tℹ️", f"{trending_analysis_agent.name} initialized")
 
 
 
@@ -59,8 +59,8 @@ async def main():
     
     think_tool = ThinkTool()
     trending_agent = RequirementAgent(
-        name="Trending Analysis Agent",
-        description="Trending Analysis Agent",
+        name="Product Manager Agent",
+        description="Product Manager Agent",
         llm=VertexAIChatModel(
             model_id="gemini-2.5-flash",
             api_key=os.getenv("GOOGLE_API_KEY"),
@@ -71,9 +71,9 @@ async def main():
         tools=[
             think_tool,
             HandoffTool(
-                target=policy_agent,
-                name=policy_agent.name,
-                description=policy_agent.agent_card.description,
+                target=trending_analysis_agent,
+                name=trending_analysis_agent.name,
+                description=trending_analysis_agent.agent_card.description,
             ),
         ],
         requirements=[
@@ -83,10 +83,10 @@ async def main():
                 consecutive_allowed=False
             ),
         ],
-        role="A profession treding analysis",
+        role="Product Manager Agent",
         instructions=f"""
-        You are a profession treding analysis. Your task is to analyze the latest google trend and provide insights based on the trend.
-        - Use {policy_agent.name} for trending-related questions
+        You are a Product Manager Agent. Your task is to analyze the Product Manager and product analysis.
+        - Use {trending_analysis_agent.name} for trending-related questions to research the markets
         """
     )
 
