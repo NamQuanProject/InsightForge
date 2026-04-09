@@ -11,3 +11,6 @@ ipython
 serpapi
 dotenv
 pathlib
+asyncio
+a2a-sdk
+nest_asyncio
