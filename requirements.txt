@@ -4,7 +4,6 @@ pydantic
 langchain
 langchain-openai
 langchain-anthropic
-langchain-google-genai
 langchain 
 langchain-litellm 
 langchain-mcp-adapters 
@@ -12,4 +11,3 @@ ipython
 serpapi
 dotenv
 pathlib
-asyncio
