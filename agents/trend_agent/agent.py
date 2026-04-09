@@ -7,7 +7,7 @@ from langchain_openai import ChatOpenAI
 import asyncio
 
 
-class ProviderAgent:
+class TrendAgent:
     """Wrapper class for the LangChain healthcare provider agent."""
     def __init__(self) -> None:
         # Connect to the local MCP server

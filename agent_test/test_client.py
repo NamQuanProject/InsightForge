@@ -6,7 +6,7 @@ async def test_agent():
     # Setup HTTP client and connect to your local agent server
     async with httpx.AsyncClient(timeout=60.0) as httpx_client:
         print("Discovering Agent Card...")
-        client = A2AClient(url="http://localhost:9997/", httpx_client=httpx_client)
+        client = A2AClient(url="http://localhost:5000/", httpx_client=httpx_client)
         
         prompt = "I am based in Austin, TX. Are there any Psychiatrists near me?"
         print(f"Sending prompt: '{prompt}'\n")

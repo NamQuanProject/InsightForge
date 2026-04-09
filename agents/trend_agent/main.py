@@ -1,8 +1,8 @@
 import os
 import uvicorn
 from dotenv import load_dotenv
-from agents.trend_agent.executor import ProviderAgentExecutor
-from a2a.server.agent_execution import AgentExecutor, RequestContext
+from agents.trend_agent.executor import TrendAgentExecutor
+from a2a.server.agent_execution import RequestContext
 from a2a.server.apps import A2AStarletteApplication
 from a2a.server.events import EventQueue
 from a2a.server.request_handlers import DefaultRequestHandler
@@ -40,7 +40,7 @@ def main():
         skills=[skill],
     )
     request_handler = DefaultRequestHandler(
-        agent_executor=ProviderAgentExecutor(),
+        agent_executor=TrendAgentExecutor(),
         task_store=InMemoryTaskStore(),
     )
     

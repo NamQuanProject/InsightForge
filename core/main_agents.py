@@ -1,8 +1,13 @@
 import os
 import asyncio
 import warnings
-from dotenv import load_dotenv
 from typing import Any
+from dotenv import load_dotenv
+from dotenv import load_dotenv
+from helpers import authenticate
+from typing import Any
+import asyncio
+import os
 from beeai_framework.adapters.a2a.serve.server import A2AServer, A2AServerConfig
 from beeai_framework.adapters.a2a.agents import A2AAgent
 from beeai_framework.adapters.vertexai import VertexAIChatModel
@@ -13,6 +18,15 @@ from beeai_framework.memory.unconstrained_memory import UnconstrainedMemory
 from beeai_framework.middleware.trajectory import EventMeta, GlobalTrajectoryMiddleware
 from beeai_framework.serve.utils import LRUMemoryManager
 from beeai_framework.tools import Tool, tool
+from beeai_framework.tools.handoff import HandoffTool
+from beeai_framework.tools.think import ThinkTool
+from beeai_framework.adapters.a2a.agents import A2AAgent
+from beeai_framework.adapters.vertexai import VertexAIChatModel
+from beeai_framework.agents.requirement import RequirementAgent
+from beeai_framework.agents.requirement.requirements.conditional import ConditionalRequirement
+from beeai_framework.memory import UnconstrainedMemory
+from beeai_framework.middleware.trajectory import EventMeta, GlobalTrajectoryMiddleware
+from beeai_framework.tools import Tool
 from beeai_framework.tools.handoff import HandoffTool
 from beeai_framework.tools.think import ThinkTool
 
@@ -31,10 +45,6 @@ class ConciseGlobalTrajectoryMiddleware(GlobalTrajectoryMiddleware):
     def _format_payload(self, value: Any) -> str:
         return ""
 
-
-
-
-
 # =========================
 # Main async function
 # =========================
@@ -50,6 +60,10 @@ async def main():
 
     await policy_agent.check_agent_exists()
     print("\tℹ️", f"{policy_agent.name} initialized")
+
+    # =========================
+    # Healthcare Agent
+    # =========================
     think_tool = ThinkTool()
     healthcare_agent = RequirementAgent(
         name="Healthcare Agent",
@@ -103,19 +117,16 @@ async def main():
     # print("\n=== Final Response ===")
     # print(response.last_message.text)
 
+    A2AServer(
+        config=A2AServerConfig(port="5000", protocol="jsonrpc", host="localhost"),
+        memory_manager=LRUMemoryManager(maxsize=100),
+    ).register(healthcare_agent, send_trajectory=True).serve()
+
     
-    return healthcare_agent
 
 
 # # =========================
 # # Entry point
 # # =========================
 if __name__ == "__main__":
-    my_agent = asyncio.run(main())
-
-    A2AServer(
-        config=A2AServerConfig(port="5000", protocol="jsonrpc", host="localhost"),
-        memory_manager=LRUMemoryManager(maxsize=100),
-    ).register(my_agent, send_trajectory=True).serve()
-
-    
+    asyncio.run(main())
