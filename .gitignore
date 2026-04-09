@@ -3,3 +3,4 @@ env/
 a2a-samples/
 .vscode/
 __pycache__/
+credentials/
