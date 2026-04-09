@@ -77,7 +77,6 @@ if __name__ == "__main__":
         )
         print(f"\n\nSearch result for {data_type}: ")
         print(f"\n {search_result}")
-        # path = os.path.join(working_dir, f"{data_type}_query_search.json")
         result_path =  working_dir / "results"
         if not result_path.exists():
             os.makedirs(str(working_dir / "results"))
