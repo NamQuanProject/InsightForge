@@ -24,42 +24,40 @@ class SerpAPIClient():
         }
         if data_type not in allowed_data_type:
             print(f"Data Type not supported")
-            return
+            return []
+        params = {
+            "data_type": data_type,
+            "engine": engine
+        }
         try:
             if geo:
-                results = self.client.search(
-                    q = query,
-                    engine = engine,
-                    data_type = data_type
-                )
+                params["geo"] = geo
             else:
                 results = self.client.search(
-                    q = query,
-                    engine = engine,
-                    data_type = data_type,
-                    geo = geo
+                    **params
                 )
             return results[allowed_data_type[data_type]]
         except Exception as e:
             print(f"Error: {e}")
+            return {}
 
-
-    def search_trend(self, engine = "google_trends_trending_now", location = "VN", hours : str = None):
+    def search_trend(self, category_id: int = None, engine: str = "google_trends_trending_now", location: str = "VN", hours : int = 24):
         try: 
-            if not hours:
-                results = self.client.search(
-                    geo = location,
-                    engine = engine
-                )
-            else:
-                result = self.client.search(
-                    geo = location,
-                    engine = engine,
-                    hours = hours
-                )
-            return results["trending_searches"]
+            params = {
+                "engine" : engine,
+                "geo" : location
+            }
+            if hours:
+                params["hours"] = hours
+            if category_id:
+                params["category_id"] = category_id
+            result = self.client.search(
+                **params
+            )
+            return result["trending_searches"]
         except Exception as e:
             print(f"Errors: {e}")
+            return []
 
 if __name__ == "__main__":
     # Load Env file
