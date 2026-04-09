@@ -55,9 +55,3 @@ def display_agent_card(agent_card: AgentCard) -> None:
 
     # Join all parts and display
     display(Markdown("\n".join(md_parts)))
-
-def authenticate() -> tuple[object, str]:
-    """Placeholder authentication function. Replace with actual logic."""
-    credentials = "AIzaSyBn6KoqLdhsn1RqoW9dZ5qgnnYZpY45UuY"  # Replace with real credentials
-    project_id = "insightforge-492711"  # Replace with real project ID
-    return credentials, project_id

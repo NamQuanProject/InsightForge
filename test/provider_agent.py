@@ -4,7 +4,7 @@ from langchain_litellm import ChatLiteLLM
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain_mcp_adapters.sessions import StdioConnection
 from langchain_openai import ChatOpenAI
-from helpers import authenticate
+from agents.trend_agent.helpers import authenticate
 import asyncio
 
 
