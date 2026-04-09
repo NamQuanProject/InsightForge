@@ -9,7 +9,7 @@ curl -X POST http://localhost:5000/ \
         "role": "user",
         "parts": [
           {
-            "text": "I am based in Austin, TX. How do I get mental health therapy near me and what does my insurance cover?"
+            "text": "Can I get trend about latest google trend and analysis content for it"
           }
         ]
       }

@@ -58,9 +58,9 @@ async def main():
 
     
     think_tool = ThinkTool()
-    healthcare_agent = RequirementAgent(
-        name="Healthcare Agent",
-        description="Healthcare concierge agent",
+    trending_agent = RequirementAgent(
+        name="Trending Analysis Agent",
+        description="Trending Analysis Agent",
         llm=VertexAIChatModel(
             model_id="gemini-2.5-flash",
             api_key=os.getenv("GOOGLE_API_KEY"),
@@ -83,20 +83,14 @@ async def main():
                 consecutive_allowed=False
             ),
         ],
-        role="Healthcare Concierge",
+        role="A profession treding analysis",
         instructions=f"""
-        You are a healthcare concierge.
-
-        - Use {policy_agent.name} for insurance-related questions.
-        - Always handoff when needed.
-        - Combine answers into a final response.
-        - Clearly state which agent provided each piece of info.
-
-        Do NOT hallucinate provider or insurance data.
+        You are a profession treding analysis. Your task is to analyze the latest google trend and provide insights based on the trend.
+        - Use {policy_agent.name} for trending-related questions
         """
     )
 
-    print("\tℹ️", f"{healthcare_agent.meta.name} initialized")
+    print("\tℹ️", f"{trending_agent.meta.name} initialized")
 
     # =========================
     # Run agent
@@ -111,7 +105,7 @@ async def main():
     # print(response.last_message.text)
 
     
-    return healthcare_agent
+    return trending_agent
 
 
 # # =========================

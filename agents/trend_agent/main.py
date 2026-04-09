@@ -19,19 +19,19 @@ def main():
     port = int(os.environ.get("TREND_AGENT_PORT", 9997))
 
     skill = AgentSkill(
-        id="find_healthcare_providers",
-        name="Find Healthcare Providers",
-        description="Finds and lists healthcare providers based on user's location and specialty.",
-        tags=["healthcare", "providers", "doctor", "psychiatrist"],
+        id="find_trends",
+        name="Find Trends",
+        description="Find and analyze the latest google trend based on the user's query.",
+        tags=["trending", "analysis", "google-trends"],
         examples=[
-            "Are there any Psychiatrists near me in Boston, MA?",
-            "Find a pediatrician in Springfield, IL.",
+            "What are the top trending searches in Vietnam?",
+            "Show me the latest trends for 'AI technology'.",
         ],
     )
 
     agent_card = AgentCard(
-        name="HealthcareProviderAgent",
-        description="An agent that can find and list healthcare providers based on a user's location and desired specialty.",
+        name="TrendingAnalysisAgent",
+        description="An agent that can find and analyze the latest google trends based on a user's query.",
         url=f"http://{host}:{port}/",
         version="1.0.0",
         default_input_modes=["text"],

@@ -20,7 +20,7 @@ class TrendAgentExecutor(AgentExecutor):
     async def _ensure_initialized(self) -> None:
         """Lazy initialization of the agent."""
         if self.agent is None:
-            self.agent = await TrendAgent().initialize()
+            self.agent = await TrendAgent(api_key=os.getenv("GOOGLE_API_KEY")).initialize()
 
     async def execute(self, context: RequestContext, event_queue: EventQueue) -> None:
         await self._ensure_initialized()

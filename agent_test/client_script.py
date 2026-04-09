@@ -8,7 +8,7 @@ async def call_healthcare_agent():
     await client.check_agent_exists()
     print("✅ Connected to Healthcare Agent Server!\n")
 
-    prompt = "I'm based in Austin, TX. How do I get mental health therapy near me and what does my insurance cover?"
+    prompt = "Can I get trend about latest google trend and analysis content for it about sports?"
     print(f"Sending prompt: '{prompt}'...\n")
     
     response = await client.run(prompt)
