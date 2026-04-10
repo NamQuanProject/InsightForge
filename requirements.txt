@@ -16,3 +16,4 @@ a2a-sdk
 nest_asyncio
 beeai-framework
 "beeai-framework[a2a]"
+upload-post
