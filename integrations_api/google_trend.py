@@ -1,7 +1,6 @@
 import os
 import serpapi
 from dotenv import load_dotenv
-from typing import List, Dict, Optional
 import json
 from pathlib import Path
 
@@ -64,7 +63,6 @@ if __name__ == "__main__":
     # Load Env file
     load_dotenv()
     serp_api_key = os.getenv("SERP_API_KEY", "")
-
     serp_client = SerpAPIClient(api_key=serp_api_key)
     query = "ios 26.4"
 

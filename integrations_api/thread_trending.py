@@ -6,7 +6,6 @@ import re
 
 
 class ThreadsTrendAnalyzer:
-
     def __init__(self, token: str):
         self.base_url = "https://ensembledata.com/apis"
         self.token = token
