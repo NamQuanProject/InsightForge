@@ -1,356 +1,286 @@
 {
     "rising": [
         {
-            "query": "đội tuyển bóng đá u-23 quốc gia kyrgyzstan đấu với u-23 việt nam",
+            "query": "có nên cập nhật ios 26.4",
             "value": "Breakout",
-            "extracted_value": 28750,
-            "link": "https://trends.google.com/trends/explore?q=%C4%91%E1%BB%99i+tuy%E1%BB%83n+b%C3%B3ng+%C4%91%C3%A1+u-23+qu%E1%BB%91c+gia+kyrgyzstan+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+u-23+vi%E1%BB%87t+nam&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=%C4%91%E1%BB%99i+tuy%E1%BB%83n+b%C3%B3ng+%C4%91%C3%A1+u-23+qu%E1%BB%91c+gia+kyrgyzstan+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+u-23+vi%E1%BB%87t+nam&tz=420"
+            "extracted_value": 476150,
+            "link": "https://trends.google.com/trends/explore?q=c%C3%B3+n%C3%AAn+c%E1%BA%ADp+nh%E1%BA%ADt+ios+26.4&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=c%C3%B3+n%C3%AAn+c%E1%BA%ADp+nh%E1%BA%ADt+ios+26.4&tz=420"
         },
         {
-            "query": "chung kết bóng đá sea games 33",
+            "query": "ios 26.4 rc",
             "value": "Breakout",
-            "extracted_value": 20050,
-            "link": "https://trends.google.com/trends/explore?q=chung+k%E1%BA%BFt+b%C3%B3ng+%C4%91%C3%A1+sea+games+33&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=chung+k%E1%BA%BFt+b%C3%B3ng+%C4%91%C3%A1+sea+games+33&tz=420"
+            "extracted_value": 315000,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+rc&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+rc&tz=420"
         },
         {
-            "query": "lịch thi đấu bóng đá nam sea games 33",
+            "query": "ios 26.4 iphone 11",
             "value": "Breakout",
-            "extracted_value": 14500,
-            "link": "https://trends.google.com/trends/explore?q=l%E1%BB%8Bch+thi+%C4%91%E1%BA%A5u+b%C3%B3ng+%C4%91%C3%A1+nam+sea+games+33&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=l%E1%BB%8Bch+thi+%C4%91%E1%BA%A5u+b%C3%B3ng+%C4%91%C3%A1+nam+sea+games+33&tz=420"
+            "extracted_value": 300250,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+iphone+11&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+iphone+11&tz=420"
         },
         {
-            "query": "u-23 việt nam đấu với đội tuyển bóng đá u-23 quốc gia philippines",
+            "query": "review ios 26.4",
             "value": "Breakout",
-            "extracted_value": 13250,
-            "link": "https://trends.google.com/trends/explore?q=u-23+vi%E1%BB%87t+nam+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+%C4%91%E1%BB%99i+tuy%E1%BB%83n+b%C3%B3ng+%C4%91%C3%A1+u-23+qu%E1%BB%91c+gia+philippines&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=u-23+vi%E1%BB%87t+nam+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+%C4%91%E1%BB%99i+tuy%E1%BB%83n+b%C3%B3ng+%C4%91%C3%A1+u-23+qu%E1%BB%91c+gia+philippines&tz=420"
+            "extracted_value": 277900,
+            "link": "https://trends.google.com/trends/explore?q=review+ios+26.4&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=review+ios+26.4&tz=420"
         },
         {
-            "query": "vô địch bóng đá thế giới các câu lạc bộ",
+            "query": "ios 26.4 update",
             "value": "Breakout",
-            "extracted_value": 12800,
-            "link": "https://trends.google.com/trends/explore?q=v%C3%B4+%C4%91%E1%BB%8Bch+b%C3%B3ng+%C4%91%C3%A1+th%E1%BA%BF+gi%E1%BB%9Bi+c%C3%A1c+c%C3%A2u+l%E1%BA%A1c+b%E1%BB%99&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=v%C3%B4+%C4%91%E1%BB%8Bch+b%C3%B3ng+%C4%91%C3%A1+th%E1%BA%BF+gi%E1%BB%9Bi+c%C3%A1c+c%C3%A2u+l%E1%BA%A1c+b%E1%BB%99&tz=420"
+            "extracted_value": 239500,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+update&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+update&tz=420"
         },
         {
-            "query": "bóng đá nam sea games 33 hôm nay",
+            "query": "ios 26.4 iphone 12",
             "value": "Breakout",
-            "extracted_value": 11450,
-            "link": "https://trends.google.com/trends/explore?q=b%C3%B3ng+%C4%91%C3%A1+nam+sea+games+33+h%C3%B4m+nay&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=b%C3%B3ng+%C4%91%C3%A1+nam+sea+games+33+h%C3%B4m+nay&tz=420"
+            "extracted_value": 216250,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+iphone+12&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+iphone+12&tz=420"
         },
         {
-            "query": "trực tiếp bóng đá sea games 33 hôm nay",
+            "query": "ios 26.3.1",
             "value": "Breakout",
-            "extracted_value": 10900,
-            "link": "https://trends.google.com/trends/explore?q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+sea+games+33+h%C3%B4m+nay&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+sea+games+33+h%C3%B4m+nay&tz=420"
+            "extracted_value": 197400,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.3.1&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.3.1&tz=420"
         },
         {
-            "query": "u-23 việt nam đấu với đội tuyển bóng đá u-23 quốc gia campuchia",
+            "query": "ios 26.4 release date",
             "value": "Breakout",
-            "extracted_value": 10600,
-            "link": "https://trends.google.com/trends/explore?q=u-23+vi%E1%BB%87t+nam+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+%C4%91%E1%BB%99i+tuy%E1%BB%83n+b%C3%B3ng+%C4%91%C3%A1+u-23+qu%E1%BB%91c+gia+campuchia&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=u-23+vi%E1%BB%87t+nam+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+%C4%91%E1%BB%99i+tuy%E1%BB%83n+b%C3%B3ng+%C4%91%C3%A1+u-23+qu%E1%BB%91c+gia+campuchia&tz=420"
+            "extracted_value": 192500,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+release+date&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+release+date&tz=420"
         },
         {
-            "query": "câu lạc bộ bóng đá istiklol đấu với al-nassr",
+            "query": "ios 26.4 features",
             "value": "Breakout",
-            "extracted_value": 9450,
-            "link": "https://trends.google.com/trends/explore?q=c%C3%A2u+l%E1%BA%A1c+b%E1%BB%99+b%C3%B3ng+%C4%91%C3%A1+istiklol+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+al-nassr&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=c%C3%A2u+l%E1%BA%A1c+b%E1%BB%99+b%C3%B3ng+%C4%91%C3%A1+istiklol+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+al-nassr&tz=420"
+            "extracted_value": 166800,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+features&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+features&tz=420"
         },
         {
-            "query": "đội tuyển bóng đá nữ quốc gia đài bắc trung hoa đấu với việt nam",
+            "query": "iran",
             "value": "Breakout",
-            "extracted_value": 7650,
-            "link": "https://trends.google.com/trends/explore?q=%C4%91%E1%BB%99i+tuy%E1%BB%83n+b%C3%B3ng+%C4%91%C3%A1+n%E1%BB%AF+qu%E1%BB%91c+gia+%C4%91%C3%A0i+b%E1%BA%AFc+trung+hoa+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+vi%E1%BB%87t+nam&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=%C4%91%E1%BB%99i+tuy%E1%BB%83n+b%C3%B3ng+%C4%91%C3%A1+n%E1%BB%AF+qu%E1%BB%91c+gia+%C4%91%C3%A0i+b%E1%BA%AFc+trung+hoa+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+vi%E1%BB%87t+nam&tz=420"
+            "extracted_value": 164300,
+            "link": "https://trends.google.com/trends/explore?q=iran&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=iran&tz=420"
         },
         {
-            "query": "bóng đá tại đhtt đông nam á nam",
+            "query": "ios 26.4 download",
             "value": "Breakout",
-            "extracted_value": 5350,
-            "link": "https://trends.google.com/trends/explore?q=b%C3%B3ng+%C4%91%C3%A1+t%E1%BA%A1i+%C4%91htt+%C4%91%C3%B4ng+nam+%C3%A1+nam&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=b%C3%B3ng+%C4%91%C3%A1+t%E1%BA%A1i+%C4%91htt+%C4%91%C3%B4ng+nam+%C3%A1+nam&tz=420"
+            "extracted_value": 156800,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+download&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+download&tz=420"
         },
         {
-            "query": "u-23 jordan đấu với đội tuyển bóng đá u-23 quốc gia kyrgyzstan",
-            "value": "+4,950%",
-            "extracted_value": 4950,
-            "link": "https://trends.google.com/trends/explore?q=u-23+jordan+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+%C4%91%E1%BB%99i+tuy%E1%BB%83n+b%C3%B3ng+%C4%91%C3%A1+u-23+qu%E1%BB%91c+gia+kyrgyzstan&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=u-23+jordan+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+%C4%91%E1%BB%99i+tuy%E1%BB%83n+b%C3%B3ng+%C4%91%C3%A1+u-23+qu%E1%BB%91c+gia+kyrgyzstan&tz=420"
+            "query": "ios 26.4 battery",
+            "value": "Breakout",
+            "extracted_value": 136950,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+battery&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+battery&tz=420"
         },
         {
-            "query": "trận đấu cúp bóng đá u-23 châu á",
-            "value": "+4,750%",
-            "extracted_value": 4750,
-            "link": "https://trends.google.com/trends/explore?q=tr%E1%BA%ADn+%C4%91%E1%BA%A5u+c%C3%BAp+b%C3%B3ng+%C4%91%C3%A1+u-23+ch%C3%A2u+%C3%A1&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=tr%E1%BA%ADn+%C4%91%E1%BA%A5u+c%C3%BAp+b%C3%B3ng+%C4%91%C3%A1+u-23+ch%C3%A2u+%C3%A1&tz=420"
+            "query": "ios 26.4 iphone 13",
+            "value": "Breakout",
+            "extracted_value": 127450,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+iphone+13&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+iphone+13&tz=420"
         },
         {
-            "query": "đội tuyển bóng đá nữ quốc gia myanmar đấu với thái lan",
-            "value": "+4,300%",
-            "extracted_value": 4300,
-            "link": "https://trends.google.com/trends/explore?q=%C4%91%E1%BB%99i+tuy%E1%BB%83n+b%C3%B3ng+%C4%91%C3%A1+n%E1%BB%AF+qu%E1%BB%91c+gia+myanmar+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+th%C3%A1i+lan&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=%C4%91%E1%BB%99i+tuy%E1%BB%83n+b%C3%B3ng+%C4%91%C3%A1+n%E1%BB%AF+qu%E1%BB%91c+gia+myanmar+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+th%C3%A1i+lan&tz=420"
+            "query": "iphone 17",
+            "value": "Breakout",
+            "extracted_value": 100400,
+            "link": "https://trends.google.com/trends/explore?q=iphone+17&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=iphone+17&tz=420"
         },
         {
-            "query": "đội tuyển bóng đá u-23 quốc gia philippines đấu với u-23 thái lan",
-            "value": "+3,950%",
-            "extracted_value": 3950,
-            "link": "https://trends.google.com/trends/explore?q=%C4%91%E1%BB%99i+tuy%E1%BB%83n+b%C3%B3ng+%C4%91%C3%A1+u-23+qu%E1%BB%91c+gia+philippines+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+u-23+th%C3%A1i+lan&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=%C4%91%E1%BB%99i+tuy%E1%BB%83n+b%C3%B3ng+%C4%91%C3%A1+u-23+qu%E1%BB%91c+gia+philippines+%C4%91%E1%BA%A5u+v%E1%BB%9Bi+u-23+th%C3%A1i+lan&tz=420"
+            "query": "chainsaw man",
+            "value": "Breakout",
+            "extracted_value": 84100,
+            "link": "https://trends.google.com/trends/explore?q=chainsaw+man&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=chainsaw+man&tz=420"
         },
         {
-            "query": "trực tiếp bóng đá u23 việt nam",
-            "value": "+1,200%",
-            "extracted_value": 1200,
-            "link": "https://trends.google.com/trends/explore?q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+u23+vi%E1%BB%87t+nam&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+u23+vi%E1%BB%87t+nam&tz=420"
-        },
-        {
-            "query": "trực tiếp bóng đá hôm nay u23 châu á",
-            "value": "+850%",
-            "extracted_value": 850,
-            "link": "https://trends.google.com/trends/explore?q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+h%C3%B4m+nay+u23+ch%C3%A2u+%C3%A1&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+h%C3%B4m+nay+u23+ch%C3%A2u+%C3%A1&tz=420"
-        },
-        {
-            "query": "trực tiếp bóng đá u23",
-            "value": "+850%",
-            "extracted_value": 850,
-            "link": "https://trends.google.com/trends/explore?q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+u23&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+u23&tz=420"
-        },
-        {
-            "query": "lịch đá bóng u23 vn",
-            "value": "+850%",
-            "extracted_value": 850,
-            "link": "https://trends.google.com/trends/explore?q=l%E1%BB%8Bch+%C4%91%C3%A1+b%C3%B3ng+u23+vn&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=l%E1%BB%8Bch+%C4%91%C3%A1+b%C3%B3ng+u23+vn&tz=420"
-        },
-        {
-            "query": "bóng đá nữ châu á",
-            "value": "+750%",
-            "extracted_value": 750,
-            "link": "https://trends.google.com/trends/explore?q=b%C3%B3ng+%C4%91%C3%A1+n%E1%BB%AF+ch%C3%A2u+%C3%A1&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=b%C3%B3ng+%C4%91%C3%A1+n%E1%BB%AF+ch%C3%A2u+%C3%A1&tz=420"
-        },
-        {
-            "query": "xem bóng đá trực tiếp lương sơn",
-            "value": "+650%",
-            "extracted_value": 650,
-            "link": "https://trends.google.com/trends/explore?q=xem+b%C3%B3ng+%C4%91%C3%A1+tr%E1%BB%B1c+ti%E1%BA%BFp+l%C6%B0%C6%A1ng+s%C6%A1n&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=xem+b%C3%B3ng+%C4%91%C3%A1+tr%E1%BB%B1c+ti%E1%BA%BFp+l%C6%B0%C6%A1ng+s%C6%A1n&tz=420"
-        },
-        {
-            "query": "u23 việt nam",
-            "value": "+600%",
-            "extracted_value": 600,
-            "link": "https://trends.google.com/trends/explore?q=u23+vi%E1%BB%87t+nam&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=u23+vi%E1%BB%87t+nam&tz=420"
-        },
-        {
-            "query": "bóng đá u23",
-            "value": "+300%",
-            "extracted_value": 300,
-            "link": "https://trends.google.com/trends/explore?q=b%C3%B3ng+%C4%91%C3%A1+u23&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=b%C3%B3ng+%C4%91%C3%A1+u23&tz=420"
-        },
-        {
-            "query": "bóng đá nữ",
-            "value": "+250%",
-            "extracted_value": 250,
-            "link": "https://trends.google.com/trends/explore?q=b%C3%B3ng+%C4%91%C3%A1+n%E1%BB%AF&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=b%C3%B3ng+%C4%91%C3%A1+n%E1%BB%AF&tz=420"
-        },
-        {
-            "query": "trực tiếp bóng đá việt nam",
-            "value": "+120%",
-            "extracted_value": 120,
-            "link": "https://trends.google.com/trends/explore?q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+vi%E1%BB%87t+nam&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+vi%E1%BB%87t+nam&tz=420"
+            "query": "ios 26.4 apple",
+            "value": "+70%",
+            "extracted_value": 70,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+apple&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+apple&tz=420"
         }
     ],
     "top": [
         {
-            "query": "bóng đá hôm nay",
+            "query": "ios 26.4 apple",
             "value": "100",
             "extracted_value": 100,
-            "link": "https://trends.google.com/trends/explore?q=b%C3%B3ng+%C4%91%C3%A1+h%C3%B4m+nay&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=b%C3%B3ng+%C4%91%C3%A1+h%C3%B4m+nay&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+apple&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+apple&tz=420"
         },
         {
-            "query": "lịch đá bóng",
-            "value": "68",
-            "extracted_value": 68,
-            "link": "https://trends.google.com/trends/explore?q=l%E1%BB%8Bch+%C4%91%C3%A1+b%C3%B3ng&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=l%E1%BB%8Bch+%C4%91%C3%A1+b%C3%B3ng&tz=420"
+            "query": "ios beta",
+            "value": "43",
+            "extracted_value": 43,
+            "link": "https://trends.google.com/trends/explore?q=ios+beta&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+beta&tz=420"
         },
         {
-            "query": "kết quả bóng đá",
-            "value": "55",
-            "extracted_value": 55,
-            "link": "https://trends.google.com/trends/explore?q=k%E1%BA%BFt+qu%E1%BA%A3+b%C3%B3ng+%C4%91%C3%A1&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=k%E1%BA%BFt+qu%E1%BA%A3+b%C3%B3ng+%C4%91%C3%A1&tz=420"
+            "query": "ios 26.4 beta",
+            "value": "39",
+            "extracted_value": 39,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+beta&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+beta&tz=420"
         },
         {
-            "query": "việt nam",
-            "value": "51",
-            "extracted_value": 51,
-            "link": "https://trends.google.com/trends/explore?q=vi%E1%BB%87t+nam&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=vi%E1%BB%87t+nam&tz=420"
+            "query": "có nên cập nhật ios 26.4",
+            "value": "36",
+            "extracted_value": 36,
+            "link": "https://trends.google.com/trends/explore?q=c%C3%B3+n%C3%AAn+c%E1%BA%ADp+nh%E1%BA%ADt+ios+26.4&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=c%C3%B3+n%C3%AAn+c%E1%BA%ADp+nh%E1%BA%ADt+ios+26.4&tz=420"
         },
         {
-            "query": "việt nam bóng đá",
-            "value": "48",
-            "extracted_value": 48,
-            "link": "https://trends.google.com/trends/explore?q=vi%E1%BB%87t+nam+b%C3%B3ng+%C4%91%C3%A1&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=vi%E1%BB%87t+nam+b%C3%B3ng+%C4%91%C3%A1&tz=420"
+            "query": "ios 26.4 có gì mới",
+            "value": "36",
+            "extracted_value": 36,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+c%C3%B3+g%C3%AC+m%E1%BB%9Bi&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+c%C3%B3+g%C3%AC+m%E1%BB%9Bi&tz=420"
         },
         {
-            "query": "lịch thi đấu bóng đá",
-            "value": "37",
-            "extracted_value": 37,
-            "link": "https://trends.google.com/trends/explore?q=l%E1%BB%8Bch+thi+%C4%91%E1%BA%A5u+b%C3%B3ng+%C4%91%C3%A1&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=l%E1%BB%8Bch+thi+%C4%91%E1%BA%A5u+b%C3%B3ng+%C4%91%C3%A1&tz=420"
+            "query": "ios 26.4 beta 4",
+            "value": "25",
+            "extracted_value": 25,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+beta+4&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+beta+4&tz=420"
         },
         {
-            "query": "lịch đá bóng hôm nay",
-            "value": "28",
-            "extracted_value": 28,
-            "link": "https://trends.google.com/trends/explore?q=l%E1%BB%8Bch+%C4%91%C3%A1+b%C3%B3ng+h%C3%B4m+nay&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=l%E1%BB%8Bch+%C4%91%C3%A1+b%C3%B3ng+h%C3%B4m+nay&tz=420"
+            "query": "ios 26.4 rc",
+            "value": "24",
+            "extracted_value": 24,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+rc&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+rc&tz=420"
         },
         {
-            "query": "bóng đá anh",
-            "value": "27",
-            "extracted_value": 27,
-            "link": "https://trends.google.com/trends/explore?q=b%C3%B3ng+%C4%91%C3%A1+anh&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=b%C3%B3ng+%C4%91%C3%A1+anh&tz=420"
+            "query": "ios 26.4 iphone 11",
+            "value": "23",
+            "extracted_value": 23,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+iphone+11&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+iphone+11&tz=420"
         },
         {
-            "query": "bóng đá u23",
+            "query": "review ios 26.4",
+            "value": "21",
+            "extracted_value": 21,
+            "link": "https://trends.google.com/trends/explore?q=review+ios+26.4&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=review+ios+26.4&tz=420"
+        },
+        {
+            "query": "ios 26.4 release",
+            "value": "20",
+            "extracted_value": 20,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+release&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+release&tz=420"
+        },
+        {
+            "query": "ios 26.4 chính thức",
+            "value": "19",
+            "extracted_value": 19,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+ch%C3%ADnh+th%E1%BB%A9c&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+ch%C3%ADnh+th%E1%BB%A9c&tz=420"
+        },
+        {
+            "query": "ios 26.4 update",
             "value": "18",
             "extracted_value": 18,
-            "link": "https://trends.google.com/trends/explore?q=b%C3%B3ng+%C4%91%C3%A1+u23&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=b%C3%B3ng+%C4%91%C3%A1+u23&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+update&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+update&tz=420"
         },
         {
-            "query": "bóng đá ngoại hạng anh",
+            "query": "ios 26",
             "value": "18",
             "extracted_value": 18,
-            "link": "https://trends.google.com/trends/explore?q=b%C3%B3ng+%C4%91%C3%A1+ngo%E1%BA%A1i+h%E1%BA%A1ng+anh&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=b%C3%B3ng+%C4%91%C3%A1+ngo%E1%BA%A1i+h%E1%BA%A1ng+anh&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=ios+26&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26&tz=420"
         },
         {
-            "query": "ngoại hạng anh",
+            "query": "ios 26.3",
+            "value": "18",
+            "extracted_value": 18,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.3&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.3&tz=420"
+        },
+        {
+            "query": "ios 26.4 iphone 12",
             "value": "17",
             "extracted_value": 17,
-            "link": "https://trends.google.com/trends/explore?q=ngo%E1%BA%A1i+h%E1%BA%A1ng+anh&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=ngo%E1%BA%A1i+h%E1%BA%A1ng+anh&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+iphone+12&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+iphone+12&tz=420"
         },
         {
-            "query": "bóng đá nữ",
-            "value": "17",
-            "extracted_value": 17,
-            "link": "https://trends.google.com/trends/explore?q=b%C3%B3ng+%C4%91%C3%A1+n%E1%BB%AF&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=b%C3%B3ng+%C4%91%C3%A1+n%E1%BB%AF&tz=420"
+            "query": "ios 26.3.1",
+            "value": "15",
+            "extracted_value": 15,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.3.1&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.3.1&tz=420"
         },
         {
-            "query": "kết quả bóng đá hôm nay",
-            "value": "16",
-            "extracted_value": 16,
-            "link": "https://trends.google.com/trends/explore?q=k%E1%BA%BFt+qu%E1%BA%A3+b%C3%B3ng+%C4%91%C3%A1+h%C3%B4m+nay&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=k%E1%BA%BFt+qu%E1%BA%A3+b%C3%B3ng+%C4%91%C3%A1+h%C3%B4m+nay&tz=420"
+            "query": "ios 26.4 release date",
+            "value": "15",
+            "extracted_value": 15,
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+release+date&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+release+date&tz=420"
         },
         {
-            "query": "lịch thi đấu bóng đá hôm nay",
-            "value": "14",
-            "extracted_value": 14,
-            "link": "https://trends.google.com/trends/explore?q=l%E1%BB%8Bch+thi+%C4%91%E1%BA%A5u+b%C3%B3ng+%C4%91%C3%A1+h%C3%B4m+nay&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=l%E1%BB%8Bch+thi+%C4%91%E1%BA%A5u+b%C3%B3ng+%C4%91%C3%A1+h%C3%B4m+nay&tz=420"
-        },
-        {
-            "query": "việt nam đá bóng hôm nay",
+            "query": "ios 26.4 features",
             "value": "13",
             "extracted_value": 13,
-            "link": "https://trends.google.com/trends/explore?q=vi%E1%BB%87t+nam+%C4%91%C3%A1+b%C3%B3ng+h%C3%B4m+nay&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=vi%E1%BB%87t+nam+%C4%91%C3%A1+b%C3%B3ng+h%C3%B4m+nay&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+features&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+features&tz=420"
         },
         {
-            "query": "trực tiếp bóng đá việt",
+            "query": "iran",
             "value": "13",
             "extracted_value": 13,
-            "link": "https://trends.google.com/trends/explore?q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+vi%E1%BB%87t&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+vi%E1%BB%87t&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=iran&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=iran&tz=420"
         },
         {
-            "query": "bảng xếp hạng bóng đá",
-            "value": "13",
-            "extracted_value": 13,
-            "link": "https://trends.google.com/trends/explore?q=b%E1%BA%A3ng+x%E1%BA%BFp+h%E1%BA%A1ng+b%C3%B3ng+%C4%91%C3%A1&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=b%E1%BA%A3ng+x%E1%BA%BFp+h%E1%BA%A1ng+b%C3%B3ng+%C4%91%C3%A1&tz=420"
-        },
-        {
-            "query": "nhận định bóng đá",
-            "value": "13",
-            "extracted_value": 13,
-            "link": "https://trends.google.com/trends/explore?q=nh%E1%BA%ADn+%C4%91%E1%BB%8Bnh+b%C3%B3ng+%C4%91%C3%A1&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=nh%E1%BA%ADn+%C4%91%E1%BB%8Bnh+b%C3%B3ng+%C4%91%C3%A1&tz=420"
-        },
-        {
-            "query": "trực tiếp bóng đá việt nam",
+            "query": "ios 26.4 download",
             "value": "12",
             "extracted_value": 12,
-            "link": "https://trends.google.com/trends/explore?q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+vi%E1%BB%87t+nam&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+vi%E1%BB%87t+nam&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+download&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+download&tz=420"
         },
         {
-            "query": "bong da",
+            "query": "ios 26.4 battery",
             "value": "10",
             "extracted_value": 10,
-            "link": "https://trends.google.com/trends/explore?q=bong+da&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=bong+da&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+battery&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+battery&tz=420"
         },
         {
-            "query": "lịch bóng đá việt nam",
+            "query": "ios 26.4 iphone 13",
             "value": "10",
             "extracted_value": 10,
-            "link": "https://trends.google.com/trends/explore?q=l%E1%BB%8Bch+b%C3%B3ng+%C4%91%C3%A1+vi%E1%BB%87t+nam&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=l%E1%BB%8Bch+b%C3%B3ng+%C4%91%C3%A1+vi%E1%BB%87t+nam&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=ios+26.4+iphone+13&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=ios+26.4+iphone+13&tz=420"
         },
         {
-            "query": "u23 việt nam",
+            "query": "iphone 17",
             "value": "8",
             "extracted_value": 8,
-            "link": "https://trends.google.com/trends/explore?q=u23+vi%E1%BB%87t+nam&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=u23+vi%E1%BB%87t+nam&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=iphone+17&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=iphone+17&tz=420"
         },
         {
-            "query": "trực tiếp bóng đá u23",
+            "query": "chainsaw man",
             "value": "6",
             "extracted_value": 6,
-            "link": "https://trends.google.com/trends/explore?q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+u23&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+u23&tz=420"
-        },
-        {
-            "query": "vô địch bóng đá thế giới các câu lạc bộ",
-            "value": "4",
-            "extracted_value": 4,
-            "link": "https://trends.google.com/trends/explore?q=v%C3%B4+%C4%91%E1%BB%8Bch+b%C3%B3ng+%C4%91%C3%A1+th%E1%BA%BF+gi%E1%BB%9Bi+c%C3%A1c+c%C3%A2u+l%E1%BA%A1c+b%E1%BB%99&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=v%C3%B4+%C4%91%E1%BB%8Bch+b%C3%B3ng+%C4%91%C3%A1+th%E1%BA%BF+gi%E1%BB%9Bi+c%C3%A1c+c%C3%A2u+l%E1%BA%A1c+b%E1%BB%99&tz=420"
-        },
-        {
-            "query": "trực tiếp bóng đá u23 việt nam",
-            "value": "3",
-            "extracted_value": 3,
-            "link": "https://trends.google.com/trends/explore?q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+u23+vi%E1%BB%87t+nam&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+12-m&engine=google_trends&hl=en&q=tr%E1%BB%B1c+ti%E1%BA%BFp+b%C3%B3ng+%C4%91%C3%A1+u23+vi%E1%BB%87t+nam&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=chainsaw+man&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_QUERIES&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=chainsaw+man&tz=420"
         }
     ]
 }

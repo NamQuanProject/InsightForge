@@ -2,423 +2,357 @@
     "rising": [
         {
             "topic": {
-                "value": "/g/11vhqbzhx_",
-                "title": "Switch Witch LLC",
+                "value": "/m/04st9hr",
+                "title": "Apple",
                 "type": "Topic"
             },
             "value": "Breakout",
-            "extracted_value": 77050,
-            "link": "https://trends.google.com/trends/explore?q=/g/11vhqbzhx_&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fg%2F11vhqbzhx_&tz=420"
+            "extracted_value": 1323700,
+            "link": "https://trends.google.com/trends/explore?q=/m/04st9hr&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F04st9hr&tz=420"
         },
         {
             "topic": {
-                "value": "/m/0f313f",
-                "title": "Football Federation of the Kyrgyz Republic",
-                "type": "League"
+                "value": "/g/11fmzcj1r3",
+                "title": "iPhone 11",
+                "type": "Mobile phone"
             },
             "value": "Breakout",
-            "extracted_value": 22250,
-            "link": "https://trends.google.com/trends/explore?q=/m/0f313f&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F0f313f&tz=420"
+            "extracted_value": 234250,
+            "link": "https://trends.google.com/trends/explore?q=/g/11fmzcj1r3&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11fmzcj1r3&tz=420"
         },
         {
             "topic": {
-                "value": "/m/04l_8w",
-                "title": "FIFA Club World Cup",
-                "type": "Soccer competition"
+                "value": "/g/11ptwy_c30",
+                "title": "iPhone 14",
+                "type": "Mobile phone"
             },
             "value": "Breakout",
-            "extracted_value": 10000,
-            "link": "https://trends.google.com/trends/explore?q=/m/04l_8w&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F04l_8w&tz=420"
+            "extracted_value": 194650,
+            "link": "https://trends.google.com/trends/explore?q=/g/11ptwy_c30&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11ptwy_c30&tz=420"
         },
         {
             "topic": {
-                "value": "/m/03mbpsr",
-                "title": "Myanmar women's national football team",
-                "type": "Soccer team"
+                "value": "/g/11np0c47tj",
+                "title": "iPhone 13",
+                "type": "Mobile phone"
             },
             "value": "Breakout",
-            "extracted_value": 7100,
-            "link": "https://trends.google.com/trends/explore?q=/m/03mbpsr&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F03mbpsr&tz=420"
+            "extracted_value": 188200,
+            "link": "https://trends.google.com/trends/explore?q=/g/11np0c47tj&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11np0c47tj&tz=420"
         },
         {
             "topic": {
-                "value": "/m/03grm6y",
-                "title": "Football at the SEA Games",
+                "value": "/g/11sfs1tnvm",
+                "title": "iPhone 12 Pro",
+                "type": "Mobile phone"
+            },
+            "value": "Breakout",
+            "extracted_value": 184150,
+            "link": "https://trends.google.com/trends/explore?q=/g/11sfs1tnvm&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11sfs1tnvm&tz=420"
+        },
+        {
+            "topic": {
+                "value": "/m/02jn7q",
+                "title": "Update",
                 "type": "Topic"
             },
             "value": "Breakout",
-            "extracted_value": 6700,
-            "link": "https://trends.google.com/trends/explore?q=/m/03grm6y&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F03grm6y&tz=420"
+            "extracted_value": 174200,
+            "link": "https://trends.google.com/trends/explore?q=/m/02jn7q&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F02jn7q&tz=420"
         },
         {
             "topic": {
-                "value": "/m/0bmcl4b",
-                "title": "Al-Najma SC",
-                "type": "Soccer team"
+                "value": "/m/02kb4w",
+                "title": "Emoji",
+                "type": "Topic"
             },
             "value": "Breakout",
-            "extracted_value": 5500,
-            "link": "https://trends.google.com/trends/explore?q=/m/0bmcl4b&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F0bmcl4b&tz=420"
+            "extracted_value": 163150,
+            "link": "https://trends.google.com/trends/explore?q=/m/02kb4w&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F02kb4w&tz=420"
         },
         {
             "topic": {
-                "value": "/m/0f494k",
-                "title": "Chinese Taipei women's national football team",
-                "type": "Soccer team"
+                "value": "/m/05sb1",
+                "title": "Pakistan",
+                "type": "Country in South Asia"
             },
-            "value": "+3,950%",
-            "extracted_value": 3950,
-            "link": "https://trends.google.com/trends/explore?q=/m/0f494k&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F0f494k&tz=420"
+            "value": "Breakout",
+            "extracted_value": 157400,
+            "link": "https://trends.google.com/trends/explore?q=/m/05sb1&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F05sb1&tz=420"
         },
         {
             "topic": {
-                "value": "/m/05cpl8",
-                "title": "SEA Games",
+                "value": "/g/11q32yjpnr",
+                "title": "iPhone 13 Pro",
+                "type": "Mobile phone"
+            },
+            "value": "Breakout",
+            "extracted_value": 155450,
+            "link": "https://trends.google.com/trends/explore?q=/g/11q32yjpnr&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11q32yjpnr&tz=420"
+        },
+        {
+            "topic": {
+                "value": "/g/11lnwsph21",
+                "title": "iPhone 16",
+                "type": "Mobile phone"
+            },
+            "value": "Breakout",
+            "extracted_value": 125150,
+            "link": "https://trends.google.com/trends/explore?q=/g/11lnwsph21&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11lnwsph21&tz=420"
+        },
+        {
+            "topic": {
+                "value": "/m/025szts",
+                "title": "Computer network",
                 "type": "Topic"
             },
-            "value": "+3,600%",
-            "extracted_value": 3600,
-            "link": "https://trends.google.com/trends/explore?q=/m/05cpl8&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F05cpl8&tz=420"
+            "value": "Breakout",
+            "extracted_value": 115150,
+            "link": "https://trends.google.com/trends/explore?q=/m/025szts&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F025szts&tz=420"
         },
         {
             "topic": {
-                "value": "/m/0gg8mhs",
-                "title": "ASEAN U-23 Championship",
-                "type": "Topic"
+                "value": "/m/027lnzs",
+                "title": "iPhone",
+                "type": "Mobile phone"
             },
-            "value": "+2,800%",
-            "extracted_value": 2800,
-            "link": "https://trends.google.com/trends/explore?q=/m/0gg8mhs&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F0gg8mhs&tz=420"
+            "value": "+170%",
+            "extracted_value": 170,
+            "link": "https://trends.google.com/trends/explore?q=/m/027lnzs&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F027lnzs&tz=420"
         },
         {
             "topic": {
-                "value": "/g/11k6xpqpjf",
-                "title": "FOOTBALL",
-                "type": "Software"
+                "value": "/m/0k8z",
+                "title": "Apple",
+                "type": "Technology company"
             },
-            "value": "+2,750%",
-            "extracted_value": 2750,
-            "link": "https://trends.google.com/trends/explore?q=/g/11k6xpqpjf&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fg%2F11k6xpqpjf&tz=420"
-        },
-        {
-            "topic": {
-                "value": "/m/07cd3b",
-                "title": "AFC Women's Asian Cup",
-                "type": "Soccer competition"
-            },
-            "value": "+2,350%",
-            "extracted_value": 2350,
-            "link": "https://trends.google.com/trends/explore?q=/m/07cd3b&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F07cd3b&tz=420"
-        },
-        {
-            "topic": {
-                "value": "/g/11f766qmsx",
-                "title": "FIFA World Cup European qualifiers",
-                "type": "Soccer league"
-            },
-            "value": "+1,600%",
-            "extracted_value": 1600,
-            "link": "https://trends.google.com/trends/explore?q=/g/11f766qmsx&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fg%2F11f766qmsx&tz=420"
-        },
-        {
-            "topic": {
-                "value": "/m/04h4zx",
-                "title": "Malaysia national football team",
-                "type": "Soccer team"
-            },
-            "value": "+1,150%",
-            "extracted_value": 1150,
-            "link": "https://trends.google.com/trends/explore?q=/m/04h4zx&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F04h4zx&tz=420"
-        },
-        {
-            "topic": {
-                "value": "/m/055g1r_",
-                "title": "Vietnam women's national football team",
-                "type": "Soccer team"
-            },
-            "value": "+750%",
-            "extracted_value": 750,
-            "link": "https://trends.google.com/trends/explore?q=/m/055g1r_&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F055g1r_&tz=420"
-        },
-        {
-            "topic": {
-                "value": "/m/07t_0d",
-                "title": "Vietnam Football Federation",
-                "type": "Sports governing body"
-            },
-            "value": "+750%",
-            "extracted_value": 750,
-            "link": "https://trends.google.com/trends/explore?q=/m/07t_0d&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F07t_0d&tz=420"
+            "value": "+110%",
+            "extracted_value": 110,
+            "link": "https://trends.google.com/trends/explore?q=/m/0k8z&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F0k8z&tz=420"
         }
     ],
     "top": [
         {
             "topic": {
-                "value": "/m/02vx4",
-                "title": "Soccer",
-                "type": "Sports"
+                "value": "/m/03wbl14",
+                "title": "iOS",
+                "type": "Operating system"
             },
             "value": "100",
             "extracted_value": 100,
-            "link": "https://trends.google.com/trends/explore?q=/m/02vx4&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F02vx4&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=/m/03wbl14&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F03wbl14&tz=420"
         },
         {
             "topic": {
-                "value": "/m/018xm",
-                "title": "Ball",
-                "type": "Sports equipment"
+                "value": "/m/027lnzs",
+                "title": "iPhone",
+                "type": "Mobile phone"
             },
-            "value": "32",
-            "extracted_value": 32,
-            "link": "https://trends.google.com/trends/explore?q=/m/018xm&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F018xm&tz=420"
+            "value": "28",
+            "extracted_value": 28,
+            "link": "https://trends.google.com/trends/explore?q=/m/027lnzs&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F027lnzs&tz=420"
         },
         {
             "topic": {
-                "value": "/m/01mzw",
-                "title": "calendar system",
+                "value": "/m/0k8z",
+                "title": "Apple",
+                "type": "Technology company"
+            },
+            "value": "15",
+            "extracted_value": 15,
+            "link": "https://trends.google.com/trends/explore?q=/m/0k8z&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F0k8z&tz=420"
+        },
+        {
+            "topic": {
+                "value": "/m/04st9hr",
+                "title": "Apple",
                 "type": "Topic"
             },
             "value": "15",
             "extracted_value": 15,
-            "link": "https://trends.google.com/trends/explore?q=/m/01mzw&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F01mzw&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=/m/04st9hr&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F04st9hr&tz=420"
         },
         {
             "topic": {
-                "value": "/m/01crd5",
-                "title": "Vietnam",
-                "type": "Country in Asia"
+                "value": "/m/01c0z",
+                "title": "Electric battery",
+                "type": "Topic"
             },
-            "value": "13",
-            "extracted_value": 13,
-            "link": "https://trends.google.com/trends/explore?q=/m/01crd5&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F01crd5&tz=420"
+            "value": "8",
+            "extracted_value": 8,
+            "link": "https://trends.google.com/trends/explore?q=/m/01c0z&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F01c0z&tz=420"
         },
         {
             "topic": {
-                "value": "/m/02_tc",
-                "title": "Premier League",
-                "type": "Soccer league"
-            },
-            "value": "5",
-            "extracted_value": 5,
-            "link": "https://trends.google.com/trends/explore?q=/m/02_tc&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F02_tc&tz=420"
-        },
-        {
-            "topic": {
-                "value": "/m/04b6sy",
-                "title": "Vietnam national football team",
-                "type": "Soccer team"
-            },
-            "value": "4",
-            "extracted_value": 4,
-            "link": "https://trends.google.com/trends/explore?q=/m/04b6sy&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F04b6sy&tz=420"
-        },
-        {
-            "topic": {
-                "value": "/m/02jx1",
-                "title": "England",
-                "type": "UK constituent country"
-            },
-            "value": "4",
-            "extracted_value": 4,
-            "link": "https://trends.google.com/trends/explore?q=/m/02jx1&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F02jx1&tz=420"
-        },
-        {
-            "topic": {
-                "value": "/m/0m1mr",
-                "title": "Ratio",
+                "value": "/g/11bc6hq8w2",
+                "title": "Apple",
                 "type": "Topic"
             },
             "value": "4",
             "extracted_value": 4,
-            "link": "https://trends.google.com/trends/explore?q=/m/0m1mr&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F0m1mr&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=/g/11bc6hq8w2&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11bc6hq8w2&tz=420"
         },
         {
             "topic": {
-                "value": "/m/01b5r_",
-                "title": "Women's association football",
-                "type": "Sports"
+                "value": "/g/11ydrynfhw",
+                "title": "iOS 26",
+                "type": "Operating system"
+            },
+            "value": "4",
+            "extracted_value": 4,
+            "link": "https://trends.google.com/trends/explore?q=/g/11ydrynfhw&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11ydrynfhw&tz=420"
+        },
+        {
+            "topic": {
+                "value": "/g/11jd9g0sn8",
+                "title": "IPhone 12",
+                "type": "Mobile phone"
             },
             "value": "3",
             "extracted_value": 3,
-            "link": "https://trends.google.com/trends/explore?q=/m/01b5r_&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F01b5r_&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=/g/11jd9g0sn8&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11jd9g0sn8&tz=420"
         },
         {
             "topic": {
-                "value": "/m/05cpl8",
-                "title": "SEA Games",
+                "value": "/m/0gw5h",
+                "title": "Evaluation",
                 "type": "Topic"
             },
             "value": "3",
             "extracted_value": 3,
-            "link": "https://trends.google.com/trends/explore?q=/m/05cpl8&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F05cpl8&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=/m/0gw5h&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F0gw5h&tz=420"
         },
         {
             "topic": {
-                "value": "/m/0gm28",
-                "title": "Candy",
-                "type": "Confection"
+                "value": "/g/11fmzcj1r3",
+                "title": "iPhone 11",
+                "type": "Mobile phone"
             },
             "value": "3",
             "extracted_value": 3,
-            "link": "https://trends.google.com/trends/explore?q=/m/0gm28&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F0gm28&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=/g/11fmzcj1r3&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11fmzcj1r3&tz=420"
         },
         {
             "topic": {
-                "value": "/m/0dpm1v",
-                "title": "Ball",
-                "type": "Association football"
-            },
-            "value": "3",
-            "extracted_value": 3,
-            "link": "https://trends.google.com/trends/explore?q=/m/0dpm1v&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F0dpm1v&tz=420"
-        },
-        {
-            "topic": {
-                "value": "/m/0c1q0",
-                "title": "UEFA Champions League",
-                "type": "Soccer competition"
-            },
-            "value": "3",
-            "extracted_value": 3,
-            "link": "https://trends.google.com/trends/explore?q=/m/0c1q0&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F0c1q0&tz=420"
-        },
-        {
-            "topic": {
-                "value": "/m/0h3t6nv",
-                "title": "AFC U-23 Asian Cup",
-                "type": "Soccer competition"
+                "value": "/g/11ptwy_c30",
+                "title": "iPhone 14",
+                "type": "Mobile phone"
             },
             "value": "2",
             "extracted_value": 2,
-            "link": "https://trends.google.com/trends/explore?q=/m/0h3t6nv&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F0h3t6nv&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=/g/11ptwy_c30&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11ptwy_c30&tz=420"
         },
         {
             "topic": {
-                "value": "/g/11s2k5ckx2",
-                "title": "KQBD Mobi - Kết quả, Tỷ số bóng đá trực tuyến hôm nay",
-                "type": "Entertainment agency in Ho Chi Minh City, Vietnam"
+                "value": "/g/11np0c47tj",
+                "title": "iPhone 13",
+                "type": "Mobile phone"
             },
             "value": "2",
             "extracted_value": 2,
-            "link": "https://trends.google.com/trends/explore?q=/g/11s2k5ckx2&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fg%2F11s2k5ckx2&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=/g/11np0c47tj&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11np0c47tj&tz=420"
         },
         {
             "topic": {
-                "value": "/m/01226z",
-                "title": "Football",
-                "type": "Ball"
+                "value": "/g/11sfs1tnvm",
+                "title": "iPhone 12 Pro",
+                "type": "Mobile phone"
             },
             "value": "2",
             "extracted_value": 2,
-            "link": "https://trends.google.com/trends/explore?q=/m/01226z&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F01226z&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=/g/11sfs1tnvm&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11sfs1tnvm&tz=420"
         },
         {
             "topic": {
-                "value": "/g/11vs53z96_",
-                "title": "Xoilac TV Trực Tiếp Bóng Đá",
-                "type": "Corporate office in Da Nang, Vietnam"
-            },
-            "value": "2",
-            "extracted_value": 2,
-            "link": "https://trends.google.com/trends/explore?q=/g/11vs53z96_&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fg%2F11vs53z96_&tz=420"
-        },
-        {
-            "topic": {
-                "value": "/m/07zrf",
-                "title": "Vietnamese language",
-                "type": "Spoken language"
-            },
-            "value": "2",
-            "extracted_value": 2,
-            "link": "https://trends.google.com/trends/explore?q=/m/07zrf&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F07zrf&tz=420"
-        },
-        {
-            "topic": {
-                "value": "/m/058q9lf",
-                "title": "Vietnam national under-23 football team",
-                "type": "Soccer team"
-            },
-            "value": "2",
-            "extracted_value": 2,
-            "link": "https://trends.google.com/trends/explore?q=/m/058q9lf&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F058q9lf&tz=420"
-        },
-        {
-            "topic": {
-                "value": "/m/0g0sl",
-                "title": "Bookmaker",
+                "value": "/m/02jn7q",
+                "title": "Update",
                 "type": "Topic"
             },
             "value": "2",
             "extracted_value": 2,
-            "link": "https://trends.google.com/trends/explore?q=/m/0g0sl&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F0g0sl&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=/m/02jn7q&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F02jn7q&tz=420"
         },
         {
             "topic": {
-                "value": "/g/11vhqbzhx_",
-                "title": "Switch Witch LLC",
+                "value": "/m/02kb4w",
+                "title": "Emoji",
                 "type": "Topic"
             },
             "value": "2",
             "extracted_value": 2,
-            "link": "https://trends.google.com/trends/explore?q=/g/11vhqbzhx_&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fg%2F11vhqbzhx_&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=/m/02kb4w&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F02kb4w&tz=420"
         },
         {
             "topic": {
-                "value": "/m/03grm6y",
-                "title": "Football at the SEA Games",
+                "value": "/m/05sb1",
+                "title": "Pakistan",
+                "type": "Country in South Asia"
+            },
+            "value": "2",
+            "extracted_value": 2,
+            "link": "https://trends.google.com/trends/explore?q=/m/05sb1&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F05sb1&tz=420"
+        },
+        {
+            "topic": {
+                "value": "/g/11q32yjpnr",
+                "title": "iPhone 13 Pro",
+                "type": "Mobile phone"
+            },
+            "value": "2",
+            "extracted_value": 2,
+            "link": "https://trends.google.com/trends/explore?q=/g/11q32yjpnr&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11q32yjpnr&tz=420"
+        },
+        {
+            "topic": {
+                "value": "/g/11lnwsph21",
+                "title": "iPhone 16",
+                "type": "Mobile phone"
+            },
+            "value": "1",
+            "extracted_value": 1,
+            "link": "https://trends.google.com/trends/explore?q=/g/11lnwsph21&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fg%2F11lnwsph21&tz=420"
+        },
+        {
+            "topic": {
+                "value": "/m/025szts",
+                "title": "Computer network",
                 "type": "Topic"
             },
             "value": "1",
             "extracted_value": 1,
-            "link": "https://trends.google.com/trends/explore?q=/m/03grm6y&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F03grm6y&tz=420"
-        },
-        {
-            "topic": {
-                "value": "/m/04t39d",
-                "title": "Sports betting",
-                "type": "Topic"
-            },
-            "value": "1",
-            "extracted_value": 1,
-            "link": "https://trends.google.com/trends/explore?q=/m/04t39d&date=today+12-m",
-            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+12-m&engine=google_trends&hl=en&q=%2Fm%2F04t39d&tz=420"
+            "link": "https://trends.google.com/trends/explore?q=/m/025szts&date=today+1-m&geo=VN",
+            "serpapi_link": "https://serpapi.com/search.json?data_type=RELATED_TOPICS&date=today+1-m&engine=google_trends&geo=VN&hl=en&q=%2Fm%2F025szts&tz=420"
         }
     ]
 }
