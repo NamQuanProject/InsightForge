@@ -13,9 +13,7 @@ async def run_test():
     await agent.initialize()
 
     query = (
-                "1. Find the top trending search in Vietnam for Music.\n"
-                "2. For that specific topic, fetch the related topics and interests over time data "
-                "to show how its interest has changed recently."
+               "Tại thị trường Việt Nam, hãy tìm chủ đề đang bùng nổ nhất trong lĩnh vực Công nghệ (Technology) trong vòng 24 giờ qua. Sau khi xác định được tên chủ đề hoặc từ khóa cụ thể đó, hãy thực hiện phân tích sâu để cho tôi biết: xu hướng tìm kiếm của nó đang biến động thế nào trong thời gian gần đây và những khái niệm/chủ đề nào khác đang được người dùng nhắc kèm nhiều nhất với nó."
             )
             
     print(f"--- Starting Test ---\nQuery: {query}\n")

@@ -13,21 +13,33 @@ mcp = FastMCP("GoogleTrend")
 
 # Define tools
 @mcp.tool()
-def search_term(query: str, data_type: str):
+def search_term(query: str, data_type: str, date: str):
     """
     Query is a Search Term for its trending.
     Data_Type is of those values:
     - TIMESERIES: Interest over time.
     - GEO_MAP: Compared break down for each region.
     - GEO_MAP_0: Interest over region.
-    - RELATED_TOPICS - Related topics
-    - RELATED_QUERIES - Related queries.
+    - RELATED_QUERIES - Related queries (Topics)
+    Date if of those values:
+    - now 1-H - Past hour
+    - now 4-H - Past 4 hours
+    - now 1-d - Past day
+    - now 7-d - Past 7 days
+    - today 1-m - Past 30 days
+    - today 3-m - Past 90 days
+    - today 12-m - Past 12 months
+    - today 5-y - Past 5 years
+    - all - 2004 - present
     """
-    result = serp_client.search(
+    # Logic: If data is missing, the agent should try widening the 'date' 
+    # or setting 'geo' to empty (Worldwide).
+    result = serp_client.search_for_term(
         query = query,
         engine = "google_trends",
         data_type = data_type,
-        geo = "VN"
+        geo = "VN",
+        date = date
         )
     result = format_trends_output(
         result,

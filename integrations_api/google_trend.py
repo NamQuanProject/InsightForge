@@ -14,7 +14,7 @@ class SerpAPIClient():
         # Initialize a SerpAPI client
         self.client = serpapi.Client(api_key=self.api_key)
     
-    def search(self, query: str = "", engine = "google_trends", data_type: str = "",  geo: str = None):
+    def search_for_term(self, query: str = "", engine = "google_trends", data_type: str = "TIMESERIES",  date: str = "today 1-m", geo: str = None):
         allowed_data_type = {
             "TIMESERIES" : "interest_over_time",
             "GEO_MAP": "compared_breakdown_by_region",
@@ -26,13 +26,14 @@ class SerpAPIClient():
             print(f"Data Type not supported")
             return []
         params = {
+            "q": query,
             "data_type": data_type,
-            "engine": engine
+            "engine": engine,
+            "date": date
         }
         try:
             if geo:
                 params["geo"] = geo
-            else:
                 results = self.client.search(
                     **params
                 )
@@ -65,15 +66,17 @@ if __name__ == "__main__":
     serp_api_key = os.getenv("SERP_API_KEY", "")
 
     serp_client = SerpAPIClient(api_key=serp_api_key)
-    query = "Bóng đá"
+    query = "ios 26.4"
 
     # Test each trending data type with query term
     test_data_types = ["TIMESERIES", "GEO_MAP", "GEO_MAP_0", "RELATED_TOPICS", "RELATED_QUERIES"]
     for data_type in test_data_types:
-        search_result = serp_client.search(
+        search_result = serp_client.search_for_term(
             query = query,
             engine = "google_trends",
-            data_type = data_type
+            data_type = data_type,
+            date = "today 1-m",
+            geo = "VN"
         )
         print(f"\n\nSearch result for {data_type}: ")
         print(f"\n {search_result}")
