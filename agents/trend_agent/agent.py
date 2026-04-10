@@ -62,6 +62,8 @@ Always structure your final report as:
 - Khi người dùng hỏi bằng tiếng Việt, trả lời bằng tiếng Việt.
 - Always cite actual numbers from tool responses — never fabricate metrics.
 """
+from agents.trend_agent.memory import AgentMemory
+
 
 class TrendAgent:
     """Wrapper class for the LangChain healthcare provider agent."""
@@ -81,6 +83,14 @@ class TrendAgent:
         #         args=["-m", "mcp_servers.trends_servers.server"], 
         #     )
         # })
+        # self.mcp_client = MultiServerMCPClient({
+        #     "fetch_trends": StdioConnection(
+        #         transport="stdio",
+        #         command="python",
+        #         args=["-m", "mcp_servers.trends_servers.server"], 
+        #     )
+        # })
+        self.memory = AgentMemory(agent_name="TrendAgent")
         self.mcp_client = MultiServerMCPClient({
             # "social_media_trends": StdioConnection(
             #     transport="stdio",
@@ -137,11 +147,13 @@ class TrendAgent:
         if self.agent is None:
             raise RuntimeError("Agent not initialized. Call initialize() first.")
         
+    
         response = await self.agent.ainvoke({
-            "messages": [{"role": "user", "content": prompt}]
+            "messages": [
+                {"role": "user", "content": prompt}
+            ]
         })
 
-        print(response)
         print(response["messages"][-1].content)
         return response["messages"][-1].content
     
