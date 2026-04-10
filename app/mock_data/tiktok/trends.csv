@@ -1,0 +1,7 @@
+topic_id,topic,keyword,search_volume,increase_percentage,potential_views,trend_score,related_hashtags,source,sample_video_ids
+tt_topic_001,AI video editing,ai video editor,42000,320,920000,93.1,aivideo|capcutai|creatorhacks,google_trends|tiktok_search,tt_vid_001|tt_vid_003
+tt_topic_002,Faceless shorts,faceless video ai,28600,240,710000,88.4,facelessvideo|shortsai|automation,google_trends|tiktok_search,tt_vid_002|tt_vid_004
+tt_topic_003,Subtitle retention,ai subtitle generator,19500,210,560000,81.7,subtitles|retention|aieditor,google_trends|tiktok_search,tt_vid_003
+tt_topic_004,AI story prompts,chatgpt script prompt,17100,260,495000,79.6,chatgptprompt|scriptwriting|hookgenerator,google_trends|tiktok_search,tt_vid_004
+tt_topic_005,Reels repurposing,instagram reels ai,14900,150,410000,73.3,reelsai|repurposecontent|socialmedia,google_trends,tt_vid_005
+tt_topic_006,Voiceover automation,tiktok ai voice,12800,145,365000,69.4,aivoice|storytelling|tiktoktips,tiktok_search,tt_vid_006

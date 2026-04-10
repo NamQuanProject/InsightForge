@@ -1,0 +1,7 @@
+topic_id,topic,keyword,search_volume,increase_percentage,potential_views,trend_score,related_queries,source,sample_video_ids
+yt_topic_001,AI content systems,ai content workflow,38500,280,680000,91.8,creator workflow ai|solo creator stack|ai content ops,google_trends|youtube_search,yt_vid_001|yt_vid_006
+yt_topic_002,Thumbnail CTR,ai thumbnail maker,21400,170,520000,84.3,thumbnail prompt|high ctr thumbnail|thumbnail testing,google_trends|youtube_search,yt_vid_002
+yt_topic_003,Faceless channel strategy,faceless youtube channel,18800,210,495000,80.6,faceless video ai|youtube automation ai|stock b-roll workflow,google_trends|youtube_search,yt_vid_003
+yt_topic_004,Retention hooks,story hook formula,16100,160,430000,76.1,viral hook generator|retention curve|open loop,google_trends|youtube_search,yt_vid_004
+yt_topic_005,Human-like AI voice,ai voice for youtube,14900,145,388000,71.4,voiceover ai|tts settings|explainer narration,google_trends|youtube_search,yt_vid_005
+yt_topic_006,Topic repurposing,content repurposing workflow,12100,130,344000,68.2,repurpose long video|clip extraction|content atomization,google_trends|youtube_search,yt_vid_006
