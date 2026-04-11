@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.api.health import router as health_router
 from app.api.tiktok import router as tiktok_router
+from app.api.upload_post import router as upload_post_router
 from app.api.youtube import router as youtube_router
 
 app = FastAPI(
@@ -11,3 +12,4 @@ app = FastAPI(
 app.include_router(health_router)
 app.include_router(tiktok_router)
 app.include_router(youtube_router)
+app.include_router(upload_post_router)
