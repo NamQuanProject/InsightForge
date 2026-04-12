@@ -15,7 +15,7 @@ from beeai_framework.serve.utils import LRUMemoryManager
 from beeai_framework.tools import Tool, tool
 from beeai_framework.tools.handoff import HandoffTool
 from beeai_framework.tools.think import ThinkTool
-
+from beeai_framework.memory.base_memory import BaseMemory
 # ✅ Load env
 load_dotenv()
 
@@ -51,12 +51,6 @@ async def main():
     await trending_analysis_agent.check_agent_exists()
     print("\tℹ️", f"{trending_analysis_agent.name} initialized")
 
-
-
-
-
-
-    
     think_tool = ThinkTool()
     trending_agent = RequirementAgent(
         name="Product Manager Agent",
@@ -83,6 +77,7 @@ async def main():
                 consecutive_allowed=False
             ),
         ],
+        memory = BaseMemory,
         role="Product Manager Agent",
         instructions=f"""
         You are a Product Manager Agent. Your task is to analyze the Product Manager and product analysis.

@@ -12,7 +12,7 @@ from a2a.utils import new_agent_text_message
 
 
 def main():
-    print("Starting Healthcare Provider Agent Server...")
+    print("Starting Trending Analysis Agent Server...")
     load_dotenv()
     
     host = os.environ.get("AGENT_HOST", "localhost")
