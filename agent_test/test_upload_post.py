@@ -1,5 +1,5 @@
 import asyncio
-from mcp_servers.posting_servers.mcp_server import upload_text, validate_api_key, get_user_profile, upload_photos
+from mcp_servers.posting_servers.mcp_server import upload_text, validate_api_key, get_user_profile, upload_photos, get_upload_history, get_media_list, get_analytics
 
 async def main():
     # Test API key first
@@ -24,16 +24,32 @@ async def main():
 # ) -> dict:
 
     
-    res = await upload_photos(
-        user="blhoang23",
-        platform=["instagram"],
-        photos = ["sample_data/image.png"],
-        title="Test Post from API",
-        description="This is a test post created via the Upload-Post API.",
-    )
+    # res = await upload_photos(
+    #     user="blhoang23",
+    #     platform=["instagram"],
+    #     photos = ["sample_data/image.png"],
+    #     title="Test Post from API",
+    #     description="This is a test post created via the Upload-Post API.",
+    # )
+
+    # get_upload_history 
+
+    # print("UPLOAD_TEXT_TEST", res)
+
+    # res = await get_upload_history()
+    # print("UPLOAD_HISTORY_TEST", res)
 
 
-    print("UPLOAD_TEXT_TEST", res)
+    # res = await get_media_list(user="blhoang23", platform="instagram")
+    # print("MEDIA_LIST_TEST", res)
+
+
+    res = await get_analytics(profile_username="blhoang23", platform="instagram")
+    print("ANALYTICS_TEST", res)
+
+
+    
+    
 
 
 

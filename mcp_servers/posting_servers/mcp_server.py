@@ -1,6 +1,6 @@
 import os
 import httpx
-from typing import Optional
+from typing import List, Optional
 from dotenv import load_dotenv
 import base64
 import requests
@@ -82,8 +82,6 @@ async def _upload_post_request(endpoint: str, data: dict, files: dict = None) ->
                 data=formatted_data,
                 files=files, 
             )
-
-            return response.json()
 
             return response.json()
 
@@ -342,6 +340,7 @@ async def get_media_list(
 @mcp.tool()
 async def get_analytics(
     profile_username: str,
+    platform: Optional[str] = None,
     start_date: Optional[str] = None,
     end_date: Optional[str] = None,
 ) -> dict:
@@ -359,6 +358,7 @@ async def get_analytics(
     dict with analytics data.
     """
     params = {}
+    params["platforms"] = platform
     if start_date:
         params["start_date"] = start_date
     if end_date:
@@ -391,63 +391,6 @@ async def get_user_profile() -> dict:
     """
     result = await _get_request("uploadposts/users")
     return result
-
-
-@mcp.tool()
-async def create_draft_for_review(
-    user: str,
-    platform: list[str],
-    content_type: str,
-    content: dict,
-    draft_id: str,
-) -> dict:
-    """
-    Create a draft for human review before publishing.
-    This stores the draft locally and waits for approval.
-
-    Parameters
-    ----------
-    user        : Upload-Post profile username.
-    platform    : Target platforms.
-    content_type: Type of content (video, photo, text).
-    content     : Content details (title, description, etc.).
-    draft_id    : Unique draft identifier.
-
-    Returns
-    -------
-    dict with draft status and approval URL.
-    """
-    return {
-        "success": True,
-        "draft_id": draft_id,
-        "status": "pending_approval",
-        "user": user,
-        "platform": platform,
-        "content_type": content_type,
-        "content": content,
-        "approval_url": f"http://localhost:8000/approval/{draft_id}",
-        "message": "Draft created. Awaiting human approval via frontend or API.",
-    }
-
-
-@mcp.tool()
-async def check_draft_approval(draft_id: str) -> dict:
-    """
-    Check if a draft has been approved or rejected.
-
-    Parameters
-    ----------
-    draft_id : The draft ID to check.
-
-    Returns
-    -------
-    dict with approval status.
-    """
-    return {
-        "draft_id": draft_id,
-        "status": "pending_approval",
-        "message": "Use approval service endpoint to check status",
-    }
 
 
 if __name__ == "__main__":
