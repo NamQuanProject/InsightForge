@@ -19,7 +19,7 @@ async def run_test():
     print(f"--- Starting Test ---\nQuery: {query}\n")
     print("\n--- FINAL AGENT OUTPUT ---")
     result = await agent.answer_query(query)
-    # print(result)
+    print(result)
 
 if __name__ == "__main__":
     asyncio.run(run_test())
