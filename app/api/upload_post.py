@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, File, Form, Query, UploadFile
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from app.schema.upload_post import (
@@ -11,6 +11,7 @@ from app.schema.upload_post import (
     UploadPostGenerateJwtResponse,
     UploadPostHistoryEnvelope,
     UploadPostPostAnalyticsEnvelope,
+    UploadPostPublishEnvelope,
     UploadPostProfileResponse,
     UploadPostProfilesResponse,
     UploadPostTotalImpressionsEnvelope,
@@ -19,9 +20,12 @@ from app.schema.upload_post import (
 )
 from app.services.upload_post_service import UploadPostApiService
 from app.services.upload_post_mock_service import UploadPostMockService
+from app.services.upload_post_publish_service import UploadPostPublishService
 
 router = APIRouter(prefix="/api/v1/upload-post", tags=["upload-post"])
 bearer_scheme = HTTPBearer(auto_error=False)
+
+
 
 
 def _extract_token(credentials: HTTPAuthorizationCredentials | None) -> str | None:
@@ -67,6 +71,36 @@ async def delete_upload_post_profile(username: str):
 @router.post("/jwt/generate", response_model=UploadPostGenerateJwtResponse)
 async def generate_upload_post_jwt(payload: UploadPostGenerateJwtRequest):
     return UploadPostApiService().generate_jwt(payload)
+
+
+@router.post("/publish", response_model=UploadPostPublishEnvelope)
+async def publish_upload_post_content(
+    user: str = Form(..., min_length=1),
+    platforms: str = Form(..., description="Comma-separated platform list, e.g. youtube,tiktok"),
+    title: str = Form(..., min_length=1),
+    description: str | None = Form(default=None),
+    tags: str | None = Form(default=None, description="Comma-separated tags, e.g. demo,test"),
+    first_comment: str | None = Form(default=None),
+    schedule_post: str | None = Form(default=None),
+    link_url: str | None = Form(default=None),
+    subreddit: str | None = Form(default=None),
+    asset_urls: str | None = Form(default=None, description="Comma-separated public asset URLs."),
+    files: list[UploadFile] = File(default_factory=list),
+):
+    payload = await UploadPostPublishService().publish(
+        user=user,
+        platforms=_normalize_csv_field(platforms),
+        title=title,
+        description=description,
+        tags=_normalize_csv_field(tags) if tags else [],
+        schedule_post=schedule_post,
+        first_comment=first_comment,
+        link_url=link_url,
+        subreddit=subreddit,
+        asset_urls=_normalize_csv_field(asset_urls) if asset_urls else [],
+        files=files,
+    )
+    return UploadPostPublishEnvelope(payload=payload)
 
 
 @router.post("/jwt/validate", response_model=UploadPostValidateJwtResponse)
@@ -158,3 +192,9 @@ def _normalize_list_query(values: list[str] | None) -> list[str]:
     for value in values:
         normalized.extend(item.strip() for item in value.split(",") if item.strip())
     return normalized
+
+
+def _normalize_csv_field(value: str | None) -> list[str]:
+    if not value:
+        return []
+    return [item.strip() for item in value.split(",") if item.strip()]

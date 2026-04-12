@@ -92,3 +92,8 @@ class UploadPostHistoryEnvelope(BaseModel):
 class UploadPostCommentsEnvelope(BaseModel):
     source: str = "upload_post"
     payload: dict[str, Any]
+
+
+class UploadPostPublishEnvelope(BaseModel):
+    source: str = "upload_post"
+    payload: dict[str, Any]

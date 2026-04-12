@@ -1,6 +1,8 @@
 fastapi
 uvicorn
 pydantic
+httpx
+python-multipart
 langchain
 langchain-openai
 langchain-anthropic

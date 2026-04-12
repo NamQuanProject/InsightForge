@@ -1,58 +1,46 @@
-INSIGHTFORGE UPLOAD-POST API DOCS
-Thunder Client Guide
+INSIGHTFORGE API DOCS
+Frontend + Thunder Client + PowerShell Guide
 Base URL: http://127.0.0.1:8000
 
 ==================================================
-IMPORTANT
+OVERVIEW
 ==================================================
-The Upload-Post integration is now split into 2 groups:
+This backend currently has 3 groups of behavior:
 
-1. Real Upload-Post account management endpoints
+1. Real Upload-Post account endpoints
 - account
 - users
 - delete user
 - generate jwt
 - validate jwt
 
-2. Local mock analytics/statistics endpoints
+2. Real Upload-Post publish endpoint
+- publish to one or many platforms
+- supports video, photo, or text post
+
+3. Mock analytics/statistics endpoints
 - profile analytics
 - total impressions
 - post analytics
 - comments
 - history
 
-This means:
-- account management still depends on real Upload-Post setup
-- analytics/statistics do NOT depend on the real Upload-Post API anymore
-- analytics/statistics are backed by linked mock data in:
-  app/mock_data/upload_post/mock_bundle.json
-
-Mock profile username:
-- blhoang23
-
-Mock supported platforms:
-- youtube
-- tiktok
+Important:
+- account management and publish talk to real Upload-Post
+- analytics/statistics are mock-backed
+- mock analytics/statistics do not require real Upload-Post responses
 
 ==================================================
 HOW TO RUN
 ==================================================
-1. Start the backend
+Start backend:
 python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
-
-2. Open Thunder Client
-
-3. For all mock analytics/statistics endpoints:
-- Auth = None
-- Headers = none unless explicitly stated
-- Body = empty unless explicitly stated
 
 ==================================================
 A. REAL ACCOUNT MANAGEMENT ENDPOINTS
 ==================================================
 
 1. GET CURRENT ACCOUNT
-URL:
 GET http://127.0.0.1:8000/api/v1/upload-post/account/me
 
 Thunder Client:
@@ -60,12 +48,8 @@ Thunder Client:
 - Headers = none
 - Body = empty
 
-Purpose:
-- Verify backend can access Upload-Post account
-
 
 2. CREATE PROFILE
-URL:
 POST http://127.0.0.1:8000/api/v1/upload-post/users
 
 Thunder Client:
@@ -81,7 +65,6 @@ Body:
 
 
 3. LIST PROFILES
-URL:
 GET http://127.0.0.1:8000/api/v1/upload-post/users
 
 Thunder Client:
@@ -91,7 +74,6 @@ Thunder Client:
 
 
 4. GET SPECIFIC PROFILE
-URL:
 GET http://127.0.0.1:8000/api/v1/upload-post/users/blhoang23
 
 Thunder Client:
@@ -101,7 +83,6 @@ Thunder Client:
 
 
 5. DELETE PROFILE
-URL:
 DELETE http://127.0.0.1:8000/api/v1/upload-post/users/blhoang23
 
 Thunder Client:
@@ -111,7 +92,6 @@ Thunder Client:
 
 
 6. GENERATE JWT CONNECT LINK
-URL:
 POST http://127.0.0.1:8000/api/v1/upload-post/jwt/generate
 
 Thunder Client:
@@ -131,7 +111,6 @@ Result:
 
 
 7. VALIDATE JWT
-URL:
 POST http://127.0.0.1:8000/api/v1/upload-post/jwt/validate
 
 Thunder Client:
@@ -146,36 +125,156 @@ Body:
 }
 
 Note:
-- this route still points to the real provider
-- if the provider is unstable, skip this in demos
+- this route still depends on real Upload-Post
+- if provider behavior is unstable, skip it in demos
 
 ==================================================
-B. MOCK ANALYTICS / STATISTICS ENDPOINTS
+B. REAL PUBLISH ENDPOINT FOR FRONTEND
 ==================================================
 
-These routes now read from linked mock data.
+Route:
+POST http://127.0.0.1:8000/api/v1/upload-post/publish
 
-Do not use Bearer auth here.
+Purpose:
+- publish a post to one or many platforms
+- supports video, photo, or text-only post
+- intended for frontend UI form submission
+
+Request type:
+- multipart/form-data
+
+Do not send JSON to this endpoint.
+
+Accepted form fields:
+- user
+- platforms
+- title
+- description
+- tags
+- first_comment
+- schedule_post
+- link_url
+- subreddit
+- asset_urls
+- files
+
+Field notes:
+- user:
+  Upload-Post profile username
+- platforms:
+  comma-separated string
+  example: youtube,tiktok
+- tags:
+  comma-separated string
+  example: demo,test,launch
+- asset_urls:
+  comma-separated public asset URLs
+- files:
+  real file upload field
+  do not send local path as plain text
+
+Post type behavior:
+- no files and no asset_urls:
+  text post
+- one video file or one video URL:
+  video post
+- one or more image files or image URLs:
+  photo post
+- mixed image + video:
+  rejected
+
+==================================================
+PUBLISH TESTING IN THUNDER CLIENT
+==================================================
+
+Thunder Client setup:
+- Method = POST
+- URL = http://127.0.0.1:8000/api/v1/upload-post/publish
+- Auth = None
+- Body = Form
+
+Example rows for video upload:
+- user = blhoang23
+- platforms = instagram,tiktok
+- title = My test multi-platform
+- description = Testing multi-platform upload
+- tags = demo,test,launch
+- first_comment = Tell me what you think
+- files = [choose a real video file]
+
+Important:
+- files must be a file row, not text
+- do not use JSON body
+- do not use file_path here
+
+==================================================
+PUBLISH TESTING IN POWERSHELL
+==================================================
+
+Use curl.exe, not curl.
+
+Working example:
+curl.exe -X POST "http://127.0.0.1:8000/api/v1/upload-post/publish" -F "user=blhoang23" -F "platforms=instagram,facebook" -F "title=My test multi-platform" -F "description=Testing multi-platform upload from curl" -F "tags=demo,test,launch" -F "first_comment=Tell me what you think" -F "files=@D:/Product Demo/test.mp4"
+
+Text-only example:
+curl.exe -X POST "http://127.0.0.1:8000/api/v1/upload-post/publish" -F "user=blhoang23" -F "platforms=x,threads,linkedin" -F "title=Quick update from InsightForge" -F "description=We just finished the publishing flow" -F "tags=update,product,launch" -F "first_comment=More soon" -F "link_url=https://example.com/article"
+
+Photo example:
+curl.exe -X POST "http://127.0.0.1:8000/api/v1/upload-post/publish" -F "user=blhoang23" -F "platforms=instagram,facebook,threads" -F "title=My photo post" -F "description=Testing photo upload" -F "tags=photo,design,launch" -F "files=@D:/Product Demo/photo1.png" -F "files=@D:/Product Demo/photo2.png"
+
+==================================================
+PUBLISH RESPONSE SHAPE
+==================================================
+{
+  "source": "",
+  "payload": {
+    "success": true,
+    "post_kind": "",
+    "platforms": [],
+    "payload": {
+      "success": true,
+      "message": "",
+      "request_id": "",
+      "total_platforms": 0,
+      "job_id": ""
+    }
+  }
+}
+
+Important:
+- request accepted does not guarantee all platforms have finished publishing
+- Upload-Post may queue the job in background
+- one platform can succeed earlier than another
+
+Observed behavior:
+- Instagram may appear first
+- Facebook may take longer or fail separately
+
+If one platform is missing after publish:
+- it may still be processing
+- or that platform may have failed on Upload-Post side
+
+==================================================
+C. MOCK ANALYTICS / STATISTICS ENDPOINTS
+==================================================
+
+These routes read from linked mock data.
 
 Use:
 - Auth = None
 - Headers = none
 - Body = empty
 
-The mock data is internally linked:
-- profile analytics totals match total-impressions
-- history entries match request_id values in post analytics
-- comments belong to the same mock posts in history/post analytics
+Mock profile username:
+- blhoang23
+
+Mock supported platforms:
+- youtube
+- tiktok
 
 
 1. PROFILE ANALYTICS
-URL:
 GET http://127.0.0.1:8000/api/v1/upload-post/analytics/profiles/blhoang23?platforms=youtube,tiktok
-
-Thunder Client:
-- Auth = None
-- Headers = none
-- Body = empty
 
 What it returns:
 {
@@ -300,26 +399,7 @@ What it returns:
 
 
 2. TOTAL IMPRESSIONS
-URL:
 GET http://127.0.0.1:8000/api/v1/upload-post/analytics/profiles/blhoang23/total-impressions?period=last_week&platform=youtube&platform=tiktok&breakdown=true
-
-Thunder Client:
-- Auth = None
-- Headers = none
-- Body = empty
-
-Optional query params:
-- date=2026-04-07
-- start_date=2026-04-01
-- end_date=2026-04-07
-- period=last_week
-- platform=youtube
-- platform=tiktok
-- breakdown=true
-- metrics=impressions
-- metrics=likes
-- metrics=comments
-- metrics=shares
 
 What it returns:
 {
@@ -387,19 +467,9 @@ What it returns:
 
 
 3. POST ANALYTICS BY REQUEST ID
-URL:
 GET http://127.0.0.1:8000/api/v1/upload-post/analytics/posts/req_demo_001
 
-Thunder Client:
-- Auth = None
-- Headers = none
-- Body = empty
-
-Optional query param:
-- platform=youtube
-- platform=tiktok
-
-Useful mock request_id values:
+Useful request_id values:
 - req_demo_001
 - req_demo_002
 - req_demo_003
@@ -490,35 +560,10 @@ What it returns:
 
 
 4. COMMENTS
-URL by post_id:
 GET http://127.0.0.1:8000/api/v1/upload-post/interactions/comments?platform=youtube&user=blhoang23&post_id=yt9X1aA7cLmQ0
 
-URL by post_url:
+Alternative:
 GET http://127.0.0.1:8000/api/v1/upload-post/interactions/comments?platform=tiktok&user=blhoang23&post_url=https://www.tiktok.com/@blhoang23/video/7489201552109876432
-
-Thunder Client:
-- Auth = None
-- Headers = none
-- Body = empty
-
-Required query params:
-- platform
-- user
-- one of:
-  post_id
-  post_url
-
-Supported mock platforms:
-- youtube
-- tiktok
-
-Useful mock post ids:
-- yt9X1aA7cLmQ0
-- yt4Lm8VqPzK21
-- yt7Pn3NbLwQ54
-- 7489201552109876432
-- 7489405523100012544
-- 7489816635408821567
 
 What it returns:
 {
@@ -541,13 +586,7 @@ What it returns:
 
 
 5. HISTORY
-URL:
 GET http://127.0.0.1:8000/api/v1/upload-post/history?page=1&limit=10
-
-Thunder Client:
-- Auth = None
-- Headers = none
-- Body = empty
 
 What it returns:
 {
@@ -579,58 +618,31 @@ What it returns:
   }
 }
 
-Important:
-- request_total_platforms shows how many platforms each upload was published to
-- same request_id can appear on multiple history rows if the same upload went to multiple platforms
-
 ==================================================
-MOCK DATA RELATIONSHIPS
+LINKED MOCK TEST FLOW
 ==================================================
-Use this when testing multiple endpoints together.
-
-req_demo_001
-- title: AI Workflow That Saved Me 10 Hours
-- youtube post id: yt9X1aA7cLmQ0
-- tiktok post id: 7489201552109876432
-
-req_demo_002
-- title: Three Thumbnail Hooks I Reuse Every Week
-- youtube post id: yt4Lm8VqPzK21
-- tiktok post id: 7489405523100012544
-
-req_demo_003
-- title: My Faceless Channel Editing Stack
-- youtube only
-- youtube post id: yt7Pn3NbLwQ54
-
-req_demo_004
-- title: Daily Growth Hook in 15 Seconds
-- tiktok only
-- tiktok post id: 7489816635408821567
-
-Recommended linked test flow:
-1. GET /history
+1. GET /api/v1/upload-post/history
 2. copy one request_id
-3. GET /analytics/posts/{request_id}
-4. copy a platform_post_id or post_url from that response
-5. GET /interactions/comments with matching platform + post_id or post_url
-6. GET /analytics/profiles/blhoang23?platforms=youtube,tiktok
-7. GET /analytics/profiles/blhoang23/total-impressions?period=last_week&platform=youtube&platform=tiktok&breakdown=true
+3. GET /api/v1/upload-post/analytics/posts/{request_id}
+4. copy a platform_post_id or post_url
+5. GET /api/v1/upload-post/interactions/comments?platform=...&user=blhoang23&post_id=...
+6. GET /api/v1/upload-post/analytics/profiles/blhoang23?platforms=youtube,tiktok
+7. GET /api/v1/upload-post/analytics/profiles/blhoang23/total-impressions?period=last_week&platform=youtube&platform=tiktok&breakdown=true
 
 ==================================================
-THUNDER CLIENT QUICK RULES
+QUICK RULES
 ==================================================
-Real account endpoints:
+Real account routes:
 - Auth = None
-- Body JSON only for POST routes
+- JSON body only where needed
 
-Mock analytics/statistics endpoints:
+Real publish route:
 - Auth = None
-- No Bearer token needed
-- No API key needed from client
+- Body = multipart/form-data
+- use files as real file field
+- use platforms and tags as comma-separated strings
 
-If a mock route returns 404:
-- check username is blhoang23
-- check request_id is one of req_demo_001 to req_demo_004
-- check platform is youtube or tiktok
-- check post_id/post_url matches the chosen platform
+Mock analytics/statistics routes:
+- Auth = None
+- no Bearer token needed
+- no API key needed from client
