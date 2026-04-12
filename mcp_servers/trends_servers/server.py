@@ -40,7 +40,7 @@ def search_term(query: str, data_type: str, date: str):
         data_type = data_type,
         geo = "VN",
         date = date
-        )
+    )
     result = format_trends_output(
         result,
         data_type
@@ -48,30 +48,11 @@ def search_term(query: str, data_type: str, date: str):
     return result
 
 @mcp.tool()
-def get_trends(category_id: int, location: str = "VN", hours: int = 24):
+def get_trends(category_id: int = None, location: str = "VN", hours: int = 24):
     """
     This tool is used to get trending search now in Hours.
-    Hours can be: 
-    - 4 (Past 4 hours)
-    - 24 (Past 24 hours)
-    - 48 (Past 48 hours)
-    - 168 (Past 7 days).
-    """
-    result = serp_client.search_trend(
-          engine = "google_trends_trending_now",
-          location = location,
-          hours = hours,
-          category_id = category_id
-     )
-    result = format_trending_now_output(result)
-    return result
-
-@mcp.tool()
-def list_categories() -> dict[str, int]:
-    """
-    List of categories mapped into Category ID for searching parameters.
-    """
-    category_map = {
+    If all categories are queries, do not input category_id
+    Category Mapping:
     "Autos and Vehicles": 1,
     "Beauty and Fashion": 2,
     "Business and Finance": 3,
@@ -91,8 +72,34 @@ def list_categories() -> dict[str, int]:
     "Sports": 17,
     "Technology": 18,
     "Travel and Transportation": 19
+    Hours can be: 
+    - 4 (Past 4 hours)
+    - 24 (Past 24 hours)
+    - 48 (Past 48 hours)
+    - 168 (Past 7 days).
+    """
+    params = {
+        "engine" : "google_trends_trending_now",
+        "location" : location,
+        "hours" : hours,
     }
-    return category_map
+    if category_id:
+        params["category_id"] = category_id
+    result = serp_client.search_trend(
+          **params
+     )
+    result = format_trending_now_output(result)
+    return result
+
+# @mcp.tool()
+# def list_categories() -> dict[str, int]:
+#     """
+#     List of categories mapped into Category ID for searching parameters.
+#     """
+#     category_map = {
+    
+#     }
+#     return category_map
 
 if __name__ == "__main__":
     mcp.run(transport = "stdio")
