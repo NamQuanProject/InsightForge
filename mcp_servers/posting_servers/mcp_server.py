@@ -2,15 +2,14 @@ import os
 import httpx
 from typing import Optional
 from dotenv import load_dotenv
-
+import base64
+import requests
 from mcp.server.fastmcp import FastMCP
 
 load_dotenv()
 
 mcp = FastMCP("PostingAgent")
-
 UPLOAD_POST_API_KEY = os.getenv("UPLOAD_POST_API_KEY", "")
-
 print(UPLOAD_POST_API_KEY)
 UPLOAD_POST_BASE_URL = "https://api.upload-post.com/api"
 
@@ -21,46 +20,73 @@ def _get_headers() -> dict:
     }
 
 
+
+def photo_convert(photos: list[str]) -> list[str]:
+    api_key = os.getenv("IMG_BB_API_KEY", "")
+    if not api_key:
+        raise Exception("IMG_BB_API_KEY not configured")
+
+    url = "https://api.imgbb.com/1/upload"
+    result_urls = []
+
+    for photo in photos:
+        # ✅ If already a URL → keep it
+        if photo.startswith("http://") or photo.startswith("https://"):
+            result_urls.append(photo)
+            continue
+
+        # ✅ Else → upload local file
+        try:
+            with open(photo, "rb") as f:
+                image_data = base64.b64encode(f.read()).decode("utf-8")
+
+            payload = {
+                "key": api_key,
+                "image": image_data
+            }
+
+            response = requests.post(url, data=payload)
+            result = response.json()
+
+            if result.get("success"):
+                result_urls.append(result["data"]["url"])
+            else:
+                raise Exception(f"Upload failed: {result}")
+
+        except Exception as e:
+            raise Exception(f"Error processing {photo}: {str(e)}")
+
+    return result_urls
+
+
+
+
 async def _upload_post_request(endpoint: str, data: dict, files: dict = None) -> dict:
     headers = _get_headers()
+
     async with httpx.AsyncClient(timeout=120.0) as client:
         try:
-            if files:
-                form_data = httpx.FormData()
-                for key, value in data.items():
-                    if isinstance(value, list):
-                        for item in value:
-                            form_data.add(name=key, value=item)
-                    else:
-                        form_data.add(
-                            name=key, value=str(value) if value is not None else ""
-                        )
+            formatted_data = {}
 
-                for key, file_tuple in files.items():
-                    if isinstance(file_tuple, tuple):
-                        filename, file_content, content_type = file_tuple
-                        form_data.add(
-                            name=key,
-                            value=file_content,
-                            filename=filename,
-                            content_type=content_type,
-                        )
-                    else:
-                        form_data.add(name=key, value=file_tuple)
+            # ✅ Add normal fields
+            for key, value in data.items():
+                if isinstance(value, list):
+                    formatted_data[key] = [str(item) for item in value]
+                else:
+                    formatted_data[key] = str(value)
 
-                response = await client.post(
-                    f"{UPLOAD_POST_BASE_URL}/{endpoint}",
-                    headers=headers,
-                    data=form_data,
-                )
-            else:
-                response = await client.post(
-                    f"{UPLOAD_POST_BASE_URL}/{endpoint}",
-                    headers=headers,
-                    json=data,
-                )
+            # ✅ Add files (if any)
+            response = await client.post(
+                f"{UPLOAD_POST_BASE_URL}/{endpoint}",
+                headers=headers,
+                data=formatted_data,
+                files=files, 
+            )
 
             return response.json()
+
+            return response.json()
+
         except httpx.TimeoutException:
             return {"success": False, "error": "Request timed out"}
         except Exception as e:
@@ -161,13 +187,18 @@ async def upload_photos(
     if not UPLOAD_POST_API_KEY:
         return {"success": False, "error": "Upload-Post API key not configured"}
 
+
+    converted_photos = photo_convert(photos)
+
+
+
     data = {
         "user": user,
         "platform[]": platform,
+        "photos[]": converted_photos,   # ✅ use converted URLs
     }
 
-    for photo in photos:
-        data["photos[]"] = photo
+    
 
     if title:
         data["title"] = title
