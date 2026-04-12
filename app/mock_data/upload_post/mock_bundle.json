@@ -1,0 +1,495 @@
+{
+  "profile": {
+    "user_email": "blhoang23@gmail.com",
+    "profile_username": "blhoang23",
+    "display_name": "Bui Le Hoang",
+    "start_date": "2026-04-01",
+    "end_date": "2026-04-07",
+    "connected_platforms": [
+      "youtube",
+      "tiktok"
+    ]
+  },
+  "profile_analytics": {
+    "youtube": {
+      "followers": 186500,
+      "reach": 429000,
+      "views": 612000,
+      "impressions": 780000,
+      "profileViews": 5300,
+      "likes": 38500,
+      "comments": 2980,
+      "shares": 1040,
+      "saves": 3200,
+      "daily_metrics": [
+        {
+          "date": "2026-04-01",
+          "reach": 51000,
+          "views": 73000,
+          "impressions": 92000,
+          "profileViews": 620,
+          "likes": 3800,
+          "comments": 260,
+          "shares": 90,
+          "saves": 250
+        },
+        {
+          "date": "2026-04-02",
+          "reach": 56000,
+          "views": 79000,
+          "impressions": 98000,
+          "profileViews": 690,
+          "likes": 4100,
+          "comments": 310,
+          "shares": 110,
+          "saves": 310
+        },
+        {
+          "date": "2026-04-03",
+          "reach": 59000,
+          "views": 83000,
+          "impressions": 105000,
+          "profileViews": 720,
+          "likes": 5000,
+          "comments": 360,
+          "shares": 130,
+          "saves": 380
+        },
+        {
+          "date": "2026-04-04",
+          "reach": 62000,
+          "views": 88000,
+          "impressions": 112000,
+          "profileViews": 760,
+          "likes": 5600,
+          "comments": 420,
+          "shares": 150,
+          "saves": 420
+        },
+        {
+          "date": "2026-04-05",
+          "reach": 66000,
+          "views": 91000,
+          "impressions": 118000,
+          "profileViews": 790,
+          "likes": 5900,
+          "comments": 450,
+          "shares": 160,
+          "saves": 450
+        },
+        {
+          "date": "2026-04-06",
+          "reach": 67000,
+          "views": 96000,
+          "impressions": 124000,
+          "profileViews": 840,
+          "likes": 6600,
+          "comments": 520,
+          "shares": 180,
+          "saves": 600
+        },
+        {
+          "date": "2026-04-07",
+          "reach": 68000,
+          "views": 102000,
+          "impressions": 131000,
+          "profileViews": 880,
+          "likes": 7500,
+          "comments": 660,
+          "shares": 220,
+          "saves": 790
+        }
+      ]
+    },
+    "tiktok": {
+      "followers": 94200,
+      "reach": 684000,
+      "views": 913000,
+      "impressions": 1026000,
+      "profileViews": 7100,
+      "likes": 74200,
+      "comments": 6450,
+      "shares": 5310,
+      "saves": 8820,
+      "daily_metrics": [
+        {
+          "date": "2026-04-01",
+          "reach": 78000,
+          "views": 98000,
+          "impressions": 120000,
+          "profileViews": 720,
+          "likes": 7100,
+          "comments": 520,
+          "shares": 410,
+          "saves": 600
+        },
+        {
+          "date": "2026-04-02",
+          "reach": 87000,
+          "views": 108000,
+          "impressions": 131000,
+          "profileViews": 810,
+          "likes": 8500,
+          "comments": 640,
+          "shares": 520,
+          "saves": 760
+        },
+        {
+          "date": "2026-04-03",
+          "reach": 92000,
+          "views": 121000,
+          "impressions": 139000,
+          "profileViews": 890,
+          "likes": 9700,
+          "comments": 780,
+          "shares": 610,
+          "saves": 920
+        },
+        {
+          "date": "2026-04-04",
+          "reach": 98000,
+          "views": 129000,
+          "impressions": 148000,
+          "profileViews": 940,
+          "likes": 10300,
+          "comments": 860,
+          "shares": 700,
+          "saves": 1020
+        },
+        {
+          "date": "2026-04-05",
+          "reach": 104000,
+          "views": 138000,
+          "impressions": 154000,
+          "profileViews": 1010,
+          "likes": 11200,
+          "comments": 930,
+          "shares": 760,
+          "saves": 1180
+        },
+        {
+          "date": "2026-04-06",
+          "reach": 109000,
+          "views": 151000,
+          "impressions": 163000,
+          "profileViews": 1170,
+          "likes": 12300,
+          "comments": 1120,
+          "shares": 930,
+          "saves": 1500
+        },
+        {
+          "date": "2026-04-07",
+          "reach": 116000,
+          "views": 168000,
+          "impressions": 171000,
+          "profileViews": 1560,
+          "likes": 15100,
+          "comments": 1600,
+          "shares": 1380,
+          "saves": 2840
+        }
+      ]
+    }
+  },
+  "posts": [
+    {
+      "request_id": "req_demo_001",
+      "profile_username": "blhoang23",
+      "post_title": "AI Workflow That Saved Me 10 Hours",
+      "post_caption": "The exact research to upload system I use to keep publishing every week.",
+      "media_type": "video",
+      "upload_timestamp": "2026-04-02T09:15:00Z",
+      "media_size_bytes": 184221337,
+      "dashboard": true,
+      "is_async": false,
+      "platforms": {
+        "youtube": {
+          "success": true,
+          "job_id": "job_demo_001_yt",
+          "platform_post_id": "yt9X1aA7cLmQ0",
+          "post_url": "https://www.youtube.com/watch?v=yt9X1aA7cLmQ0",
+          "post_metrics": {
+            "views": 188000,
+            "likes": 12200,
+            "comments": 890,
+            "favorites": 740,
+            "shares": 280
+          },
+          "post_metrics_source": "mock_platform_api",
+          "profile_snapshot_at_post_date": {
+            "followers": 181200,
+            "impressions": 455000,
+            "likes": 29000,
+            "comments": 2200,
+            "shares": 760
+          },
+          "comments": [
+            {
+              "id": "ytc_001_01",
+              "text": "This workflow breakdown is insanely helpful.",
+              "timestamp": "2026-04-02T10:02:00+0000",
+              "user": {
+                "id": "yt_user_1001",
+                "username": "creator_ops_daily"
+              }
+            },
+            {
+              "id": "ytc_001_02",
+              "text": "Please make a part two for script writing.",
+              "timestamp": "2026-04-02T11:18:00+0000",
+              "user": {
+                "id": "yt_user_1002",
+                "username": "growthloopvn"
+              }
+            }
+          ]
+        },
+        "tiktok": {
+          "success": true,
+          "job_id": "job_demo_001_tk",
+          "platform_post_id": "7489201552109876432",
+          "post_url": "https://www.tiktok.com/@blhoang23/video/7489201552109876432",
+          "post_metrics": {
+            "views": 244000,
+            "likes": 19800,
+            "comments": 1540,
+            "favorites": 3280,
+            "shares": 1140
+          },
+          "post_metrics_source": "mock_platform_api",
+          "profile_snapshot_at_post_date": {
+            "followers": 87300,
+            "impressions": 602000,
+            "likes": 51400,
+            "comments": 4380,
+            "shares": 3610
+          },
+          "comments": [
+            {
+              "id": "tkc_001_01",
+              "text": "This is the cleanest creator system I have seen.",
+              "timestamp": "2026-04-02T09:46:00+0000",
+              "user": {
+                "id": "tk_user_2001",
+                "username": "buildwithanh"
+              }
+            },
+            {
+              "id": "tkc_001_02",
+              "text": "Saved this for my team meeting later.",
+              "timestamp": "2026-04-02T10:10:00+0000",
+              "user": {
+                "id": "tk_user_2002",
+                "username": "contentpilot"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request_id": "req_demo_002",
+      "profile_username": "blhoang23",
+      "post_title": "Three Thumbnail Hooks I Reuse Every Week",
+      "post_caption": "Three reliable thumbnail patterns that raise CTR without clickbait.",
+      "media_type": "video",
+      "upload_timestamp": "2026-04-05T11:40:00Z",
+      "media_size_bytes": 132448950,
+      "dashboard": true,
+      "is_async": false,
+      "platforms": {
+        "youtube": {
+          "success": true,
+          "job_id": "job_demo_002_yt",
+          "platform_post_id": "yt4Lm8VqPzK21",
+          "post_url": "https://www.youtube.com/watch?v=yt4Lm8VqPzK21",
+          "post_metrics": {
+            "views": 154000,
+            "likes": 9600,
+            "comments": 710,
+            "favorites": 580,
+            "shares": 230
+          },
+          "post_metrics_source": "mock_platform_api",
+          "profile_snapshot_at_post_date": {
+            "followers": 184600,
+            "impressions": 602000,
+            "likes": 33800,
+            "comments": 2560,
+            "shares": 920
+          },
+          "comments": [
+            {
+              "id": "ytc_002_01",
+              "text": "Hook number two is exactly what I needed.",
+              "timestamp": "2026-04-05T12:04:00+0000",
+              "user": {
+                "id": "yt_user_1003",
+                "username": "thumbnailforge"
+              }
+            },
+            {
+              "id": "ytc_002_02",
+              "text": "The examples made this easy to apply.",
+              "timestamp": "2026-04-05T12:40:00+0000",
+              "user": {
+                "id": "yt_user_1004",
+                "username": "makerbrief"
+              }
+            }
+          ]
+        },
+        "tiktok": {
+          "success": true,
+          "job_id": "job_demo_002_tk",
+          "platform_post_id": "7489405523100012544",
+          "post_url": "https://www.tiktok.com/@blhoang23/video/7489405523100012544",
+          "post_metrics": {
+            "views": 196000,
+            "likes": 16800,
+            "comments": 1430,
+            "favorites": 2910,
+            "shares": 980
+          },
+          "post_metrics_source": "mock_platform_api",
+          "profile_snapshot_at_post_date": {
+            "followers": 91200,
+            "impressions": 811000,
+            "likes": 62600,
+            "comments": 5210,
+            "shares": 4300
+          },
+          "comments": [
+            {
+              "id": "tkc_002_01",
+              "text": "This explains why my thumbnails keep missing.",
+              "timestamp": "2026-04-05T11:58:00+0000",
+              "user": {
+                "id": "tk_user_2003",
+                "username": "ctrhacker"
+              }
+            },
+            {
+              "id": "tkc_002_02",
+              "text": "Can you review a bad thumbnail next time?",
+              "timestamp": "2026-04-05T12:27:00+0000",
+              "user": {
+                "id": "tk_user_2004",
+                "username": "vncreatorlab"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request_id": "req_demo_003",
+      "profile_username": "blhoang23",
+      "post_title": "My Faceless Channel Editing Stack",
+      "post_caption": "Editing templates, voice cleanup, captions, and b-roll assembly in one stack.",
+      "media_type": "video",
+      "upload_timestamp": "2026-04-06T16:05:00Z",
+      "media_size_bytes": 210553004,
+      "dashboard": true,
+      "is_async": false,
+      "platforms": {
+        "youtube": {
+          "success": true,
+          "job_id": "job_demo_003_yt",
+          "platform_post_id": "yt7Pn3NbLwQ54",
+          "post_url": "https://www.youtube.com/watch?v=yt7Pn3NbLwQ54",
+          "post_metrics": {
+            "views": 137000,
+            "likes": 8400,
+            "comments": 640,
+            "favorites": 510,
+            "shares": 190
+          },
+          "post_metrics_source": "mock_platform_api",
+          "profile_snapshot_at_post_date": {
+            "followers": 185400,
+            "impressions": 690000,
+            "likes": 36000,
+            "comments": 2840,
+            "shares": 980
+          },
+          "comments": [
+            {
+              "id": "ytc_003_01",
+              "text": "The editing checklist is gold.",
+              "timestamp": "2026-04-06T16:44:00+0000",
+              "user": {
+                "id": "yt_user_1005",
+                "username": "automationnotes"
+              }
+            },
+            {
+              "id": "ytc_003_02",
+              "text": "Please share your caption style guide too.",
+              "timestamp": "2026-04-06T17:03:00+0000",
+              "user": {
+                "id": "yt_user_1006",
+                "username": "facelessfoundry"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request_id": "req_demo_004",
+      "profile_username": "blhoang23",
+      "post_title": "Daily Growth Hook in 15 Seconds",
+      "post_caption": "A short-form hook template for creator education videos.",
+      "media_type": "video",
+      "upload_timestamp": "2026-04-07T08:25:00Z",
+      "media_size_bytes": 89451220,
+      "dashboard": true,
+      "is_async": false,
+      "platforms": {
+        "tiktok": {
+          "success": true,
+          "job_id": "job_demo_004_tk",
+          "platform_post_id": "7489816635408821567",
+          "post_url": "https://www.tiktok.com/@blhoang23/video/7489816635408821567",
+          "post_metrics": {
+            "views": 173000,
+            "likes": 14600,
+            "comments": 1260,
+            "favorites": 2470,
+            "shares": 880
+          },
+          "post_metrics_source": "mock_platform_api",
+          "profile_snapshot_at_post_date": {
+            "followers": 94200,
+            "impressions": 1026000,
+            "likes": 74200,
+            "comments": 6450,
+            "shares": 5310
+          },
+          "comments": [
+            {
+              "id": "tkc_004_01",
+              "text": "Fast and practical, love this format.",
+              "timestamp": "2026-04-07T08:42:00+0000",
+              "user": {
+                "id": "tk_user_2005",
+                "username": "socialsprint"
+              }
+            },
+            {
+              "id": "tkc_004_02",
+              "text": "This hook template is going into my swipe file.",
+              "timestamp": "2026-04-07T09:05:00+0000",
+              "user": {
+                "id": "tk_user_2006",
+                "username": "viralnotes"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

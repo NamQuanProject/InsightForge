@@ -18,6 +18,7 @@ from app.schema.upload_post import (
     UploadPostValidateJwtResponse,
 )
 from app.services.upload_post_service import UploadPostApiService
+from app.services.upload_post_mock_service import UploadPostMockService
 
 router = APIRouter(prefix="/api/v1/upload-post", tags=["upload-post"])
 bearer_scheme = HTTPBearer(auto_error=False)
@@ -49,7 +50,7 @@ async def get_upload_post_history(
     page: int = Query(default=1, ge=1),
     limit: int = Query(default=20, ge=1, le=100),
 ):
-    payload = UploadPostApiService().get_history(page=page, limit=limit)
+    payload = UploadPostMockService().get_history(page=page, limit=limit)
     return UploadPostHistoryEnvelope(payload=payload)
 
 
@@ -86,15 +87,10 @@ async def get_upload_post_profile_analytics(
     ),
     page_id: str | None = None,
     page_urn: str | None = None,
-    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
 ):
-    token = _extract_token(credentials)
-    payload = UploadPostApiService().get_profile_analytics(
+    payload = UploadPostMockService().get_profile_analytics(
         profile_username=profile_username,
         platforms=_normalize_list_query(platforms),
-        jwt_token=token or "",
-        page_id=page_id,
-        page_urn=page_urn,
     )
     return UploadPostAnalyticsEnvelope(profile_username=profile_username, payload=payload)
 
@@ -112,17 +108,14 @@ async def get_upload_post_total_impressions(
     platform: list[str] | None = Query(default=None),
     breakdown: bool = False,
     metrics: list[str] | None = Query(default=None),
-    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
 ):
-    token = _extract_token(credentials)
-    payload = UploadPostApiService().get_total_impressions(
+    payload = UploadPostMockService().get_total_impressions(
         profile_username=profile_username,
-        jwt_token=token or "",
-        date=date,
+        date_value=date,
         start_date=start_date,
         end_date=end_date,
         period=period,
-        platform=_normalize_list_query(platform) if platform else None,
+        platforms=_normalize_list_query(platform) if platform else None,
         breakdown=breakdown,
         metrics=_normalize_list_query(metrics) if metrics else None,
     )
@@ -133,12 +126,9 @@ async def get_upload_post_total_impressions(
 async def get_upload_post_post_analytics(
     request_id: str,
     platform: str | None = None,
-    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
 ):
-    token = _extract_token(credentials)
-    payload = UploadPostApiService().get_post_analytics(
+    payload = UploadPostMockService().get_post_analytics(
         request_id=request_id,
-        jwt_token=token or "",
         platform=platform,
     )
     return UploadPostPostAnalyticsEnvelope(request_id=request_id, payload=payload)
@@ -151,7 +141,7 @@ async def get_upload_post_comments(
     post_id: str | None = None,
     post_url: str | None = None,
 ):
-    payload = UploadPostApiService().get_comments(
+    payload = UploadPostMockService().get_comments(
         platform=platform,
         user=user,
         post_id=post_id,
