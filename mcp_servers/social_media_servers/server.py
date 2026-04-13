@@ -8,7 +8,7 @@ from integrations_api.tiktok_trending_search import TiktokTrend
 from mcp_servers.social_media_servers.helpers import _format_threads_results, _format_tiktok_results
 
 load_dotenv()
-ENSEMBLE_TOKEN = os.getenv("ENSEMBLEDATA_API_KEY_4", "")
+ENSEMBLE_TOKEN = os.getenv("ENSEMBLEDATA_API_KEY", "")
 threads_client = ThreadsTrendAnalyzer(token=ENSEMBLE_TOKEN)
 tiktok_client = TiktokTrend(token=ENSEMBLE_TOKEN)
 
