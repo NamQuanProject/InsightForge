@@ -14,7 +14,7 @@ async def run_test():
 
     query = (
             "Khám phá và phân tích xu hướng hiện tại có tốc độ lan truyền và tranh luận nhanh ở Việt Nam trong 1 ngày trở lại. Đề xuất nội dung cho sáng tạo nội dung phù hợp xu hướng và thị hiếu."
-            )
+        )
             
     print(f"--- Starting Test ---\nQuery: {query}\n")
     print("\n--- FINAL AGENT OUTPUT ---")
