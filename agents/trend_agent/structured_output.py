@@ -100,3 +100,34 @@ class TrendReport(BaseModel):
     recommended_action: str
     markdown_report: str
     generated_at: int = Field(default_factory=lambda: int(time.time()))
+
+
+class TrendResultItem(BaseModel):
+    """One ranked trend idea tailored for the client response."""
+
+    main_keyword: str
+    why_the_trend_happens: str
+    trend_score: float
+    interest_over_day: list[TimePoint] = Field(default_factory=list)
+    avg_views_per_hour: float
+    recommended_action: str
+    top_hashtags: list[str] = Field(default_factory=list)
+    google: GoogleBlock | None = None
+    tiktok: TikTokBlock | None = None
+    threads: ThreadsBlock | None = None
+
+
+class TrendDiscoveryReport(BaseModel):
+    """
+    Multi-result trend report used by the updated trend discovery flow.
+
+    UI usage guide
+    - Render `results` as the main list view.
+    - Render each item's `interest_over_day` as its sparkline or trend chart.
+    - Use `markdown_summary` as an optional narrative summary panel.
+    """
+
+    query: str
+    results: list[TrendResultItem] = Field(default_factory=list)
+    markdown_summary: str = ""
+    generated_at: int = Field(default_factory=lambda: int(time.time()))

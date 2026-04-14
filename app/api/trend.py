@@ -12,7 +12,7 @@ router = APIRouter(prefix="/api/v1/trends", tags=["trends"])
 @router.post("/analyze", response_model=TrendAnalyzeResponse)
 async def analyze_trend(payload: TrendAnalyzeRequest):
     service = TrendService()
-    return await service.analyze(payload.query)
+    return await service.analyze(query=payload.query, limit=payload.limit)
 
 
 @router.get("/mock/overview", response_model=TrendOverviewResponse)
