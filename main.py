@@ -33,8 +33,6 @@ class ConciseGlobalTrajectoryMiddleware(GlobalTrajectoryMiddleware):
 
 
 
-
-
 # =========================
 # Main async function
 # =========================
