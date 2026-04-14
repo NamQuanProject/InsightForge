@@ -31,8 +31,6 @@ class ConciseGlobalTrajectoryMiddleware(GlobalTrajectoryMiddleware):
     def _format_payload(self, value: Any) -> str:
         return ""
 
-
-
 # =========================
 # Main async function
 # =========================
