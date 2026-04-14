@@ -51,7 +51,7 @@ def threads_search_keyword(
 @mcp.tool()
 def tiktok_search_keyword(
     keyword: str,
-    top_k: int = 10,
+    top_k: int = 3,
     period: str = "1",
     country: str = "VN",
     sorting: str = "0",
@@ -89,7 +89,7 @@ def tiktok_search_keyword(
 @mcp.tool()
 def tiktok_search_hashtag(
     hashtag: str,
-    top_k: int = 10,
+    top_k: int = 5,
     days: int = 7,
 ) -> list[dict]:
     """
