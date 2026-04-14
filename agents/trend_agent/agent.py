@@ -1,3 +1,4 @@
+import os
 from langchain.agents import create_agent
 from langchain_litellm import ChatLiteLLM
 from langchain.tools import tool
@@ -156,16 +157,10 @@ REASONING_TOOLS = [
 ]
 
 class TrendAgent:
-    """Wrapper class for the LangChain healthcare provider agent."""
+    """Wrapper class for the LangChain Trend Analysis agent."""
     def __init__(self, api_key: str = None) -> None:
         # Connect to the local MCP server
-        # self.memory = AgentMemory(agent_name="TrendAgent")
         self.mcp_client = MultiServerMCPClient({
-            # "social_media_trends": StdioConnection(
-            #     transport="stdio",
-            #     command="python",
-            #     args=["-m", "mcp_servers.social_media_servers.server"]
-            # )
              # ── Server 1: Google Trends ──────────────────────────────────
             "google_trends": StdioConnection(
                 transport="stdio",
@@ -179,14 +174,14 @@ class TrendAgent:
                 args=["-m", "mcp_servers.social_media_servers.server"],
             ),
         })
-        self.api_key = api_key if api_key else None
+        self.api_key = api_key or os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
         self.agent = None
 
     async def initialize(self):
         """Initialize the agent asynchronously and load tools."""
         tools = await self.mcp_client.get_tools()
         if self.api_key is None:
-            raise RuntimeError("No API Key provided.")
+            raise RuntimeError("No API Key provided. Set GOOGLE_API_KEY or GEMINI_API_KEY, or pass api_key=.")
         
         all_tools = tools + REASONING_TOOLS
 
@@ -198,12 +193,6 @@ class TrendAgent:
             api_key=self.api_key
             ),
             all_tools,
-            # name="HealthcareProviderAgent",
-            # system_prompt=(
-            #     "Your task is to find and list providers using the find_healthcare_providers "
-            #     "MCP Tool based on the users query. Only use providers based on the response "
-            #     "from the tool. Output the information in a table."
-            # ),
             name="TrendIntelligenceAgent",
             system_prompt = SYSTEM_PROMPT
         )
@@ -224,19 +213,9 @@ class TrendAgent:
         raw_content = response["messages"][-1].content
 
         try:
-            # Attempt to parse the content as the TrendReport JSON
-            report_data = json.loads(raw_content)
-            print(report_data.get("markdown_report"))
-            return {
-                "display_text": report_data.get("markdown_report", "No report generated."),
-                "structured_data": report_data,  # Full dict for backend/database
-                "status": "success"
-            }
-        except json.JSONDecodeError:
-            # Fallback if the agent didn't use the tool correctly or spoke conversationally
-            return {
-                "display_text": raw_content,
-                "structured_data": None,
-                "status": "partial_success"
-            }
+            # Clean Markdown if present
+            clean_json = raw_content.replace("```json", "").replace("```", "").strip()
+            return json.loads(clean_json)
+        except Exception:
+            return {"error": "Failed to parse agent response", "raw": raw_content}
     
