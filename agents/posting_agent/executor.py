@@ -1,55 +1,63 @@
-import os
 import asyncio
+import uuid
+from typing import Optional, Any
 from a2a.server.agent_execution import AgentExecutor, RequestContext
 from a2a.server.events import EventQueue
 from a2a.utils.message import new_agent_text_message
-from a2a.types import Message, TextPart, Part
 from agents.posting_agent.agent import PostingAgent
 
 
 class PostingAgentExecutor(AgentExecutor):
     def __init__(self) -> None:
-        self.agent = None
-        self._pending_drafts: dict[str, dict] = {}
+        self._agent: Optional[PostingAgent] = None
+        self._session_threads: dict[str, str] = {}
+        self._pending_interrupts: dict[str, dict] = {}
 
-    async def _ensure_initialized(self) -> None:
-        if self.agent is None:
-            self.agent = await PostingAgent(
-                api_key=os.getenv("GOOGLE_API_KEY")
-            ).initialize()
+    async def _get_agent(self) -> PostingAgent:
+        if self._agent is None:
+            import os
+
+            self._agent = PostingAgent(api_key=os.getenv("GOOGLE_API_KEY"))
+            await self._agent.initialize()
+        return self._agent
 
     async def execute(self, context: RequestContext, event_queue: EventQueue) -> None:
-        await self._ensure_initialized()
-
         user_input = context.get_user_input()
         session_id = context.session_id
+        print("YES YES YES")
+        if not user_input or not user_input.strip():
+            await event_queue.enqueue_event(
+                new_agent_text_message("Please provide a message.")
+            )
+            return
 
         await event_queue.enqueue_event(
             new_agent_text_message("🤖 Processing your request...")
         )
 
         try:
-            parsed_input = self._parse_input(user_input)
+            parsed = self._parse_input(user_input)
 
-            if parsed_input.get("action") == "approve":
-                result = await self._handle_approval(
-                    draft_id=parsed_input.get("draft_id"),
+            if parsed["action"] == "approve":
+                result = await self._handle_approve(
+                    draft_id=parsed["draft_id"],
                     event_queue=event_queue,
                 )
-            elif parsed_input.get("action") == "reject":
-                result = await self._handle_rejection(
-                    draft_id=parsed_input.get("draft_id"),
-                    reason=parsed_input.get("reason"),
+            elif parsed["action"] == "reject":
+                result = await self._handle_reject(
+                    draft_id=parsed["draft_id"],
+                    reason=parsed.get("reason"),
                     event_queue=event_queue,
                 )
-            elif parsed_input.get("action") == "check_status":
-                result = await self._check_status(
-                    draft_id=parsed_input.get("draft_id"),
+            elif parsed["action"] == "resume":
+                result = await self._handle_resume(
+                    session_id=session_id,
+                    decisions=parsed.get("decisions", [{"type": "approve"}]),
+                    event_queue=event_queue,
                 )
             else:
-                result = await self._create_draft_and_wait(
+                result = await self._handle_chat(
                     user_input=user_input,
-                    parsed_input=parsed_input,
                     session_id=session_id,
                     event_queue=event_queue,
                 )
@@ -57,167 +65,140 @@ class PostingAgentExecutor(AgentExecutor):
             await event_queue.enqueue_event(new_agent_text_message(result))
 
         except Exception as e:
-            error_msg = f"❌ Error: {str(e)}"
-            await event_queue.enqueue_event(new_agent_text_message(error_msg))
+            import traceback
 
-    def _parse_input(self, user_input: str) -> dict:
-        input_lower = user_input.lower().strip()
+            error_detail = f"❌ Error: {str(e)}\n\n{traceback.format_exc()}"
+            await event_queue.enqueue_event(new_agent_text_message(error_detail))
 
-        if input_lower.startswith("approve "):
-            parts = user_input.split(maxsplit=1)
-            return {
-                "action": "approve",
-                "draft_id": parts[1] if len(parts) > 1 else None,
-            }
-
-        if input_lower.startswith("reject "):
-            parts = user_input.split(maxsplit=2)
-            return {
-                "action": "reject",
-                "draft_id": parts[1] if len(parts) > 1 else None,
-                "reason": parts[2] if len(parts) > 2 else None,
-            }
-
-        if input_lower.startswith("check "):
-            parts = user_input.split(maxsplit=1)
-            return {
-                "action": "check_status",
-                "draft_id": parts[1] if len(parts) > 1 else None,
-            }
-
-        return {"action": "create_post"}
-
-    async def _create_draft_and_wait(
+    async def _handle_chat(
         self,
         user_input: str,
-        parsed_input: dict,
         session_id: str,
         event_queue: EventQueue,
     ) -> str:
-        user = parsed_input.get("user", "default")
-        platform = parsed_input.get("platform", ["tiktok"])
-        content_type = parsed_input.get("content_type", "text")
-        scheduled_date = parsed_input.get("scheduled_date")
+        agent = await self._get_agent()
 
-        draft_result = await self.agent.create_draft_and_wait(
-            content=user_input,
-            user=user,
-            platform=platform,
-            content_type=content_type,
-            scheduled_date=scheduled_date,
+        thread_id = self._session_threads.get(session_id)
+        if thread_id is None:
+            thread_id = str(uuid.uuid4())
+            self._session_threads[session_id] = thread_id
+
+        config, result = await agent.chat_with_thread(
+            user_input=user_input,
+            thread_id=thread_id,
         )
 
-        draft_id = draft_result["draft_id"]
-        self._pending_drafts[draft_id] = {
-            "session_id": session_id,
-            "content": user_input,
-            "platform": platform,
-            "created_at": asyncio.get_event_loop().time(),
-        }
+        if hasattr(result, "interrupts") and result.interrupts:
+            interrupt = result.interrupts[0]
+            self._pending_interrupts[session_id] = {
+                "config": config,
+                "interrupt": interrupt,
+                "thread_id": thread_id,
+            }
 
-        approval_guide = f"""
-{draft_result["preview"]}
+            interrupt_value = interrupt.value
+            action_requests = interrupt_value.get("action_requests", [])
+            review_configs = interrupt_value.get("review_configs", [])
 
----
-**How to Approve/Reject:**
+            config_map = {cfg["action_name"]: cfg for cfg in review_configs}
 
-📱 **Via Frontend:** Visit {draft_result["approval_url"]}
-
-🔗 **Via API:**
-- Approve: POST /approval/drafts/{draft_id}/approve
-- Reject: POST /approval/drafts/{draft_id}/reject
-
-💬 **Or reply here with:**
-- "approve {draft_id}" to publish
-- "reject {draft_id}" to cancel
-"""
-        return approval_guide
-
-    async def _handle_approval(
-        self,
-        draft_id: str,
-        event_queue: EventQueue,
-    ) -> str:
-        from app.approval.service import approval_service
-
-        if draft_id not in self._pending_drafts:
-            return f"⚠️ Draft {draft_id} not found or already processed"
-
-        draft_info = self._pending_drafts[draft_id]
-
-        result = await approval_service.approve(
-            draft_id=draft_id,
-            approved_by="a2a_user",
-        )
-
-        if result["success"]:
-            draft = approval_service.get_draft(draft_id)
-            content = draft.content if draft else None
-
-            if content:
-                publish_result = await self.agent.answer_query(
-                    prompt=f"Publish this post: {content.title}",
-                    user=content.user,
-                    platform=content.platform,
-                    content_type=content.content_type,
-                    scheduled_date=content.scheduled_date,
+            lines = ["⏸️ **Action Paused - Approval Required**\n"]
+            for action in action_requests:
+                review_config = config_map.get(action["name"], {})
+                allowed = review_config.get("allowed_decisions", ["approve", "reject"])
+                lines.append(
+                    f"**Tool:** {action['name']}\n"
+                    f"**Arguments:** {action.get('args', {})}\n"
+                    f"**Allowed decisions:** {', '.join(allowed)}\n"
                 )
 
-                del self._pending_drafts[draft_id]
-                return f"✅ Approved and Publishing!\n\n{publish_result}"
+            lines.append(f"\n💡 Reply with `approve` or `reject` to continue.")
+            return "\n".join(lines)
 
-        return f"❌ Approval failed: {result.get('error', 'Unknown error')}"
+        messages = result.get("messages", []) if isinstance(result, dict) else []
+        if messages:
+            last_message = messages[-1]
+            return (
+                last_message.content
+                if hasattr(last_message, "content")
+                else str(last_message)
+            )
 
-    async def _handle_rejection(
+        return "I processed your request but have no response."
+
+    def _parse_input(self, user_input: str) -> dict:
+        input_lower = user_input.lower().strip()
+        parts = user_input.split(maxsplit=2)
+
+        if input_lower.startswith("approve") or input_lower == "approve":
+            return {"action": "approve", "draft_id": None}
+
+        if input_lower.startswith("reject") or input_lower == "reject":
+            return {
+                "action": "reject",
+                "draft_id": None,
+                "reason": parts[1] if len(parts) > 1 else None,
+            }
+
+        if input_lower in ["resume", "continue", "yes", "y"]:
+            return {"action": "resume", "decisions": [{"type": "approve"}]}
+
+        return {"action": "chat", "content": user_input}
+
+    async def _handle_approve(
         self,
-        draft_id: str,
-        reason: str,
+        draft_id: Optional[str],
         event_queue: EventQueue,
     ) -> str:
-        from app.approval.service import approval_service
+        return "✅ Approved. Use `resume` or `continue` to proceed with the action."
 
-        if draft_id not in self._pending_drafts:
-            return f"⚠️ Draft {draft_id} not found or already processed"
+    async def _handle_reject(
+        self,
+        draft_id: Optional[str],
+        reason: Optional[str],
+        event_queue: EventQueue,
+    ) -> str:
+        return "🚫 Rejected. Use `resume` or provide more details."
 
-        result = await approval_service.reject(
-            draft_id=draft_id,
-            rejected_by="a2a_user",
-            reason=reason,
-        )
+    async def _handle_resume(
+        self,
+        session_id: str,
+        decisions: list,
+        event_queue: EventQueue,
+    ) -> str:
+        if session_id not in self._pending_interrupts:
+            return "⚠️ No pending action to resume."
 
-        del self._pending_drafts[draft_id]
+        interrupt_info = self._pending_interrupts[session_id]
+        agent = await self._get_agent()
+        config = interrupt_info["config"]
 
-        if result["success"]:
-            return f"🚫 Draft {draft_id} rejected."
+        try:
+            resume_result = await agent.resume(config=config, decisions=decisions)
 
-        return f"❌ Rejection failed: {result.get('error', 'Unknown error')}"
+            del self._pending_interrupts[session_id]
 
-    async def _check_status(self, draft_id: str) -> str:
-        from app.approval.service import approval_service
+            messages = (
+                resume_result.get("messages", [])
+                if isinstance(resume_result, dict)
+                else []
+            )
+            if messages:
+                last_message = messages[-1]
+                return (
+                    last_message.content
+                    if hasattr(last_message, "content")
+                    else str(resume_result)
+                )
 
-        draft = approval_service.get_draft(draft_id)
+            return "✅ Action completed successfully."
 
-        if not draft:
-            return f"⚠️ Draft {draft_id} not found"
-
-        status_emoji = {
-            "pending": "⏳",
-            "approved": "✅",
-            "rejected": "🚫",
-            "expired": "⏰",
-        }
-
-        emoji = status_emoji.get(draft.status.value, "❓")
-
-        return f"""
-{emoji} **Draft Status: {draft.status.value.upper()}**
-
-**Draft ID:** {draft.draft_id}
-**Platform:** {", ".join(draft.content.platform)}
-**Title:** {draft.content.title}
-**Created:** {draft.created_at.isoformat()}
-**Expires:** {draft.expires_at.isoformat()}
-"""
+        except Exception as e:
+            return f"❌ Error resuming action: {str(e)}"
 
     async def cancel(self, context: RequestContext, event_queue: EventQueue) -> None:
-        pass
+        session_id = context.session_id
+        if session_id in self._session_threads:
+            del self._session_threads[session_id]
+        if session_id in self._pending_interrupts:
+            del self._pending_interrupts[session_id]

@@ -46,12 +46,22 @@ async def main():
         memory=UnconstrainedMemory()
     )
 
+    posting_agent = A2AAgent(
+        url="http://localhost:9999",
+        memory = UnconstrainedMemory()
+    )
+
+
+
     await trending_analysis_agent.check_agent_exists()
     print("\tℹ️", f"{trending_analysis_agent.name} initialized")
 
+    await posting_agent.check_agent_exists()
+    print("\tℹ️", f"{posting_agent.name} initialized")
+
     think_tool = ThinkTool()
-    trending_agent = RequirementAgent(
-        name="Product Manager Agent",
+    my_super_strong_agent = RequirementAgent(
+        name="InsightForge Agent",
         description="Product Manager Agent",
         llm=VertexAIChatModel(
             model_id="gemini-2.5-flash",
@@ -67,6 +77,12 @@ async def main():
                 name=trending_analysis_agent.name,
                 description=trending_analysis_agent.agent_card.description,
             ),
+            HandoffTool(
+                target=posting_agent,
+                name=posting_agent.name,
+                description=posting_agent.agent_card.description,
+            ),
+
         ],
         requirements=[
             ConditionalRequirement(
@@ -75,15 +91,16 @@ async def main():
                 consecutive_allowed=False
             ),
         ],
-        memory = BaseMemory,
         role="Product Manager Agent",
         instructions=f"""
         You are a Product Manager Agent. Your task is to analyze the Product Manager and product analysis.
+        - Use {posting_agent.name} for creating, scheduling, and publishing social media posts with human-in-the-loop approval. 
+        Integrates with Upload-Post API for multi-platform posting. All the tools for posting are in {posting_agent.agent_card.description}.
         - Use {trending_analysis_agent.name} for trending-related questions to research the markets
         """
     )
 
-    print("\tℹ️", f"{trending_agent.meta.name} initialized")
+    print("\tℹ️", f"{my_super_strong_agent.meta.name} initialized")
 
     # =========================
     # Run agent
@@ -98,7 +115,7 @@ async def main():
     # print(response.last_message.text)
 
     
-    return trending_agent
+    return my_super_strong_agent
 
 
 # # =========================

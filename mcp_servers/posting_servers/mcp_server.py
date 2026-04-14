@@ -15,10 +15,7 @@ UPLOAD_POST_BASE_URL = "https://api.upload-post.com/api"
 
 
 def _get_headers() -> dict:
-    return {
-        "Authorization": f"Apikey {UPLOAD_POST_API_KEY}",
-    }
-
+    return {"Authorization": f"Apikey {UPLOAD_POST_API_KEY}"}
 
 
 def photo_convert(photos: list[str]) -> list[str]:
@@ -30,21 +27,15 @@ def photo_convert(photos: list[str]) -> list[str]:
     result_urls = []
 
     for photo in photos:
-        # ✅ If already a URL → keep it
         if photo.startswith("http://") or photo.startswith("https://"):
             result_urls.append(photo)
             continue
 
-        # ✅ Else → upload local file
         try:
             with open(photo, "rb") as f:
                 image_data = base64.b64encode(f.read()).decode("utf-8")
 
-            payload = {
-                "key": api_key,
-                "image": image_data
-            }
-
+            payload = {"key": api_key, "image": image_data}
             response = requests.post(url, data=payload)
             result = response.json()
 
@@ -59,8 +50,6 @@ def photo_convert(photos: list[str]) -> list[str]:
     return result_urls
 
 
-
-
 async def _upload_post_request(endpoint: str, data: dict, files: dict = None) -> dict:
     headers = _get_headers()
 
@@ -68,19 +57,17 @@ async def _upload_post_request(endpoint: str, data: dict, files: dict = None) ->
         try:
             formatted_data = {}
 
-            # ✅ Add normal fields
             for key, value in data.items():
                 if isinstance(value, list):
                     formatted_data[key] = [str(item) for item in value]
                 else:
                     formatted_data[key] = str(value)
 
-            # ✅ Add files (if any)
             response = await client.post(
                 f"{UPLOAD_POST_BASE_URL}/{endpoint}",
                 headers=headers,
                 data=formatted_data,
-                files=files, 
+                files=files,
             )
 
             return response.json()
@@ -89,6 +76,7 @@ async def _upload_post_request(endpoint: str, data: dict, files: dict = None) ->
             return {"success": False, "error": "Request timed out"}
         except Exception as e:
             return {"success": False, "error": str(e)}
+
 
 async def _get_request(endpoint: str, params: dict = None) -> dict:
     headers = _get_headers()
@@ -105,114 +93,10 @@ async def _get_request(endpoint: str, params: dict = None) -> dict:
             return {"success": False, "error": str(e)}
 
 
-
-
-@mcp.tool()
-async def upload_video(
-    user: str,
-    platform: list[str],
-    video_path: str,
-    title: str,
-    description: Optional[str] = None,
-    scheduled_date: Optional[str] = None,
-    first_comment: Optional[str] = None,
-) -> dict:
-    """
-    Upload a video to multiple social media platforms using Upload-Post API.
-
-    Parameters
-    ----------
-    user           : Upload-Post profile username.
-    platform       : List of platforms (tiktok, instagram, youtube, facebook, x, threads, linkedin, bluesky, reddit, pinterest).
-    video_path     : Local path or URL to the video file.
-    title          : Video title/caption.
-    description    : Optional extended description.
-    scheduled_date : Optional ISO-8601 datetime for scheduling.
-    first_comment  : Optional comment to post after publishing.
-
-    Returns
-    -------
-    dict with request_id, job_id (if scheduled), or results per platform.
-    """
-    if not UPLOAD_POST_API_KEY:
-        return {"success": False, "error": "Upload-Post API key not configured"}
-
-    data = {
-        "user": user,
-        "platform[]": platform,
-        "title": title,
-    }
-
-    if description:
-        data["description"] = description
-    if scheduled_date:
-        data["scheduled_date"] = scheduled_date
-    if first_comment:
-        data["first_comment"] = first_comment
-
-    if video_path.startswith("http"):
-        data["video"] = video_path
-
-    result = await _upload_post_request("upload", data)
-    return result
-
-
-@mcp.tool()
-async def upload_photos(
-    user: str,
-    platform: list[str],
-    photos: list[str],
-    title: Optional[str] = None,
-    description: Optional[str] = None,
-    scheduled_date: Optional[str] = None,
-) -> dict:
-    """
-    Upload photos to multiple platforms using Upload-Post API.
-
-    Parameters
-    ----------
-    user           : Upload-Post profile username.
-    platform       : List of platforms (instagram, facebook, x, threads, linkedin, pinterest, bluesky, reddit).
-    photos         : List of photo paths or URLs.
-    title          : Optional title/description for the post.
-    description    : Optional extended description.
-    scheduled_date : Optional ISO-8601 datetime for scheduling.
-
-    Returns
-    -------
-    dict with upload results per platform.
-    """
-    if not UPLOAD_POST_API_KEY:
-        return {"success": False, "error": "Upload-Post API key not configured"}
-
-
-    converted_photos = photo_convert(photos)
-
-
-
-    data = {
-        "user": user,
-        "platform[]": platform,
-        "photos[]": converted_photos,   # ✅ use converted URLs
-    }
-
-    
-
-    if title:
-        data["title"] = title
-    if description:
-        data["description"] = description
-    if scheduled_date:
-        data["scheduled_date"] = scheduled_date
-
-    result = await _upload_post_request("upload_photos", data)
-    return result
-
-
 @mcp.tool()
 async def upload_text(
     user: str,
-    platform: list[str],
+    platform: List[str],
     title: str,
     description: Optional[str] = None,
     scheduled_date: Optional[str] = None,
@@ -220,24 +104,7 @@ async def upload_text(
     link_url: Optional[str] = None,
     subreddit: Optional[str] = None,
 ) -> dict:
-    """
-    Upload text-only posts to multiple platforms using Upload-Post API.
-
-    Parameters
-    ----------
-    user           : Upload-Post profile username.
-    platform       : List of platforms (x, linkedin, facebook, threads, reddit, bluesky, google_business).
-    title          : Text content for the post.
-    description    : Optional extended body (Reddit only).
-    scheduled_date : Optional ISO-8601 datetime for scheduling.
-    first_comment  : Optional comment to post after publishing.
-    link_url       : Optional URL for link preview.
-    subreddit      : Required for Reddit posts.
-
-    Returns
-    -------
-    dict with upload results per platform.
-    """
+    """Upload text posts to platforms."""
     if not UPLOAD_POST_API_KEY:
         return {"success": False, "error": "Upload-Post API key not configured"}
 
@@ -263,21 +130,79 @@ async def upload_text(
 
 
 @mcp.tool()
+async def upload_photos(
+    user: str,
+    platform: List[str],
+    photos: List[str],
+    title: Optional[str] = None,
+    description: Optional[str] = None,
+    scheduled_date: Optional[str] = None,
+    facebook_page_id: Optional[str] = None,
+) -> dict:
+    """Upload photos to platforms."""
+    if not UPLOAD_POST_API_KEY:
+        return {"success": False, "error": "Upload-Post API key not configured"}
+
+    converted_photos = photo_convert(photos)
+
+    data = {
+        "user": user,
+        "platform[]": platform,
+        "photos[]": converted_photos,
+    }
+
+    if title:
+        data["title"] = title
+    if facebook_page_id:
+        data["facebook_page_id"] = facebook_page_id
+    if description:
+        data["description"] = description
+    if scheduled_date:
+        data["scheduled_date"] = scheduled_date
+
+    result = await _upload_post_request("upload_photos", data)
+    return result
+
+
+@mcp.tool()
+async def upload_video(
+    user: str,
+    platform: List[str],
+    video_path: str,
+    title: str,
+    description: Optional[str] = None,
+    scheduled_date: Optional[str] = None,
+    first_comment: Optional[str] = None,
+) -> dict:
+    """Upload video to platforms."""
+    if not UPLOAD_POST_API_KEY:
+        return {"success": False, "error": "Upload-Post API key not configured"}
+
+    data = {
+        "user": user,
+        "platform[]": platform,
+        "title": title,
+    }
+
+    if description:
+        data["description"] = description
+    if scheduled_date:
+        data["scheduled_date"] = scheduled_date
+    if first_comment:
+        data["first_comment"] = first_comment
+
+    if video_path.startswith("http"):
+        data["video"] = video_path
+
+    result = await _upload_post_request("upload", data)
+    return result
+
+
+@mcp.tool()
 async def get_upload_status(
     request_id: Optional[str] = None, job_id: Optional[str] = None
 ) -> dict:
-    """
-    Check the status of an upload or scheduled post.
-
-    Parameters
-    ----------
-    request_id : For async uploads.
-    job_id     : For scheduled posts.
-
-    Returns
-    -------
-    dict with upload status and results.
-    """
+    """Check upload status."""
     if not request_id and not job_id:
         return {"success": False, "error": "Either request_id or job_id is required"}
 
@@ -296,18 +221,7 @@ async def get_upload_history(
     page: int = 1,
     limit: int = 20,
 ) -> dict:
-    """
-    Get paginated history of all uploads.
-
-    Parameters
-    ----------
-    page  : Page number (default 1).
-    limit : Items per page (default 20, max 100).
-
-    Returns
-    -------
-    dict with paginated upload history.
-    """
+    """Get upload history."""
     result = await _get_request("uploadposts/history", {"page": page, "limit": limit})
     return result
 
@@ -317,18 +231,7 @@ async def get_media_list(
     user: str,
     platform: Optional[str] = None,
 ) -> dict:
-    """
-    Get recent media from connected social accounts.
-
-    Parameters
-    ----------
-    user     : Upload-Post profile username.
-    platform : Optional platform filter.
-
-    Returns
-    -------
-    dict with media list.
-    """
+    """Get media list."""
     params = {"user": user}
     if platform:
         params["platform"] = platform
@@ -344,21 +247,10 @@ async def get_analytics(
     start_date: Optional[str] = None,
     end_date: Optional[str] = None,
 ) -> dict:
-    """
-    Get analytics for a social media profile.
-
-    Parameters
-    ----------
-    profile_username : Profile username to get analytics for.
-    start_date      : Optional start date (YYYY-MM-DD).
-    end_date        : Optional end date (YYYY-MM-DD).
-
-    Returns
-    -------
-    dict with analytics data.
-    """
+    """Get analytics."""
     params = {}
-    params["platforms"] = platform
+    if platform:
+        params["platforms"] = platform
     if start_date:
         params["start_date"] = start_date
     if end_date:
@@ -370,25 +262,14 @@ async def get_analytics(
 
 @mcp.tool()
 async def validate_api_key() -> dict:
-    """
-    Validate the Upload-Post API key and get account info.
-
-    Returns
-    -------
-    dict with account information.
-    """
+    """Validate API key."""
     result = await _get_request("uploadposts/me")
     return result
 
+
 @mcp.tool()
 async def get_user_profile() -> dict:
-    """
-    Validate the Upload-Post API key and get profile info.
-
-    Returns
-    -------
-    dict with profile information.
-    """
+    """Get user profile."""
     result = await _get_request("uploadposts/users")
     return result
 
