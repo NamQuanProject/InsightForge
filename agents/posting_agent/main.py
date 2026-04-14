@@ -1,21 +1,28 @@
+import logging
 import os
 import uvicorn
 from dotenv import load_dotenv
 from agents.posting_agent.executor import PostingAgentExecutor
-from a2a.server.agent_execution import RequestContext
 from a2a.server.apps import A2AStarletteApplication
-from a2a.server.events import EventQueue
 from a2a.server.request_handlers import DefaultRequestHandler
 from a2a.server.tasks import InMemoryTaskStore
+from starlette.responses import JSONResponse
+from a2a.client import ClientFactory
+
+
 from a2a.types import AgentCapabilities, AgentCard, AgentSkill
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 
 def main():
     print("Starting Posting Agent Server...")
     load_dotenv()
 
-    host = os.environ.get("AGENT_HOST", "localhost")
-    port = int(os.environ.get("POSTING_AGENT_PORT", 9999))
+    host = os.getenv("AGENT_HOST", "localhost")
+    port = int(os.getenv("POSTING_AGENT_PORT", 9999))
 
     skill = AgentSkill(
         id="create_post",
@@ -33,15 +40,17 @@ def main():
 
     agent_card = AgentCard(
         name="PostingAgent",
-        description="An agent that creates, schedules, and publishes social media posts with human-in-the-loop approval. Integrates with Upload-Post API for multi-platform posting.",
-        url=f"http://{host}:{port}/",
+        description="An agent that creates, schedules, and publishes social media posts with human-in-the-loop approval. Integrates with Upload-Post API for multi-platform posting." \
+        "Can get current username and others informations about accounts in upload-post and controlled your account activities as well as informations about your social plat-forms",
+        url=f"https://{host}:{port}/",
         version="1.0.0",
         default_input_modes=["text"],
         default_output_modes=["text"],
         capabilities=AgentCapabilities(streaming=False),
         skills=[skill],
     )
-
+    
+    
     request_handler = DefaultRequestHandler(
         agent_executor=PostingAgentExecutor(),
         task_store=InMemoryTaskStore(),
@@ -51,16 +60,6 @@ def main():
         agent_card=agent_card,
         http_handler=request_handler,
     )
-
-    print("\n=== A2A Agent Card ===")
-    print(f"Name: PostingAgent")
-    print(f"URL: http://{host}:{port}/")
-    print(f"Port: {port}")
-
-    print("\n=== Endpoints ===")
-    print(f"A2A: POST http://{host}:{port}/a2a")
-    print(f"Agent Card: GET http://{host}:{port}/")
-
     uvicorn.run(server.build(), host=host, port=port, log_level="info")
 
 

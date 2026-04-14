@@ -36,8 +36,8 @@ async def main():
 
     # print("UPLOAD_TEXT_TEST", res)
 
-    # res = await get_upload_history()
-    # print("UPLOAD_HISTORY_TEST", res)
+    res = await get_upload_history()
+    print("UPLOAD_HISTORY_TEST", res)
 
 
     # res = await get_media_list(user="blhoang23", platform="instagram")
@@ -46,6 +46,10 @@ async def main():
 
     res = await get_analytics(profile_username="blhoang23", platform="instagram")
     print("ANALYTICS_TEST", res)
+
+
+
+
 
 
     
