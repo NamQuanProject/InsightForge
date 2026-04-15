@@ -11,16 +11,17 @@ from a2a.types import AgentCapabilities, AgentCard, AgentSkill
 from a2a.utils import new_agent_text_message
 from agents.trend_agent.agent import TrendAgent
 
-
 class TrendAgentExecutor(AgentExecutor):
     """Execution engine for handling user requests and routing to the ProviderAgent."""
     def __init__(self) -> None:
+        load_dotenv()
         self.agent = None
 
     async def _ensure_initialized(self) -> None:
         """Lazy initialization of the agent."""
         if self.agent is None:
-            self.agent = await TrendAgent(api_key=os.getenv("GOOGLE_API_KEY")).initialize()
+            api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
+            self.agent = await TrendAgent(api_key=api_key).initialize()
 
     async def execute(self, context: RequestContext, event_queue: EventQueue) -> None:
         await self._ensure_initialized()

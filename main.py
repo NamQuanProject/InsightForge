@@ -31,8 +31,6 @@ class ConciseGlobalTrajectoryMiddleware(GlobalTrajectoryMiddleware):
     def _format_payload(self, value: Any) -> str:
         return ""
 
-
-
 # =========================
 # Main async function
 # =========================
@@ -50,7 +48,6 @@ async def main():
         url="http://0.0.0.0:9999",
         memory = UnconstrainedMemory()
     )
-
 
 
     await trending_analysis_agent.check_agent_exists()

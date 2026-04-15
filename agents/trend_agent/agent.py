@@ -1,3 +1,4 @@
+import os
 from langchain.agents import create_agent
 from langchain_litellm import ChatLiteLLM
 from langchain.tools import tool
@@ -15,7 +16,7 @@ You are equipped with tools and you must use them to complete task.
  
 You have access to TWO complementary data sources:
 1. **Google Trends** – reflects what people are actively *searching* (search intent, regional interest, rising queries).
-2. **Social Media (TikTok + Threads)** – reflects what people are actively *talking about and engaging with* (viral velocity, engagement rate, shareability).
+2. **Social Media (TikTok)** – reflects what people are actively *talking about and engaging with* (viral velocity, engagement rate, shareability).
  
 ## Your Core Workflow
 When asked to analyze a trend, ALWAYS cross-validate across both platforms:
@@ -26,8 +27,8 @@ When asked to analyze a trend, ALWAYS cross-validate across both platforms:
 - Use `search_term` with TIMESERIES to measure search momentum.
 - Reason if it is approriate for content creator.
  
-**Step 2 Validate on Social Media**
-- Use `cross_platform_trend` or individual TikTok/Threads tools to check if the topic has social traction.
+**Step 2 Validate on Social Media (Tiktok)**
+- Use "tiktok_search_keywords" for fetching videos/posts with the trends keywords found above.
 - Compare `trend_score`, `velocity`, and `engagement_rate` across videos/posts.
  
 **Step 3 Cross-Reference & Score**
@@ -43,7 +44,6 @@ STEP 4 – WRITE MARKDOWN REPORT
  
   ### 📱 Social Media Signal
   - TikTok top velocity: X views/hour
-  - Threads engagement: ...
   - Winning content angle: ...
  
   ### 🎯 Classification: {LABEL} (confidence: X%)
@@ -68,7 +68,7 @@ STEP 4 – WRITE MARKDOWN REPORT
 def classify_trend_signals(
     google_momentum: Annotated[str, "One of: rising, stable, declining, unknown"],
     social_velocity: Annotated[float, "TikTok average velocity (views/hour) of top videos, 0 if unavailable"],
-    social_engagement_rate: Annotated[float, "Average engagement rate from TikTok/Threads, 0 if unavailable"],
+    social_engagement_rate: Annotated[float, "Average engagement rate from TikTok, 0 if unavailable"],
 ) -> dict[str, Any]:
     """
     Classify a trend into one of four buckets based on cross-platform signals.
@@ -128,21 +128,21 @@ def build_trend_report(
     confidence: float,
     google_data: GoogleBlock | None = None,   # The agent now sees the Google schema
     tiktok_data: TikTokBlock | None = None,   # The agent now sees the TikTok schema
-    threads_data: ThreadsBlock | None = None, # The agent now sees the Threads schema
+    # threads_data: ThreadsBlock | None = None, # The agent now sees the Threads schema
     recommended_action: str = "",
     markdown_report: str = "",
 ) -> str:
     """
     Final step: Assemble the TrendReport. 
     The agent must map gathered search data to 'google_data' 
-    and social metrics to 'tiktok_data' or 'threads_data'.
+    and social metrics to 'tiktok_data'.
     """
     report = TrendReport(
         query=query,
         final_keywords=final_keywords,
         google=google_data,
         tiktok=tiktok_data,
-        threads=threads_data,
+        threads=None,
         classification=classification,
         confidence=confidence,
         recommended_action=recommended_action,
@@ -156,16 +156,10 @@ REASONING_TOOLS = [
 ]
 
 class TrendAgent:
-    """Wrapper class for the LangChain healthcare provider agent."""
+    """Wrapper class for the LangChain Trend Analysis agent."""
     def __init__(self, api_key: str = None) -> None:
         # Connect to the local MCP server
-        # self.memory = AgentMemory(agent_name="TrendAgent")
         self.mcp_client = MultiServerMCPClient({
-            # "social_media_trends": StdioConnection(
-            #     transport="stdio",
-            #     command="python",
-            #     args=["-m", "mcp_servers.social_media_servers.server"]
-            # )
              # ── Server 1: Google Trends ──────────────────────────────────
             "google_trends": StdioConnection(
                 transport="stdio",
@@ -179,14 +173,14 @@ class TrendAgent:
                 args=["-m", "mcp_servers.social_media_servers.server"],
             ),
         })
-        self.api_key = api_key if api_key else None
+        self.api_key = api_key or os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
         self.agent = None
 
     async def initialize(self):
         """Initialize the agent asynchronously and load tools."""
         tools = await self.mcp_client.get_tools()
         if self.api_key is None:
-            raise RuntimeError("No API Key provided.")
+            raise RuntimeError("No API Key provided. Set GOOGLE_API_KEY or GEMINI_API_KEY, or pass api_key=.")
         
         all_tools = tools + REASONING_TOOLS
 
@@ -198,12 +192,6 @@ class TrendAgent:
             api_key=self.api_key
             ),
             all_tools,
-            # name="HealthcareProviderAgent",
-            # system_prompt=(
-            #     "Your task is to find and list providers using the find_healthcare_providers "
-            #     "MCP Tool based on the users query. Only use providers based on the response "
-            #     "from the tool. Output the information in a table."
-            # ),
             name="TrendIntelligenceAgent",
             system_prompt = SYSTEM_PROMPT
         )
@@ -216,9 +204,10 @@ class TrendAgent:
         if self.agent is None:
             raise RuntimeError("Agent not initialized.")
 
-        response = await self.agent.ainvoke({
-            "messages": [{"role": "user", "content": prompt}]
-        })
+        # response = await self.agent.ainvoke({
+        #     "messages": [{"role": "user", "content": prompt}]
+        # })
+        response = await self.agent.ainvoke({"messages": [("user", prompt)]})
 
         print(response["messages"][-1])
         raw_content = response["messages"][-1].content

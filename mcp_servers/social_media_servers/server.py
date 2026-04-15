@@ -3,46 +3,46 @@ from dotenv import load_dotenv
 from typing import Optional
 
 from mcp.server.fastmcp import FastMCP
-from integrations_api.thread_trending import ThreadsTrendAnalyzer
+# from integrations_api.thread_trending import ThreadsTrendAnalyzer
 from integrations_api.tiktok_trending_search import TiktokTrend
 from mcp_servers.social_media_servers.helpers import _format_threads_results, _format_tiktok_results
 
 load_dotenv()
 ENSEMBLE_TOKEN = os.getenv("ENSEMBLEDATA_API_KEY", "")
-threads_client = ThreadsTrendAnalyzer(token=ENSEMBLE_TOKEN)
+# threads_client = ThreadsTrendAnalyzer(token=ENSEMBLE_TOKEN)
 tiktok_client = TiktokTrend(token=ENSEMBLE_TOKEN)
 
 mcp = FastMCP("SocialMediaTrend")
 
-# ─────────────────────────────────────────────
-# THREADS TOOLS
-# ─────────────────────────────────────────────
-@mcp.tool()
-def threads_search_keyword(
-    keyword: str,
-    top_posts: int = 5,
-    top_comments: int = 1,
-    sorting: str = "0",
-) -> list[dict]:
-    """
-    Search Threads for posts matching a keyword and return the top trending posts
-    together with their most-engaged comments.
+# # ─────────────────────────────────────────────
+# # THREADS TOOLS
+# # ─────────────────────────────────────────────
+# @mcp.tool()
+# def threads_search_keyword(
+#     keyword: str,
+#     top_posts: int = 5,
+#     top_comments: int = 1,
+#     sorting: str = "0",
+# ) -> list[dict]:
+#     """
+#     Search Threads for posts matching a keyword and return the top trending posts
+#     together with their most-engaged comments.
 
-    Parameters
-    ----------
-    keyword     : The search term (e.g. "AI", "chuyện lạ", "fashion").
-    top_posts   : How many posts to return (default 5, max ~10).
-    top_comments: How many top comments to include per post (default 3).
-    sorting     : Post sort order.
-                  "0" = Top / most relevant (default).
-                  "1" = Most recent.
-    """
-    raw_results = threads_client.analyze_keyword(
-        keyword=keyword,
-        top_posts=top_posts,
-        top_comments=top_comments,
-    )
-    return _format_threads_results(raw_results)
+#     Parameters
+#     ----------
+#     keyword     : The search term (e.g. "AI", "chuyện lạ", "fashion").
+#     top_posts   : How many posts to return (default 5, max ~10).
+#     top_comments: How many top comments to include per post (default 3).
+#     sorting     : Post sort order.
+#                   "0" = Top / most relevant (default).
+#                   "1" = Most recent.
+#     """
+#     raw_results = threads_client.analyze_keyword(
+#         keyword=keyword,
+#         top_posts=top_posts,
+#         top_comments=top_comments,
+#     )
+#     return _format_threads_results(raw_results)
 
 # ─────────────────────────────────────────────
 # TIKTOK TOOLS
@@ -51,8 +51,8 @@ def threads_search_keyword(
 @mcp.tool()
 def tiktok_search_keyword(
     keyword: str,
-    top_k: int = 10,
-    period: str = "1",
+    top_k: int = 5,
+    period: str = "7",
     country: str = "VN",
     sorting: str = "0",
     match_exactly: bool = False,
@@ -83,13 +83,15 @@ def tiktok_search_keyword(
     )
     normalized = tiktok_client._normalize_keyword_response(raw)
     ranked = tiktok_client._process_pipeline(normalized)
-    return _format_tiktok_results(ranked[:top_k])
+    return {
+        "tiktok_result": _format_tiktok_results(ranked[:top_k])
+    }
 
 
 @mcp.tool()
 def tiktok_search_hashtag(
     hashtag: str,
-    top_k: int = 10,
+    top_k: int = 3,
     days: int = 7,
 ) -> list[dict]:
     """
@@ -178,64 +180,63 @@ def tiktok_search_hashtag(
 # ─────────────────────────────────────────────
 # CROSS-PLATFORM TOOL
 # ─────────────────────────────────────────────
-@mcp.tool()
-def cross_platform_trend(
-    keyword: str,
-    tiktok_top_k: int = 5,
-    threads_top_posts: int = 5,
-    threads_top_comments: int = 1,
-    tiktok_country: str = "VN",
-    tiktok_period: str = "1",
-) -> dict:
-    """
-    Pull trend signals for a keyword from BOTH TikTok and Threads in one call.
-    Useful for understanding whether a topic is gaining traction across platforms.
+# @mcp.tool()
+# def cross_platform_trend(
+#     keyword: str,
+#     tiktok_top_k: int = 5,
+#     threads_top_posts: int = 5,
+#     threads_top_comments: int = 1,
+#     tiktok_country: str = "VN",
+#     tiktok_period: str = "1",
+# ) -> dict:
+#     """
+#     Pull trend signals for a keyword from BOTH TikTok and Threads in one call.
+#     Useful for understanding whether a topic is gaining traction across platforms.
 
-    Parameters
-    ----------
-    keyword              : Topic to research (e.g. "AI", "thời trang", "du lịch").
-    tiktok_top_k         : TikTok videos to return (default 5).
-    threads_top_posts    : Threads posts to return (default 5).
-    threads_top_comments : Top comments per Threads post (default 3).
-    tiktok_country       : ISO country code for TikTok filter (default "VN").
-    tiktok_period        : TikTok look-back — "1" (24 h) | "7" (7 d) | "30" (30 d).
+#     Parameters
+#     ----------
+#     keyword              : Topic to research (e.g. "AI", "thời trang", "du lịch").
+#     tiktok_top_k         : TikTok videos to return (default 5).
+#     threads_top_posts    : Threads posts to return (default 5).
+#     threads_top_comments : Top comments per Threads post (default 3).
+#     tiktok_country       : ISO country code for TikTok filter (default "VN").
+#     tiktok_period        : TikTok look-back — "1" (24 h) | "7" (7 d) | "30" (30 d).
 
-    Returns
-    -------
-    A dict with keys:
-      "tiktok"  → list of ranked TikTok videos
-      "threads" → list of Threads posts with top comments
-    """
-    # TikTok
-    try:
-        raw_tt = tiktok_client._fetch_by_keyword(
-            keyword=keyword,
-            period=tiktok_period,
-            country=tiktok_country,
-        )
-        tiktok_results = _format_tiktok_results(
-            tiktok_client._process_pipeline(
-                tiktok_client._normalize_keyword_response(raw_tt)
-            )[:tiktok_top_k]
-        )
-    except Exception as e:
-        tiktok_results = [{"error": str(e)}]
+#     Returns
+#     -------
+#     A dict with keys:
+#       "tiktok"  → list of ranked TikTok videos
+#     """
+#     # TikTok
+#     try:
+#         raw_tt = tiktok_client._fetch_by_keyword(
+#             keyword=keyword,
+#             period=tiktok_period,
+#             country=tiktok_country,
+#         )
+#         tiktok_results = _format_tiktok_results(
+#             tiktok_client._process_pipeline(
+#                 tiktok_client._normalize_keyword_response(raw_tt)
+#             )[:tiktok_top_k]
+#         )
+#     except Exception as e:
+#         tiktok_results = [{"error": str(e)}]
 
-    # Threads
-    try:
-        raw_th = threads_client.analyze_keyword(
-            keyword=keyword,
-            top_posts=threads_top_posts,
-            top_comments=threads_top_comments,
-        )
-        threads_results = _format_threads_results(raw_th)
-    except Exception as e:
-        threads_results = [{"error": str(e)}]
+#     # # Threads
+#     # try:
+#     #     raw_th = threads_client.analyze_keyword(
+#     #         keyword=keyword,
+#     #         top_posts=threads_top_posts,
+#     #         top_comments=threads_top_comments,
+#     #     )
+#     #     threads_results = _format_threads_results(raw_th)
+#     # except Exception as e:
+#     #     threads_results = [{"error": str(e)}]
 
-    return {
-        "tiktok": tiktok_results,
-        "threads": threads_results,
-    }
+#     return {
+#         "tiktok": tiktok_results,
+#         # "threads": threads_results,
+#     }
 # ─────────────────────────────────────────────
 # ENTRYPOINT
 # ─────────────────────────────────────────────

@@ -21,8 +21,8 @@ def main():
     skill = AgentSkill(
         id="find_trends",
         name="Find Trends",
-        description="Find and analyze the latest google trend based on the user's query.",
-        tags=["trending", "analysis", "google-trends"],
+        description="Find and analyze the latest trend using Google Trends and validation through Social Media Trends based on the user's query.",
+        tags=["trending", "analysis", "google-trends", "social media"],
         examples=[
             "What are the top trending searches in Vietnam?",
             "Show me the latest trends for 'AI technology'.",

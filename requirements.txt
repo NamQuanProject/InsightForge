@@ -5,6 +5,7 @@ langchain
 langchain-openai
 langchain-anthropic
 langchain 
+langgraph
 langchain-litellm 
 langchain-mcp-adapters 
 ipython
@@ -17,3 +18,4 @@ nest_asyncio
 beeai-framework
 "beeai-framework[a2a]"
 numpy
+cloudflare
