@@ -1,0 +1,73 @@
+{
+  "query": "bóng đá",
+  "results": [
+    {
+      "main_keyword": "đá bóng hôm nay",
+      "why_the_trend_happens": "Lượng tìm kiếm tăng mạnh quanh các trận đấu diễn ra trong ngày, đồng thời các từ khóa liên quan đến xem trực tiếp và kết quả trận đấu cũng tăng nhanh trên mạng xã hội.",
+      "trend_score": 38.0,
+      "interest_over_day": [
+        5,
+        10,
+        12,
+        15,
+        20,
+        25,
+        30,
+        35
+      ],
+      "avg_views_per_hour": 220006.0,
+      "recommended_action": "Tạo nội dung cập nhật nhanh diễn biến trận đấu, phân tích tình huống nổi bật và chốt lại bằng dự đoán kết quả hoặc nhận định sau trận.",
+      "top_hashtags": [
+        "#bongda",
+        "#football",
+        "#livefootball",
+        "#soccer"
+      ],
+      "google": {
+        "keyword": "đá bóng hôm nay",
+        "momentum": "rising",
+        "peak_region": "Hà Nội"
+      },
+      "tiktok": {
+        "platform": "TikTok",
+        "top_velocity": 240000.0,
+        "avg_engagement_rate": 0.082
+      },
+      "threads": null
+    },
+    {
+      "main_keyword": "kết quả bóng đá",
+      "why_the_trend_happens": "Người xem quan tâm đến tỷ số và highlight sau loạt trận buổi tối, khiến nhu cầu tìm kiếm kết quả, bảng xếp hạng và clip tóm tắt tăng đều.",
+      "trend_score": 35.0,
+      "interest_over_day": [
+        20,
+        25,
+        30,
+        35,
+        50,
+        55,
+        60,
+        70
+      ],
+      "avg_views_per_hour": 90640.0,
+      "recommended_action": "Đăng bài tổng hợp kết quả theo format ngắn, rõ tỷ số, kèm một ý kiến chuyên môn ngắn để tăng tranh luận trong phần bình luận.",
+      "top_hashtags": [
+        "#footballresults",
+        "#matchday",
+        "#soccer"
+      ],
+      "google": {
+        "keyword": "kết quả bóng đá",
+        "momentum": "rising",
+        "peak_region": "TP. Hồ Chí Minh"
+      },
+      "tiktok": {
+        "platform": "TikTok",
+        "top_velocity": 110000.0,
+        "avg_engagement_rate": 0.056
+      },
+      "threads": null
+    }
+  ],
+  "markdown_summary": "## Tóm tắt xu hướng\n\nBóng đá đang có tín hiệu tăng trưởng tốt trên cả Google và TikTok. Nội dung nên tập trung vào cập nhật nhanh, nhận định ngắn và yếu tố tranh luận để tăng bình luận và chia sẻ."
+}

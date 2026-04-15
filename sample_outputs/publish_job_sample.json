@@ -1,0 +1,40 @@
+{
+  "profile_username": "blhoang23",
+  "platforms": [
+    "tiktok",
+    "facebook",
+    "instagram"
+  ],
+  "title": "3 điểm nóng bóng đá hôm nay mà fan không nên bỏ lỡ",
+  "description": "Tổng hợp nhanh các diễn biến bóng đá đáng chú ý nhất trong ngày, phù hợp để đăng short-form video.",
+  "tags": [
+    "bongda",
+    "tinthethao",
+    "matchday"
+  ],
+  "first_comment": "Bạn muốn cập nhật trận nào tiếp theo?",
+  "schedule_post": "2026-04-15T19:30:00+07:00",
+  "link_url": null,
+  "subreddit": null,
+  "asset_urls": [
+    "https://cdn.example.com/videos/football-hot-topics.mp4"
+  ],
+  "uploaded_files": [],
+  "post_kind": "video",
+  "provider_payload": {
+    "success": true,
+    "post_kind": "video",
+    "platforms": [
+      "tiktok",
+      "facebook",
+      "instagram"
+    ],
+    "payload": {
+      "success": true,
+      "message": "Publish request accepted and queued.",
+      "request_id": "req_20260415_football_001",
+      "job_id": "job_20260415_football_001",
+      "total_platforms": 3
+    }
+  }
+}

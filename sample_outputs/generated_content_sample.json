@@ -1,0 +1,84 @@
+{
+  "selected_keyword": "đá bóng hôm nay",
+  "main_title": "3 điểm nóng bóng đá hôm nay mà fan không nên bỏ lỡ",
+  "video_script": {
+    "title": "3 điểm nóng bóng đá hôm nay mà fan không nên bỏ lỡ",
+    "duration_estimate": "60s",
+    "hook": "Hôm nay có 3 diễn biến bóng đá cực đáng chú ý, bỏ lỡ là tiếc.",
+    "sections": [
+      {
+        "timestamp": "0:00-0:10",
+        "label": "Hook",
+        "narration": "Nếu bạn chưa biết hôm nay bóng đá có gì nóng, đây là 3 điểm đáng xem nhất trong ngày.",
+        "visuals": "Cắt nhanh highlight sân cỏ, tỷ số, biểu cảm cầu thủ.",
+        "notes": "Nhịp nhanh, giọng dứt khoát."
+      },
+      {
+        "timestamp": "0:10-0:30",
+        "label": "Điểm nóng 1",
+        "narration": "Trận đấu đầu tiên gây chú ý vì nhịp độ cao và nhiều tình huống tranh cãi ngay từ hiệp một.",
+        "visuals": "Overlay tỷ số, ảnh đội bóng, text key points.",
+        "notes": "Nhấn mạnh yếu tố drama."
+      },
+      {
+        "timestamp": "0:30-0:50",
+        "label": "Điểm nóng 2 và 3",
+        "narration": "Ngoài ra, kết quả cập nhật và màn trình diễn của một số cầu thủ trẻ cũng đang được fan bàn tán nhiều.",
+        "visuals": "B-roll cầu thủ, biểu đồ tăng tìm kiếm, comment nổi bật.",
+        "notes": "Giữ nhịp kể tự nhiên."
+      },
+      {
+        "timestamp": "0:50-1:00",
+        "label": "CTA",
+        "narration": "Bạn muốn mình cập nhật trận nào tiếp theo, để lại tên đội ở bình luận nhé.",
+        "visuals": "Close-up host và CTA text.",
+        "notes": "Mời gọi comment."
+      }
+    ],
+    "call_to_action": "Comment tên đội bóng bạn đang theo dõi để mình làm tiếp phần cập nhật.",
+    "captions_style": "Sub ngắn, bold từ khóa chính, màu trắng viền đen.",
+    "music_mood": "Năng lượng cao, thể thao, dồn dập."
+  },
+  "platform_posts": {
+    "tiktok": {
+      "caption": "Hôm nay bóng đá nóng thật sự. Đây là 3 diễn biến đáng chú ý nhất mà fan nên theo dõi ngay.",
+      "hashtags": [
+        "#bongda",
+        "#football",
+        "#matchday",
+        "#tinthethao"
+      ],
+      "cta": "Bạn đang chờ trận nào nhất hôm nay?",
+      "best_post_time": "19:30",
+      "thumbnail_description": "Host chỉ tay vào bảng tỷ số đỏ nổi bật."
+    },
+    "facebook": {
+      "caption": "Tổng hợp nhanh 3 điểm nóng bóng đá hôm nay: diễn biến nổi bật, tranh cãi và các kết quả đáng chú ý.",
+      "hashtags": [
+        "#bongda",
+        "#tinthethao"
+      ],
+      "cta": "Bình luận đội bạn quan tâm để nhận bài cập nhật tiếp theo.",
+      "best_post_time": "20:00",
+      "thumbnail_description": "Ảnh tổng hợp 3 khung trận đấu."
+    },
+    "instagram": {
+      "caption": "3 điểm nóng bóng đá hôm nay trong 60 giây.",
+      "hashtags": [
+        "#footballnews",
+        "#soccerupdate",
+        "#bongda"
+      ],
+      "cta": "Lưu bài để xem lại trước giờ bóng lăn.",
+      "best_post_time": "18:45",
+      "thumbnail_description": "Thiết kế scoreboard hiện đại, tương phản mạnh."
+    }
+  },
+  "thumbnail": {
+    "prompt": "A dynamic football news thumbnail, dramatic stadium lights, large scoreboard, energetic sports presenter, red and green contrast, modern digital sports overlay, cinematic action atmosphere",
+    "style": "vivid",
+    "size": "1792x1024",
+    "output_path": "content_output.png"
+  },
+  "music_background": "Năng lượng cao, thể thao, dồn dập."
+}
