@@ -22,7 +22,7 @@ AGENT_HOST = os.environ.get("AGENT_HOST", "localhost")
 TREND_AGENT_URL = f"http://{AGENT_HOST}:{os.environ.get('TREND_AGENT_PORT', 9997)}"
 CONTENT_AGENT_URL = f"http://{AGENT_HOST}:{os.environ.get('CONTENT_AGENT_PORT', 9998)}"
 
-TIMEOUT = 120  # seconds — trend + image gen can be slow
+TIMEOUT = 180  # seconds — trend + image gen can be slow
 
 
 # ---------------------------------------------------------------------------
