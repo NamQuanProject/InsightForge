@@ -32,6 +32,7 @@ def extract_json(raw_content: str) -> dict:
     except Exception:
             return {"error": "Failed to parse agent response", "raw": raw_content}
 
+
 def _build_message_send(text: str, task_id: str | None = None) -> dict:
     """Construct a spec-compliant A2A message/send JSON-RPC payload."""
     message_obj = {
@@ -93,6 +94,7 @@ def _extract_reply(response_json: dict) -> str:
 
     except Exception as exc:
         return f"[parse error: {exc}]"
+
 
 async def _call_a2a(base_url: str, message: str, agent_name: str) -> str:
     """POST message/send to an A2A agent and return the text reply."""

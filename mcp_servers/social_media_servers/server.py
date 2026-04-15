@@ -56,7 +56,7 @@ def tiktok_search_keyword(
     country: str = "VN",
     sorting: str = "0",
     match_exactly: bool = False,
-) -> list[dict]:
+) -> dict:
     """
     Search TikTok for trending videos matching a keyword.
     Videos are ranked by a composite trend score (velocity + like-rate + virality).
