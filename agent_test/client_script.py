@@ -11,19 +11,27 @@ async def call_healthcare_agent():
     await client.check_agent_exists()
     print("✅ Connected to Product Agent Server!\n")
 
-    prompt = "Upload for me a photo at sample_data/image.png with username blhoang23 to instagram with description 'Test post from API'?"
+    prompt = "Upload for me a photo at sample_data/image.png with current username to instagram with description 'Test post from API'?"
     print(f"Sending prompt: '{prompt}'...\n")
 
 
-    message = UserMessage(content=prompt, meta={"decision": "approve", "config" : "019d9217-f042-77c2-b6d5-7d98aff63110"})
+    message = UserMessage(content=prompt, meta={"decision": "approve", "config" : "019d925b-0d81-7d72-b673-72ae6652ed46"})
     
 
     response : A2AAgentOutput = await client.run(message)
 
     # 4. Print the result
     print("=== Final Response ===")
+    print("=====================")    
+    print("=====================")    
+    print("=====================")    
+    
     print(response)
     print("=====================")    
+    print("=====================")    
+    print("=====================")    
+    print("=====================")    
+
     
 if __name__ == "__main__":
     asyncio.run(call_healthcare_agent())

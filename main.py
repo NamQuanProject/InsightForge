@@ -15,6 +15,7 @@ from beeai_framework.serve.utils import LRUMemoryManager
 from beeai_framework.tools import Tool, tool
 from beeai_framework.tools.handoff import HandoffTool
 from beeai_framework.tools.think import ThinkTool
+from beeai_framework.tools import Tool
 from beeai_framework.memory.base_memory import BaseMemory
 # ✅ Load env
 load_dotenv()
@@ -50,14 +51,10 @@ async def main():
     )
 
 
-    # await trending_analysis_agent.check_agent_exists()
-    # print("\tℹ️", f"{trending_analysis_agent.name} initialized")
-
     await posting_agent.check_agent_exists()
     print("\tℹ️", f"{posting_agent.name} initialized")
 
     think_tool = ThinkTool()
-
 
     my_super_strong_agent = RequirementAgent(
         name="InsightForge Agent",
@@ -67,7 +64,7 @@ async def main():
             api_key=os.getenv("GOOGLE_API_KEY"),
             location="us-central1",
             allow_parallel_tool_calls=True,
-            allow_prompt_caching=False,
+            allow_prompt_caching=True,
         ),
         tools=[
             think_tool,
@@ -87,8 +84,10 @@ async def main():
             ConditionalRequirement(
                 think_tool,
                 force_at_step=1,
+                force_after=Tool,
                 consecutive_allowed=False
             ),
+            
         ],
         role="Product Manager Agent",
         instructions=f"""

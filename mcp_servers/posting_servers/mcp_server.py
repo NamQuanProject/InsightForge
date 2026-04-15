@@ -9,7 +9,7 @@ from mcp.server.fastmcp import FastMCP
 load_dotenv()
 
 mcp = FastMCP("PostingAgent")
-UPLOAD_POST_API_KEY = os.getenv("UPLOAD_POST_API_KEY", "")
+UPLOAD_POST_API_KEY = os.getenv("UPLOAD_POST_API_KEY_2", "")
 UPLOAD_POST_BASE_URL = "https://api.upload-post.com/api"
 
 
