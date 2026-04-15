@@ -40,15 +40,14 @@ async def main():
     # Policy Agent (A2A)
     # =========================
     trending_analysis_agent = A2AAgent(
-        url="http://localhost:9997",
+        url="http://0.0.0.0:9997",
         memory=UnconstrainedMemory()
     )
 
     posting_agent = A2AAgent(
-        url="http://localhost:9999",
+        url="http://0.0.0.0:9999",
         memory = UnconstrainedMemory()
     )
-
 
 
     await trending_analysis_agent.check_agent_exists()

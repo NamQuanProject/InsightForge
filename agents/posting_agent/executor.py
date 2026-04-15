@@ -5,13 +5,12 @@ from a2a.server.agent_execution import AgentExecutor, RequestContext
 from a2a.server.events import EventQueue
 from a2a.utils.message import new_agent_text_message
 from agents.posting_agent.agent import PostingAgent
-
+import os
 
 class PostingAgentExecutor(AgentExecutor):
     def __init__(self) -> None:
-        self._agent: Optional[PostingAgent] = None
-        self._session_threads: dict[str, str] = {}
-        self._pending_interrupts: dict[str, dict] = {}
+        self.agent = None
+
 
     async def _get_agent(self) -> PostingAgent:
         if self._agent is None:
@@ -21,54 +20,26 @@ class PostingAgentExecutor(AgentExecutor):
             await self._agent.initialize()
         return self._agent
 
+    async def _ensure_initialized(self) -> None:
+        """Lazy initialization of the agent."""
+        if self.agent is None:
+            self.agent = await PostingAgent(api_key=os.getenv("GOOGLE_API_KEY")).initialize()
+
     async def execute(self, context: RequestContext, event_queue: EventQueue) -> None:
-        user_input = context.get_user_input()
-        session_id = context.session_id
-        print("YES YES YES")
-        if not user_input or not user_input.strip():
-            await event_queue.enqueue_event(
-                new_agent_text_message("Please provide a message.")
-            )
-            return
+        
+        await self._ensure_initialized()
+        prompt = context.get_user_input()
+        config, result = await self.agent.chat(prompt)
+        print(config)
 
-        await event_queue.enqueue_event(
-            new_agent_text_message("🤖 Processing your request...")
-        )
 
-        try:
-            parsed = self._parse_input(user_input)
 
-            if parsed["action"] == "approve":
-                result = await self._handle_approve(
-                    draft_id=parsed["draft_id"],
-                    event_queue=event_queue,
-                )
-            elif parsed["action"] == "reject":
-                result = await self._handle_reject(
-                    draft_id=parsed["draft_id"],
-                    reason=parsed.get("reason"),
-                    event_queue=event_queue,
-                )
-            elif parsed["action"] == "resume":
-                result = await self._handle_resume(
-                    session_id=session_id,
-                    decisions=parsed.get("decisions", [{"type": "approve"}]),
-                    event_queue=event_queue,
-                )
-            else:
-                result = await self._handle_chat(
-                    user_input=user_input,
-                    session_id=session_id,
-                    event_queue=event_queue,
-                )
+        await event_queue.enqueue_event(new_agent_text_message(result))
+        
+        
+        
 
-            await event_queue.enqueue_event(new_agent_text_message(result))
-
-        except Exception as e:
-            import traceback
-
-            error_detail = f"❌ Error: {str(e)}\n\n{traceback.format_exc()}"
-            await event_queue.enqueue_event(new_agent_text_message(error_detail))
+        
 
     async def _handle_chat(
         self,
