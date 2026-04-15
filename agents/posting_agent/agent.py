@@ -98,8 +98,11 @@ class PostingAgent:
         answer = result["messages"][-1].content
 
         if result.interrupts:
-            answer = f"⏸️  Interrupt triggered with value: {result.interrupts[0].value}"
-            print(f"⏸️  Interrupt triggered with value: {result.interrupts[0].value}")
+            answer = f"Interrupt triggered with value: {result.interrupts[0].value}"
+
+            
+
+            print(f"{answer}")
         else:
             print(f"Response: {answer[:200]}...")
 

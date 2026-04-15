@@ -19,3 +19,4 @@ beeai-framework
 "beeai-framework[a2a]"
 numpy
 cloudflare
+supabase

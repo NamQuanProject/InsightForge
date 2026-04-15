@@ -30,12 +30,9 @@ class PostingAgentExecutor(AgentExecutor):
         await self._ensure_initialized()
         prompt = context.get_user_input()
         config, result = await self.agent.chat(prompt)
+        print(config)
 
-        print(f"Agent execution result: {result}")
-    
-        
 
-        
 
         await event_queue.enqueue_event(new_agent_text_message(result))
         
