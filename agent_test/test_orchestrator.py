@@ -15,7 +15,7 @@ async def test_orchestrator():
             "message": {
                 "messageId": str(uuid.uuid4()),
                 "role": "user",
-                "parts": [{"type": "text", "text": "Topic đang trend trong ngày hôm nay ở lĩnh vực tech và tôi nên tạo nội dung như nào ?"}],
+                "parts": [{"type": "text", "text": "Topic đang trend trong ngày hôm nay về thể thao và tôi nên tạo nội dung như nào ?"}],
             },
         },
     }
