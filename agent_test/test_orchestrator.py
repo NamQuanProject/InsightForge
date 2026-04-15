@@ -23,7 +23,8 @@ async def test_orchestrator():
     async with httpx.AsyncClient() as client:
         print(f"🚀 Sending request to Orchestrator...")
         try:
-            response = await client.post(ORCHESTRATOR_URL, json=payload, timeout=60.0)
+            response = await client.post(ORCHESTRATOR_URL, json=payload, timeout=120.0)
+            # response = await client.send_message()
             response.raise_for_status()
             
             result = response.json()
