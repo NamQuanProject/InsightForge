@@ -1,28 +1,69 @@
 import asyncio
 import os
-from typing import Any
+import uuid
+from typing import TYPE_CHECKING
 
-from agents.trend_agent.agent import TrendAgent
-from app.schema.trend import TrendAnalyzeResponse, TrendOverviewResponse
+from app.schema.trend import (
+    TrendAnalysesListResponse,
+    TrendAnalysisRecordResponse,
+    TrendAnalyzeResponse,
+    TrendOverviewResponse,
+)
+from app.services.postgres_service import PostgresService
+
+if TYPE_CHECKING:
+    from agents.trend_agent.agent import TrendAgent
 
 
 class TrendService:
-    _agent: TrendAgent | None = None
+    _agent: "TrendAgent | None" = None
     _lock = asyncio.Lock()
 
-    async def analyze(self, query: str, limit: int = 3) -> TrendAnalyzeResponse:
+    def __init__(self) -> None:
+        self.postgres = PostgresService()
+
+    async def analyze(
+        self,
+        query: str,
+        limit: int = 3,
+        user_id: uuid.UUID | None = None,
+    ) -> TrendAnalyzeResponse:
         agent = await self._get_agent()
         prompt = self._build_prompt(query=query, limit=limit)
         result = await agent.answer_query(prompt)
 
         structured = result.get("structured_data") or {}
-        return TrendAnalyzeResponse(
+        response = TrendAnalyzeResponse(
             query=structured.get("query", query),
             results=structured.get("results", []),
-            markdown_summary=structured.get("markdown_summary")
-            or result.get("display_text", ""),
+            markdown_summary=structured.get("markdown_summary") or result.get("display_text", ""),
             error=structured.get("error"),
         )
+
+        record = await self.postgres.save_trend_analysis(
+            query=response.query,
+            results=[item.model_dump() if hasattr(item, "model_dump") else dict(item) for item in response.results],
+            summary=response.markdown_summary,
+            user_id=user_id,
+            status="completed" if response.error is None else "failed",
+            error=response.error,
+        )
+        response.analysis_id = record.id
+        return response
+
+    async def list_history(
+        self,
+        user_id: uuid.UUID | None = None,
+        limit: int = 20,
+    ) -> TrendAnalysesListResponse:
+        records = await self.postgres.list_trend_analyses(user_id=user_id, limit=limit)
+        return TrendAnalysesListResponse(items=[self._to_record_response(record) for record in records])
+
+    async def get_detail(self, analysis_id: uuid.UUID) -> TrendAnalysisRecordResponse | None:
+        record = await self.postgres.get_trend_analysis(analysis_id)
+        if record is None:
+            return None
+        return self._to_record_response(record)
 
     def get_mock_overview(self, keyword: str, region: str, hashtag: str) -> TrendOverviewResponse:
         return TrendOverviewResponse(
@@ -37,7 +78,9 @@ class TrendService:
             },
         )
 
-    async def _get_agent(self) -> TrendAgent:
+    async def _get_agent(self) -> "TrendAgent":
+        from agents.trend_agent.agent import TrendAgent
+
         if self.__class__._agent is not None:
             return self.__class__._agent
 
@@ -49,12 +92,22 @@ class TrendService:
 
     def _build_prompt(self, query: str, limit: int) -> str:
         return (
-            f"Hãy phân tích xu hướng cho chủ đề hoặc bộ từ khóa sau: {query}. "
-            f"Trả về {limit} cơ hội xu hướng đã được xếp hạng. "
-            "Với mỗi mục, hãy gồm: main_keyword, why_the_trend_happens, trend_score, "
-            "interest_over_day trong 24 giờ gần nhất, avg_views_per_hour, "
-            "recommended_action, và top_hashtags. "
-            "Sử dụng tín hiệu từ Google Trends và TikTok, bám sát bộ từ khóa người dùng cung cấp, "
-            "và chỉ trả về structured JSON. "
-            "Toàn bộ phần nội dung giải thích, tóm tắt, khuyến nghị phải viết bằng tiếng Việt."
+            f"Analyze trends for this topic or keyword set: {query}. "
+            f"Return {limit} ranked trend opportunities. "
+            "For each item, include: main_keyword, why_the_trend_happens, trend_score, "
+            "interest_over_day for the last 24 hours, avg_views_per_hour, recommended_action, "
+            "and top_hashtags. Use Google Trends and TikTok signals, stay close to the user's keywords, "
+            "return structured JSON only, and write all explanations in Vietnamese."
+        )
+
+    def _to_record_response(self, record) -> TrendAnalysisRecordResponse:
+        return TrendAnalysisRecordResponse(
+            analysis_id=record.id,
+            query=record.query,
+            results=record.results or [],
+            markdown_summary=record.summary or "",
+            error=record.error,
+            status=record.status,
+            user_id=record.user_id,
+            created_at=record.created_at,
         )

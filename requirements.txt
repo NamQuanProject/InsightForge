@@ -1,6 +1,8 @@
 fastapi
 uvicorn
 pydantic
+sqlalchemy
+asyncpg
 httpx
 python-multipart
 langchain
