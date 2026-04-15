@@ -20,5 +20,11 @@ class UserResponse(BaseModel):
     created_at: datetime
 
 
+class UserSummaryResponse(UserResponse):
+    trend_analysis_count: int = 0
+    generated_content_count: int = 0
+    publish_job_count: int = 0
+
+
 class UsersListResponse(BaseModel):
-    users: list[UserResponse] = Field(default_factory=list)
+    users: list[UserSummaryResponse] = Field(default_factory=list)

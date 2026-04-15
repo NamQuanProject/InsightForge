@@ -19,6 +19,7 @@ class User(Base):
 
     trend_analyses: Mapped[list["TrendAnalysis"]] = relationship(back_populates="user")
     generated_contents: Mapped[list["GeneratedContent"]] = relationship(back_populates="user")
+    publish_jobs: Mapped[list["PublishJob"]] = relationship(back_populates="user")
 
 
 class TrendAnalysis(Base):
@@ -70,3 +71,42 @@ class GeneratedContent(Base):
 
     user: Mapped[User | None] = relationship(back_populates="generated_contents")
     trend_analysis: Mapped[TrendAnalysis | None] = relationship(back_populates="generated_contents")
+    publish_jobs: Mapped[list["PublishJob"]] = relationship(back_populates="generated_content")
+
+
+class PublishJob(Base):
+    __tablename__ = "publish_jobs"
+
+    id: Mapped[uuid.UUID] = mapped_column(PG_UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id: Mapped[uuid.UUID | None] = mapped_column(
+        PG_UUID(as_uuid=True),
+        ForeignKey("users.id", ondelete="SET NULL"),
+        nullable=True,
+        index=True,
+    )
+    generated_content_id: Mapped[uuid.UUID | None] = mapped_column(
+        PG_UUID(as_uuid=True),
+        ForeignKey("generated_contents.id", ondelete="SET NULL"),
+        nullable=True,
+        index=True,
+    )
+    profile_username: Mapped[str] = mapped_column(String(255), index=True)
+    platforms: Mapped[list[str]] = mapped_column(JSONB)
+    title: Mapped[str] = mapped_column(String(500))
+    description: Mapped[str | None] = mapped_column(Text(), nullable=True)
+    tags: Mapped[list[str]] = mapped_column(JSONB, default=list)
+    first_comment: Mapped[str | None] = mapped_column(Text(), nullable=True)
+    schedule_post: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    link_url: Mapped[str | None] = mapped_column(Text(), nullable=True)
+    subreddit: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    asset_urls: Mapped[list[str]] = mapped_column(JSONB, default=list)
+    uploaded_files: Mapped[list[dict]] = mapped_column(JSONB, default=list)
+    post_kind: Mapped[str] = mapped_column(String(50), default="text")
+    provider_request_id: Mapped[str | None] = mapped_column(String(255), nullable=True, index=True)
+    provider_job_id: Mapped[str | None] = mapped_column(String(255), nullable=True, index=True)
+    provider_response: Mapped[dict] = mapped_column(JSONB)
+    status: Mapped[str] = mapped_column(String(50), default="submitted", index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+    user: Mapped[User | None] = relationship(back_populates="publish_jobs")
+    generated_content: Mapped[GeneratedContent | None] = relationship(back_populates="publish_jobs")

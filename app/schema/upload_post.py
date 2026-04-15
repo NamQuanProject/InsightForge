@@ -1,6 +1,8 @@
+from datetime import datetime
+import uuid
 from typing import Any
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class UploadPostProfile(BaseModel):
@@ -97,3 +99,38 @@ class UploadPostCommentsEnvelope(BaseModel):
 class UploadPostPublishEnvelope(BaseModel):
     source: str = "upload_post"
     payload: dict[str, Any]
+
+
+class PublishJobResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID
+    user_id: uuid.UUID | None = None
+    generated_content_id: uuid.UUID | None = None
+    profile_username: str
+    platforms: list[str] = Field(default_factory=list)
+    title: str
+    description: str | None = None
+    tags: list[str] = Field(default_factory=list)
+    first_comment: str | None = None
+    schedule_post: str | None = None
+    link_url: str | None = None
+    subreddit: str | None = None
+    asset_urls: list[str] = Field(default_factory=list)
+    uploaded_files: list[dict[str, Any]] = Field(default_factory=list)
+    post_kind: str
+    provider_request_id: str | None = None
+    provider_job_id: str | None = None
+    provider_response: dict[str, Any] = Field(default_factory=dict)
+    status: str
+    created_at: datetime
+
+
+class PublishJobsListResponse(BaseModel):
+    items: list[PublishJobResponse] = Field(default_factory=list)
+
+
+class UploadPostPublishResponse(BaseModel):
+    source: str = "upload_post"
+    publish_job: PublishJobResponse
+    provider_payload: dict[str, Any]

@@ -1,7 +1,11 @@
-from fastapi import APIRouter, Depends, File, Form, Query, UploadFile
+import uuid
+
+from fastapi import APIRouter, Depends, File, Form, HTTPException, Query, UploadFile
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from app.schema.upload_post import (
+    PublishJobResponse,
+    PublishJobsListResponse,
     UploadPostAnalyticsEnvelope,
     UploadPostCommentsEnvelope,
     UploadPostCreateProfileRequest,
@@ -11,16 +15,16 @@ from app.schema.upload_post import (
     UploadPostGenerateJwtResponse,
     UploadPostHistoryEnvelope,
     UploadPostPostAnalyticsEnvelope,
-    UploadPostPublishEnvelope,
+    UploadPostPublishResponse,
     UploadPostProfileResponse,
     UploadPostProfilesResponse,
     UploadPostTotalImpressionsEnvelope,
     UploadPostValidateJwtRequest,
     UploadPostValidateJwtResponse,
 )
+from app.services.posting_service import PostingService
 from app.services.upload_post_service import UploadPostApiService
 from app.services.upload_post_mock_service import UploadPostMockService
-from app.services.upload_post_publish_service import UploadPostPublishService
 
 router = APIRouter(prefix="/api/v1/upload-post", tags=["upload-post"])
 bearer_scheme = HTTPBearer(auto_error=False)
@@ -73,7 +77,7 @@ async def generate_upload_post_jwt(payload: UploadPostGenerateJwtRequest):
     return UploadPostApiService().generate_jwt(payload)
 
 
-@router.post("/publish", response_model=UploadPostPublishEnvelope)
+@router.post("/publish", response_model=UploadPostPublishResponse)
 async def publish_upload_post_content(
     user: str = Form(..., min_length=1),
     platforms: str = Form(..., description="Comma-separated platform list, e.g. youtube,tiktok"),
@@ -86,9 +90,11 @@ async def publish_upload_post_content(
     subreddit: str | None = Form(default=None),
     asset_urls: str | None = Form(default=None, description="Comma-separated public asset URLs."),
     files: list[UploadFile] = File(default_factory=list),
+    user_id: uuid.UUID | None = Form(default=None),
+    generated_content_id: uuid.UUID | None = Form(default=None),
 ):
-    payload = await UploadPostPublishService().publish(
-        user=user,
+    publish_job, provider_payload = await PostingService().publish(
+        profile_username=user,
         platforms=_normalize_csv_field(platforms),
         title=title,
         description=description,
@@ -99,8 +105,32 @@ async def publish_upload_post_content(
         subreddit=subreddit,
         asset_urls=_normalize_csv_field(asset_urls) if asset_urls else [],
         files=files,
+        user_id=user_id,
+        generated_content_id=generated_content_id,
     )
-    return UploadPostPublishEnvelope(payload=payload)
+    return UploadPostPublishResponse(publish_job=publish_job, provider_payload=provider_payload)
+
+
+@router.get("/publish-jobs", response_model=PublishJobsListResponse)
+async def list_publish_jobs(
+    user_id: uuid.UUID | None = Query(default=None),
+    generated_content_id: uuid.UUID | None = Query(default=None),
+    limit: int = Query(default=20, ge=1, le=100),
+):
+    items = await PostingService().list_publish_jobs(
+        user_id=user_id,
+        generated_content_id=generated_content_id,
+        limit=limit,
+    )
+    return PublishJobsListResponse(items=items)
+
+
+@router.get("/publish-jobs/{publish_job_id}", response_model=PublishJobResponse)
+async def get_publish_job(publish_job_id: uuid.UUID):
+    item = await PostingService().get_publish_job(publish_job_id)
+    if item is None:
+        raise HTTPException(status_code=404, detail=f"Publish job not found: {publish_job_id}")
+    return item
 
 
 @router.post("/jwt/validate", response_model=UploadPostValidateJwtResponse)
