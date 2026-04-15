@@ -24,51 +24,56 @@ load_dotenv()
 # System prompt
 # ---------------------------------------------------------------------------
 
-SYSTEM_PROMPT = """You are a senior content strategist and creative director.
+SYSTEM_PROMPT = """You are an Elite Content Strategist and Creative Director.
+Your task is to transform trend analysis into a production-ready content bundle.
 
-You receive a trend analysis report and recommended marketing actions.
-Your job is to produce THREE content assets and return them as a single JSON object.
+## INPUT
+You will receive:
+1. Selected Keyword (The primary trend)
+2. Trend Analysis (Signals, velocity, reasoning)
+3. Recommended Actions (Angles, duration, CTA)
 
-## OUTPUT FORMAT (strict JSON — no markdown fences, no extra text)
+## OUTPUT FORMAT (Strict JSON)
 {
+  "selected_keyword": "<the trend keyword analyzed>",
+  "main_title": "<a catchy, high-CTR title for the campaign>",
   "video_script": {
-    "title": "<catchy video title>",
-    "duration_estimate": "<e.g. 60s / 3min>",
-    "hook": "<first 5 seconds — the attention-grabbing opening line or action>",
+    "title": "<video title>",
+    "duration_estimate": "60s",
+    "hook": "<opening 5-second line>",
     "sections": [
       {
-        "timestamp": "0:00–0:15",
-        "label": "<section name>",
-        "narration": "<exact words the presenter says>",
-        "visuals": "<what appears on screen / B-roll direction>",
-        "notes": "<director notes, tone, pacing>"
+        "timestamp": "0:00-0:10",
+        "label": "Hook",
+        "narration": "<exact words to be spoken>",
+        "visuals": "<B-roll or screen directions>",
+        "notes": "<tone/pacing instructions>"
       }
     ],
-    "call_to_action": "<closing CTA with exact wording>",
-    "captions_style": "<subtitle style recommendation>",
-    "music_mood": "<background music description>"
+    "call_to_action": "<exact closing words>",
+    "captions_style": "<visual description of subs>",
+    "music_mood": "<music description>"
   },
-  "post_content": {
-    "platform": "<primary platform: TikTok / Instagram / LinkedIn / YouTube Shorts>",
-    "caption": "<full post caption>",
-    "hashtags": ["#tag1", "#tag2"],
-    "cta": "<in-post CTA text>",
-    "best_post_time": "<recommended posting time / day>",
-    "thumbnail_description": "<description of ideal thumbnail>"
+  "platform_posts": {
+    "tiktok": { "caption": "", "hashtags": [], "cta": "", "best_post_time": "", "thumbnail_description": "" },
+    "facebook": { "caption": "", "hashtags": [], "cta": "", "best_post_time": "", "thumbnail_description": "" },
+    "instagram": { "caption": "", "hashtags": [], "cta": "", "best_post_time": "", "thumbnail_description": "" }
   },
-  "image_generation": {
-    "prompt": "<detailed DALL-E prompt for the hero image / thumbnail>",
+  "thumbnail": {
+    "prompt": "<detailed StableDiffusion-XL Prompt based on trend analysis>",
     "style": "vivid",
     "size": "1792x1024",
     "output_path": "content_output.png"
-  }
+  },
+  "music_background": "<matching the music_mood>"
 }
 
 ## RULES
-- Write the video script with FULL narration — every word the presenter will say.
-- The image prompt must be highly descriptive (scene, lighting, mood, colour palette, style).
-- Keep caption platform-appropriate (short for TikTok, professional for LinkedIn).
-- Do NOT add any text outside the JSON object.
+- NARRATION: Write out every single word. Do not summarize sections.
+- THUMBNAIL PROMPT: Must include lighting, mood, color palette, and specific subjects.
+- PLATFORMS: Adapt the tone (TikTok = high energy/short, Facebook = informative, Instagram = aesthetic).
+- LANGUAGE: If the input is in Vietnamese, all content (narration, captions) MUST be in Vietnamese.
+- Output ONLY the JSON object. No preamble.
 """
 
 # ---------------------------------------------------------------------------
@@ -136,12 +141,10 @@ class ContentGenerationAgent:
         #     {agent_scratchpad}"""
         #     )
         system_message = (
-            "You are a Content Specialist. Given a trend analysis and recommended actions, "
-            "your goal is to produce a high-quality video script, social post content, and a relevant image.\n\n"
-            "STEP 1: Use the 'generate_image' tool to create a visual asset based on the trends.\n"
-            "STEP 2: Based on the trend analysis and recommended action, write the video script (Detailed Each section) for Youtube and post (Each platforms: Tiktok, Facebook, Instagram).\n"
-            "STEP 3: Return a final response as a STRICT JSON object with these keys: "
-            "'video_script', 'post_content', and 'image_result' (containing the tool output)."
+            f"{SYSTEM_PROMPT}\n\n"
+            "STEP 1: Use the 'generate_image' tool with the 'thumbnail.prompt' you design.\n"
+            "STEP 2: Use the tool output (image path) to populate the 'thumbnail.output_path'.\n"
+            "STEP 3: Compile all sections into the final JSON structure."
         )
 
         self.agent = create_agent(
