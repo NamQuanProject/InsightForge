@@ -48,6 +48,7 @@ class PostingAgent:
                 )
             }
         )
+        print("YES")
 
         if self.api_key is None:
             raise RuntimeError("No API Key provided")
@@ -91,7 +92,18 @@ class PostingAgent:
             config=config,
             version="v2",
         )
-        return config, result
+
+
+        print(result)
+        answer = result["messages"][-1].content
+
+        if result.interrupts:
+            answer = f"⏸️  Interrupt triggered with value: {result.interrupts[0].value}"
+            print(f"⏸️  Interrupt triggered with value: {result.interrupts[0].value}")
+        else:
+            print(f"Response: {answer[:200]}...")
+
+        return config, answer
 
     async def chat_with_thread(
         self, user_input: str, thread_id: str
@@ -110,7 +122,7 @@ class PostingAgent:
 
     async def resume(self, config: Any, decisions: list) -> Any:
         """Resume agent execution after an interrupt with user decisions."""
-        result = self.agent.ainvoke(
+        result = await self.agent.ainvoke(
             Command(resume={"decisions": decisions}),
             config=config,
             version="v2",

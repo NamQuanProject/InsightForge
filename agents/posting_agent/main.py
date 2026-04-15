@@ -6,8 +6,6 @@ from agents.posting_agent.executor import PostingAgentExecutor
 from a2a.server.apps import A2AStarletteApplication
 from a2a.server.request_handlers import DefaultRequestHandler
 from a2a.server.tasks import InMemoryTaskStore
-from starlette.responses import JSONResponse
-from a2a.client import ClientFactory
 
 
 from a2a.types import AgentCapabilities, AgentCard, AgentSkill
@@ -22,7 +20,7 @@ def main():
     load_dotenv()
 
     host = os.getenv("AGENT_HOST", "localhost")
-    port = int(os.getenv("POSTING_AGENT_PORT", 9999))
+    port = int(os.getenv("POSTING_AGENT_PORT", 9995))
 
     skill = AgentSkill(
         id="create_post",
@@ -42,7 +40,7 @@ def main():
         name="PostingAgent",
         description="An agent that creates, schedules, and publishes social media posts with human-in-the-loop approval. Integrates with Upload-Post API for multi-platform posting." \
         "Can get current username and others informations about accounts in upload-post and controlled your account activities as well as informations about your social plat-forms",
-        url=f"https://{host}:{port}/",
+        url=f"http://{host}:{port}/",
         version="1.0.0",
         default_input_modes=["text"],
         default_output_modes=["text"],
@@ -60,7 +58,11 @@ def main():
         agent_card=agent_card,
         http_handler=request_handler,
     )
-    uvicorn.run(server.build(), host=host, port=port, log_level="info")
+    print("\n=== REGISTERED ROUTES ===")
+    for route in server.build().routes:
+        print(route.path, route.methods)
+
+    uvicorn.run(server.build(), host=host, port=port)
 
 
 if __name__ == "__main__":

@@ -222,21 +222,21 @@ class TrendAgent:
 
         print(response["messages"][-1])
         raw_content = response["messages"][-1].content
-
-        try:
-            # Attempt to parse the content as the TrendReport JSON
-            report_data = json.loads(raw_content)
-            print(report_data.get("markdown_report"))
-            return {
-                "display_text": report_data.get("markdown_report", "No report generated."),
-                "structured_data": report_data,  # Full dict for backend/database
-                "status": "success"
-            }
-        except json.JSONDecodeError:
-            # Fallback if the agent didn't use the tool correctly or spoke conversationally
-            return {
-                "display_text": raw_content,
-                "structured_data": None,
-                "status": "partial_success"
-            }
+        return raw_content
+        # try:
+        #     # Attempt to parse the content as the TrendReport JSON
+        #     report_data = json.loads(raw_content)
+        #     print(report_data.get("markdown_report"))
+        #     return {
+        #         "display_text": report_data.get("markdown_report", "No report generated."),
+        #         "structured_data": report_data,  # Full dict for backend/database
+        #         "status": "success"
+        #     }
+        # except json.JSONDecodeError:
+        #     # Fallback if the agent didn't use the tool correctly or spoke conversationally
+        #     return {
+        #         "display_text": raw_content,
+        #         "structured_data": None,
+        #         "status": "partial_success"
+        #     }
     
