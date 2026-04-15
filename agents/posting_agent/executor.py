@@ -28,13 +28,35 @@ class PostingAgentExecutor(AgentExecutor):
     async def execute(self, context: RequestContext, event_queue: EventQueue) -> None:
         
         await self._ensure_initialized()
-        prompt = context.get_user_input()
-        config, result = await self.agent.chat(prompt)
-        print(config)
+        
+        meta_data = context._params
+        print(meta_data.message)
+        if meta_data.message.metadata.get("decision", "") == "approve":
 
+            decision = meta_data.message.metadata.get("decision", "")
+            config_id = meta_data.message.metadata.get("config", "")
 
+            print("🧠 Incoming decision:", decision)
+            print("🧩 Incoming config_id:", config_id)
+            print("📦 Full metadata:", meta_data.message.metadata)
 
+            if decision == "approve":
+                print("\n🚀 APPROVAL FLOW TRIGGERED")
+
+                config = {"configurable": {"thread_id": str(config_id)}}
+                print("⚙️ Resume config:", config)
+
+                result = await self.agent.resume(
+                    config=config,
+                    decisions=[{"type": "approve"}]
+                )
+                print(result)
+                
+        else:
+            prompt = context.get_user_input()
+            config, result = await self.agent.chat(prompt)
         await event_queue.enqueue_event(new_agent_text_message(result))
+    
         
         
         

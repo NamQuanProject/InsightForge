@@ -39,24 +39,26 @@ async def main():
     # =========================
     # Policy Agent (A2A)
     # =========================
-    trending_analysis_agent = A2AAgent(
-        url="http://0.0.0.0:9997",
-        memory=UnconstrainedMemory()
-    )
+    # trending_analysis_agent = A2AAgent(
+    #     url="http://0.0.0.0:9997",
+    #     memory=UnconstrainedMemory()
+    # )
 
     posting_agent = A2AAgent(
-        url="http://0.0.0.0:9999",
+        url="http://0.0.0.0:9995",
         memory = UnconstrainedMemory()
     )
 
 
-    await trending_analysis_agent.check_agent_exists()
-    print("\tℹ️", f"{trending_analysis_agent.name} initialized")
+    # await trending_analysis_agent.check_agent_exists()
+    # print("\tℹ️", f"{trending_analysis_agent.name} initialized")
 
     await posting_agent.check_agent_exists()
     print("\tℹ️", f"{posting_agent.name} initialized")
 
     think_tool = ThinkTool()
+
+
     my_super_strong_agent = RequirementAgent(
         name="InsightForge Agent",
         description="Product Manager Agent",
@@ -69,11 +71,11 @@ async def main():
         ),
         tools=[
             think_tool,
-            HandoffTool(
-                target=trending_analysis_agent,
-                name=trending_analysis_agent.name,
-                description=trending_analysis_agent.agent_card.description,
-            ),
+            # HandoffTool(
+            #     target=trending_analysis_agent,
+            #     name=trending_analysis_agent.name,
+            #     description=trending_analysis_agent.agent_card.description,
+            # ),
             HandoffTool(
                 target=posting_agent,
                 name=posting_agent.name,
@@ -93,7 +95,6 @@ async def main():
         You are a Product Manager Agent. Your task is to analyze the Product Manager and product analysis.
         - Use {posting_agent.name} for creating, scheduling, and publishing social media posts with human-in-the-loop approval. 
         Integrates with Upload-Post API for multi-platform posting. All the tools for posting are in {posting_agent.agent_card.description}.
-        - Use {trending_analysis_agent.name} for trending-related questions to research the markets
         """
     )
 

@@ -9,7 +9,9 @@ from langchain_mcp_adapters.sessions import StdioConnection
 from langchain.agents.middleware import HumanInTheLoopMiddleware
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.types import Command
-
+from database.client import db
+from database.model.thread import Thread
+from dataclasses import asdict
 
 SYSTEM_PROMPT = """You are a Social Media Posting Assistant.
 
@@ -92,17 +94,16 @@ class PostingAgent:
             config=config,
             version="v2",
         )
-
-
-        print(result)
+        
         answer = result["messages"][-1].content
-
+        print(result.interrupts)
         if result.interrupts:
-            answer = f"Interrupt triggered with value: {result.interrupts[0].value}"
-
+            answer = "The pipeline run successfully but it need approval from user"
+            thread_id = config.get("configurable", "").get("thread_id", "")
+            thread = Thread(id=thread_id, description="Temp", status="pending")
+            response = db.insert("agent_thread",thread.to_dict())
+            print(f"Data inserted: {response}")
             
-
-            print(f"{answer}")
         else:
             print(f"Response: {answer[:200]}...")
 
@@ -126,11 +127,13 @@ class PostingAgent:
     async def resume(self, config: Any, decisions: list) -> Any:
         """Resume agent execution after an interrupt with user decisions."""
         result = await self.agent.ainvoke(
-            Command(resume={"decisions": decisions}),
+            Command(resume={"decisions": [{"type": "approve"}]}),
             config=config,
             version="v2",
         )
-        return result
+
+        
+        return result["messages"][-1].content
 
     async def cleanup(self):
         """Cleanup resources."""

@@ -19,7 +19,8 @@ def main():
     print("Starting Posting Agent Server...")
     load_dotenv()
 
-    host = os.getenv("AGENT_HOST", "localhost")
+    host = os.getenv("AGENT_HOST", "0.0.0.0")
+    public_host = os.getenv("AGENT_PUBLIC_HOST", "localhost" if host == "0.0.0.0" else host)
     port = int(os.getenv("POSTING_AGENT_PORT", 9995))
 
     skill = AgentSkill(
@@ -40,7 +41,7 @@ def main():
         name="PostingAgent",
         description="An agent that creates, schedules, and publishes social media posts with human-in-the-loop approval. Integrates with Upload-Post API for multi-platform posting." \
         "Can get current username and others informations about accounts in upload-post and controlled your account activities as well as informations about your social plat-forms",
-        url=f"http://{host}:{port}/",
+        url=f"http://{public_host}:{port}/",
         version="1.0.0",
         default_input_modes=["text"],
         default_output_modes=["text"],
@@ -58,11 +59,12 @@ def main():
         agent_card=agent_card,
         http_handler=request_handler,
     )
+    app = server.build()
     print("\n=== REGISTERED ROUTES ===")
-    for route in server.build().routes:
+    for route in app.routes:
         print(route.path, route.methods)
 
-    uvicorn.run(server.build(), host=host, port=port)
+    uvicorn.run(app, host=host, port=port)
 
 
 if __name__ == "__main__":
