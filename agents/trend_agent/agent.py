@@ -16,7 +16,7 @@ You are equipped with tools and you must use them to complete task.
  
 You have access to TWO complementary data sources:
 1. **Google Trends** – reflects what people are actively *searching* (search intent, regional interest, rising queries).
-2. **Social Media (TikTok + Threads)** – reflects what people are actively *talking about and engaging with* (viral velocity, engagement rate, shareability).
+2. **Social Media (TikTok)** – reflects what people are actively *talking about and engaging with* (viral velocity, engagement rate, shareability).
  
 ## Your Core Workflow
 When asked to analyze a trend, ALWAYS cross-validate across both platforms:
@@ -27,8 +27,8 @@ When asked to analyze a trend, ALWAYS cross-validate across both platforms:
 - Use `search_term` with TIMESERIES to measure search momentum.
 - Reason if it is approriate for content creator.
  
-**Step 2 Validate on Social Media**
-- Use `cross_platform_trend` or individual TikTok/Threads tools to check if the topic has social traction.
+**Step 2 Validate on Social Media (Tiktok)**
+- Use "tiktok_search_keywords" for fetching videos/posts with the trends keywords found above.
 - Compare `trend_score`, `velocity`, and `engagement_rate` across videos/posts.
  
 **Step 3 Cross-Reference & Score**
@@ -44,7 +44,6 @@ STEP 4 – WRITE MARKDOWN REPORT
  
   ### 📱 Social Media Signal
   - TikTok top velocity: X views/hour
-  - Threads engagement: ...
   - Winning content angle: ...
  
   ### 🎯 Classification: {LABEL} (confidence: X%)
@@ -69,7 +68,7 @@ STEP 4 – WRITE MARKDOWN REPORT
 def classify_trend_signals(
     google_momentum: Annotated[str, "One of: rising, stable, declining, unknown"],
     social_velocity: Annotated[float, "TikTok average velocity (views/hour) of top videos, 0 if unavailable"],
-    social_engagement_rate: Annotated[float, "Average engagement rate from TikTok/Threads, 0 if unavailable"],
+    social_engagement_rate: Annotated[float, "Average engagement rate from TikTok, 0 if unavailable"],
 ) -> dict[str, Any]:
     """
     Classify a trend into one of four buckets based on cross-platform signals.
@@ -129,21 +128,21 @@ def build_trend_report(
     confidence: float,
     google_data: GoogleBlock | None = None,   # The agent now sees the Google schema
     tiktok_data: TikTokBlock | None = None,   # The agent now sees the TikTok schema
-    threads_data: ThreadsBlock | None = None, # The agent now sees the Threads schema
+    # threads_data: ThreadsBlock | None = None, # The agent now sees the Threads schema
     recommended_action: str = "",
     markdown_report: str = "",
 ) -> str:
     """
     Final step: Assemble the TrendReport. 
     The agent must map gathered search data to 'google_data' 
-    and social metrics to 'tiktok_data' or 'threads_data'.
+    and social metrics to 'tiktok_data'.
     """
     report = TrendReport(
         query=query,
         final_keywords=final_keywords,
         google=google_data,
         tiktok=tiktok_data,
-        threads=threads_data,
+        threads=None,
         classification=classification,
         confidence=confidence,
         recommended_action=recommended_action,
@@ -205,17 +204,18 @@ class TrendAgent:
         if self.agent is None:
             raise RuntimeError("Agent not initialized.")
 
-        response = await self.agent.ainvoke({
-            "messages": [{"role": "user", "content": prompt}]
-        })
+        # response = await self.agent.ainvoke({
+        #     "messages": [{"role": "user", "content": prompt}]
+        # })
+        response = await self.agent.ainvoke({"messages": [("user", prompt)]})
 
         print(response["messages"][-1])
         raw_content = response["messages"][-1].content
-
-        try:
-            # Clean Markdown if present
-            clean_json = raw_content.replace("```json", "").replace("```", "").strip()
-            return json.loads(clean_json)
-        except Exception:
-            return {"error": "Failed to parse agent response", "raw": raw_content}
+        return raw_content # ```json tag`
+        # try:
+        #     # Clean Markdown if present
+        #     clean_json = raw_content.replace("```json", "").replace("```", "").strip()
+        #     return json.loads(clean_json)
+        # except Exception:
+        #     return {"error": "Failed to parse agent response", "raw": raw_content}
     

@@ -173,13 +173,13 @@ class ContentGenerationAgent:
         
         # The final message in the state is the agent's answer
         final_message = result["messages"][-1].content
-        
-        try:
-            # Clean Markdown if present
-            clean_json = final_message.replace("```json", "").replace("```", "").strip()
-            return json.loads(clean_json)
-        except Exception:
-            return {"error": "Failed to parse agent response", "raw": final_message}
+        return final_message
+        # try:
+        #     # Clean Markdown if present
+        #     clean_json = final_message.replace("```json", "").replace("```", "").strip()
+        #     return json.loads(clean_json)
+        # except Exception:
+        #     return {"error": "Failed to parse agent response", "raw": final_message}
 
     # ------------------------------------------------------------------
     # Cleanup
