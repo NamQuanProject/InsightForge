@@ -16,6 +16,21 @@ from app.schema.upload_post import (
 
 
 class UploadPostApiService:
+    PROFILE_USER_ENV_KEYS = (
+        "UPLOAD_POST_DEFAULT_USER",
+        "UPLOAD_POST_YOUTUBE_USER",
+        "UPLOAD_POST_TIKTOK_USER",
+        "UPLOAD_POST_INSTAGRAM_USER",
+        "UPLOAD_POST_FACEBOOK_USER",
+        "UPLOAD_POST_X_USER",
+        "UPLOAD_POST_THREADS_USER",
+        "UPLOAD_POST_LINKEDIN_USER",
+        "UPLOAD_POST_BLUESKY_USER",
+        "UPLOAD_POST_REDDIT_USER",
+        "UPLOAD_POST_PINTEREST_USER",
+        "UPLOAD_POST_GOOGLE_BUSINESS_USER",
+    )
+
     def __init__(self) -> None:
         load_dotenv()
         self.base_url = os.getenv("UPLOAD_POST_BASE_URL", "https://api.upload-post.com/api").rstrip("/")
@@ -23,6 +38,32 @@ class UploadPostApiService:
 
     def get_current_user(self) -> dict[str, Any]:
         return self._request_json("GET", "/uploadposts/me", headers=self._api_key_headers())
+
+    def get_account_bundle(self) -> dict[str, Any]:
+        account = self.get_current_user()
+        profiles_payload = self._request_json("GET", "/uploadposts/users", headers=self._api_key_headers())
+        raw_profiles = profiles_payload.get("profiles", [])
+        if not isinstance(raw_profiles, list):
+            raw_profiles = []
+
+        profiles = [self._profile_dict(item) for item in raw_profiles if isinstance(item, dict)]
+        social_accounts = self._collect_social_accounts(profiles)
+        connected_platforms = sorted(social_accounts.keys())
+
+        return {
+            "account": account,
+            "profiles_payload": profiles_payload,
+            "profiles": profiles,
+            "social_accounts": social_accounts,
+            "connected_platforms": connected_platforms,
+        }
+
+    def get_configured_profile_username(self) -> str | None:
+        for key in self.PROFILE_USER_ENV_KEYS:
+            value = os.getenv(key)
+            if value and value.strip():
+                return value.strip()
+        return None
 
     def create_profile(self, payload: UploadPostCreateProfileRequest) -> dict[str, Any]:
         data = self._request_json(
@@ -93,7 +134,7 @@ class UploadPostApiService:
         }
 
     def validate_jwt(self, jwt_token: str) -> dict[str, Any]:
-        data = self._request_with_token_fallback(
+        data = self._request_with_auth_fallback(
             "POST",
             "/uploadposts/users/validate-jwt",
             jwt_token=jwt_token,
@@ -112,7 +153,7 @@ class UploadPostApiService:
         self,
         profile_username: str,
         platforms: list[str],
-        jwt_token: str,
+        jwt_token: str | None = None,
         page_id: str | None = None,
         page_urn: str | None = None,
     ) -> dict[str, Any]:
@@ -125,7 +166,7 @@ class UploadPostApiService:
         if page_urn:
             query["page_urn"] = page_urn
 
-        return self._request_with_token_fallback(
+        return self._request_with_auth_fallback(
             "GET",
             f"/analytics/{profile_username}",
             jwt_token=jwt_token,
@@ -136,7 +177,7 @@ class UploadPostApiService:
     def get_total_impressions(
         self,
         profile_username: str,
-        jwt_token: str,
+        jwt_token: str | None = None,
         date: str | None = None,
         start_date: str | None = None,
         end_date: str | None = None,
@@ -161,7 +202,7 @@ class UploadPostApiService:
         if metrics:
             query["metrics"] = ",".join(metrics)
 
-        return self._request_with_token_fallback(
+        return self._request_with_auth_fallback(
             "GET",
             f"/uploadposts/total-impressions/{profile_username}",
             jwt_token=jwt_token,
@@ -169,9 +210,14 @@ class UploadPostApiService:
             schemes=("Apikey", "Bearer"),
         )
 
-    def get_post_analytics(self, request_id: str, jwt_token: str, platform: str | None = None) -> dict[str, Any]:
+    def get_post_analytics(
+        self,
+        request_id: str,
+        jwt_token: str | None = None,
+        platform: str | None = None,
+    ) -> dict[str, Any]:
         query = {"platform": platform} if platform else None
-        return self._request_with_token_fallback(
+        return self._request_with_auth_fallback(
             "GET",
             f"/uploadposts/post-analytics/{request_id}",
             jwt_token=jwt_token,
@@ -235,33 +281,59 @@ class UploadPostApiService:
             )
         return token
 
-    def _request_with_token_fallback(
+    def _request_with_auth_fallback(
         self,
         method: str,
         path: str,
-        jwt_token: str,
+        jwt_token: str | None = None,
         query: dict[str, Any] | None = None,
         body: dict[str, Any] | None = None,
         schemes: tuple[str, ...] = ("Apikey", "Bearer"),
     ) -> dict[str, Any]:
-        token = self._resolve_jwt(jwt_token)
+        auth_headers = self._build_auth_headers(jwt_token=jwt_token, schemes=schemes)
         last_error: HTTPException | None = None
-        for scheme in schemes:
+        for headers in auth_headers:
             try:
                 return self._request_json(
                     method,
                     path,
                     query=query,
                     body=body,
-                    headers={"Authorization": f"{scheme} {token}"},
+                    headers=headers,
                 )
             except HTTPException as exc:
                 last_error = exc
-                if exc.status_code != 401 or scheme == schemes[-1]:
+                if exc.status_code != 401 or headers == auth_headers[-1]:
                     raise
         if last_error is not None:
             raise last_error
         raise HTTPException(status_code=500, detail="Upload-Post request failed unexpectedly.")
+
+    def _build_auth_headers(
+        self,
+        jwt_token: str | None,
+        schemes: tuple[str, ...],
+    ) -> list[dict[str, str]]:
+        auth_headers: list[dict[str, str]] = []
+        for scheme in schemes:
+            if scheme == "Apikey":
+                api_key = os.getenv("UPLOAD_POST_API_KEY")
+                if api_key:
+                    auth_headers.append({"Authorization": f"Apikey {api_key}"})
+            elif scheme == "Bearer":
+                token = jwt_token or os.getenv("UPLOAD_POST_JWT")
+                if token:
+                    auth_headers.append({"Authorization": f"Bearer {token}"})
+            else:
+                raise HTTPException(status_code=500, detail=f"Unsupported Upload-Post auth scheme: {scheme}")
+
+        if auth_headers:
+            return auth_headers
+
+        if schemes == ("Bearer",):
+            self._resolve_jwt(jwt_token)
+
+        raise HTTPException(status_code=500, detail="Missing UPLOAD_POST_API_KEY in the backend environment.")
 
     def _request_json(
         self,
@@ -317,7 +389,7 @@ class UploadPostApiService:
         if payload is None:
             raise HTTPException(status_code=502, detail="Upload-Post returned an empty profile payload.")
 
-        social_accounts = payload.get("social_accounts") or payload.get("socials") or {}
+        social_accounts = self._extract_social_accounts(payload)
         if not isinstance(social_accounts, dict):
             social_accounts = {"raw": social_accounts}
 
@@ -326,6 +398,55 @@ class UploadPostApiService:
             created_at=payload.get("created_at"),
             social_accounts=social_accounts,
         )
+
+    def _profile_dict(self, payload: dict[str, Any]) -> dict[str, Any]:
+        normalized = self._normalize_profile(payload)
+        profile = normalized.model_dump()
+        profile["raw"] = payload
+        return profile
+
+    def _extract_social_accounts(self, payload: dict[str, Any]) -> dict[str, Any]:
+        for key in ("social_accounts", "socials", "connected_accounts", "accounts", "platforms"):
+            value = payload.get(key)
+            if isinstance(value, dict):
+                return value
+            if isinstance(value, list):
+                return self._social_account_list_to_dict(value)
+        return {}
+
+    def _social_account_list_to_dict(self, values: list[Any]) -> dict[str, Any]:
+        accounts: dict[str, Any] = {}
+        for index, value in enumerate(values):
+            if isinstance(value, dict):
+                platform = (
+                    value.get("platform")
+                    or value.get("provider")
+                    or value.get("type")
+                    or value.get("name")
+                    or f"account_{index + 1}"
+                )
+                accounts[str(platform)] = value
+            else:
+                accounts[str(value)] = {"value": value}
+        return accounts
+
+    def _collect_social_accounts(self, profiles: list[dict[str, Any]]) -> dict[str, Any]:
+        social_accounts: dict[str, Any] = {}
+        for profile in profiles:
+            username = str(profile.get("username") or "")
+            accounts = profile.get("social_accounts")
+            if not isinstance(accounts, dict):
+                continue
+            for platform, account in accounts.items():
+                platform_key = str(platform)
+                social_accounts.setdefault(platform_key, [])
+                social_accounts[platform_key].append(
+                    {
+                        "profile_username": username,
+                        "account": account,
+                    }
+                )
+        return social_accounts
 
     def _coerce_int(self, value: Any) -> int | None:
         if value is None or value == "":

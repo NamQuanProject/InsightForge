@@ -1,17 +1,77 @@
 import uuid
 from typing import Any
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 
 from app.db import get_session_factory
 from app.models import GeneratedContent, PublishJob, TrendAnalysis, User
+from app.schema.user import UserResponse, UserSummaryResponse
 
 
 class PostgresService:
-    async def create_user(self, email: str, name: str | None = None, plan: str | None = None) -> User:
+    async def create_user(
+        self,
+        email: str,
+        name: str | None = None,
+        plan: str | None = None,
+        upload_post_account: dict[str, Any] | None = None,
+        profiles: list[dict[str, Any]] | None = None,
+        social_accounts: dict[str, Any] | None = None,
+        connected_platforms: list[str] | None = None,
+    ) -> User:
         async with get_session_factory()() as session:
-            user = User(email=email, name=name, plan=plan)
+            user = User(
+                email=email,
+                name=name,
+                plan=plan,
+                upload_post_account=upload_post_account or {},
+                profiles=profiles or [],
+                social_accounts=social_accounts or {},
+                connected_platforms=connected_platforms or [],
+            )
             session.add(user)
+            await session.commit()
+            await session.refresh(user)
+            return user
+
+    async def upsert_user(
+        self,
+        email: str,
+        name: str | None = None,
+        plan: str | None = None,
+        upload_post_account: dict[str, Any] | None = None,
+        profiles: list[dict[str, Any]] | None = None,
+        social_accounts: dict[str, Any] | None = None,
+        connected_platforms: list[str] | None = None,
+    ) -> User:
+        async with get_session_factory()() as session:
+            result = await session.execute(select(User).where(User.email == email))
+            user = result.scalar_one_or_none()
+            if user is None:
+                user = User(
+                    email=email,
+                    name=name,
+                    plan=plan,
+                    upload_post_account=upload_post_account or {},
+                    profiles=profiles or [],
+                    social_accounts=social_accounts or {},
+                    connected_platforms=connected_platforms or [],
+                )
+                session.add(user)
+            else:
+                if name is not None:
+                    user.name = name
+                if plan is not None:
+                    user.plan = plan
+                if upload_post_account is not None:
+                    user.upload_post_account = upload_post_account
+                if profiles is not None:
+                    user.profiles = profiles
+                if social_accounts is not None:
+                    user.social_accounts = social_accounts
+                if connected_platforms is not None:
+                    user.connected_platforms = connected_platforms
+
             await session.commit()
             await session.refresh(user)
             return user
@@ -21,10 +81,34 @@ class PostgresService:
             result = await session.execute(select(User).order_by(User.created_at.desc()))
             return list(result.scalars().all())
 
+    async def list_user_summaries(self) -> list[UserSummaryResponse]:
+        async with get_session_factory()() as session:
+            result = await session.execute(select(User).order_by(User.created_at.desc()))
+            users = list(result.scalars().all())
+            summaries: list[UserSummaryResponse] = []
+            for user in users:
+                summaries.append(
+                    UserSummaryResponse(
+                        **self._user_payload(user),
+                        trend_analysis_count=await self._count_for_user(session, TrendAnalysis, user.id),
+                        generated_content_count=await self._count_for_user(session, GeneratedContent, user.id),
+                        publish_job_count=await self._count_for_user(session, PublishJob, user.id),
+                    )
+                )
+            return summaries
+
     async def get_user(self, user_id: uuid.UUID | str) -> User | None:
         parsed_id = self._coerce_uuid(user_id)
         async with get_session_factory()() as session:
             return await session.get(User, parsed_id)
+
+    async def get_user_response(self, user_id: uuid.UUID | str) -> UserResponse | None:
+        parsed_id = self._coerce_uuid(user_id)
+        async with get_session_factory()() as session:
+            user = await session.get(User, parsed_id)
+            if user is None:
+                return None
+            return UserResponse(**self._user_payload(user))
 
     async def save_trend_analysis(
         self,
@@ -249,3 +333,20 @@ class PostgresService:
         if value is None:
             return None
         return str(value)
+
+    async def _count_for_user(self, session, model, user_id: uuid.UUID) -> int:
+        result = await session.execute(select(func.count()).where(model.user_id == user_id))
+        return int(result.scalar_one() or 0)
+
+    def _user_payload(self, user: User) -> dict[str, Any]:
+        return {
+            "id": user.id,
+            "email": user.email,
+            "name": user.name,
+            "plan": user.plan,
+            "upload_post_account": user.upload_post_account or {},
+            "profiles": user.profiles or [],
+            "social_accounts": user.social_accounts or {},
+            "connected_platforms": user.connected_platforms or [],
+            "created_at": user.created_at,
+        }

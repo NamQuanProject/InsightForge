@@ -38,7 +38,7 @@ class UploadPostPublishService:
 
     async def publish(
         self,
-        user: str,
+        user: str | None,
         platforms: list[str],
         title: str,
         description: str | None = None,
@@ -55,12 +55,13 @@ class UploadPostPublishService:
             raise HTTPException(status_code=500, detail="Missing UPLOAD_POST_API_KEY in the backend environment.")
 
         normalized_platforms = self._normalize_platforms(platforms)
+        resolved_user = self.resolve_user(user=user, platforms=normalized_platforms)
         normalized_asset_urls = [url.strip() for url in (asset_urls or []) if url and url.strip()]
         uploaded_files = [file for file in (files or []) if file.filename]
 
         post_kind = self._infer_post_kind(uploaded_files, normalized_asset_urls)
         data: dict[str, Any] = {
-            "user": user,
+            "user": resolved_user,
             "platform[]": normalized_platforms,
             "title": title,
         }
@@ -109,8 +110,31 @@ class UploadPostPublishService:
             "success": True,
             "post_kind": post_kind,
             "platforms": normalized_platforms,
+            "user": resolved_user,
             "payload": payload,
         }
+
+    def resolve_user(self, user: str | None, platforms: list[str]) -> str:
+        if user and user.strip():
+            return user.strip()
+
+        for platform in platforms:
+            platform_user = os.getenv(f"UPLOAD_POST_{platform.upper()}_USER")
+            if platform_user and platform_user.strip():
+                return platform_user.strip()
+
+        default_user = os.getenv("UPLOAD_POST_DEFAULT_USER")
+        if default_user and default_user.strip():
+            return default_user.strip()
+
+        platform_names = ", ".join(platforms) or "the requested platform"
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                f"Missing upload-post profile for {platform_names}. "
+                "Provide 'user' in the request or set UPLOAD_POST_<PLATFORM>_USER."
+            ),
+        )
 
     def _normalize_platforms(self, platforms: list[str]) -> list[str]:
         normalized: list[str] = []

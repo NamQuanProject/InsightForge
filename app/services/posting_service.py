@@ -15,7 +15,7 @@ class PostingService:
 
     async def publish(
         self,
-        profile_username: str,
+        profile_username: str | None,
         platforms: list[str],
         title: str,
         description: str | None = None,
@@ -42,6 +42,7 @@ class PostingService:
             asset_urls=asset_urls,
             files=files,
         )
+        resolved_profile_username = str(provider_payload.get("user") or profile_username)
         uploaded_files = [
             {
                 "filename": upload.filename or "",
@@ -51,7 +52,7 @@ class PostingService:
             if upload.filename
         ]
         record = await self.postgres.save_publish_job(
-            profile_username=profile_username,
+            profile_username=resolved_profile_username,
             platforms=provider_payload.get("platforms", platforms),
             title=title,
             provider_response=provider_payload,

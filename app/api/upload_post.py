@@ -23,8 +23,8 @@ from app.schema.upload_post import (
     UploadPostValidateJwtResponse,
 )
 from app.services.posting_service import PostingService
+from app.services.postgres_service import PostgresService
 from app.services.upload_post_service import UploadPostApiService
-from app.services.upload_post_mock_service import UploadPostMockService
 
 router = APIRouter(prefix="/api/v1/upload-post", tags=["upload-post"])
 bearer_scheme = HTTPBearer(auto_error=False)
@@ -40,7 +40,29 @@ def _extract_token(credentials: HTTPAuthorizationCredentials | None) -> str | No
 
 @router.get("/account/me", response_model=UploadPostCurrentUserResponse)
 async def get_upload_post_account():
-    return UploadPostApiService().get_current_user()
+    upload_post_service = UploadPostApiService()
+    bundle = upload_post_service.get_account_bundle()
+    account = bundle["account"]
+    email = account.get("email")
+    if not email:
+        raise HTTPException(status_code=502, detail="Upload-Post account response did not include an email.")
+
+    app_user = await PostgresService().upsert_user(
+        email=str(email),
+        name=upload_post_service.get_configured_profile_username(),
+        plan=account.get("plan"),
+        upload_post_account=account,
+        profiles=bundle["profiles"],
+        social_accounts=bundle["social_accounts"],
+        connected_platforms=bundle["connected_platforms"],
+    )
+    return {
+        **account,
+        "profiles": bundle["profiles"],
+        "social_accounts": bundle["social_accounts"],
+        "connected_platforms": bundle["connected_platforms"],
+        "app_user": app_user,
+    }
 
 
 @router.post("/users", response_model=UploadPostProfileResponse)
@@ -58,7 +80,7 @@ async def get_upload_post_history(
     page: int = Query(default=1, ge=1),
     limit: int = Query(default=20, ge=1, le=100),
 ):
-    payload = UploadPostMockService().get_history(page=page, limit=limit)
+    payload = UploadPostApiService().get_history(page=page, limit=limit)
     return UploadPostHistoryEnvelope(payload=payload)
 
 
@@ -79,7 +101,7 @@ async def generate_upload_post_jwt(payload: UploadPostGenerateJwtRequest):
 
 @router.post("/publish", response_model=UploadPostPublishResponse)
 async def publish_upload_post_content(
-    user: str = Form(..., min_length=1),
+    user: str | None = Form(default=None),
     platforms: str = Form(..., description="Comma-separated platform list, e.g. youtube,tiktok"),
     title: str = Form(..., min_length=1),
     description: str | None = Form(default=None),
@@ -93,9 +115,10 @@ async def publish_upload_post_content(
     user_id: uuid.UUID | None = Form(default=None),
     generated_content_id: uuid.UUID | None = Form(default=None),
 ):
+    normalized_platforms = _normalize_csv_field(platforms)
     publish_job, provider_payload = await PostingService().publish(
         profile_username=user,
-        platforms=_normalize_csv_field(platforms),
+        platforms=normalized_platforms,
         title=title,
         description=description,
         tags=_normalize_csv_field(tags) if tags else [],
@@ -151,10 +174,14 @@ async def get_upload_post_profile_analytics(
     ),
     page_id: str | None = None,
     page_urn: str | None = None,
+    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
 ):
-    payload = UploadPostMockService().get_profile_analytics(
+    payload = UploadPostApiService().get_profile_analytics(
         profile_username=profile_username,
         platforms=_normalize_list_query(platforms),
+        jwt_token=_extract_token(credentials),
+        page_id=page_id,
+        page_urn=page_urn,
     )
     return UploadPostAnalyticsEnvelope(profile_username=profile_username, payload=payload)
 
@@ -172,14 +199,16 @@ async def get_upload_post_total_impressions(
     platform: list[str] | None = Query(default=None),
     breakdown: bool = False,
     metrics: list[str] | None = Query(default=None),
+    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
 ):
-    payload = UploadPostMockService().get_total_impressions(
+    payload = UploadPostApiService().get_total_impressions(
         profile_username=profile_username,
-        date_value=date,
+        jwt_token=_extract_token(credentials),
+        date=date,
         start_date=start_date,
         end_date=end_date,
         period=period,
-        platforms=_normalize_list_query(platform) if platform else None,
+        platform=_normalize_list_query(platform) if platform else None,
         breakdown=breakdown,
         metrics=_normalize_list_query(metrics) if metrics else None,
     )
@@ -190,9 +219,11 @@ async def get_upload_post_total_impressions(
 async def get_upload_post_post_analytics(
     request_id: str,
     platform: str | None = None,
+    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
 ):
-    payload = UploadPostMockService().get_post_analytics(
+    payload = UploadPostApiService().get_post_analytics(
         request_id=request_id,
+        jwt_token=_extract_token(credentials),
         platform=platform,
     )
     return UploadPostPostAnalyticsEnvelope(request_id=request_id, payload=payload)
@@ -205,7 +236,7 @@ async def get_upload_post_comments(
     post_id: str | None = None,
     post_url: str | None = None,
 ):
-    payload = UploadPostMockService().get_comments(
+    payload = UploadPostApiService().get_comments(
         platform=platform,
         user=user,
         post_id=post_id,

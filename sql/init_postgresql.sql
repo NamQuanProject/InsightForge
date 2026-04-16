@@ -5,8 +5,18 @@ CREATE TABLE IF NOT EXISTS users (
     email TEXT NOT NULL UNIQUE,
     name TEXT,
     plan TEXT,
+    upload_post_account JSONB NOT NULL DEFAULT '{}'::jsonb,
+    profiles JSONB NOT NULL DEFAULT '[]'::jsonb,
+    social_accounts JSONB NOT NULL DEFAULT '{}'::jsonb,
+    connected_platforms JSONB NOT NULL DEFAULT '[]'::jsonb,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+ALTER TABLE users
+    ADD COLUMN IF NOT EXISTS upload_post_account JSONB NOT NULL DEFAULT '{}'::jsonb,
+    ADD COLUMN IF NOT EXISTS profiles JSONB NOT NULL DEFAULT '[]'::jsonb,
+    ADD COLUMN IF NOT EXISTS social_accounts JSONB NOT NULL DEFAULT '{}'::jsonb,
+    ADD COLUMN IF NOT EXISTS connected_platforms JSONB NOT NULL DEFAULT '[]'::jsonb;
 
 CREATE TABLE IF NOT EXISTS trend_analyses (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

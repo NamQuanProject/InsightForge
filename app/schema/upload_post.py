@@ -4,6 +4,8 @@ from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from app.schema.user import UserResponse
+
 
 class UploadPostProfile(BaseModel):
     username: str
@@ -16,6 +18,10 @@ class UploadPostCurrentUserResponse(BaseModel):
     message: str | None = None
     email: str | None = None
     plan: str | None = None
+    profiles: list[dict[str, Any]] = Field(default_factory=list)
+    social_accounts: dict[str, Any] = Field(default_factory=dict)
+    connected_platforms: list[str] = Field(default_factory=list)
+    app_user: UserResponse | None = None
 
 
 class UploadPostCreateProfileRequest(BaseModel):

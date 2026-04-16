@@ -1,5 +1,6 @@
 from datetime import datetime
 import uuid
+from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -8,6 +9,10 @@ class UserCreateRequest(BaseModel):
     email: str = Field(..., min_length=3)
     name: str | None = None
     plan: str | None = None
+    upload_post_account: dict[str, Any] = Field(default_factory=dict)
+    profiles: list[dict[str, Any]] = Field(default_factory=list)
+    social_accounts: dict[str, Any] = Field(default_factory=dict)
+    connected_platforms: list[str] = Field(default_factory=list)
 
 
 class UserResponse(BaseModel):
@@ -17,6 +22,10 @@ class UserResponse(BaseModel):
     email: str
     name: str | None = None
     plan: str | None = None
+    upload_post_account: dict[str, Any] = Field(default_factory=dict)
+    profiles: list[dict[str, Any]] = Field(default_factory=list)
+    social_accounts: dict[str, Any] = Field(default_factory=dict)
+    connected_platforms: list[str] = Field(default_factory=list)
     created_at: datetime
 
 
