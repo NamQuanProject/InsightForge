@@ -25,3 +25,4 @@ upload-post
 numpy
 cloudflare
 supabase
+google-genai
