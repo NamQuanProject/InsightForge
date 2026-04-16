@@ -5,6 +5,13 @@ from dotenv import load_dotenv
 import base64
 import requests
 from mcp.server.fastmcp import FastMCP
+from database.client import db
+from integrations_api.embedding import embedder
+import os
+import json
+import numpy as np
+import asyncio
+from langchain.tools import tool
 
 load_dotenv()
 
@@ -17,7 +24,14 @@ def _get_headers() -> dict:
     return {"Authorization": f"Apikey {UPLOAD_POST_API_KEY}"}
 
 
-def photo_convert(photos: list[str]) -> list[str]:
+def get_all_upload_images():
+    results = db.get_all("image_store")
+    print(results)
+    return results
+
+
+
+async def photo_convert(photos: list[str]) -> list[str]:
     api_key = os.getenv("IMG_BB_API_KEY", "")
     if not api_key:
         raise Exception("IMG_BB_API_KEY not configured")
@@ -31,12 +45,17 @@ def photo_convert(photos: list[str]) -> list[str]:
             continue
 
         try:
-            with open(photo, "rb") as f:
-                image_data = base64.b64encode(f.read()).decode("utf-8")
+            def read_file():
+                with open(photo, "rb") as f:
+                    return base64.b64encode(f.read()).decode("utf-8")
+
+            image_data = await asyncio.to_thread(read_file)
 
             payload = {"key": api_key, "image": image_data}
-            response = requests.post(url, data=payload)
-            result = response.json()
+
+            async with httpx.AsyncClient(timeout=60.0) as client:
+                response = await client.post(url, data=payload)
+                result = response.json()
 
             if result.get("success"):
                 result_urls.append(result["data"]["url"])
@@ -47,6 +66,7 @@ def photo_convert(photos: list[str]) -> list[str]:
             raise Exception(f"Error processing {photo}: {str(e)}")
 
     return result_urls
+
 
 
 async def _upload_post_request(endpoint: str, data: dict, files: dict = None) -> dict:
@@ -90,6 +110,10 @@ async def _get_request(endpoint: str, params: dict = None) -> dict:
             return response.json()
         except Exception as e:
             return {"success": False, "error": str(e)}
+
+
+
+
 
 
 @mcp.tool()
@@ -142,8 +166,7 @@ async def upload_photos(
     if not UPLOAD_POST_API_KEY:
         return {"success": False, "error": "Upload-Post API key not configured"}
 
-    converted_photos = photo_convert(photos)
-
+    converted_photos = await photo_convert(photos)
     data = {
         "user": user,
         "platform[]": platform,
@@ -258,19 +281,52 @@ async def get_analytics(
     result = await _get_request(f"analytics/{profile_username}", params)
     return result
 
-
-@mcp.tool()
-async def validate_api_key() -> dict:
-    """Validate API key."""
-    result = await _get_request("uploadposts/me")
-    return result
-
-
 @mcp.tool()
 async def get_user_profile() -> dict:
     """Get user profile."""
     result = await _get_request("uploadposts/users")
     return result
+
+
+@mcp.tool()
+async def image_rag(query: str) -> dict:
+    """Retrieve information to help answer a query.""" 
+    embedding_folder = "./sample_data/embeddings/"
+    metadata_path = "./sample_data/metadata.json"
+
+    # 1. Load data (using to_thread to keep MCP responsive)
+    def load_local_data():
+        with open(metadata_path, "r") as f:
+            meta = json.load(f)
+        
+        vectors, meta_list = [], []
+        for file in sorted(os.listdir(embedding_folder)):
+            if file.endswith(".npy"):
+                item_id = file.replace(".npy", "")
+                if item_id in meta:
+                    vec = np.load(os.path.join(embedding_folder, file))
+                    vectors.append(vec)
+                    meta_list.append({"id": item_id, **meta[item_id]})
+        return vectors, meta_list
+
+    db_vectors, db_metadata = await asyncio.to_thread(load_local_data)
+
+    if not db_vectors:
+        return {"query": query, "results": [], "message": "No embeddings found"}
+
+    # 2. EMBED QUERY (CRITICAL: MUST BE AWAITED)
+    # This was your error: you were calling it like a normal function
+    query_vec = await embedder.embed_text(query)
+    
+    # 3. SEARCH
+    results = embedder.search(
+        query_vec=query_vec,
+        db_vectors=db_vectors,
+        metadata=db_metadata,   
+        top_k=1
+    )
+
+    return {"query": query, "results": results}
 
 
 if __name__ == "__main__":

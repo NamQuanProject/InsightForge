@@ -6,3 +6,4 @@ __pycache__/
 credentials/
 *.json
 InsightForge-Copy
+sample_data/

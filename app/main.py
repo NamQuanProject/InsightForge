@@ -10,3 +10,4 @@ app = FastAPI(
 
 app.include_router(health_router)
 app.include_router(trends_router)
+app.include_router(post_router)

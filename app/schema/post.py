@@ -10,3 +10,8 @@ class PostRequest(BaseModel):
     )
 
 
+class PostResponse(BaseModel):
+    status: str
+    source: str
+    result_markdown: str
+
