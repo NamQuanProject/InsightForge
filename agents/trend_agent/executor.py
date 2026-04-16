@@ -1,5 +1,5 @@
+import json
 import os
-import uvicorn
 from dotenv import load_dotenv
 
 from a2a.server.agent_execution import AgentExecutor, RequestContext
@@ -20,14 +20,19 @@ class TrendAgentExecutor(AgentExecutor):
     async def _ensure_initialized(self) -> None:
         """Lazy initialization of the agent."""
         if self.agent is None:
-            api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
+            api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY") or os.getenv("OPENAI_API_KEY")
             self.agent = await TrendAgent(api_key=api_key).initialize()
 
     async def execute(self, context: RequestContext, event_queue: EventQueue) -> None:
         await self._ensure_initialized()
         prompt = context.get_user_input()
         response = await self.agent.answer_query(prompt)
-        await event_queue.enqueue_event(new_agent_text_message(response))
+        if isinstance(response, dict):
+            structured = response.get("structured_data")
+            payload = json.dumps(structured, ensure_ascii=False, indent=2) if structured else response.get("display_text", "")
+        else:
+            payload = str(response)
+        await event_queue.enqueue_event(new_agent_text_message(payload))
 
     async def cancel(self, context: RequestContext, event_queue: EventQueue) -> None:
         pass

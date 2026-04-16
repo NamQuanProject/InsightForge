@@ -53,7 +53,8 @@ class TiktokTrend:
 
         for post in posts:
             item = post.get("itemInfos", {})
-            video_urls = item.get("video", {}).get("urls", [])[-1]
+            url_list = item.get("video", {}).get("urls", [])
+            video_urls = url_list[-1] if url_list else None
             author = post.get("authorInfos", {})
 
             caption = item.get("text", "")
@@ -155,7 +156,7 @@ class TiktokTrend:
             "token": self.token,
         }
 
-        res = requests.get(url, params=params, timeout=30)
+        res = requests.get(url, params=params, timeout=60)
         res.raise_for_status()
         return res.json()
 
@@ -177,7 +178,7 @@ class TiktokTrend:
             "token": self.token,
         }
 
-        res = requests.get(url, params=params)
+        res = requests.get(url, params=params, timeout=60)
         res.raise_for_status()
         return res.json()
 

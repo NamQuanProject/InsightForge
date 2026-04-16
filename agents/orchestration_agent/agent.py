@@ -45,8 +45,20 @@ You have two specialist sub-agents available as tools:
   of call_content_agent after the trend report.
 - Reply in the same language as the user's query.
 - Do NOT fabricate trend data or content. Everything must flow from the tool outputs.
-- Return the final result clearly structured in JSON including both trend analysis and content generation, preserving the JSON from call_trend_agent when insights wer generated and
-call_content_agent when content was generated.
+- Your final answer MUST be valid JSON only. No prose outside JSON.
+- When the user asks for both trend insights and content ideas, return:
+  {
+    "trend_analysis": <JSON object returned by call_trend_agent>,
+    "generated_content": <JSON object returned by call_content_agent>
+  }
+- When the user only asks for trends, return:
+  {
+    "trend_analysis": <JSON object returned by call_trend_agent>,
+    "generated_content": null
+  }
+- Preserve the original JSON from call_trend_agent and call_content_agent as much as possible.
+- If one tool returns invalid JSON, wrap its raw text in:
+  { "raw": "<tool output>" }
 """
 
 # ---------------------------------------------------------------------------
@@ -54,19 +66,19 @@ call_content_agent when content was generated.
 # ---------------------------------------------------------------------------
 
 def build_routing_agent() -> RequirementAgent:
-    llm = ChatModel.from_name(
-        "gemini:gemini-2.5-flash"
-    )
+    model_name = os.getenv("ROUTING_AGENT_MODEL", "gemini:gemini-2.5-flash")
+    llm = ChatModel.from_name(model_name)
+    think_tool = ThinkTool()
 
     return RequirementAgent(
         llm=llm,
         tools=[
-            ThinkTool(),           # Forces explicit reasoning before tool dispatch
+            think_tool,
             call_trend_agent,
             call_content_agent,
         ],
         # Force ThinkTool on the first step so the LLM reasons before acting
-        requirements=[ConditionalRequirement(ThinkTool, force_at_step=1)],
+        requirements=[ConditionalRequirement(think_tool, force_at_step=1, consecutive_allowed=False)],
         role="Content Pipeline Router",
         instructions=ROUTER_INSTRUCTIONS,
         memory=UnconstrainedMemory(),

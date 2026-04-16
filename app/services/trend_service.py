@@ -86,7 +86,7 @@ class TrendService:
 
         async with self.__class__._lock:
             if self.__class__._agent is None:
-                api_key = os.getenv("OPENAI_API_KEY")
+                api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY") or os.getenv("OPENAI_API_KEY")
                 self.__class__._agent = await TrendAgent(api_key=api_key).initialize()
         return self.__class__._agent
 

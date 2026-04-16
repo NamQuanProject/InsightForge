@@ -8,7 +8,9 @@ from integrations_api.tiktok_trending_search import TiktokTrend
 from mcp_servers.social_media_servers.helpers import _format_threads_results, _format_tiktok_results
 
 load_dotenv()
-ENSEMBLE_TOKEN = os.getenv("ENSEMBLEDATA_API_KEY", "")
+ENSEMBLE_TOKEN = (
+    os.getenv("ENSEMBLEDATA_API_KEY", "")
+)
 # threads_client = ThreadsTrendAnalyzer(token=ENSEMBLE_TOKEN)
 tiktok_client = TiktokTrend(token=ENSEMBLE_TOKEN)
 
@@ -74,21 +76,19 @@ def tiktok_search_keyword(
     sorting      : "0" = Relevance (default) | "1" = Most liked.
     match_exactly: If True, only return posts containing the exact keyword phrase.
     """
-    raw = tiktok_client._fetch_by_keyword(
-        keyword=keyword,
-        period=period,
-        country=country,
-        sorting=sorting,
-        match_exactly=match_exactly,
-    )
-    if raw.get("error"):
-        return [{"error": raw.get("error"), "message": raw.get("message", "")}]
-    normalized = tiktok_client._normalize_keyword_response(raw)
-    ranked = tiktok_client._process_pipeline(normalized)
-    return {
-        "tiktok_result": _format_tiktok_results(ranked[:top_k])
-    }
-
+    try:
+        raw = tiktok_client._fetch_by_keyword(
+            keyword=keyword,
+            period=period,
+            country=country,
+            sorting=sorting,
+            match_exactly=match_exactly,
+        )
+        normalized = tiktok_client._normalize_keyword_response(raw)
+        ranked = tiktok_client._process_pipeline(normalized)
+        return {"tiktok_result": _format_tiktok_results(ranked[:top_k])}
+    except Exception as exc:
+        return {"tiktok_result": [], "error": str(exc)}
 
 @mcp.tool()
 def tiktok_search_hashtag(
@@ -103,15 +103,16 @@ def tiktok_search_hashtag(
     Parameters
     ----------
     hashtag : Hashtag name WITHOUT the leading "#" (e.g. "trending").
-    top_k   : Number of top trending videos to return (default 10).
+    top_k   : Number of top trending videos to return (default 3).
     days    : Look-back window in days (default 7).
     """
-    raw = tiktok_client._fetch_by_hashtag(hashtag=hashtag, days=max(1, min(days, 3)))
-    if raw.get("error"):
-        return [{"error": raw.get("error"), "message": raw.get("message", "")}]
-    normalized = tiktok_client._normalize_hashtag_response(raw)
-    ranked = tiktok_client._process_pipeline(normalized)
-    return _format_tiktok_results(ranked[: max(1, min(top_k, 3))])
+    try:
+        raw = tiktok_client._fetch_by_hashtag(hashtag=hashtag, days=days)
+        normalized = tiktok_client._normalize_hashtag_response(raw)
+        ranked = tiktok_client._process_pipeline(normalized)
+        return _format_tiktok_results(ranked[:top_k])
+    except Exception as exc:
+        return [{"error": str(exc)}]
 
 
 # @mcp.tool()

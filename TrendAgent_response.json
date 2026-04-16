@@ -1,0 +1,15 @@
+{
+  "id": "654d2c5c-de1d-4165-87e2-392c46768c9b",
+  "jsonrpc": "2.0",
+  "result": {
+    "kind": "message",
+    "messageId": "510ceb2b-6a47-477e-a503-f32a6e0c8d72",
+    "parts": [
+      {
+        "kind": "text",
+        "text": "{\n  \"query\": \"trending sports topics today\",\n  \"results\": [\n    {\n      \"main_keyword\": \"bayern đấu với real madrid\",\n      \"why_the_trend_happens\": \"Nhu cầu tìm kiếm đang tăng nhưng tín hiệu mạng xã hội còn ở mức vừa phải.\",\n      \"trend_score\": 35,\n      \"interest_over_day\": [\n        14,\n        11,\n        10\n      ],\n      \"avg_views_per_hour\": 0,\n      \"recommended_action\": \"Tạo nội dung ngay bây giờ để tận dụng nhu cầu tăng trưởng.\",\n      \"top_hashtags\": [],\n      \"google\": {\n        \"keyword\": \"bayern đấu với real madrid\",\n        \"momentum\": \"rising\",\n        \"peak_region\": \"Việt Nam\"\n      },\n      \"tiktok\": {\n        \"platform\": \"TikTok\",\n        \"top_velocity\": 0,\n        \"avg_engagement_rate\": 0\n      },\n      \"threads\": null\n    },\n    {\n      \"main_keyword\": \"arsenal đấu với sporting\",\n      \"why_the_trend_happens\": \"Nhu cầu tìm kiếm đang tăng nhưng tín hiệu mạng xã hội còn ở mức vừa phải.\",\n      \"trend_score\": 35,\n      \"interest_over_day\": [\n        10,\n        9,\n        7\n      ],\n      \"avg_views_per_hour\": 0,\n      \"recommended_action\": \"Tạo nội dung ngay bây giờ để tận dụng nhu cầu tăng trưởng.\",\n      \"top_hashtags\": [],\n      \"google\": {\n        \"keyword\": \"arsenal đấu với sporting\",\n        \"momentum\": \"rising\",\n        \"peak_region\": \"Việt Nam\"\n      },\n      \"tiktok\": {\n        \"platform\": \"TikTok\",\n        \"top_velocity\": 0,\n        \"avg_engagement_rate\": 0\n      },\n      \"threads\": null\n    },\n    {\n      \"main_keyword\": \"bán kết c1\",\n      \"why_the_trend_happens\": \"Nhu cầu tìm kiếm đang tăng nhưng tín hiệu mạng xã hội còn ở mức vừa phải.\",\n      \"trend_score\": 35,\n      \"interest_over_day\": [\n        15,\n        18,\n        14\n      ],\n      \"avg_views_per_hour\": 0,\n      \"recommended_action\": \"Tạo nội dung ngay bây giờ để tận dụng nhu cầu tăng trưởng.\",\n      \"top_hashtags\": [],\n      \"google\": {\n        \"keyword\": \"bán kết c1\",\n        \"momentum\": \"rising\",\n        \"peak_region\": \"Việt Nam\"\n      },\n      \"tiktok\": {\n        \"platform\": \"TikTok\",\n        \"top_velocity\": 0,\n        \"avg_engagement_rate\": 0\n      },\n      \"threads\": null\n    }\n  ],\n  \"markdown_summary\": \"Các chủ đề thể thao đang thịnh hành hôm nay chủ yếu xoay quanh bóng đá, đặc biệt là các trận đấu lớn và giải đấu Cúp C1. Mặc dù không có dữ liệu TikTok do lỗi API, Google Trends cho thấy sự quan tâm tìm kiếm tăng mạnh đối với \\\"bayern đấu với real madrid\\\", \\\"arsenal đấu với sporting\\\" và \\\"bán kết c1\\\" trong 24 giờ qua tại Việt Nam. Đây là cơ hội tốt để các nhà sáng tạo nội dung khai thác chủ đề này ngay lập tức.\"\n}"
+      }
+    ],
+    "role": "agent"
+  }
+}
