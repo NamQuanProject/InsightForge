@@ -48,36 +48,36 @@ class ContentGenerateRequest(BaseModel):
 
 # --- Phân cấp nhỏ nhất: Thumbnail ---
 class ThumbnailSchema(BaseModel):
-    prompt: str
+    prompt: str = ""
     style: str = "vivid"
     size: str = "1792x1024"
-    output_path: str
+    output_path: str = ""
 
 # --- Phân đoạn Video ---
 class VideoSectionSchema(BaseModel):
-    timestamp: str
-    label: str
-    narration: str
-    notes: str
-    thumbnail: ThumbnailSchema  # Mỗi section có 1 thumbnail riêng
+    timestamp: str = ""
+    label: str = ""
+    narration: str = ""
+    notes: str = ""
+    thumbnail: ThumbnailSchema = Field(default_factory=ThumbnailSchema)
 
 # --- Kịch bản Video tổng thể ---
 class VideoScriptSchema(BaseModel):
-    title: str
+    title: str = ""
     duration_estimate: str = "60s"
-    hook: str
-    sections: List[VideoSectionSchema]
-    call_to_action: str
-    captions_style: str
-    music_mood: str
+    hook: str = ""
+    sections: List[VideoSectionSchema] = Field(default_factory=list)
+    call_to_action: str = ""
+    captions_style: str = ""
+    music_mood: str = ""
 
 # --- Chi tiết bài đăng mạng xã hội ---
 class PlatformPostDetailSchema(BaseModel):
-    caption: str
-    hashtags: List[str]
-    cta: str
-    best_post_time: str
-    thumbnail_description: str
+    caption: str = ""
+    hashtags: List[str] = Field(default_factory=list)
+    cta: str = ""
+    best_post_time: str = ""
+    thumbnail_description: str = ""
 
 # --- Schema chính cho kết quả trả về ---
 class GeneratedContentResponse(BaseModel):
@@ -86,11 +86,11 @@ class GeneratedContentResponse(BaseModel):
     id: uuid.UUID = Field(default_factory=uuid.uuid4)
     user_id: Optional[uuid.UUID] = None
     trend_analysis_id: Optional[uuid.UUID] = None
-    selected_keyword: str
-    main_title: str
-    video_script: VideoScriptSchema # Cấu trúc đã được định nghĩa ở trên
-    platform_posts: Dict[str, PlatformPostDetailSchema]
-    music_background: str
+    selected_keyword: str = ""
+    main_title: str = ""
+    video_script: VideoScriptSchema = Field(default_factory=VideoScriptSchema)
+    platform_posts: Dict[str, PlatformPostDetailSchema] = Field(default_factory=dict)
+    music_background: str = ""
     status: str = "completed"
     created_at: datetime = Field(default_factory=datetime.utcnow)
 

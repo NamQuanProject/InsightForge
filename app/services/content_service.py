@@ -228,15 +228,45 @@ class ContentService:
         return self.__class__._agent
 
     def _to_response(self, record) -> GeneratedContentResponse:
+        video_script = record.video_script if isinstance(record.video_script, dict) else {}
+        platform_posts = self._normalize_platform_posts(record.platform_posts)
+        main_title = record.main_title or video_script.get("title") or ""
+
         return GeneratedContentResponse(
             id=record.id,
             user_id=record.user_id,
             trend_analysis_id=record.trend_analysis_id,
-            selected_keyword=record.selected_keyword,
-            main_title=record.main_title,
-            video_script=record.video_script or {},
-            platform_posts=record.platform_posts or {},
-            music_background=record.music_background,
+            selected_keyword=record.selected_keyword or "",
+            main_title=main_title,
+            video_script=video_script,
+            platform_posts=platform_posts,
+            music_background=record.music_background or video_script.get("music_mood") or "",
             status=record.status,
             created_at=record.created_at,
         )
+
+    def _normalize_platform_posts(self, value) -> dict:
+        if not isinstance(value, dict):
+            return {}
+
+        normalized = {}
+        for platform, post in value.items():
+            if isinstance(post, dict):
+                normalized[str(platform)] = {
+                    "caption": str(post.get("caption") or ""),
+                    "hashtags": [str(item) for item in post.get("hashtags", []) if item is not None]
+                    if isinstance(post.get("hashtags"), list)
+                    else [],
+                    "cta": str(post.get("cta") or ""),
+                    "best_post_time": str(post.get("best_post_time") or ""),
+                    "thumbnail_description": str(post.get("thumbnail_description") or ""),
+                }
+            else:
+                normalized[str(platform)] = {
+                    "caption": str(post or ""),
+                    "hashtags": [],
+                    "cta": "",
+                    "best_post_time": "",
+                    "thumbnail_description": "",
+                }
+        return normalized
