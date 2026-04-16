@@ -11,7 +11,7 @@
         "parts": [
           {
             "kind": "text",
-            "text": "Chủ đề đang trend trong ngày hôm nay về thể thao là gì và tôi nên tạo nội dung như thế nào?"
+            "text": "Hãy đề xuất kế hoạch nội dung 7 ngày để tăng tương tác tự nhiên cho creator lifestyle."
           }
         ],
         "role": "user",
@@ -26,7 +26,7 @@
               "type": "tool-call",
               "id": "call_74c1d1f518564a92a5da452b932c__thought__CtMEAb4+9vvqFi9OJ6ImcE3oa+wsYYOO0dCDVdJB/Ykvzl2SU1Ug5G3LI430KbrGaPoPmMFjC+9FpY3gk2KwPRQxR6LNgu2WlKdKFq9qCwQ2nw0nTTOskLlUHEk/slLH+bqYwC5qKBmCuWDaJDiGOXvUFTskbMfzyqegV9Bi3kG/phHImdphbBmYK6OZ8tcd1G0BOIZ3JvrLc5DkC7UnEAeyHtf8lFVjGUqEMOrB7VCk+UfgCSQvDcEum1M0a9XUqtUrPp2bXAfC4y1qfjaMBbMI9bXAD3IbZKB7Ut0YfH8Bckzx+vApfIosNDXo0vGJGtrG0kJG88dQ354fZb2t7FzO7exM7cqL2aDTB5k58TPpH8IZrTx1ygxi050aowgTwTAzFRzE5sFmFVjaFeExz+69fJ/21nBHZQXK6ib5X76+VXdg8/ZTGHsxHhdR0UmIaI8RnahQpvEYY6Q9TjcVZbpKN4+ByyvbioDuMohLZ9o434mjqbHN868cZPnKe2bTsvCKhsxp53poXFGawzZ/H7GiKNhGiNsCL+9bxpQrFAK/Yke+1sakerbvV9+Be0SZr2k+xLvCfi9XYoykKHVCxGvzIasHXsvS18j4ESNccAglVDX75UEf52cI4Ajr3EDxAC/TnKJ//X1n4h/bhQezh3UlQl9aNWNA1BHR7NIObIrOhXZEZcLZBtinPSSWEyD43ll9DApPQy0kWrDXa9O6rYW527j66wdN7PTC9P0LLKG1IxJ34ndndqmZ3U2baUM0TGSqUxtLEH5Vr6gCzBOje4XV5uAbxw==",
               "tool_name": "think",
-              "args": "{\"thoughts\": \"The user wants to know about trending sports topics today and also wants content ideas. This requires using both the `call_trend_agent` and `call_content_agent` tools. First, I will call `call_trend_agent` to get the trending sports topics. Then, I will use the output of `call_trend_agent` as input for `call_content_agent` to generate content ideas.\"}"
+              "args": "{\"thoughts\": \"The user is asking for a 7-day content plan for a lifestyle creator. This requires generating content, so I need to use both `call_trend_agent` and `call_content_agent`. First, I will call `call_trend_agent` to get trending topics relevant to lifestyle. Then, I will pass the output of `call_trend_agent` to `call_content_agent` along with the user's request for a '7-day content plan to increase organic engagement for a lifestyle creator' to generate the content. Finally, I will format the combined output as a JSON object.\"}"
             },
             "kind": "data"
           }
@@ -58,7 +58,7 @@
               "type": "tool-call",
               "id": "call_71a00c31ff6940f5816c8bc005af__thought__CoADAb4+9vvMAUmFkOiCL1sjRkR95WMv3pytWoMs9ooAg1We0nKZtP/Iwdo+ZtuCLjPaXrUCs2Mj5DWWtcaAu+uyTNlRzXtdOKtVs2Nbju+gdOlmzOIxcANdmCxeFg3QCf7wKhUyjP/ICmW+s9xF2ulUIWUdvzRGqCeHiI3Sv7dXITIszg8LtM6GKbJhQT4IlOmp+kcxqu+ZF0PZXtkZ9LtWwTncDyJW+DihmuZZcE0zJeQkMqDMbg9tgcMYNT/f+0BVS7f8lrFFDP5n8lN/1I6y/FZ1Q0TcB9+UkkcO2leMzVIVSa1PgloTUNfeuWrxDgRu+Kj7B7RJurR9GQNvyz3ELiaezMQaGDEAx8vTYrOMSSQn+oACAytmE54vct6DYG8ipjlrGMlqpjoNBLGNPNn+iipOlCHzrWRcX7TFknIbgKvaYLgFmdcwr7+PT52UzSrVc5frFq+ve7Yn0K4ECnzoG+5e6ghvSxsHi8tRg6l2YtIyo1AtU1G+eYdel6tbtoVA",
               "tool_name": "call_trend_agent",
-              "args": "{\"query\": \"Chủ đề đang trend trong ngày hôm nay về thể thao\"}"
+              "args": "{\"query\": \"lifestyle content trends\"}"
             },
             "kind": "data"
           }

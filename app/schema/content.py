@@ -36,6 +36,16 @@ from datetime import datetime
 from typing import Any, List, Dict, Optional
 from pydantic import BaseModel, Field, ConfigDict
 
+# ---------------------------------------------------------------------------
+# Request
+# ---------------------------------------------------------------------------
+ 
+class ContentGenerateRequest(BaseModel):
+    user_id: Optional[uuid.UUID] = None
+    trend_analysis_id: Optional[uuid.UUID] = None
+    selected_keyword: Optional[str] = None
+    prompt: Optional[str] = Field(default=None, min_length=5)
+
 # --- Phân cấp nhỏ nhất: Thumbnail ---
 class ThumbnailSchema(BaseModel):
     prompt: str
@@ -83,3 +93,7 @@ class GeneratedContentResponse(BaseModel):
     music_background: str
     status: str = "completed"
     created_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class GeneratedContentsListResponse(BaseModel):
+    items: List[GeneratedContentResponse] = Field(default_factory=list)

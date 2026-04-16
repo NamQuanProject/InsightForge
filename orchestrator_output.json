@@ -1,22 +1,15 @@
 {
   "trend_analysis": {
-    "query": "Chủ đề đang trend trong ngày hôm nay về thể thao",
+    "query": "lifestyle content trends",
     "results": [
       {
         "main_keyword": "bayern đấu với real madrid",
         "why_the_trend_happens": "Trận đấu lớn giữa hai câu lạc bộ bóng đá hàng đầu Châu Âu.",
         "trend_score": 35.0,
-        "interest_over_day": [
-          0.0,
-          0.0,
-          1.0
-        ],
+        "interest_over_day": [0.0, 0.0, 1.0],
         "avg_views_per_hour": 0.0,
         "recommended_action": "Tạo nội dung video ngắn, highlight trận đấu, phân tích chiến thuật, hoặc bình luận về cầu thủ.",
-        "top_hashtags": [
-          "#BayernRealMadrid",
-          "#BongDa"
-        ],
+        "top_hashtags": ["#BayernRealMadrid", "#BongDa"],
         "google": {
           "keyword": "bayern đấu với real madrid",
           "momentum": "rising",
@@ -33,17 +26,10 @@
         "main_keyword": "arsenal đấu với sporting",
         "why_the_trend_happens": "Trận đấu quan trọng của câu lạc bộ Arsenal.",
         "trend_score": 35.0,
-        "interest_over_day": [
-          0.0,
-          0.0,
-          0.0
-        ],
+        "interest_over_day": [0.0, 0.0, 0.0],
         "avg_views_per_hour": 0.0,
         "recommended_action": "Tạo nội dung video ngắn, highlight trận đấu, phân tích chiến thuật, hoặc bình luận về cầu thủ.",
-        "top_hashtags": [
-          "#ArsenalSporting",
-          "#BongDa"
-        ],
+        "top_hashtags": ["#ArsenalSporting", "#BongDa"],
         "google": {
           "keyword": "arsenal đấu với sporting",
           "momentum": "rising",
@@ -60,18 +46,10 @@
         "main_keyword": "al-nassr đấu với al ettifaq",
         "why_the_trend_happens": "Trận đấu có sự góp mặt của câu lạc bộ Al-Nassr.",
         "trend_score": 35.0,
-        "interest_over_day": [
-          1.0,
-          0.0,
-          0.0
-        ],
+        "interest_over_day": [1.0, 0.0, 0.0],
         "avg_views_per_hour": 0.0,
         "recommended_action": "Tạo nội dung video ngắn, highlight trận đấu, phân tích chiến thuật, hoặc bình luận về cầu thủ.",
-        "top_hashtags": [
-          "#AlNassr",
-          "#AlNassrAlEttifaq",
-          "#BongDa"
-        ],
+        "top_hashtags": ["#AlNassr", "#AlNassrAlEttifaq", "#BongDa"],
         "google": {
           "keyword": "al-nassr đấu với al ettifaq",
           "momentum": "rising",
