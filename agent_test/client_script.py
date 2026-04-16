@@ -20,6 +20,9 @@ async def call_healthcare_agent():
 
     response : A2AAgentOutput = await client.run(message)
 
+
+    
+
     # 4. Print the result
     print("=== Final Response ===")
     print("=====================")    
