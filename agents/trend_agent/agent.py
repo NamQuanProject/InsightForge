@@ -66,7 +66,7 @@ Return JSON matching this structure:
 - Do not fabricate numbers.
 - Prefer at most two TikTok calls in one run.
 - If TikTok data errors or is unavailable, continue with Google data and set social metrics conservatively.
-- Output JSON only.
+- STRICTLY OUTPUT JSON ONLY.
 """
 
 JSON_REPAIR_PROMPT = """
