@@ -1,170 +1,133 @@
 {
   "trend_analysis": {
-    "query": "Chủ đề đang trend trong ngày hôm nay về thể thao",
+    "query": "lifestyle content trends",
     "results": [
       {
-        "main_keyword": "bán kết c1",
-        "why_the_trend_happens": "Một số trận đấu bóng đá đỉnh cao, đặc biệt là \"bayern đấu với real madrid\" và \"arsenal đấu với sporting\", đang tạo ra sự quan tâm lớn, thúc đẩy chủ đề về \"bán kết c1\" (bán kết Champions League).",
-        "trend_score": 55.0,
-        "interest_over_day": [
-          9.0,
-          10.0,
-          11.0,
-          4.0,
-          8.0,
-          8.0,
-          6.0,
-          8.0,
-          6.0,
-          0.0
-        ],
-        "avg_views_per_hour": 89642.28,
-        "recommended_action": "Tạo nội dung video ngắn, phân tích trận đấu, highlights, hoặc bình luận về các đội tham gia bán kết C1.",
-        "top_hashtags": [
-          "#bayernmunich",
-          "#realmadrid",
-          "#football",
-          "#fyp",
-          "#uk",
-          "#tv360thethao",
-          "#tv360",
-          "#highlight",
-          "#c1",
-          "#championsleague",
-          "#onsports",
-          "#vtvcab",
-          "#sportsontiktok"
-        ],
+        "main_keyword": "Du lịch",
+        "why_the_trend_happens": "Có sự quan tâm bền vững đến chủ đề du lịch trên Google Trends, với các truy vấn liên quan đang tăng, cho thấy mọi người đang tìm kiếm thông tin về điểm đến và kế hoạch du lịch.",
+        "trend_score": 35.0,
+        "interest_over_day": [62.0, 53.0, 65.0],
+        "avg_views_per_hour": 0.0,
+        "recommended_action": "Tạo nội dung hấp dẫn về du lịch, tập trung vào các điểm đến phổ biến ở Việt Nam hoặc các mẹo du lịch hữu ích. Có thể khám phá các tour du lịch cụ thể hoặc những trải nghiệm độc đáo.",
+        "top_hashtags": ["#dulich", "#travelvietnam", "#checkinvietnam"],
         "google": {
-          "keyword": "bán kết c1",
+          "keyword": "Du lịch",
           "momentum": "rising",
-          "peak_region": "Yen Bai Province"
+          "peak_region": null
         },
         "tiktok": {
-          "avg_engagement_rate": 0.02086,
+          "avg_engagement_rate": 0,
           "platform": "TikTok",
-          "top_velocity": 89642.28
+          "top_velocity": 0
         },
         "threads": null
       }
     ],
-    "markdown_summary": "Chủ đề \"bán kết c1\" đang là xu hướng nóng nhất trong ngày về thể thao, được thúc đẩy bởi các trận đấu lớn như Bayern đấu với Real Madrid và Arsenal đấu với Sporting. Với điểm số xu hướng 55, đây là cơ hội tuyệt vời để các nhà sáng tạo nội dung khai thác bằng cách tạo các video ngắn, phân tích trận đấu, highlight hoặc bình luận chuyên sâu. Khu vực Yên Bái đang dẫn đầu về mức độ quan tâm trên Google Trends. Các hashtag liên quan bao gồm #bayernmunich, #realmadrid, #c1, #championsleague.",
+    "markdown_summary": "Dựa trên phân tích, \"Du lịch\" là một xu hướng nội dung phong cách sống có tiềm năng. Google Trends cho thấy sự quan tâm ổn định và các truy vấn liên quan đang tăng. Mặc dù dữ liệu TikTok không khả dụng, tín hiệu từ Google cho thấy đây là một lĩnh vực đáng để các nhà sáng tạo nội dung khai thác.",
     "error": null
   },
   "generated_content": {
-    "selected_keyword": "bán kết c1",
-    "main_title": "Bán Kết C1 Nóng Bỏng: Đại Chiến Châu Âu Đã Sẵn Sàng!",
+    "selected_keyword": "Du lịch",
+    "main_title": "Du Lịch Việt Nam: Khám Phá Vẻ Đẹp Bất Tận!",
     "video_script": {
       "title": "",
       "duration_estimate": "60s",
-      "hook": "Chào mừng các fan túc cầu! Bán kết Cúp C1 Châu Âu đã đến, và mọi ánh mắt đang đổ dồn về những trận đấu kinh điển sẽ quyết định tấm vé chung kết. Bạn đã sẵn sàng cho những khoảnh khắc bùng nổ chưa?",
+      "hook": "Bạn đã sẵn sàng cho một chuyến phiêu lưu mới chưa? Việt Nam có những điểm đến tuyệt đẹp đang chờ bạn khám phá! Cùng mình điểm qua 3 nơi 'nhất định phải đến' ngay bây giờ nhé!",
       "sections": [
         {
-          "label": "Giới thiệu & Hút người xem",
-          "narration": "Đêm châu Âu rực lửa! Bán kết Cúp C1, giải đấu danh giá nhất lục địa già, đang đến rất gần. Sự kiện thể thao nóng nhất hành tinh này hứa hẹn mang đến những màn đối đầu kịch tính và đầy bất ngờ. Bạn nghĩ đội nào sẽ chạm tay vào cúp?",
-          "notes": "Mở đầu nhanh, tạo không khí hào hứng, kích thích sự tò mò.",
+          "label": "Mở đầu & Giới thiệu",
+          "narration": "Chào mừng bạn đến với thế giới đầy màu sắc của du lịch Việt Nam! Từ Bắc chí Nam, đất nước chúng ta sở hữu vô vàn cảnh đẹp mê hoặc, từ núi rừng hùng vĩ đến biển cả bao la. Chuẩn bị tinh thần khám phá ngay thôi!",
+          "notes": "Tạo không khí hào hứng, giới thiệu tổng quan.",
           "timestamp": "0:00-0:10",
-          "visuals": "Cảnh quay tổng hợp từ các trận đấu C1 trước đó, logo Champions League, màn hình chia đôi với biểu tượng các đội tham gia bán kết. Hiệu ứng đồ họa cháy bỏng, năng động."
+          "visuals": "Cảnh quay flycam toàn cảnh Việt Nam, montage các địa điểm nổi tiếng như Vịnh Hạ Long, Cầu Vàng Đà Nẵng, Phố cổ Hội An."
         },
         {
-          "label": "Tâm điểm: Bayern Munich vs Real Madrid",
-          "narration": "Tâm điểm không thể bỏ qua chính là cuộc đối đầu lịch sử giữa Bayern Munich và Real Madrid. Đây không chỉ là một trận bóng đá, mà là cuộc chiến của những gã khổng lồ, nơi tinh hoa và bản lĩnh được khẳng định. Liệu dàn sao trẻ của Kền Kền Trắng hay kinh nghiệm của Hùm Xám sẽ lên tiếng?",
-          "notes": "Nhấn mạnh tính lịch sử và dàn sao của trận đấu này, tạo sự mong đợi.",
+          "label": "Thiên đường miền Trung: Đà Nẵng - Hội An",
+          "narration": "Đầu tiên, không thể không nhắc đến Đà Nẵng và Hội An! Đà Nẵng với những bãi biển xanh ngắt, cây cầu Rồng phun lửa ấn tượng, và Cầu Vàng độc đáo. Kế đó là Hội An cổ kính, nơi bạn có thể thả đèn hoa đăng trên sông Hoài và thưởng thức ẩm thực đường phố tuyệt vời.",
+          "notes": "Nhấn mạnh vẻ đẹp hiện đại và cổ kính, ẩm thực.",
           "timestamp": "0:10-0:25",
-          "visuals": "Highlight các bàn thắng đẹp của Bayern và Real, cận cảnh các ngôi sao như Harry Kane, Jude Bellingham, Vinicius Jr. Thống kê nhanh về lịch sử đối đầu giữa hai đội. Đồ họa so sánh cầu thủ."
+          "visuals": "Cảnh biển Đà Nẵng, Cầu Rồng, Cầu Vàng, Phố cổ Hội An về đêm lung linh, món ăn đặc trưng."
         },
         {
-          "label": "Trận đấu còn lại: PSG vs Dortmund",
-          "narration": "Không kém phần hấp dẫn là màn so tài giữa Paris Saint-Germain và Borussia Dortmund. Một bên là tham vọng chinh phục châu Âu cháy bỏng của PSG với Kylian Mbappé, bên còn lại là sức trẻ và lối chơi đầy nhiệt huyết của Dortmund. Đội bóng nào sẽ chứng tỏ được bản lĩnh để giành lấy tấm vé quý giá?",
-          "notes": "Đề cập đến trận đấu còn lại, làm nổi bật các yếu tố quan trọng và ngôi sao của mỗi đội.",
+          "label": "Vẻ đẹp hùng vĩ Tây Bắc: Hà Giang - Sapa",
+          "narration": "Nếu bạn yêu thích núi rừng và văn hóa bản địa, Hà Giang và Sapa là lựa chọn hoàn hảo. Hà Giang với đèo Mã Pì Lèng huyền thoại và những thửa ruộng bậc thang kỳ vĩ. Sapa với đỉnh Fansipan hùng vĩ và các bản làng truyền thống của người dân tộc thiểu số.",
+          "notes": "Tập trung vào cảnh quan thiên nhiên tráng lệ và trải nghiệm văn hóa.",
           "timestamp": "0:25-0:40",
-          "visuals": "Highlight Kylian Mbappé và các cầu thủ chủ chốt của Dortmund. Cảnh khán đài Signal Iduna Park cuồng nhiệt, so sánh lối chơi giữa hai đội. Đồ họa dự đoán kết quả."
+          "visuals": "Cảnh đèo Mã Pì Lèng, ruộng bậc thang Hà Giang, đỉnh Fansipan, chợ phiên Sapa, trang phục dân tộc."
         },
         {
-          "label": "Dự đoán & Cảm xúc",
-          "narration": "Những trận đấu bán kết C1 luôn mang đến những khoảnh khắc không thể nào quên. Những siêu phẩm, những pha cứu thua ngoạn mục, và cả những giọt nước mắt vỡ òa. Ai sẽ tiến vào chung kết Wembley? Mọi thứ đang chờ đợi chúng ta ở phía trước!",
-          "notes": "Tạo sự hồi hộp, nói về cảm xúc mà C1 mang lại.",
+          "label": "Đảo ngọc phương Nam: Phú Quốc - Nha Trang",
+          "narration": "Cuối cùng, hãy cùng đến với thiên đường biển đảo phía Nam: Phú Quốc và Nha Trang. Phú Quốc nổi tiếng với những bãi biển hoang sơ, hải sản tươi ngon và hoàng hôn lãng mạn. Nha Trang lại hút khách bởi bãi biển dài, các hoạt động thể thao dưới nước sôi động và hòn đảo Vinpearl thơ mộng.",
+          "notes": "Giới thiệu các hoạt động giải trí và vẻ đẹp thư giãn của biển đảo.",
           "timestamp": "0:40-0:50",
-          "visuals": "Cảnh khán giả reo hò, biểu cảm cầu thủ (thắng/thua), hình ảnh cúp C1 lung linh. Đồng hồ đếm ngược đến trận đấu."
+          "visuals": "Cảnh biển Phú Quốc, hải sản, hoàng hôn. Cảnh biển Nha Trang, lặn biển, công viên giải trí."
         },
         {
-          "label": "Kêu gọi hành động",
-          "narration": "Đừng bỏ lỡ bất kỳ khoảnh khắc nào! Hãy theo dõi và bình luận ngay phía dưới: Đội bóng nào sẽ giành chiến thắng và tiến vào trận chung kết Champions League? Hãy để lại dự đoán của bạn nhé!",
-          "notes": "Kêu gọi tương tác, khuyến khích khán giả bày tỏ ý kiến.",
+          "narration": "Việt Nam có quá nhiều điều để khám phá phải không nào? Mỗi điểm đến đều mang một vẻ đẹp và trải nghiệm riêng biệt. Còn chần chờ gì nữa mà không lên kế hoạch khám phá ngay thôi! Hãy chia sẻ điểm đến yêu thích của bạn dưới phần bình luận nhé!",
+          "notes": "Tóm tắt, thúc đẩy người xem tương tác và lên kế hoạch.",
           "timestamp": "0:50-1:00",
-          "visuals": "Màn hình hiển thị câu hỏi tương tác, kêu gọi comment. Logo các nền tảng mạng xã hội. Thông tin kênh/người tạo."
+          "visuals": "Tổng hợp nhanh các cảnh quay đẹp nhất, màn hình kết thúc với thông tin liên hệ/kêu gọi hành động."
         }
       ],
-      "call_to_action": "Bình luận ngay đội bạn tin sẽ vô địch C1 năm nay!",
-      "captions_style": "Năng động, chữ nổi bật, màu sắc tương phản với video, highlight các từ khóa quan trọng bằng màu khác hoặc hiệu ứng động.",
-      "music_mood": "Hành động, hùng tráng, kịch tính, dồn dập."
+      "call_to_action": "Lên kế hoạch du lịch Việt Nam ngay thôi! Đừng quên chia sẻ điểm đến yêu thích của bạn dưới phần bình luận nhé!",
+      "captions_style": "Năng động, nổi bật, dễ đọc, có icon phù hợp và hiệu ứng chữ bắt mắt.",
+      "music_mood": "Vui tươi, năng động, mang hơi hướng âm nhạc truyền thống pha hiện đại, tạo cảm giác phiêu lưu và phấn khởi."
     },
     "platform_posts": {
       "tiktok": {
-        "caption": "Bán kết C1 đã chính thức khởi tranh! 🏆 Ai sẽ là đội giành vé vào chung kết lịch sử? Bayern đấu Real, PSG gặp Dortmund... Quá nhiều cảm xúc! 🔥 #c1 #championsleague #bayernmunich #realmadrid #psg #dortmund #bongda #fyp #bongdaplus",
+        "caption": "Việt Nam mình đẹp quá xá! 😍 Từ núi rừng hùng vĩ đến biển xanh cát trắng, còn chần chờ gì mà không xách balo lên và đi? Khám phá 3 điểm đến 'phải thử' trong video để lên kế hoạch cho chuyến đi tiếp theo của bạn! #dulich #travelvietnam #checkinvietnam",
         "hashtags": [
-          "#c1",
-          "#championsleague",
-          "#bayernmunich",
-          "#realmadrid",
-          "#psg",
-          "#dortmund",
-          "#bongda",
-          "#fyp",
-          "#tv360thethao",
-          "#highlight",
-          "#sportsontiktok"
+          "#dulich",
+          "#travelvietnam",
+          "#checkinvietnam",
+          "#vietnam",
+          "#phuot",
+          "#travel",
+          "#khamphavietnam"
         ],
-        "cta": "Bình luận ngay đội bạn nghĩ sẽ thắng!",
-        "best_post_time": "19:00 - 21:00 (Thứ 3/Thứ 4)",
-        "thumbnail_description": "Ảnh cắt từ video với biểu tượng 2 đội Bayern và Real Madrid đối đầu, kèm logo C1 lớn và dòng chữ 'BÁN KẾT C1 NÓNG BỎNG!'"
+        "cta": "Lên kế hoạch du lịch ngay!",
+        "best_post_time": "19:00 - 21:00 (Thứ 5, Thứ 6)",
+        "thumbnail_description": "Một cảnh đẹp tổng hợp của Việt Nam với Cầu Vàng Đà Nẵng, ruộng bậc thang Hà Giang và biển Phú Quốc, màu sắc tươi sáng."
       },
       "facebook": {
-        "caption": "📢 BÁN KẾT C1 ĐÃ ĐẾN! 📢 Cả thế giới bóng đá đang nín thở chờ đợi những màn so tài đỉnh cao giữa các ông lớn Châu Âu. Bayern Munich vs Real Madrid - một trận đấu kinh điển. PSG vs Borussia Dortmund - sức trẻ và khát khao chiến thắng. Đội bóng nào sẽ vượt qua tất cả để chạm tay vào chiếc cúp danh giá? Hãy cùng chờ xem và đưa ra dự đoán của bạn! #ChampionsLeague #C1 #BánKết #BayernMunich #RealMadrid #PSG #Dortmund #BóngĐá #UEFA",
+        "caption": "Bạn đã sẵn sàng để khám phá những viên ngọc quý của Việt Nam? Từ vẻ đẹp cổ kính của Hội An, sự hùng vĩ của Hà Giang, đến thiên đường biển đảo Phú Quốc, mỗi nơi đều mang một nét quyến rũ riêng biệt. Video này sẽ gợi ý 3 điểm đến 'phải thử' mà bạn không thể bỏ qua trong năm nay! Hãy tag người bạn muốn cùng đi du lịch và chia sẻ kế hoạch của bạn dưới phần bình luận nhé! ✈️ #dulich #travelvietnam #checkinvietnam #khambaphuquoc #hoian #hagiang #vietnamtravel",
         "hashtags": [
-          "#ChampionsLeague",
-          "#C1",
-          "#BánKết",
-          "#BayernMunich",
-          "#RealMadrid",
-          "#PSG",
-          "#Dortmund",
-          "#BóngĐá",
-          "#UEFA",
-          "#TinTứcBóngĐá"
+          "#dulich",
+          "#travelvietnam",
+          "#checkinvietnam",
+          "#vietnam",
+          "#phuotvietnam",
+          "#diadiemdulich",
+          "#dulichgiare"
         ],
-        "cta": "Chia sẻ dự đoán của bạn về đội vô địch C1!",
-        "best_post_time": "20:00 - 22:00 (Thứ 3/Thứ 4)",
-        "thumbnail_description": "Hình ảnh ghép tổng hợp 4 logo đội bóng bán kết C1 (Bayern, Real, PSG, Dortmund) trên nền sân vận động, phía trên là cúp C1."
+        "cta": "Xem video để biết thêm chi tiết!",
+        "best_post_time": "11:00 - 14:00 (Thứ 4, Thứ 7)",
+        "thumbnail_description": "Cảnh đẹp nổi bật nhất trong video, ví dụ: Cầu Vàng Đà Nẵng hoặc một góc phố cổ Hội An rực rỡ đèn lồng."
       },
       "instagram": {
-        "caption": "KHÔNG THỂ NÓNG HƠN! 🔥 Bán kết Cúp C1 Châu Âu đã chính thức khởi tranh! Cuộc chiến giữa Bayern vs Real và PSG vs Dortmund hứa hẹn sẽ bùng nổ mọi cảm xúc. Ai sẽ là người viết nên lịch sử và giành lấy tấm vé vàng đến trận chung kết? Hãy để lại 'LIKE' và 'COMMENT' đội bóng bạn yêu thích! 👇 #C1 #ChampionsLeague #Football #Soccer #BayernVsReal #PSGVSDortmund #EuroFootball #InstaFootball #BóngĐáChâuÂu",
+        "caption": "Việt Nam đẹp đến nao lòng! 🇻🇳✨ Đi đâu trong năm nay? Cùng khám phá 3 điểm đến 'nhất định phải ghé' trong video này nhé! Biển xanh cát trắng, núi rừng hùng vĩ hay phố cổ nên thơ, bạn chọn nơi nào? Kể mình nghe điểm đến mơ ước của bạn nào! 👇 #dulich #travelvietnam #checkinvietnam #vietnamtravel #dulichvietnam #instatravel",
         "hashtags": [
-          "#C1",
-          "#ChampionsLeague",
-          "#Football",
-          "#Soccer",
-          "#BayernVsReal",
-          "#PSGVSDortmund",
-          "#EuroFootball",
-          "#InstaFootball",
-          "#BóngĐáChâuÂu",
-          "#UEFA",
-          "#sports",
-          "#highlight"
+          "#dulich",
+          "#travelvietnam",
+          "#checkinvietnam",
+          "#vietnamtravel",
+          "#dulichvietnam",
+          "#instatravel",
+          "#travelgram",
+          "#wanderlust"
         ],
-        "cta": "Gắn thẻ bạn bè để cùng thảo luận!",
-        "best_post_time": "19:00 - 21:00 (Thứ 3/Thứ 4)",
-        "thumbnail_description": "Ảnh đẹp mắt của một cầu thủ Bayern Munich và một cầu thủ Real Madrid đối mặt nhau trên sân cỏ, với hiệu ứng ánh sáng rực rỡ và logo C1 mờ ở hậu cảnh."
+        "cta": "Kế hoạch du lịch tiếp theo của bạn là gì?",
+        "best_post_time": "10:00 - 12:00 (Thứ 3, Thứ 6)",
+        "thumbnail_description": "Một bức ảnh chất lượng cao, rực rỡ sắc màu về một cảnh đẹp nổi bật của Việt Nam, có thể là bãi biển hoặc ruộng bậc thang."
       }
     },
     "thumbnail": {
-      "prompt": "Một hình ảnh động đầy kịch tính với hai ngôi sao bóng đá hàng đầu, Jude Bellingham của Real Madrid và Harry Kane của Bayern Munich, đang đối mặt nhau trên sân vận động với ánh đèn pha rực rỡ. Phía sau họ là logo Champions League to lớn và mờ ảo, cùng với hiệu ứng tia sét hoặc lửa tượng trưng cho sự căng thẳng của trận bán kết. Màu sắc chủ đạo là xanh đậm và vàng kim.",
+      "prompt": "Một khung cảnh tổng hợp tuyệt đẹp và sống động của Việt Nam, thể hiện sự đa dạng du lịch: phía dưới là bãi biển xanh với thuyền thúng và cát trắng (Phú Quốc/Nha Trang), phía trên là núi non hùng vĩ với ruộng bậc thang và một con đường đèo (Hà Giang/Sapa), ở giữa có một chút kiến trúc cổ điển mang đậm nét Hội An. Bầu trời trong xanh, ánh nắng vàng rực rỡ. Phong cách nhiếp ảnh du lịch chất lượng cao.",
       "style": "vivid",
       "size": "1792x1024",
       "output_path": "content_output.png"
     },
-    "music_background": "Epic cinematic soundtrack với tiết tấu nhanh, dồn dập, có yếu tố rock hoặc trống mạnh mẽ.",
+    "music_background": "Vui tươi, năng động, mang hơi hướng âm nhạc truyền thống pha hiện đại, tạo cảm giác phiêu lưu và phấn khởi.",
     "error": null
   }
 }

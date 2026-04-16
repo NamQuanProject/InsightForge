@@ -1,0 +1,50 @@
+{
+  "query": "bóng đá",
+  "results": [
+    {
+      "main_keyword": "đá bóng hôm nay",
+      "why_the_trend_happens": "Interest surged around today's football matches, driven by rising related queries about live football updates and match results.",
+      "trend_score": 38,
+      "interest_over_day": [
+        5,
+        10,
+        12,
+        15,
+        20,
+        25,
+        30,
+        35
+      ],
+      "avg_views_per_hour": 220006,
+      "recommended_action": "Create live commentary or match analysis content focusing on today's matches.",
+      "top_hashtags": [
+        "#bongda",
+        "#football",
+        "#livefootball",
+        "#soccer"
+      ]
+    },
+    {
+      "main_keyword": "kết quả bóng đá",
+      "why_the_trend_happens": "Growing searches for football match results as fans look for updates, boosted by social media engagement following recent matches.",
+      "trend_score": 35,
+      "interest_over_day": [
+        20,
+        25,
+        30,
+        35,
+        50,
+        55,
+        60,
+        70
+      ],
+      "avg_views_per_hour": 90640,
+      "recommended_action": "Publish quick result updates and highlights on social channels for immediate audience engagement.",
+      "top_hashtags": [
+        "#footballresults",
+        "#soccer",
+        "#matchday"
+      ]
+    }
+  ]
+}
