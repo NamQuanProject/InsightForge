@@ -1,67 +1,362 @@
 INSIGHTFORGE API DOCS
-FastAPI + Supabase Postgres + Upload-Post
-Base URL: http://127.0.0.1:8000
+FastAPI + A2A Agents + Supabase Postgres + Upload-Post
+
+Base FastAPI URL:
+http://127.0.0.1:8000
 
 ==================================================
-OVERVIEW
+1. SYSTEM OVERVIEW
 ==================================================
-This backend currently focuses on 4 data areas:
 
-1. Users
-- save and list app users
+Current system has 4 runtime parts:
 
-2. Trend analysis
-- call the trend agent
-- save returned trend analysis to Supabase Postgres
-- list and view saved trend analyses
+1. Trend Agent
+- A2A server
+- default URL: http://localhost:9997
+- analyzes trends and returns trend_analysis JSON
 
-3. Content generation
-- call the content generation agent
-- save generated content to Supabase Postgres
-- list and view saved generated content
+2. Content Agent
+- A2A server
+- default URL: http://localhost:9998
+- receives trend context and returns generated_content JSON
 
-4. Posting / publishing
-- submit publishing form data to Upload-Post
-- save the publish job and provider response to Supabase Postgres
-- list and view saved publish jobs
+3. Orchestrator
+- A2A server
+- default URL: http://localhost:9996
+- routes user prompt to Trend Agent and Content Agent
+- final output shape:
+{
+  "trend_analysis": {},
+  "generated_content": {}
+}
+
+4. FastAPI Backend
+- API server
+- default URL: http://127.0.0.1:8000
+- exposes normal HTTP endpoints for frontend / Thunder Client
+- new orchestrator endpoint calls the running A2A orchestrator
 
 Important:
-- database persistence is handled by FastAPI + SQLAlchemy
-- Supabase is used as the PostgreSQL database
-- agent / MCP output logic is not documented here as implementation logic
-- this file documents the backend request and response contracts
+- The orchestrator endpoint does not replace the agents.
+- You must run the 3 agent servers first, then run FastAPI.
+- Supabase is used as PostgreSQL through SQLAlchemy.
 
 ==================================================
-HOW TO RUN
+2. REQUIRED ENV VARS
 ==================================================
 
-1. Set DATABASE_URL in .env
+Minimal agent env:
 
-Example for Supabase session pooler:
+GOOGLE_API_KEY=your_gemini_key
+SERP_API_KEY=your_serpapi_key
+ENSEMBLEDATA_API_KEY=your_ensembledata_key
+
+Agent runtime:
+
+AGENT_HOST=localhost
+ROUTING_AGENT_PORT=9996
+TREND_AGENT_PORT=9997
+CONTENT_AGENT_PORT=9998
+
+Optional model overrides:
+
+ROUTING_AGENT_MODEL=gemini:gemini-2.5-flash
+TREND_AGENT_MODEL=gemini/gemini-2.5-flash
+CONTENT_AGENT_MODEL=gemini/gemini-2.5-flash
+
+Backend database:
+
 DATABASE_URL=postgresql+asyncpg://postgres.<project-ref>:<encoded-password>@aws-1-<region>.pooler.supabase.com:5432/postgres?ssl=require
 
-2. Install dependencies
+Optional output settings:
 
-pip install -r requirements.txt
-
-3. Start backend
-
-python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
-
-What happens on startup:
-- app.main imports app.db
-- app.db creates SQLAlchemy engine from DATABASE_URL
-- init_db() creates these tables if they do not exist:
-  - users
-  - trend_analyses
-  - generated_contents
-  - publish_jobs
-
-Optional manual SQL init:
-- sql/init_postgresql.sql
+ORCHESTRATOR_TIMEOUT=420
+ORCHESTRATOR_OUTPUT_DIR=.
 
 ==================================================
-A. USERS
+3. HOW TO RUN
+==================================================
+
+Open 4 terminals.
+
+----------------------------------------
+TERMINAL 1: TREND AGENT
+----------------------------------------
+
+cd "D:\Product Demo\InsightForge"
+& "D:\Product Demo\.venv\Scripts\python.exe" -m agents.trend_agent.main
+
+Expected:
+- server listens on http://localhost:9997
+- agent card: http://localhost:9997/.well-known/agent-card.json
+
+----------------------------------------
+TERMINAL 2: CONTENT AGENT
+----------------------------------------
+
+cd "D:\Product Demo\InsightForge"
+& "D:\Product Demo\.venv\Scripts\python.exe" -m agents.generating_agent.main
+
+Expected:
+- server listens on http://localhost:9998
+- agent card: http://localhost:9998/.well-known/agent-card.json
+
+----------------------------------------
+TERMINAL 3: ORCHESTRATOR
+----------------------------------------
+
+cd "D:\Product Demo\InsightForge"
+& "D:\Product Demo\.venv\Scripts\python.exe" main.py
+
+Expected:
+- server listens on http://localhost:9996
+- agent card: http://localhost:9996/.well-known/agent-card.json
+
+----------------------------------------
+TERMINAL 4: FASTAPI BACKEND
+----------------------------------------
+
+cd "D:\Product Demo\InsightForge"
+& "D:\Product Demo\.venv\Scripts\python.exe" -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+
+Expected:
+- backend listens on http://127.0.0.1:8000
+- docs: http://127.0.0.1:8000/docs
+- health: http://127.0.0.1:8000/health
+
+==================================================
+4. THUNDER CLIENT
+==================================================
+
+Import this file into Thunder Client:
+
+D:\Product Demo\InsightForge\thunder_client_insightforge_agents.json
+
+Included requests:
+
+1. Health Check
+GET http://127.0.0.1:8000/health
+
+2. Agents Status
+GET http://127.0.0.1:8000/api/v1/agents/status
+
+3. Orchestrate Trend + Content
+POST http://127.0.0.1:8000/api/v1/agents/orchestrate
+
+4. Orchestrate Trend Only
+POST http://127.0.0.1:8000/api/v1/agents/orchestrate
+
+==================================================
+5. AGENT ORCHESTRATOR API
+==================================================
+
+Route prefix:
+/api/v1/agents
+
+----------------------------------------
+1. AGENTS STATUS
+----------------------------------------
+
+GET /api/v1/agents/status
+
+Purpose:
+- check whether the 3 A2A servers are reachable from FastAPI
+
+Response:
+{
+  "status": "ok",
+  "processes": [
+    {
+      "name": "routing_orchestrator",
+      "url": "http://localhost:9996",
+      "reachable": true,
+      "detail": "reachable"
+    },
+    {
+      "name": "trend_agent",
+      "url": "http://localhost:9997",
+      "reachable": true,
+      "detail": "reachable"
+    },
+    {
+      "name": "content_agent",
+      "url": "http://localhost:9998",
+      "reachable": true,
+      "detail": "reachable"
+    }
+  ]
+}
+
+Field meanings:
+- status: ok if all processes are reachable, degraded otherwise
+- name: process label used by backend
+- url: A2A server URL
+- reachable: true if socket connection succeeds
+- detail: readable status text
+
+----------------------------------------
+2. ORCHESTRATE TREND + CONTENT
+----------------------------------------
+
+POST /api/v1/agents/orchestrate
+
+Request:
+{
+  "prompt": "Chu de dang trend trong ngay hom nay ve the thao la gi va toi nen tao noi dung nhu the nao?",
+  "save_files": true,
+  "user_id": null
+}
+
+Request fields:
+- prompt: user prompt sent to the routing orchestrator
+- save_files: if true, backend saves raw and extracted outputs to local JSON files
+- user_id: optional app user UUID. If provided, saved trend/content rows are linked to this user
+
+Response:
+{
+  "status": "success",
+  "trend_analysis_id": "uuid",
+  "generated_content_id": "uuid",
+  "output": {
+    "trend_analysis": {
+      "query": "string",
+      "results": [],
+      "markdown_summary": "string"
+    },
+    "generated_content": {
+      "selected_keyword": "string",
+      "main_title": "string",
+      "video_script": {},
+      "platform_posts": {},
+      "thumbnail": {},
+      "music_background": "string"
+    }
+  },
+  "raw_response": {},
+  "raw_response_file": "orchestrator_raw_response.json",
+  "output_file": "orchestrator_output.json"
+}
+
+Response fields:
+- status: backend request status
+- trend_analysis_id: Supabase/Postgres id for the saved trend_analyses row
+- generated_content_id: Supabase/Postgres id for the saved generated_contents row
+- output: extracted final business JSON from orchestrator
+- output.trend_analysis: trend agent result block
+- output.generated_content: content agent result block
+- raw_response: full A2A JSON-RPC response, useful for debugging
+- raw_response_file: local file path for full A2A response when save_files=true
+- output_file: local file path for extracted final JSON when save_files=true
+
+Saved files:
+- orchestrator_raw_response.json
+- orchestrator_output.json
+
+Notes:
+- This endpoint can take several minutes.
+- Trend Agent and Content Agent are called sequentially.
+- Recommended client timeout: 420 seconds.
+- Backend normalizes output before saving, so output_file always has:
+  - trend_analysis
+  - generated_content
+- Even if the model returns raw text, backend wraps it into the expected shape and marks errors where needed.
+- This endpoint saves to Supabase tables:
+  - trend_analyses
+  - generated_contents
+
+==================================================
+6. EXPECTED AGENT OUTPUT SHAPES
+==================================================
+
+----------------------------------------
+1. trend_analysis
+----------------------------------------
+
+{
+  "query": "bong da",
+  "results": [
+    {
+      "main_keyword": "ban ket c1",
+      "why_the_trend_happens": "Ly do xu huong dang xay ra",
+      "trend_score": 50.5,
+      "interest_over_day": [15, 18, 14, 19],
+      "avg_views_per_hour": 64750.38,
+      "recommended_action": "Nen tao noi dung du doan va phan tich tran dau",
+      "top_hashtags": ["#c1", "#football"],
+      "google": {
+        "keyword": "ban ket c1",
+        "momentum": "rising",
+        "peak_region": "unknown"
+      },
+      "tiktok": {
+        "platform": "TikTok",
+        "top_velocity": 158366.28,
+        "avg_engagement_rate": 0.0251
+      },
+      "threads": null
+    }
+  ],
+  "markdown_summary": "Tom tat xu huong"
+}
+
+----------------------------------------
+2. generated_content
+----------------------------------------
+
+{
+  "selected_keyword": "ban ket c1",
+  "main_title": "Tieu de chinh",
+  "video_script": {
+    "title": "Tieu de video",
+    "duration_estimate": "60s",
+    "hook": "Cau mo dau",
+    "sections": [
+      {
+        "timestamp": "0:00-0:10",
+        "label": "Hook",
+        "narration": "Noi dung loi thoai",
+        "visuals": "Mo ta hinh anh",
+        "notes": "Ghi chu nhịp do/tone"
+      }
+    ],
+    "call_to_action": "CTA cuoi video",
+    "captions_style": "Phong cach phu de",
+    "music_mood": "Tam trang am nhac"
+  },
+  "platform_posts": {
+    "tiktok": {
+      "caption": "Caption TikTok",
+      "hashtags": ["#c1", "#bongda"],
+      "cta": "Binh luan du doan cua ban",
+      "best_post_time": "19:00",
+      "thumbnail_description": "Mo ta thumbnail"
+    },
+    "facebook": {
+      "caption": "Caption Facebook",
+      "hashtags": ["#bongda"],
+      "cta": "Thao luan ngay",
+      "best_post_time": "20:00",
+      "thumbnail_description": "Mo ta thumbnail"
+    },
+    "instagram": {
+      "caption": "Caption Instagram",
+      "hashtags": ["#football"],
+      "cta": "Luu bai viet",
+      "best_post_time": "21:00",
+      "thumbnail_description": "Mo ta thumbnail"
+    }
+  },
+  "thumbnail": {
+    "prompt": "Prompt tao thumbnail",
+    "style": "vivid",
+    "size": "1792x1024",
+    "output_path": "content_output.png"
+  },
+  "music_background": "Nhac nen the thao, kich tinh"
+}
+
+==================================================
+7. USERS API
 ==================================================
 
 Route prefix:
@@ -70,9 +365,10 @@ Route prefix:
 ----------------------------------------
 1. CREATE USER
 ----------------------------------------
+
 POST /api/v1/users
 
-Request JSON:
+Request:
 {
   "email": "user@example.com",
   "name": "Demo User",
@@ -85,182 +381,94 @@ Response:
   "email": "user@example.com",
   "name": "Demo User",
   "plan": "pro",
-  "created_at": "2026-04-15T10:00:00+00:00"
+  "created_at": "2026-04-16T00:00:00+00:00"
 }
-
-Field meanings:
-- id: internal app user id used to link trend/content/publish data
-- email: app user email
-- name: display name
-- plan: free / pro / enterprise or your own plan labels
-- created_at: row creation timestamp
 
 ----------------------------------------
 2. LIST USERS
 ----------------------------------------
+
 GET /api/v1/users
-
-Response:
-{
-  "users": [
-    {
-      "id": "uuid",
-      "email": "user@example.com",
-      "name": "Demo User",
-      "plan": "pro",
-      "created_at": "2026-04-15T10:00:00+00:00",
-      "trend_analysis_count": 0,
-      "generated_content_count": 0,
-      "publish_job_count": 0
-    }
-  ]
-}
-
-Additional fields:
-- trend_analysis_count: currently defaults to 0 unless computed separately
-- generated_content_count: currently defaults to 0 unless computed separately
-- publish_job_count: currently defaults to 0 unless computed separately
 
 ----------------------------------------
 3. GET USER
 ----------------------------------------
+
 GET /api/v1/users/{user_id}
 
-Response shape:
-same as create user response
-
 ==================================================
-B. TREND ANALYSIS
+8. TREND ANALYSIS API
 ==================================================
 
 Route prefix:
 /api/v1/trends
 
+Note:
+- This is the direct FastAPI-to-TrendAgent route.
+- The new recommended full pipeline route is /api/v1/agents/orchestrate.
+
 ----------------------------------------
-1. ANALYZE TREND
+1. ANALYZE TREND DIRECTLY
 ----------------------------------------
+
 POST /api/v1/trends/analyze
 
-Request JSON:
+Request:
 {
-  "query": "bóng đá",
+  "query": "bong da",
   "limit": 3,
   "user_id": "optional-user-uuid"
 }
 
-Request fields:
-- query: keyword or topic to analyze
-- limit: how many ranked results to return, min 1, max 5
-- user_id: optional app user id to link this analysis to a saved user
-
 Response:
 {
   "analysis_id": "uuid",
-  "query": "bóng đá",
-  "results": [
-    {
-      "main_keyword": "đá bóng hôm nay",
-      "why_the_trend_happens": "Giải thích lý do xu hướng",
-      "trend_score": 38.0,
-      "interest_over_day": [5, 10, 12, 15],
-      "avg_views_per_hour": 220006.0,
-      "recommended_action": "Đề xuất hành động",
-      "top_hashtags": ["#bongda", "#football"],
-      "google": {},
-      "tiktok": {},
-      "threads": {}
-    }
-  ],
-  "markdown_summary": "Tóm tắt markdown nếu có",
+  "query": "bong da",
+  "results": [],
+  "markdown_summary": "string",
   "error": null
 }
-
-Response field meanings:
-- analysis_id: internal DB id of the saved trend analysis
-- query: original query used for analysis
-- results: ranked trend opportunities
-- main_keyword: keyword chosen for one result item
-- why_the_trend_happens: explanation of why this keyword is trending
-- trend_score: numeric score returned by the trend logic
-- interest_over_day: time series for the recent day
-- avg_views_per_hour: social velocity
-- recommended_action: recommendation for the content team
-- top_hashtags: suggested hashtags
-- google / tiktok / threads: optional raw structured blocks returned by the agent
-- markdown_summary: backend-readable narrative summary
-- error: optional error payload if the agent failed partially
 
 ----------------------------------------
 2. LIST TREND HISTORY
 ----------------------------------------
+
 GET /api/v1/trends/history?user_id=<uuid>&limit=20
-
-Query params:
-- user_id: optional filter by app user
-- limit: max items to return
-
-Response:
-{
-  "items": [
-    {
-      "analysis_id": "uuid",
-      "query": "bóng đá",
-      "results": [],
-      "markdown_summary": "",
-      "error": null,
-      "status": "completed",
-      "user_id": "uuid-or-null",
-      "created_at": "2026-04-15T10:00:00+00:00"
-    }
-  ]
-}
 
 ----------------------------------------
 3. GET ONE TREND ANALYSIS
 ----------------------------------------
+
 GET /api/v1/trends/{analysis_id}
 
-Response shape:
-same as one item from trend history
-
-----------------------------------------
-4. MOCK OVERVIEW
-----------------------------------------
-GET /api/v1/trends/mock/overview?keyword=ai+video&region=VN&hashtag=aivideo
-
-Purpose:
-- UI wiring only
-- does not save anything to DB
-
 ==================================================
-C. CONTENT GENERATION
+9. CONTENT GENERATION API
 ==================================================
 
 Route prefix:
 /api/v1/contents
 
+Note:
+- This is the direct FastAPI-to-ContentAgent route.
+- The new recommended full pipeline route is /api/v1/agents/orchestrate.
+
 ----------------------------------------
-1. GENERATE CONTENT
+1. GENERATE CONTENT DIRECTLY
 ----------------------------------------
+
 POST /api/v1/contents/generate
 
-You can use this endpoint in 2 ways:
-
-Option A:
-pass a free-form prompt directly
-
+Option A: free prompt
 {
   "user_id": "optional-user-uuid",
-  "prompt": "Generate a Vietnamese TikTok script about AI video editing trends"
+  "prompt": "Generate Vietnamese TikTok script about football trends"
 }
 
-Option B:
-generate from an existing saved trend analysis
-
+Option B: from saved trend analysis
 {
   "user_id": "optional-user-uuid",
   "trend_analysis_id": "trend-analysis-uuid",
-  "selected_keyword": "đá bóng hôm nay"
+  "selected_keyword": "ban ket c1"
 }
 
 Response:
@@ -268,258 +476,145 @@ Response:
   "id": "uuid",
   "user_id": "uuid-or-null",
   "trend_analysis_id": "uuid-or-null",
-  "selected_keyword": "đá bóng hôm nay",
-  "main_title": "Tiêu đề nội dung chính",
+  "selected_keyword": "string-or-null",
+  "main_title": "string-or-null",
   "video_script": {},
   "platform_posts": {},
   "thumbnail": {},
-  "music_background": "Energetic sports beat",
+  "music_background": "string-or-null",
   "raw_output": {},
   "status": "generated",
-  "created_at": "2026-04-15T10:00:00+00:00"
+  "created_at": "timestamp"
 }
-
-Response field meanings:
-- id: internal DB id of generated content
-- trend_analysis_id: optional source trend analysis
-- selected_keyword: keyword selected from trend results
-- main_title: top-level content title
-- video_script: full script payload from content agent
-- platform_posts: generated captions / post bodies grouped by platform
-- thumbnail: thumbnail / image output payload
-- music_background: suggested music text
-- raw_output: raw final agent output saved for debugging or frontend flexibility
-- status: generated / failed / custom status
 
 ----------------------------------------
 2. LIST GENERATED CONTENT
 ----------------------------------------
-GET /api/v1/contents?user_id=<uuid>&limit=20
 
-Response:
-{
-  "items": [
-    {
-      "id": "uuid",
-      "user_id": "uuid-or-null",
-      "trend_analysis_id": "uuid-or-null",
-      "selected_keyword": "string-or-null",
-      "main_title": "string-or-null",
-      "video_script": {},
-      "platform_posts": {},
-      "thumbnail": {},
-      "music_background": "string-or-null",
-      "raw_output": {},
-      "status": "generated",
-      "created_at": "2026-04-15T10:00:00+00:00"
-    }
-  ]
-}
+GET /api/v1/contents?user_id=<uuid>&limit=20
 
 ----------------------------------------
 3. GET ONE GENERATED CONTENT
 ----------------------------------------
+
 GET /api/v1/contents/{content_id}
 
-Response shape:
-same as one item from generated content list
-
 ==================================================
-D. PUBLISHING / POSTING
+10. PUBLISHING / UPLOAD-POST API
 ==================================================
 
 Route prefix:
 /api/v1/upload-post
 
-There are 2 groups here:
-- real Upload-Post provider endpoints
-- DB-backed publish job records saved by FastAPI
+----------------------------------------
+1. PUBLISH CONTENT
+----------------------------------------
 
-----------------------------------------
-1. REAL UPLOAD-POST ACCOUNT ROUTES
-----------------------------------------
-GET /api/v1/upload-post/account/me
-POST /api/v1/upload-post/users
-GET /api/v1/upload-post/users
-GET /api/v1/upload-post/users/{username}
-DELETE /api/v1/upload-post/users/{username}
-POST /api/v1/upload-post/jwt/generate
-POST /api/v1/upload-post/jwt/validate
-
-These talk to the Upload-Post provider directly.
-
-----------------------------------------
-2. PUBLISH CONTENT
-----------------------------------------
 POST /api/v1/upload-post/publish
 
 Request type:
 multipart/form-data
 
-Form fields:
-- user: required, Upload-Post profile username
-- platforms: required, comma-separated platforms
+Important form fields:
+- user: required Upload-Post profile username
+- platforms: required comma-separated platforms
 - title: required
 - description: optional
-- tags: optional, comma-separated
+- tags: optional comma-separated tags
 - first_comment: optional
 - schedule_post: optional
-- link_url: optional
-- subreddit: optional
-- asset_urls: optional, comma-separated public URLs
-- files: optional, actual uploaded file rows
-- user_id: optional app user uuid for DB linking
-- generated_content_id: optional generated content uuid for DB linking
-
-Behavior:
-- no files and no asset_urls -> text post
-- one video file or one video URL -> video post
-- image files or image URLs only -> photo post
-- mixed image and video -> rejected
+- asset_urls: optional comma-separated URLs
+- files: optional uploaded files
+- user_id: optional app user uuid
+- generated_content_id: optional generated content uuid
 
 Response:
 {
   "source": "upload_post",
-  "publish_job": {
-    "id": "uuid",
-    "user_id": "uuid-or-null",
-    "generated_content_id": "uuid-or-null",
-    "profile_username": "blhoang23",
-    "platforms": ["instagram", "facebook"],
-    "title": "My publish title",
-    "description": "Description text",
-    "tags": ["demo", "launch"],
-    "first_comment": "Optional comment",
-    "schedule_post": null,
-    "link_url": null,
-    "subreddit": null,
-    "asset_urls": [],
-    "uploaded_files": [
-      {
-        "filename": "video.mp4",
-        "content_type": "video/mp4"
-      }
-    ],
-    "post_kind": "video",
-    "provider_request_id": "string-or-null",
-    "provider_job_id": "string-or-null",
-    "provider_response": {},
-    "status": "submitted",
-    "created_at": "2026-04-15T10:00:00+00:00"
-  },
-  "provider_payload": {
-    "success": true,
-    "post_kind": "video",
-    "platforms": ["instagram", "facebook"],
-    "payload": {
-      "success": true,
-      "message": "Accepted",
-      "request_id": "provider-request-id",
-      "job_id": "provider-job-id"
-    }
-  }
+  "publish_job": {},
+  "provider_payload": {}
 }
 
-Important field meanings:
-- publish_job.id: internal DB id to query later
-- profile_username: Upload-Post profile used for publish
-- generated_content_id: optional link back to generated content
-- provider_request_id: provider request identifier if available
-- provider_job_id: provider job identifier if available
-- provider_response: full raw provider response saved in DB
-- provider_payload: same raw provider response returned immediately to frontend
+----------------------------------------
+2. LIST SAVED PUBLISH JOBS
+----------------------------------------
 
-----------------------------------------
-3. LIST SAVED PUBLISH JOBS
-----------------------------------------
 GET /api/v1/upload-post/publish-jobs?user_id=<uuid>&generated_content_id=<uuid>&limit=20
 
-Response:
-{
-  "items": [
-    {
-      "id": "uuid",
-      "user_id": "uuid-or-null",
-      "generated_content_id": "uuid-or-null",
-      "profile_username": "string",
-      "platforms": [],
-      "title": "string",
-      "description": "string-or-null",
-      "tags": [],
-      "first_comment": "string-or-null",
-      "schedule_post": "string-or-null",
-      "link_url": "string-or-null",
-      "subreddit": "string-or-null",
-      "asset_urls": [],
-      "uploaded_files": [],
-      "post_kind": "text|video|photos",
-      "provider_request_id": "string-or-null",
-      "provider_job_id": "string-or-null",
-      "provider_response": {},
-      "status": "submitted|failed|other",
-      "created_at": "timestamp"
-    }
-  ]
-}
-
 ----------------------------------------
-4. GET ONE SAVED PUBLISH JOB
+3. GET ONE SAVED PUBLISH JOB
 ----------------------------------------
-GET /api/v1/upload-post/publish-jobs/{publish_job_id}
 
-Response shape:
-same as one item from publish jobs list
-
-----------------------------------------
-5. MOCK ANALYTICS ROUTES
-----------------------------------------
-These are still mock-backed:
-- GET /api/v1/upload-post/history
-- GET /api/v1/upload-post/analytics/profiles/{profile_username}
-- GET /api/v1/upload-post/analytics/profiles/{profile_username}/total-impressions
-- GET /api/v1/upload-post/analytics/posts/{request_id}
-- GET /api/v1/upload-post/interactions/comments
-
-Use these for UI demo / analytics wiring.
-
-==================================================
-E. QUICK TEST FLOW
-==================================================
-
-1. Create a user
-POST /api/v1/users
-
-2. Analyze a trend
-POST /api/v1/trends/analyze
-
-3. Generate content from that saved trend
-POST /api/v1/contents/generate
-
-4. Publish the content through Upload-Post
-POST /api/v1/upload-post/publish
-Include:
-- generated_content_id
-- user_id
-
-5. Read the saved publish job
 GET /api/v1/upload-post/publish-jobs/{publish_job_id}
 
 ==================================================
-F. NOTES FOR FRONTEND
+11. RECOMMENDED TEST ORDER
 ==================================================
 
-Recommended ids to store in UI state:
-- user.id
-- trend.analysis_id
-- content.id
-- publish_job.id
+1. Start the 4 terminals.
 
-Recommended display screens:
-- user list
-- trend result list + detail
-- generated content list + detail
-- publish job list + detail
+2. Thunder Client:
+GET /health
 
-Do not assume Upload-Post provider response is final publishing success.
-- a publish request can be accepted first
-- platform-specific completion may happen later
+3. Thunder Client:
+GET /api/v1/agents/status
+
+Expected:
+- routing_orchestrator reachable=true
+- trend_agent reachable=true
+- content_agent reachable=true
+
+4. Thunder Client:
+POST /api/v1/agents/orchestrate
+
+5. Check generated files:
+- orchestrator_raw_response.json
+- orchestrator_output.json
+
+6. If needed, test direct routes:
+- POST /api/v1/trends/analyze
+- POST /api/v1/contents/generate
+
+==================================================
+12. COMMON ISSUES
+==================================================
+
+1. Port already in use
+
+Check:
+netstat -ano | findstr :9996
+netstat -ano | findstr :9997
+netstat -ano | findstr :9998
+netstat -ano | findstr :8000
+
+Stop process:
+Stop-Process -Id <PID>
+
+2. Agents status degraded
+
+Make sure all 3 agent terminals are running:
+- trend agent
+- content agent
+- orchestrator
+
+3. Orchestrator timeout
+
+This pipeline can take several minutes.
+Use timeout >= 420 seconds.
+
+4. Output file still old
+
+Delete or ignore old:
+- orchestrator_raw_response.json
+- orchestrator_output.json
+
+Then run the request again.
+
+5. Model/key issue
+
+Current default is Gemini:
+- ROUTING_AGENT_MODEL=gemini:gemini-2.5-flash
+- TREND_AGENT_MODEL=gemini/gemini-2.5-flash
+- CONTENT_AGENT_MODEL=gemini/gemini-2.5-flash
+
+Make sure GOOGLE_API_KEY or GEMINI_API_KEY exists in .env.

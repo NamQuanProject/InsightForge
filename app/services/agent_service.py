@@ -1,15 +1,20 @@
 import socket
+import os
+import uuid
 
-from app.schema.common import AgentProcessStatus, AgentsStatusResponse
+from app.schema.common import AgentProcessStatus, AgentsStatusResponse, OrchestratorResponse
 from app.services.a2a_client import InsightForgeA2AClient
+from app.services.postgres_service import PostgresService
 
 
 class AgentService:
     def __init__(self) -> None:
+        host = os.environ.get("AGENT_HOST", "localhost")
+        self.postgres = PostgresService()
         self.processes = [
-            ("main_orchestrator", "localhost", 5000),
-            ("trend_agent", "localhost", 9997),
-            ("planning_agent", "localhost", 9998),
+            ("routing_orchestrator", host, int(os.environ.get("ROUTING_AGENT_PORT", 9996))),
+            ("trend_agent", host, int(os.environ.get("TREND_AGENT_PORT", 9997))),
+            ("content_agent", host, int(os.environ.get("CONTENT_AGENT_PORT", 9998))),
         ]
 
     async def analyze(self, platform: str, query: str) -> tuple[str, str]:
@@ -27,6 +32,68 @@ class AgentService:
                 f"Use this as a temporary analysis while the agent runtime is unavailable. Details: {exc}"
             )
             return "mock-fallback", fallback
+
+    async def orchestrate(
+        self,
+        prompt: str,
+        save_files: bool = True,
+        user_id: uuid.UUID | None = None,
+    ) -> OrchestratorResponse:
+        client = InsightForgeA2AClient()
+        result = await client.ask(prompt)
+        output = client.normalize_orchestrator_output(result["output"], prompt=prompt)
+
+        trend_analysis = output["trend_analysis"]
+        trend_record = await self.postgres.save_trend_analysis(
+            query=trend_analysis["query"],
+            results=trend_analysis["results"],
+            summary=trend_analysis["markdown_summary"],
+            user_id=user_id,
+            status="failed" if trend_analysis.get("error") else "completed",
+            error=trend_analysis.get("error"),
+        )
+
+        generated_content = output["generated_content"]
+        generated_record = await self.postgres.save_generated_content(
+            raw_output=generated_content,
+            video_script=generated_content["video_script"],
+            platform_posts=generated_content["platform_posts"],
+            thumbnail=generated_content["thumbnail"],
+            user_id=user_id,
+            trend_analysis_id=trend_record.id,
+            selected_keyword=generated_content.get("selected_keyword") or self._best_keyword(trend_analysis),
+            main_title=generated_content.get("main_title"),
+            music_background=generated_content.get("music_background"),
+            status="failed" if generated_content.get("error") else "generated",
+        )
+
+        raw_file = None
+        output_file = None
+        if save_files:
+            raw_file, output_file = client.save_response_files(
+                raw_response=result["raw_response"],
+                output=output,
+                output_dir=os.environ.get("ORCHESTRATOR_OUTPUT_DIR", "."),
+            )
+
+        return OrchestratorResponse(
+            status="success",
+            output=output,
+            trend_analysis_id=trend_record.id,
+            generated_content_id=generated_record.id,
+            raw_response=result["raw_response"],
+            raw_response_file=raw_file,
+            output_file=output_file,
+        )
+
+    def _best_keyword(self, trend_analysis: dict) -> str | None:
+        results = trend_analysis.get("results")
+        if not isinstance(results, list) or not results:
+            return None
+        best = max(results, key=lambda item: item.get("trend_score", 0) if isinstance(item, dict) else 0)
+        if not isinstance(best, dict):
+            return None
+        return best.get("main_keyword")
 
     def get_status(self) -> AgentsStatusResponse:
         statuses = []

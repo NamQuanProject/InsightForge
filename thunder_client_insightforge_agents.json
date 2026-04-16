@@ -1,0 +1,85 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "InsightForge Agents",
+  "dateExported": "2026-04-16T00:00:00.000Z",
+  "version": "1.2",
+  "folders": [],
+  "requests": [
+    {
+      "_id": "req_health_check",
+      "colId": "col_insightforge_agents",
+      "containerId": "",
+      "name": "Health Check",
+      "url": "http://127.0.0.1:8000/health",
+      "method": "GET",
+      "sortNum": 10000,
+      "created": "2026-04-16T00:00:00.000Z",
+      "modified": "2026-04-16T00:00:00.000Z",
+      "headers": [],
+      "params": [],
+      "tests": []
+    },
+    {
+      "_id": "req_agents_status",
+      "colId": "col_insightforge_agents",
+      "containerId": "",
+      "name": "Agents Status",
+      "url": "http://127.0.0.1:8000/api/v1/agents/status",
+      "method": "GET",
+      "sortNum": 20000,
+      "created": "2026-04-16T00:00:00.000Z",
+      "modified": "2026-04-16T00:00:00.000Z",
+      "headers": [],
+      "params": [],
+      "tests": []
+    },
+    {
+      "_id": "req_orchestrate_full_pipeline",
+      "colId": "col_insightforge_agents",
+      "containerId": "",
+      "name": "Orchestrate Trend + Content",
+      "url": "http://127.0.0.1:8000/api/v1/agents/orchestrate",
+      "method": "POST",
+      "sortNum": 30000,
+      "created": "2026-04-16T00:00:00.000Z",
+      "modified": "2026-04-16T00:00:00.000Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"prompt\": \"Chu de dang trend trong ngay hom nay ve the thao la gi va toi nen tao noi dung nhu the nao?\",\n  \"save_files\": true,\n  \"user_id\": null\n}",
+        "form": []
+      },
+      "tests": []
+    },
+    {
+      "_id": "req_orchestrate_trend_only",
+      "colId": "col_insightforge_agents",
+      "containerId": "",
+      "name": "Orchestrate Trend Only",
+      "url": "http://127.0.0.1:8000/api/v1/agents/orchestrate",
+      "method": "POST",
+      "sortNum": 40000,
+      "created": "2026-04-16T00:00:00.000Z",
+      "modified": "2026-04-16T00:00:00.000Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"prompt\": \"Phan tich 3 xu huong moi nhat ve bong da tai Viet Nam trong ngay hom nay.\",\n  \"save_files\": true,\n  \"user_id\": null\n}",
+        "form": []
+      },
+      "tests": []
+    }
+  ]
+}

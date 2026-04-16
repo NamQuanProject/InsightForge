@@ -1,4 +1,6 @@
 from pydantic import BaseModel, Field
+from typing import Any
+import uuid
 
 
 class UploadVideoRequest(BaseModel):
@@ -44,3 +46,19 @@ class AgentProcessStatus(BaseModel):
 class AgentsStatusResponse(BaseModel):
     status: str
     processes: list[AgentProcessStatus]
+
+
+class OrchestratorRequest(BaseModel):
+    prompt: str = Field(..., min_length=3)
+    save_files: bool = True
+    user_id: uuid.UUID | None = None
+
+
+class OrchestratorResponse(BaseModel):
+    status: str
+    output: dict[str, Any]
+    trend_analysis_id: uuid.UUID | None = None
+    generated_content_id: uuid.UUID | None = None
+    raw_response: dict[str, Any] | None = None
+    raw_response_file: str | None = None
+    output_file: str | None = None

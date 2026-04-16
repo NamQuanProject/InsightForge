@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from app.api.agents import router as agents_router
 from app.api.content import router as content_router
 from app.api.health import router as health_router
 from app.api.trend import router as trend_router
@@ -23,3 +24,4 @@ app.include_router(users_router)
 app.include_router(trend_router)
 app.include_router(content_router)
 app.include_router(upload_post_router)
+app.include_router(agents_router)

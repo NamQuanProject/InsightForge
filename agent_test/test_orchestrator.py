@@ -6,6 +6,8 @@ from pathlib import Path
 
 import httpx
 
+from app.services.a2a_client import InsightForgeA2AClient
+
 
 ORCHESTRATOR_URL = f"http://{os.environ.get('AGENT_HOST', 'localhost')}:{os.environ.get('ROUTING_AGENT_PORT', 9996)}"
 OUTPUT_DIR = Path(os.environ.get("ORCHESTRATOR_OUTPUT_DIR", "."))
@@ -71,7 +73,11 @@ async def test_orchestrator() -> None:
             response.raise_for_status()
 
             result = response.json()
-            final_output = _extract_final_json(result)
+            extracted_output = _extract_final_json(result)
+            final_output = InsightForgeA2AClient().normalize_orchestrator_output(
+                extracted_output,
+                prompt=payload["params"]["message"]["parts"][0]["text"],
+            )
 
             OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
             RAW_RESPONSE_FILE.write_text(
