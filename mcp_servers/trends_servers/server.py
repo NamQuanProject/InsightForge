@@ -91,15 +91,5 @@ def get_trends(category_id: int = None, location: str = "VN", hours: int = 24):
     result = format_trending_now_output(result)
     return result
 
-# @mcp.tool()
-# def list_categories() -> dict[str, int]:
-#     """
-#     List of categories mapped into Category ID for searching parameters.
-#     """
-#     category_map = {
-    
-#     }
-#     return category_map
-
 if __name__ == "__main__":
     mcp.run(transport = "stdio")
