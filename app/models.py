@@ -43,10 +43,89 @@ class TrendAnalysis(Base):
     generated_contents: Mapped[list["GeneratedContent"]] = relationship(back_populates="trend_analysis")
 
 
-class GeneratedContent(Base):
-    __tablename__ = "generated_contents"
+# class GeneratedContent(Base):
+#     __tablename__ = "generated_contents"
 
-    id: Mapped[uuid.UUID] = mapped_column(PG_UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+#     id: Mapped[uuid.UUID] = mapped_column(PG_UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+#     user_id: Mapped[uuid.UUID | None] = mapped_column(
+#         PG_UUID(as_uuid=True),
+#         ForeignKey("users.id", ondelete="SET NULL"),
+#         nullable=True,
+#         index=True,
+#     )
+#     trend_analysis_id: Mapped[uuid.UUID | None] = mapped_column(
+#         PG_UUID(as_uuid=True),
+#         ForeignKey("trend_analyses.id", ondelete="SET NULL"),
+#         nullable=True,
+#         index=True,
+#     )
+#     selected_keyword: Mapped[str | None] = mapped_column(String(255), nullable=True)
+#     main_title: Mapped[str | None] = mapped_column(String(500), nullable=True)
+#     video_script: Mapped[dict | list] = mapped_column(JSONB)
+#     platform_posts: Mapped[dict] = mapped_column(JSONB)
+#     thumbnail: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
+#     music_background: Mapped[str | None] = mapped_column(Text(), nullable=True)
+#     raw_output: Mapped[dict] = mapped_column(JSONB)
+#     status: Mapped[str] = mapped_column(String(50), default="generated")
+#     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+#     user: Mapped[User | None] = relationship(back_populates="generated_contents")
+#     trend_analysis: Mapped[TrendAnalysis | None] = relationship(back_populates="generated_contents")
+#     publish_jobs: Mapped[list["PublishJob"]] = relationship(back_populates="generated_content")
+
+class GeneratedContent(Base):
+    """
+    Stores the full structured output produced by the content generation agent.
+ 
+    JSON schema reference (Generating_agent.json):
+    {
+        "selected_keyword": str,
+        "main_title": str,
+        "video_script": {
+            "title": str,
+            "duration_estimate": str,          # e.g. "60s"
+            "hook": str,
+            "sections": [
+                {
+                    "timestamp": str,
+                    "label": str,
+                    "narration": str,
+                    "notes": str,
+                    "thumbnail": {             # per-section thumbnail, lives here
+                        "prompt": str,
+                        "style": str,
+                        "size": str,
+                        "output_path": str
+                    }
+                },
+                ...
+            ],
+            "call_to_action": str,
+            "captions_style": str,
+            "music_mood": str
+        },
+        "platform_posts": {
+            "tiktok":     { "caption": str, "hashtags": [...], "cta": str,
+                            "best_post_time": str, "thumbnail_description": str },
+            "facebook":   { ... },
+            "instagram":  { ... }
+        },
+        "music_background": str               # top-level background music description
+    }
+ 
+    Note: thumbnails are embedded inside each video_script.sections[*].thumbnail.
+    There is no separate top-level thumbnail field.
+    """
+ 
+    __tablename__ = "generated_contents"
+ 
+    id: Mapped[uuid.UUID] = mapped_column(
+        PG_UUID(as_uuid=True), primary_key=True, default=uuid.uuid4
+    )
+ 
+    # ------------------------------------------------------------------ #
+    # Foreign keys                                                         #
+    # ------------------------------------------------------------------ #
     user_id: Mapped[uuid.UUID | None] = mapped_column(
         PG_UUID(as_uuid=True),
         ForeignKey("users.id", ondelete="SET NULL"),
@@ -59,19 +138,54 @@ class GeneratedContent(Base):
         nullable=True,
         index=True,
     )
+ 
+    # ------------------------------------------------------------------ #
+    # Top-level scalar fields                                              #
+    # ------------------------------------------------------------------ #
     selected_keyword: Mapped[str | None] = mapped_column(String(255), nullable=True)
     main_title: Mapped[str | None] = mapped_column(String(500), nullable=True)
-    video_script: Mapped[dict | list] = mapped_column(JSONB)
+ 
+    # ------------------------------------------------------------------ #
+    # Structured JSON fields                                               #
+    # ------------------------------------------------------------------ #
+ 
+    # Full video script object:
+    #   title, duration_estimate, hook, sections (with per-section thumbnail),
+    #   call_to_action, captions_style, music_mood
+    video_script: Mapped[dict] = mapped_column(JSONB)
+ 
+    # Platform-specific posts: tiktok / facebook / instagram
+    #   Each entry contains: caption, hashtags, cta, best_post_time,
+    #   thumbnail_description
     platform_posts: Mapped[dict] = mapped_column(JSONB)
-    thumbnail: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
+ 
+    # Top-level background music description (separate from video_script.music_mood)
     music_background: Mapped[str | None] = mapped_column(Text(), nullable=True)
+ 
+    # ------------------------------------------------------------------ #
+    # Metadata / audit                                                     #
+    # ------------------------------------------------------------------ #
+ 
+    # Full raw JSON output from the LLM — kept for debugging / reprocessing
     raw_output: Mapped[dict] = mapped_column(JSONB)
+ 
+    # Lifecycle: generated | processing | completed | failed
     status: Mapped[str] = mapped_column(String(50), default="generated")
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
-
-    user: Mapped[User | None] = relationship(back_populates="generated_contents")
-    trend_analysis: Mapped[TrendAnalysis | None] = relationship(back_populates="generated_contents")
-    publish_jobs: Mapped[list["PublishJob"]] = relationship(back_populates="generated_content")
+ 
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+ 
+    # ------------------------------------------------------------------ #
+    # Relationships                                                        #
+    # ------------------------------------------------------------------ #
+    user: Mapped["User | None"] = relationship(back_populates="generated_contents")
+    trend_analysis: Mapped["TrendAnalysis | None"] = relationship(
+        back_populates="generated_contents"
+    )
+    publish_jobs: Mapped[list["PublishJob"]] = relationship(
+        back_populates="generated_content"
+    )
 
 
 class PublishJob(Base):
