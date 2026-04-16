@@ -1,0 +1,45 @@
+{
+    "video_script": {
+        "title": "🤯 How I Save 2 Hours DAILY Using AI Tools! (Real Workflow Demo)",
+        "sections": [
+            {
+                "time_code": "0:00-0:08",
+                "heading": "Hook: Problem, Agitation, Solution (Visual: Stressed person looking at a pile of work)",
+                "content": "VOICEOVER (Energetic, slightly frustrated): Ever feel like your to-do list is a monster eating your day? You're bogged down by repetitive tasks, losing precious hours you could be spending on growth or, you know, sleeping? (Visual: Quick cut to 'before' screen recording – slow, manual task like drafting a social media post from scratch)"
+            },
+            {
+                "time_code": "0:08-0:15",
+                "heading": "Introduction to AI Solution (Visual: Text overlay: 'AI to the rescue!')",
+                "content": "VOICEOVER: What if I told you there's a secret weapon that lets you reclaim those hours? No, it's not magic, it's AI! And I'm going to show you exactly how I use it to save literally HOURS every single day."
+            },
+            {
+                "time_code": "0:15-0:45",
+                "heading": "Real Workflow Demo: Before & After (Visual: Lo-fi screen recording. Start a visible timer/clock)",
+                "content": "VOICEOVER: Let's tackle something simple: drafting a social media post for a new client. \n\n**BEFORE (0:15-0:25):** (Screen recording shows me manually typing out ideas, researching hashtags, struggling for wording. Timer shows 5:00... 4:00... 3:00 remaining for this task). VOICEOVER: This used to take me 20-30 minutes of staring at a blank screen, trying to sound catchy and relevant. Draining! \n\n**AFTER (0:25-0:45):** (Quick cut to a clean screen. Open an AI writing tool. Type a simple prompt: 'Generate 5 engaging Instagram captions for a new local coffee shop, focus on community and morning rituals, include 3 relevant hashtags.' Hit enter. Watch as the AI instantly generates options. Timer shows 0:30... 0:20... 0:10 remaining for this task. Quickly copy-paste and make minor edits. A clock graphic dramatically fast-forwards or shows a significant time reduction.) VOICEOVER: With a simple prompt, I get multiple options in seconds. I can pick one, tweak it, and boom – done in under 2 minutes! That's a 90% time saving on just *one* task!"
+            },
+            {
+                "time_code": "0:45-0:55",
+                "heading": "Benefits & Call to Action Reminder (Visual: Highlighted text 'SAVE 2 HOURS A DAY!')",
+                "content": "VOICEOVER: Imagine applying this to email writing, content outlines, even brainstorming! Those small chunks of time saved add up to *hours* daily. More time for clients, more time for YOU. It's a game-changer for freelancers and small business owners who are stretched thin."
+            },
+            {
+                "time_code": "0:55-1:00",
+                "heading": "Final Call to Action (Visual: Text overlay: 'Follow for daily AI tips that save you 2 hours a day.')",
+                "content": "VOICEOVER: Ready to stop being a slave to your tasks? Follow for daily AI tips that save you 2 hours a day and unlock your most productive self! Let's work smarter, not harder."
+            }
+        ]
+    },
+    "post_content": {
+        "tiktok": "🤯 STOP WASTING TIME on repetitive tasks! As a freelancer/small business owner, your time is gold. Watch me show you how I use a simple AI tool to draft social media posts in MINUTES instead of 30+! This is a REAL workflow demo. You'll be shocked at the time saved. Follow for daily AI tips that save you 2 hours a day! #AIforsmallbusiness #FreelancerLife #TimeSavingTips #AITools #ProductivityHacks #WorkSmarterNotHarder",
+        "facebook": "Are you a freelancer or small business owner constantly battling your to-do list? 😩 We get it – time is your most valuable asset, and often, you feel like you never have enough. In this video, I'm pulling back the curtain to show you a genuine before-and-after workflow using a simple AI tool. Watch how I transform a 30-minute task (like drafting social media content) into a 2-minute breeze! This isn't just about features; it's about real, tangible time savings. If you're ready to reclaim hours in your day and focus on what truly matters for your business (or just enjoy some extra free time!), then you NEED to see this. Hit 'Follow' for daily AI tips that are guaranteed to save you 2 hours a day! #FreelanceTips #SmallBizHacks #AIforBusiness #Productivity #TimeManagement #EntrepreneurLife #DigitalTools #GrowYourBusiness",
+        "instagram": "🤯 Time-saving AI workflow for my fellow freelancers & small biz owners! 🚀 Stop staring at a blank screen trying to write content. In this reel, I'm showing you a REAL before/after demo using an AI tool to crush a task that used to eat up 30 minutes (now it's 2 minutes!). Look at that clock! ⏰ This is how you reclaim your day. Don't just hear about AI, SEE IT IN ACTION. ✨\n\nDouble tap if you're ready to work smarter! \n\n👉 Follow @[YourAccountHandle] for daily AI tips that save you 2 hours a day! \n\n#AITools #Freelancer #SmallBusiness #Productivity #TimeSaved #WorkSmart #AI #BusinessHacks #DigitalNomad #Entrepreneur"
+    },
+    "image_result": {
+        "generate_image_response": {
+            "error": null,
+            "model_used": "@cf/stabilityai/stable-diffusion-xl-base-1.0",
+            "saved_path": "ai_time_saver_image.png",
+            "success": true
+        }
+    }
+}

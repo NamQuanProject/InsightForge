@@ -53,12 +53,27 @@ class AgentService:
             error=trend_analysis.get("error"),
         )
 
+        # generated_content = output["generated_content"]
+        # generated_record = await self.postgres.save_generated_content(
+        #     raw_output=generated_content,
+        #     video_script=generated_content["video_script"],
+        #     platform_posts=generated_content["platform_posts"],
+        #     thumbnail=generated_content["thumbnail"],
+        #     user_id=user_id,
+        #     trend_analysis_id=trend_record.id,
+        #     selected_keyword=generated_content.get("selected_keyword") or self._best_keyword(trend_analysis),
+        #     main_title=generated_content.get("main_title"),
+        #     music_background=generated_content.get("music_background"),
+        #     status="failed" if generated_content.get("error") else "generated",
+        # )
         generated_content = output["generated_content"]
+        # video_script is stored whole: it contains title, duration_estimate, hook,
+        # sections (each with its own thumbnail dict), call_to_action, captions_style,
+        # and music_mood.  There is no separate top-level thumbnail field.
         generated_record = await self.postgres.save_generated_content(
             raw_output=generated_content,
             video_script=generated_content["video_script"],
             platform_posts=generated_content["platform_posts"],
-            thumbnail=generated_content["thumbnail"],
             user_id=user_id,
             trend_analysis_id=trend_record.id,
             selected_keyword=generated_content.get("selected_keyword") or self._best_keyword(trend_analysis),

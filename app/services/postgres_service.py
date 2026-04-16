@@ -66,12 +66,53 @@ class PostgresService:
         async with get_session_factory()() as session:
             return await session.get(TrendAnalysis, parsed_id)
 
+    # async def save_generated_content(
+    #     self,
+    #     raw_output: dict[str, Any],
+    #     video_script: dict[str, Any] | list[Any],
+    #     platform_posts: dict[str, Any],
+    #     thumbnail: dict[str, Any] | None,
+    #     user_id: uuid.UUID | str | None = None,
+    #     trend_analysis_id: uuid.UUID | str | None = None,
+    #     selected_keyword: str | None = None,
+    #     main_title: str | None = None,
+    #     music_background: str | None = None,
+    #     status: str = "generated",
+    # ) -> GeneratedContent:
+    #     async with get_session_factory()() as session:
+    #         content = GeneratedContent(
+    #             user_id=self._coerce_uuid(user_id) if user_id else None,
+    #             trend_analysis_id=self._coerce_uuid(trend_analysis_id) if trend_analysis_id else None,
+    #             selected_keyword=selected_keyword,
+    #             main_title=main_title,
+    #             video_script=video_script,
+    #             platform_posts=platform_posts,
+    #             thumbnail=thumbnail,
+    #             music_background=music_background,
+    #             raw_output=raw_output,
+    #             status=status,
+    #         )
+    #         session.add(content)
+    #         await session.commit()
+    #         await session.refresh(content)
+    #         return content
+
+    # async def list_generated_contents(
+    #     self,
+    #     user_id: uuid.UUID | str | None = None,
+    #     limit: int = 20,
+    # ) -> list[GeneratedContent]:
+    #     async with get_session_factory()() as session:
+    #         statement = select(GeneratedContent).order_by(GeneratedContent.created_at.desc()).limit(limit)
+    #         if user_id:
+    #             statement = statement.where(GeneratedContent.user_id == self._coerce_uuid(user_id))
+    #         result = await session.execute(statement)
+    #         return list(result.scalars().all())
     async def save_generated_content(
         self,
         raw_output: dict[str, Any],
-        video_script: dict[str, Any] | list[Any],
+        video_script: dict[str, Any],
         platform_posts: dict[str, Any],
-        thumbnail: dict[str, Any] | None,
         user_id: uuid.UUID | str | None = None,
         trend_analysis_id: uuid.UUID | str | None = None,
         selected_keyword: str | None = None,
@@ -79,6 +120,18 @@ class PostgresService:
         music_background: str | None = None,
         status: str = "generated",
     ) -> GeneratedContent:
+        """
+        Persist a GeneratedContent record.
+ 
+        Per the Generating_agent.json schema:
+        - ``video_script`` is the full object including ``sections``, each of
+          which carries its own ``thumbnail`` dict (prompt, style, size,
+          output_path).  There is no separate top-level thumbnail argument.
+        - ``platform_posts`` holds per-platform dicts (tiktok / facebook /
+          instagram) with caption, hashtags, cta, best_post_time, and
+          thumbnail_description.
+        - ``music_background`` is the top-level music description string.
+        """
         async with get_session_factory()() as session:
             content = GeneratedContent(
                 user_id=self._coerce_uuid(user_id) if user_id else None,
@@ -87,7 +140,6 @@ class PostgresService:
                 main_title=main_title,
                 video_script=video_script,
                 platform_posts=platform_posts,
-                thumbnail=thumbnail,
                 music_background=music_background,
                 raw_output=raw_output,
                 status=status,
@@ -96,7 +148,7 @@ class PostgresService:
             await session.commit()
             await session.refresh(content)
             return content
-
+ 
     async def list_generated_contents(
         self,
         user_id: uuid.UUID | str | None = None,
@@ -108,6 +160,11 @@ class PostgresService:
                 statement = statement.where(GeneratedContent.user_id == self._coerce_uuid(user_id))
             result = await session.execute(statement)
             return list(result.scalars().all())
+ 
+    async def get_generated_content(self, content_id: uuid.UUID | str) -> GeneratedContent | None:
+        parsed_id = self._coerce_uuid(content_id)
+        async with get_session_factory()() as session:
+            return await session.get(GeneratedContent, parsed_id)
 
     async def get_generated_content(self, content_id: uuid.UUID | str) -> GeneratedContent | None:
         parsed_id = self._coerce_uuid(content_id)

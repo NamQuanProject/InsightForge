@@ -1,0 +1,16 @@
+{
+        "id": "32de67cc-ccc6-4a18-81b4-874e509ad63e",
+        "jsonrpc": "2.0",
+        "result": {
+            "kind": "message",
+            "messageId": "843c982a-8012-45f4-b6bb-533f5a10597a",
+            "parts": 
+            [
+                {
+                    "kind": "text",
+                    "text": "```json\n{\n  \"classification\": \"MEGA_TREND\",\n  \"confidence\": 0.78,\n  \"final_keywords\": [\n    \"samsung\",\n    \"samsung galaxy\",\n    \"samsung AI\"\n  ],\n  \"generated_at\": 1776235436,\n  \"google\": {\n    \"insights\": {\n      \"acceleration\": null,\n      \"is_partial_today\": true,\n      \"latest_value\": 67,\n      \"momentum\": \"rising\",\n      \"peak_date\": \"Apr 14, 2026 at 9:00 PM\",\n      \"peak_region\": null,\n      \"peak_value\": 85,\n      \"related_rising_queries\": [\n        \"samsung galaxy s22 ultra 5g chính hãng (+3,400%)\",\n        \"samsung galaxy z fold7 5g chính hãng (+3,400%)\"\n      ],\n      \"slope\": null,\n      \"trough_value\": 41,\n      \"wow_change_pct\": null\n    },\n    \"keyword\": \"samsung\",\n    \"timeseries\": []\n  },\n  \"markdown_report\": \"## Trend Intelligence Report: Samsung\\n\\n### 🔍 Google Trends Signal\\n- Momentum: rising\\n- Rising related queries: ['samsung galaxy s22 ultra 5g chính hãng (+3,400%)', 'samsung galaxy z fold7 5g chính hãng (+3,400%)']\\n\\n### 📱 Social Media Signal\\n- TikTok top velocity: 58623.39 views/hour\\n- Winning content angle: Samsung phone tips/secrets, Samsung AI\\n\\n### 🎯 Classification: MEGA_TREND (confidence: 78%)\\nBoth search intent and social engagement are high — broad, sustained trend.\\n\\n### 💡 Recommended Action\\nCreate content around Samsung phone tips/tricks and explore the integration of AI in Samsung devices, specifically focusing on new releases like the Galaxy S22 Ultra 5G and Z Fold7 5G.\",\n  \"query\": \"samsung\",\n  \"recommended_action\": \"\",\n  \"threads\": null,\n  \"tiktok\": {\n    \"insights\": {\n      \"avg_engagement_rate\": 0.07914,\n      \"avg_trend_score\": 13376.51508,\n      \"avg_velocity\": 22876.11252,\n      \"platform\": \"TikTok\",\n      \"sample_url\": null,\n      \"top_content_angle\": \"Samsung phone tips/secrets, Samsung AI\",\n      \"top_hashtags\": [],\n      \"top_velocity\": 58623.3855,\n      \"total_items_analyzed\": 0\n    },\n    \"keyword\": \"samsung\",\n    \"timeseries\": [],\n    \"top_videos\": []\n  }\n}\n```"
+                }
+            ],
+            "role": "agent"
+        }
+}

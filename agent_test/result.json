@@ -1,0 +1,49 @@
+{
+  "classification": "MEGA_TREND",
+  "confidence": 0.72,
+  "final_keywords": [
+    "luật căn cước",
+    "Nghị định 90/2026/NĐ-CP",
+    "pháp luật mới"
+  ],
+  "google_data": {
+    "insights": {
+      "is_partial_today": true,
+      "latest_value": 62,
+      "momentum": "rising",
+      "peak_date": "Apr 11, 2026 at 12:00 AM",
+      "peak_region": "Bắc Kạn Province",
+      "peak_value": 65,
+      "related_rising_queries": [
+        "luật căn cước công dân",
+        "luật căn cước 2023",
+        "tội phạm"
+      ],
+      "trough_value": 23
+    },
+    "keyword": "luật căn cước"
+  },
+  "markdown_report": "## Trend Intelligence Report: Xu hướng Pháp luật và Chính sách mới tại Việt Nam\n\n### 🔍 Google Trends Signal\n- Momentum: rising (từ 23 lên 62 điểm trong 24 giờ qua)\n- Peak region: Bắc Kạn Province (100 điểm)\n- Rising related queries: [luật căn cước công dân, luật căn cước 2023, tội phạm]\n\n### 📱 Social Media Signal\n- TikTok top velocity: 50515.48 views/hour (liên quan đến Nghị định 90/2026/NĐ-CP)\n- Threads engagement: Không có bài đăng nổi bật trực tiếp về \"luật căn cước\".\n- Winning content angle: Giải thích các quy định pháp luật mới và tác động của chúng đến đời sống.\n\n### 🎯 Classification: MEGA_TREND (confidence: 72%)\nXu hướng này cho thấy sự quan tâm cao của công chúng đối với các thay đổi về pháp luật và chính sách mới tại Việt Nam, thể hiện qua lượng tìm kiếm tăng vọt trên Google và tốc độ lan truyền nhanh của các nội dung liên quan trên TikTok.\n\n### 💡 Recommended Action\n- **Giải thích pháp luật**: Tạo nội dung đơn giản hóa các điều luật, nghị định mới, giúp người dân dễ hiểu và áp dụng.\n- **Phân tích tác động**: Tập trung vào những ảnh hưởng trực tiếp của các quy định mới đến đời sống hàng ngày, công việc, hoặc các ngành nghề cụ thể.\n- **Cập nhật thông tin nhanh chóng**: Luôn theo dõi và đưa tin kịp thời về các thay đổi pháp luật.\n- **Định dạng hỏi đáp (Q&A)**: Tổ chức các buổi hỏi đáp trực tuyến hoặc tạo video trả lời các thắc mắc phổ biến của người xem.\n- **Sử dụng các ví dụ thực tế**: Minh họa các điều luật bằng các tình huống cụ thể, dễ hình dung.",
+  "query": "Xu hướng pháp luật và chính sách mới tại Việt Nam",
+  "recommended_action": "Tạo nội dung giải thích, phân tích tác động của các quy định pháp luật mới; cập nhật thông tin kịp thời; sử dụng định dạng hỏi đáp và ví dụ thực tế.",
+  "tiktok_data": {
+    "insights": {
+      "avg_engagement_rate": 0.0188,
+      "avg_trend_score": 25257.7469,
+      "avg_velocity": 50515.4841,
+      "platform": "TikTok",
+      "sample_url": "https://api16-normal-no1a.tiktokv.eu/aweme/v1/play/?faid=1233&file_id=b55af302c7c94049a441e457f0bd80f2&is_play_url=1&item_id=7627310876445396242&line=0&signaturev3=dmlkZW9faWQ7ZmlsZV9pZDtpdGVtX2lkLmE2MzUzYzkzODA3NDc1NzkyOGZjOGYyODMzODUwOTc1&source=CHALLENGE_AWEME&video_id=v10044g50000d7cp5bvog65kqf648cp0",
+      "top_content_angle": "Giải thích các quy định pháp luật mới và tác động của chúng.",
+      "top_hashtags": [
+        "vtvtimes",
+        "vtvonline",
+        "chuachap",
+        "nguoihutthuocladientu",
+        "phat10trieudong"
+      ],
+      "top_velocity": 50515.4841,
+      "total_items_analyzed": 1
+    },
+    "keyword": "Nghị định 90/2026/NĐ-CP"
+  }
+}
