@@ -1,13 +1,12 @@
 from pydantic import BaseModel, Field
 from typing import Literal
+from datetime import datetime
 
 
 class PostRequest(BaseModel):
     prompt: str
     config_id: str
-    decision: Literal["asking", "approve", "deny"] = Field(
-        ..., 
-    )
+    decision: Literal["asking", "approve", "deny"] = Field(...)
 
 
 class PostResponse(BaseModel):
@@ -15,3 +14,8 @@ class PostResponse(BaseModel):
     source: str
     result_markdown: str
 
+
+class ImageInfo(BaseModel):
+    id: str
+    image_url: str
+    created_at: datetime

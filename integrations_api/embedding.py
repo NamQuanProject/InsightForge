@@ -14,7 +14,6 @@ class GeminiEmbedder:
         self.client = genai.Client()
         self.model = model
 
-    # ---------- IMAGE (NOW ASYNC) ----------
     async def embed_image(self, image_path: str) -> np.ndarray:
         # Use asyncio.to_thread for file reading to avoid blocking the loop
         image_bytes = await asyncio.to_thread(open(image_path, "rb").read)

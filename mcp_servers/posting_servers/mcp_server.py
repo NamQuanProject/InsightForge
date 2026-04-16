@@ -11,12 +11,11 @@ import os
 import json
 import numpy as np
 import asyncio
-from langchain.tools import tool
 
 load_dotenv()
 
 mcp = FastMCP("PostingAgent")
-UPLOAD_POST_API_KEY = os.getenv("UPLOAD_POST_API_KEY_2", "")
+UPLOAD_POST_API_KEY = os.getenv("UPLOAD_POST_API_KEY_TEMP", "")
 UPLOAD_POST_BASE_URL = "https://api.upload-post.com/api"
 
 
