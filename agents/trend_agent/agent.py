@@ -192,10 +192,4 @@ class TrendAgent:
         print(response["messages"][-1])
         raw_content = response["messages"][-1].content
         return raw_content # ```json tag`
-        # try:
-        #     # Clean Markdown if present
-        #     clean_json = raw_content.replace("```json", "").replace("```", "").strip()
-        #     return json.loads(clean_json)
-        # except Exception:
-        #     return {"error": "Failed to parse agent response", "raw": raw_content}
     

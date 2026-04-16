@@ -160,7 +160,7 @@ async def main():
                 consecutive_allowed=False
             ),
         ],
-        memory=UnconstrainedMemory(), # Fixed: Use instance, not class
+        memory=UnconstrainedMemory(), 
         role="Product Manager",
         instructions= f"""
         You are the Lead Content Pipeline Router.

@@ -27,7 +27,8 @@ class TrendAgentExecutor(AgentExecutor):
         await self._ensure_initialized()
         prompt = context.get_user_input()
         response = await self.agent.answer_query(prompt)
-        await event_queue.enqueue_event(new_agent_text_message(response))
+        print(f"\nTrendAgent Response: ", response)
+        await event_queue.enqueue_event(new_agent_text_message(str(response)))
 
     async def cancel(self, context: RequestContext, event_queue: EventQueue) -> None:
         pass

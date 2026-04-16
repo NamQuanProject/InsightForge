@@ -52,13 +52,13 @@ mcp = FastMCP("SocialMediaTrend")
 def tiktok_search_keyword(
     keyword: str,
     top_k: int = 5,
-    period: str = "7",
+    period: str = "1",
     country: str = "VN",
     sorting: str = "0",
     match_exactly: bool = False,
 ) -> dict:
     """
-    Search TikTok for trending videos matching a keyword.
+    Search TikTok for trending videos matching a keyword in a the last 24 hours only.
     Videos are ranked by a composite trend score (velocity + like-rate + virality).
 
     Parameters

@@ -144,18 +144,20 @@ class TiktokTrend:
         match_exactly: bool = False,
     ) -> Dict[str, Any]:
 
-        url = "https://ensembledata.com/apis/tt/keyword/full-search"
+        url = "https://ensembledata.com/apis/tt/keyword/search"
 
         params = {
             "name": keyword,
+            "cursor": 0,
             "period": period,
             "sorting": sorting,
             "country": country,
             "match_exactly": match_exactly,
-            "token": self.token,
-        }
+            "get_author_stats": False,
+            "token": self.token
+            }
 
-        res = requests.get(url, params=params, timeout=30)
+        res = requests.get(url, params=params)
         res.raise_for_status()
         return res.json()
 
