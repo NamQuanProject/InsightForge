@@ -3,168 +3,212 @@
     "query": "Chủ đề đang trend trong ngày hôm nay về thể thao",
     "results": [
       {
-        "main_keyword": "bán kết c1",
-        "why_the_trend_happens": "Một số trận đấu bóng đá đỉnh cao, đặc biệt là \"bayern đấu với real madrid\" và \"arsenal đấu với sporting\", đang tạo ra sự quan tâm lớn, thúc đẩy chủ đề về \"bán kết c1\" (bán kết Champions League).",
-        "trend_score": 55.0,
+        "main_keyword": "bayern đấu với real madrid",
+        "why_the_trend_happens": "Trận đấu lớn giữa hai câu lạc bộ bóng đá hàng đầu Châu Âu.",
+        "trend_score": 35.0,
         "interest_over_day": [
-          9.0,
-          10.0,
-          11.0,
-          4.0,
-          8.0,
-          8.0,
-          6.0,
-          8.0,
-          6.0,
-          0.0
+          0.0,
+          0.0,
+          1.0
         ],
-        "avg_views_per_hour": 89642.28,
-        "recommended_action": "Tạo nội dung video ngắn, phân tích trận đấu, highlights, hoặc bình luận về các đội tham gia bán kết C1.",
+        "avg_views_per_hour": 0.0,
+        "recommended_action": "Tạo nội dung video ngắn, highlight trận đấu, phân tích chiến thuật, hoặc bình luận về cầu thủ.",
         "top_hashtags": [
-          "#bayernmunich",
-          "#realmadrid",
-          "#football",
-          "#fyp",
-          "#uk",
-          "#tv360thethao",
-          "#tv360",
-          "#highlight",
-          "#c1",
-          "#championsleague",
-          "#onsports",
-          "#vtvcab",
-          "#sportsontiktok"
+          "#BayernRealMadrid",
+          "#BongDa"
         ],
         "google": {
-          "keyword": "bán kết c1",
+          "keyword": "bayern đấu với real madrid",
           "momentum": "rising",
-          "peak_region": "Yen Bai Province"
+          "peak_region": "Nam Dinh"
         },
         "tiktok": {
-          "avg_engagement_rate": 0.02086,
+          "avg_engagement_rate": 0,
           "platform": "TikTok",
-          "top_velocity": 89642.28
+          "top_velocity": 0
+        },
+        "threads": null
+      },
+      {
+        "main_keyword": "arsenal đấu với sporting",
+        "why_the_trend_happens": "Trận đấu quan trọng của câu lạc bộ Arsenal.",
+        "trend_score": 35.0,
+        "interest_over_day": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "avg_views_per_hour": 0.0,
+        "recommended_action": "Tạo nội dung video ngắn, highlight trận đấu, phân tích chiến thuật, hoặc bình luận về cầu thủ.",
+        "top_hashtags": [
+          "#ArsenalSporting",
+          "#BongDa"
+        ],
+        "google": {
+          "keyword": "arsenal đấu với sporting",
+          "momentum": "rising",
+          "peak_region": "Bac Ninh Province"
+        },
+        "tiktok": {
+          "avg_engagement_rate": 0,
+          "platform": "TikTok",
+          "top_velocity": 0
+        },
+        "threads": null
+      },
+      {
+        "main_keyword": "al-nassr đấu với al ettifaq",
+        "why_the_trend_happens": "Trận đấu có sự góp mặt của câu lạc bộ Al-Nassr.",
+        "trend_score": 35.0,
+        "interest_over_day": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "avg_views_per_hour": 0.0,
+        "recommended_action": "Tạo nội dung video ngắn, highlight trận đấu, phân tích chiến thuật, hoặc bình luận về cầu thủ.",
+        "top_hashtags": [
+          "#AlNassr",
+          "#AlNassrAlEttifaq",
+          "#BongDa"
+        ],
+        "google": {
+          "keyword": "al-nassr đấu với al ettifaq",
+          "momentum": "rising",
+          "peak_region": "Nam Dinh"
+        },
+        "tiktok": {
+          "avg_engagement_rate": 0,
+          "platform": "TikTok",
+          "top_velocity": 0
         },
         "threads": null
       }
     ],
-    "markdown_summary": "Chủ đề \"bán kết c1\" đang là xu hướng nóng nhất trong ngày về thể thao, được thúc đẩy bởi các trận đấu lớn như Bayern đấu với Real Madrid và Arsenal đấu với Sporting. Với điểm số xu hướng 55, đây là cơ hội tuyệt vời để các nhà sáng tạo nội dung khai thác bằng cách tạo các video ngắn, phân tích trận đấu, highlight hoặc bình luận chuyên sâu. Khu vực Yên Bái đang dẫn đầu về mức độ quan tâm trên Google Trends. Các hashtag liên quan bao gồm #bayernmunich, #realmadrid, #c1, #championsleague.",
+    "markdown_summary": "Trong ngày hôm nay, các chủ đề thể thao nổi bật nhất đều xoay quanh các trận đấu bóng đá. Cụ thể, 'bayern đấu với real madrid', 'arsenal đấu với sporting', và 'al-nassr đấu với al ettifaq' là những từ khóa có lượt tìm kiếm tăng vọt trên Google. Mặc dù dữ liệu TikTok hiện không khả dụng, nhưng sự quan tâm trên Google cho thấy đây là những chủ đề tiềm năng để tạo nội dung thu hút, đặc biệt là các video ngắn, highlight trận đấu, phân tích chiến thuật hoặc bình luận về các cầu thủ.",
     "error": null
   },
   "generated_content": {
-    "selected_keyword": "bán kết c1",
-    "main_title": "Bán Kết C1 Nóng Bỏng: Đại Chiến Châu Âu Đã Sẵn Sàng!",
+    "selected_keyword": "bayern đấu với real madrid",
+    "main_title": "Đại Chiến Châu Âu: Bayern Munich vs Real Madrid!",
     "video_script": {
-      "title": "",
+      "title": "Bayern vs Real: Khi Huyền Thoại Đụng Độ",
       "duration_estimate": "60s",
-      "hook": "Chào mừng các fan túc cầu! Bán kết Cúp C1 Châu Âu đã đến, và mọi ánh mắt đang đổ dồn về những trận đấu kinh điển sẽ quyết định tấm vé chung kết. Bạn đã sẵn sàng cho những khoảnh khắc bùng nổ chưa?",
+      "hook": "Sức nóng của sân cỏ Châu Âu đang bùng cháy! Hai gã khổng lồ Bayern Munich và Real Madrid sẽ đối đầu trong một trận đấu hứa hẹn đầy kịch tính.",
       "sections": [
         {
-          "label": "Giới thiệu & Hút người xem",
-          "narration": "Đêm châu Âu rực lửa! Bán kết Cúp C1, giải đấu danh giá nhất lục địa già, đang đến rất gần. Sự kiện thể thao nóng nhất hành tinh này hứa hẹn mang đến những màn đối đầu kịch tính và đầy bất ngờ. Bạn nghĩ đội nào sẽ chạm tay vào cúp?",
-          "notes": "Mở đầu nhanh, tạo không khí hào hứng, kích thích sự tò mò.",
-          "timestamp": "0:00-0:10",
-          "visuals": "Cảnh quay tổng hợp từ các trận đấu C1 trước đó, logo Champions League, màn hình chia đôi với biểu tượng các đội tham gia bán kết. Hiệu ứng đồ họa cháy bỏng, năng động."
+          "label": "Mở Đầu Hùng Tráng",
+          "narration": "Chào mừng đến với đại chiến đỉnh cao giữa hai gã khổng lồ của bóng đá châu Âu: Bayern Munich và Real Madrid!",
+          "notes": "Hiệu ứng chuyển cảnh nhanh, logo hai đội xuất hiện hoành tráng với âm thanh dồn dập.",
+          "thumbnail": {
+            "output_path": "section_1.png",
+            "prompt": "A majestic football stadium at night, packed with cheering fans, spotlights illuminating the pitch. Bayern Munich and Real Madrid logos are subtly integrated, grand scale, dramatic lighting, epic atmosphere. SDXL style.",
+            "size": "1792x1024",
+            "style": "vivid"
+          },
+          "timestamp": "0:00-0:10"
         },
         {
-          "label": "Tâm điểm: Bayern Munich vs Real Madrid",
-          "narration": "Tâm điểm không thể bỏ qua chính là cuộc đối đầu lịch sử giữa Bayern Munich và Real Madrid. Đây không chỉ là một trận bóng đá, mà là cuộc chiến của những gã khổng lồ, nơi tinh hoa và bản lĩnh được khẳng định. Liệu dàn sao trẻ của Kền Kền Trắng hay kinh nghiệm của Hùm Xám sẽ lên tiếng?",
-          "notes": "Nhấn mạnh tính lịch sử và dàn sao của trận đấu này, tạo sự mong đợi.",
-          "timestamp": "0:10-0:25",
-          "visuals": "Highlight các bàn thắng đẹp của Bayern và Real, cận cảnh các ngôi sao như Harry Kane, Jude Bellingham, Vinicius Jr. Thống kê nhanh về lịch sử đối đầu giữa hai đội. Đồ họa so sánh cầu thủ."
+          "label": "Lịch Sử Đối Đầu",
+          "narration": "Những cuộc đối đầu kinh điển đã tạo nên vô vàn cảm xúc. Từ những pha bóng nghẹt thở đến những bàn thắng đi vào lịch sử, liệu ai sẽ là người chiến thắng trong chương mới này?",
+          "notes": "Cắt cảnh highlight các trận đấu cũ giữa hai đội, cận cảnh các cầu thủ huyền thoại như Cristiano Ronaldo, Robert Lewandowski. Chuyển động mượt mà.",
+          "thumbnail": {
+            "output_path": "section_2.png",
+            "prompt": "Dynamic collage of historical moments between Bayern Munich and Real Madrid. Images of legendary players in action, a split screen showing two iconic jerseys, with a backdrop of a packed stadium under dramatic lights. SDXL style.",
+            "size": "1792x1024",
+            "style": "vivid"
+          },
+          "timestamp": "0:10-0:25"
         },
         {
-          "label": "Trận đấu còn lại: PSG vs Dortmund",
-          "narration": "Không kém phần hấp dẫn là màn so tài giữa Paris Saint-Germain và Borussia Dortmund. Một bên là tham vọng chinh phục châu Âu cháy bỏng của PSG với Kylian Mbappé, bên còn lại là sức trẻ và lối chơi đầy nhiệt huyết của Dortmund. Đội bóng nào sẽ chứng tỏ được bản lĩnh để giành lấy tấm vé quý giá?",
-          "notes": "Đề cập đến trận đấu còn lại, làm nổi bật các yếu tố quan trọng và ngôi sao của mỗi đội.",
-          "timestamp": "0:25-0:40",
-          "visuals": "Highlight Kylian Mbappé và các cầu thủ chủ chốt của Dortmund. Cảnh khán đài Signal Iduna Park cuồng nhiệt, so sánh lối chơi giữa hai đội. Đồ họa dự đoán kết quả."
+          "label": "Sức Mạnh Hiện Tại",
+          "narration": "Bayern với lối chơi tấn công rực lửa, còn Real Madrid luôn biết cách tạo nên sự khác biệt với bản lĩnh của nhà vô địch. Những ngôi sao nào sẽ tỏa sáng?",
+          "notes": "Phân tích chiến thuật đơn giản, cận cảnh các ngôi sao hiện tại của hai đội (ví dụ: Vinicius Jr., Harry Kane) trong các pha xử lý bóng đẹp mắt. Hiệu ứng đồ họa thông tin nhẹ nhàng.",
+          "thumbnail": {
+            "output_path": "section_3.png",
+            "prompt": "A tactical board showing formations for Bayern Munich and Real Madrid, with dynamic lines and player icons. In the background, blurred images of current star players from both teams (e.g., Harry Kane, Vinicius Jr.) in action, intense focus. SDXL style.",
+            "size": "1792x1024",
+            "style": "vivid"
+          },
+          "timestamp": "0:25-0:40"
         },
         {
-          "label": "Dự đoán & Cảm xúc",
-          "narration": "Những trận đấu bán kết C1 luôn mang đến những khoảnh khắc không thể nào quên. Những siêu phẩm, những pha cứu thua ngoạn mục, và cả những giọt nước mắt vỡ òa. Ai sẽ tiến vào chung kết Wembley? Mọi thứ đang chờ đợi chúng ta ở phía trước!",
-          "notes": "Tạo sự hồi hộp, nói về cảm xúc mà C1 mang lại.",
-          "timestamp": "0:40-0:50",
-          "visuals": "Cảnh khán giả reo hò, biểu cảm cầu thủ (thắng/thua), hình ảnh cúp C1 lung linh. Đồng hồ đếm ngược đến trận đấu."
+          "label": "Kịch Tính Chờ Đợi",
+          "narration": "Một trận đấu không chỉ là bóng đá, mà còn là niềm đam mê, là cảm xúc bùng nổ của hàng triệu trái tim. Hãy cùng chờ đợi những pha bóng đỉnh cao!",
+          "notes": "Hiệu ứng cháy nổ, tiếng reo hò của khán giả, cận cảnh biểu cảm căng thẳng của cầu thủ và huấn luyện viên. Nhạc nền dồn dập.",
+          "thumbnail": {
+            "output_path": "section_4.png",
+            "prompt": "Intense football action shot. A player from Bayern Munich and a player from Real Madrid are battling for the ball in mid-air, dramatic lighting, motion blur to emphasize speed, roaring crowd in the background, high energy. SDXL style.",
+            "size": "1792x1024",
+            "style": "vivid"
+          },
+          "timestamp": "0:40-0:55"
         },
         {
-          "label": "Kêu gọi hành động",
-          "narration": "Đừng bỏ lỡ bất kỳ khoảnh khắc nào! Hãy theo dõi và bình luận ngay phía dưới: Đội bóng nào sẽ giành chiến thắng và tiến vào trận chung kết Champions League? Hãy để lại dự đoán của bạn nhé!",
-          "notes": "Kêu gọi tương tác, khuyến khích khán giả bày tỏ ý kiến.",
-          "timestamp": "0:50-1:00",
-          "visuals": "Màn hình hiển thị câu hỏi tương tác, kêu gọi comment. Logo các nền tảng mạng xã hội. Thông tin kênh/người tạo."
+          "label": "Lời Kêu Gọi",
+          "narration": "Bạn nghĩ đội nào sẽ giành chiến thắng? Hãy bình luận và chia sẻ dự đoán của bạn nhé!",
+          "notes": "Màn hình kết thúc với logo hai đội và các biểu tượng mạng xã hội, kêu gọi tương tác.",
+          "thumbnail": {
+            "output_path": "section_5.png",
+            "prompt": "A split screen showing the official logos of Bayern Munich and Real Madrid, with a subtle glow around them. Text overlay 'Who will win?' and social media icons, clean design, vibrant colors. SDXL style.",
+            "size": "1792x1024",
+            "style": "vivid"
+          },
+          "timestamp": "0:55-1:00"
         }
       ],
-      "call_to_action": "Bình luận ngay đội bạn tin sẽ vô địch C1 năm nay!",
-      "captions_style": "Năng động, chữ nổi bật, màu sắc tương phản với video, highlight các từ khóa quan trọng bằng màu khác hoặc hiệu ứng động.",
-      "music_mood": "Hành động, hùng tráng, kịch tính, dồn dập."
+      "call_to_action": "Đừng bỏ lỡ trận đấu kinh điển này! Hãy chia sẻ cảm nghĩ của bạn về kết quả nhé!",
+      "captions_style": "Năng động, hiện đại với hiệu ứng động chữ bật ra.",
+      "music_mood": "Hùng tráng, kịch tính, pha chút hồi hộp."
     },
     "platform_posts": {
       "tiktok": {
-        "caption": "Bán kết C1 đã chính thức khởi tranh! 🏆 Ai sẽ là đội giành vé vào chung kết lịch sử? Bayern đấu Real, PSG gặp Dortmund... Quá nhiều cảm xúc! 🔥 #c1 #championsleague #bayernmunich #realmadrid #psg #dortmund #bongda #fyp #bongdaplus",
+        "caption": "🔥 ĐẠI CHIẾN ĐỈNH CAO CHÂU ÂU: Bayern Munich vs Real Madrid! Ai sẽ là người chiến thắng? Cùng xem những pha bóng nghẹt thở và dự đoán kết quả ngay! 👇",
         "hashtags": [
-          "#c1",
-          "#championsleague",
-          "#bayernmunich",
-          "#realmadrid",
-          "#psg",
-          "#dortmund",
-          "#bongda",
-          "#fyp",
-          "#tv360thethao",
-          "#highlight",
-          "#sportsontiktok"
+          "#BayernRealMadrid",
+          "#BongDaChauAu",
+          "#ChampionsLeague",
+          "#DoiDauHuyenThoai",
+          "#HighlightBongDa"
         ],
-        "cta": "Bình luận ngay đội bạn nghĩ sẽ thắng!",
-        "best_post_time": "19:00 - 21:00 (Thứ 3/Thứ 4)",
-        "thumbnail_description": "Ảnh cắt từ video với biểu tượng 2 đội Bayern và Real Madrid đối đầu, kèm logo C1 lớn và dòng chữ 'BÁN KẾT C1 NÓNG BỎNG!'"
+        "cta": "Bình luận dự đoán của bạn!",
+        "best_post_time": "19:00 - 22:00 tối",
+        "thumbnail_description": "Cận cảnh logo Bayern và Real đối đầu, hiệu ứng lửa và băng, ánh sáng mạnh mẽ."
       },
       "facebook": {
-        "caption": "📢 BÁN KẾT C1 ĐÃ ĐẾN! 📢 Cả thế giới bóng đá đang nín thở chờ đợi những màn so tài đỉnh cao giữa các ông lớn Châu Âu. Bayern Munich vs Real Madrid - một trận đấu kinh điển. PSG vs Borussia Dortmund - sức trẻ và khát khao chiến thắng. Đội bóng nào sẽ vượt qua tất cả để chạm tay vào chiếc cúp danh giá? Hãy cùng chờ xem và đưa ra dự đoán của bạn! #ChampionsLeague #C1 #BánKết #BayernMunich #RealMadrid #PSG #Dortmund #BóngĐá #UEFA",
+        "caption": "Cuộc đối đầu kinh điển giữa Bayern Munich và Real Madrid đang đến rất gần! Liệu Hùm Xám có thể vượt qua Kền Kền Trắng, hay Real sẽ tiếp tục khẳng định bản lĩnh của nhà vô địch? Cùng hòa mình vào không khí sôi động và không bỏ lỡ những diễn biến hấp dẫn nhất của trận đấu này!",
         "hashtags": [
-          "#ChampionsLeague",
-          "#C1",
-          "#BánKết",
           "#BayernMunich",
           "#RealMadrid",
-          "#PSG",
-          "#Dortmund",
-          "#BóngĐá",
-          "#UEFA",
-          "#TinTứcBóngĐá"
+          "#ChampionsLeague",
+          "#BongDa",
+          "#TranDauHot"
         ],
-        "cta": "Chia sẻ dự đoán của bạn về đội vô địch C1!",
-        "best_post_time": "20:00 - 22:00 (Thứ 3/Thứ 4)",
-        "thumbnail_description": "Hình ảnh ghép tổng hợp 4 logo đội bóng bán kết C1 (Bayern, Real, PSG, Dortmund) trên nền sân vận động, phía trên là cúp C1."
+        "cta": "Chia sẻ bài viết và tag bạn bè để cùng bàn luận!",
+        "best_post_time": "11:00 - 13:00 trưa & 20:00 - 22:00 tối",
+        "thumbnail_description": "Ảnh ghép hai đội trưởng bắt tay trước trận đấu, sân vận động chật kín khán giả."
       },
       "instagram": {
-        "caption": "KHÔNG THỂ NÓNG HƠN! 🔥 Bán kết Cúp C1 Châu Âu đã chính thức khởi tranh! Cuộc chiến giữa Bayern vs Real và PSG vs Dortmund hứa hẹn sẽ bùng nổ mọi cảm xúc. Ai sẽ là người viết nên lịch sử và giành lấy tấm vé vàng đến trận chung kết? Hãy để lại 'LIKE' và 'COMMENT' đội bóng bạn yêu thích! 👇 #C1 #ChampionsLeague #Football #Soccer #BayernVsReal #PSGVSDortmund #EuroFootball #InstaFootball #BóngĐáChâuÂu",
+        "caption": "🔥 TRẬN CẦU ĐỊNH MỆNH! Bayern Munich vs Real Madrid - Cuộc chiến của những ngôi sao và lịch sử. Bạn đang cổ vũ cho đội nào? ⚽ #FootballFever",
         "hashtags": [
-          "#C1",
+          "#BayernMunich",
+          "#RealMadrid",
           "#ChampionsLeague",
           "#Football",
-          "#Soccer",
-          "#BayernVsReal",
-          "#PSGVSDortmund",
-          "#EuroFootball",
-          "#InstaFootball",
-          "#BóngĐáChâuÂu",
-          "#UEFA",
-          "#sports",
-          "#highlight"
+          "#MatchDay"
         ],
-        "cta": "Gắn thẻ bạn bè để cùng thảo luận!",
-        "best_post_time": "19:00 - 21:00 (Thứ 3/Thứ 4)",
-        "thumbnail_description": "Ảnh đẹp mắt của một cầu thủ Bayern Munich và một cầu thủ Real Madrid đối mặt nhau trên sân cỏ, với hiệu ứng ánh sáng rực rỡ và logo C1 mờ ở hậu cảnh."
+        "cta": "Thả tim ❤️ và bình luận đội bạn yêu thích!",
+        "best_post_time": "10:00 - 11:00 sáng & 18:00 - 19:00 tối",
+        "thumbnail_description": "Hình ảnh cầu thủ chủ chốt của Bayern và Real đang ăn mừng bàn thắng, pháo sáng rực rỡ."
       }
     },
     "thumbnail": {
-      "prompt": "Một hình ảnh động đầy kịch tính với hai ngôi sao bóng đá hàng đầu, Jude Bellingham của Real Madrid và Harry Kane của Bayern Munich, đang đối mặt nhau trên sân vận động với ánh đèn pha rực rỡ. Phía sau họ là logo Champions League to lớn và mờ ảo, cùng với hiệu ứng tia sét hoặc lửa tượng trưng cho sự căng thẳng của trận bán kết. Màu sắc chủ đạo là xanh đậm và vàng kim.",
+      "prompt": "",
       "style": "vivid",
       "size": "1792x1024",
       "output_path": "content_output.png"
     },
-    "music_background": "Epic cinematic soundtrack với tiết tấu nhanh, dồn dập, có yếu tố rock hoặc trống mạnh mẽ.",
+    "music_background": "Nhạc nền thể thao kịch tính, dồn dập với những đoạn cao trào, tạo cảm giác hồi hộp và phấn khích.",
     "error": null
   }
 }
