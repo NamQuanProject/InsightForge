@@ -9,11 +9,11 @@ curl -X POST http://localhost:5000/ \
         "role": "user",
         "parts": [
           {
-            "text": "Can I get trend about latest google trend and analysis content for it"
+            "kind": "text",
+            "text": "Can you upload for me a photo at sample_data/image.png with username blhoang23 to instagram with description test post?"
           }
         ]
       }
     },
     "id": 1
   }'
-

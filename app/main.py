@@ -7,6 +7,7 @@ from app.api.trend import router as trend_router
 from app.api.upload_post import router as upload_post_router
 from app.api.users import router as users_router
 from app.db import init_db
+from app.api.post import router as post_router
 
 app = FastAPI(
     title="InsightForge API",
@@ -25,3 +26,4 @@ app.include_router(trend_router)
 app.include_router(content_router)
 app.include_router(upload_post_router)
 app.include_router(agents_router)
+app.include_router(post_router)

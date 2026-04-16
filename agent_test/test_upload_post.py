@@ -1,15 +1,14 @@
 import asyncio
-from mcp_servers.posting_servers.mcp_server import upload_text, validate_api_key, get_user_profile, upload_photos, get_upload_history, get_media_list, get_analytics
+from mcp_servers.posting_servers.mcp_server import upload_text, get_user_profile, upload_photos, get_upload_history, get_media_list, get_analytics, retrieve_informations
 
 async def main():
-    # Test API key first
-    res = await validate_api_key()
-    print("API KEY TEST:", res)
 
 
     res = await get_user_profile()
     print("CURRENT_USER_TEST", res)
 
+    res = await retrieve_informations("Image about I phone")
+    print(res)
 
 #     @mcp.tool()
 # async def upload_text(
@@ -36,16 +35,16 @@ async def main():
 
     # print("UPLOAD_TEXT_TEST", res)
 
-    res = await get_upload_history()
-    print("UPLOAD_HISTORY_TEST", res)
+    # res = await get_upload_history()
+    # print("UPLOAD_HISTORY_TEST", res)
 
 
-    # res = await get_media_list(user="blhoang23", platform="instagram")
-    # print("MEDIA_LIST_TEST", res)
+    # # res = await get_media_list(user="blhoang23", platform="instagram")
+    # # print("MEDIA_LIST_TEST", res)
 
 
-    res = await get_analytics(profile_username="blhoang23", platform="instagram")
-    print("ANALYTICS_TEST", res)
+    # res = await get_analytics(profile_username="blhoang23", platform="instagram")
+    # print("ANALYTICS_TEST", res)
 
 
 

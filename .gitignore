@@ -5,3 +5,6 @@ a2a-samples/
 __pycache__/
 credentials/
 .venv/
+*.json
+InsightForge-Copy
+sample_data/
