@@ -50,7 +50,7 @@ class GeminiEmbedder:
         query_vec: np.ndarray,
         db_vectors: list[np.ndarray],
         metadata: list[dict] | None = None,
-        top_k: int = 3
+        top_k: int = 5
     ):
         def cosine_similarity(v1, v2):
             v1 = v1 / (np.linalg.norm(v1) + 1e-9)

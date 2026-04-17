@@ -251,6 +251,11 @@ class PostingAgent:
 
     async def resume(self, config: Any, decisions: list) -> Any:
         """Resume agent execution after an interrupt with user decisions."""
+        
+        thread_id = config["configurable"]["thread_id"]
+
+        db.delete("agent_thread", "id", thread_id)
+
         result = await self.agent.ainvoke(
             Command(resume={"decisions": [{"type": "approve"}]}),
             config=config,

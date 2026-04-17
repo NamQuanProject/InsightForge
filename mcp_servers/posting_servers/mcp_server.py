@@ -313,7 +313,7 @@ async def _image_search(query: str) -> dict:
 
     # 3. SEARCH
     results = embedder.search(
-        query_vec=query_vec, db_vectors=db_vectors, metadata=db_metadata, top_k=1
+        query_vec=query_vec, db_vectors=db_vectors, metadata=db_metadata, top_k=5
     )
 
     return {"query": query, "results": results}
