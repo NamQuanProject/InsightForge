@@ -1,5 +1,7 @@
 import json
 import os
+import re
+import unicodedata
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
@@ -16,6 +18,33 @@ from app.schema.upload_post import (
 
 
 class UploadPostApiService:
+    VIETNAMESE_BAD_WORDS = (
+        "địt",
+        "đụ",
+        "đéo",
+        "đĩ",
+        "đĩ mẹ",
+        "lồn",
+        "cặc",
+        "buồi",
+        "vãi lồn",
+        "vãi",
+        "mẹ mày",
+        "con mẹ mày",
+        "bố mày",
+        "óc chó",
+        "chó má",
+        "đồ chó",
+        "ngu",
+        "ngu xuẩn",
+        "đồ ngu",
+        "khốn nạn",
+        "cút",
+        "cút mẹ",
+        "chết mẹ",
+        "mất dạy",
+        "súc vật",
+    )
     PROFILE_USER_ENV_KEYS = (
         "UPLOAD_POST_DEFAULT_USER",
         "UPLOAD_POST_YOUTUBE_USER",
@@ -241,6 +270,18 @@ class UploadPostApiService:
             query=query,
         )
 
+    def get_media(
+        self,
+        platform: str,
+        user: str,
+    ) -> dict[str, Any]:
+        return self._request_json(
+            "GET",
+            "/uploadposts/media",
+            headers=self._api_key_headers(),
+            query={"platform": platform, "user": user},
+        )
+
     def get_comments(
         self,
         platform: str,
@@ -265,6 +306,208 @@ class UploadPostApiService:
             headers=self._api_key_headers(),
             query=query,
         )
+
+    def get_all_comments(
+        self,
+        platform: str,
+        user: str,
+        max_media: int = 20,
+        continue_on_error: bool = True,
+    ) -> dict[str, Any]:
+        media_payload = self.get_media(platform=platform, user=user)
+        media_items = self._extract_media_items(media_payload)[:max_media]
+        media_comments: list[dict[str, Any]] = []
+        total_comments = 0
+
+        for media in media_items:
+            post_id = self._coerce_optional_str(media.get("id") or media.get("post_id") or media.get("media_id"))
+            post_url = self._coerce_optional_str(media.get("permalink") or media.get("url") or media.get("post_url"))
+
+            if not post_id and not post_url:
+                media_comments.append(
+                    {
+                        "media": media,
+                        "success": False,
+                        "comments": [],
+                        "error": "Media item does not include an id or permalink usable by Upload-Post comments.",
+                    }
+                )
+                continue
+
+            try:
+                comments_payload = self.get_comments(
+                    platform=platform,
+                    user=user,
+                    post_id=post_id,
+                    post_url=post_url if not post_id else None,
+                )
+            except HTTPException as exc:
+                if not continue_on_error:
+                    raise
+                media_comments.append(
+                    {
+                        "media": media,
+                        "post_id": post_id,
+                        "post_url": post_url,
+                        "success": False,
+                        "comments": [],
+                        "error": exc.detail,
+                    }
+                )
+                continue
+
+            comments = self._extract_comments(comments_payload)
+            total_comments += len(comments)
+            media_comments.append(
+                {
+                    "media": media,
+                    "post_id": post_id,
+                    "post_url": post_url,
+                    "success": bool(comments_payload.get("success", True)),
+                    "comments": comments,
+                    "payload": comments_payload,
+                }
+            )
+
+        return {
+            "success": True,
+            "platform": platform,
+            "user": user,
+            "media_count": len(media_items),
+            "total_comments": total_comments,
+            "media_payload": media_payload,
+            "media_comments": media_comments,
+        }
+
+    def delete_bad_word_comments(
+        self,
+        platform: str,
+        user: str,
+        post_id: str | None = None,
+        post_url: str | None = None,
+        max_media: int = 20,
+        dry_run: bool = False,
+    ) -> dict[str, Any]:
+        payload = (
+            {
+                "success": True,
+                "platform": platform,
+                "user": user,
+                "media_comments": [
+                    {
+                        "post_id": post_id,
+                        "post_url": post_url,
+                        "comments": self._extract_comments(
+                            self.get_comments(
+                                platform=platform,
+                                user=user,
+                                post_id=post_id,
+                                post_url=post_url,
+                            )
+                        ),
+                    }
+                ],
+            }
+            if post_id or post_url
+            else self.get_all_comments(platform=platform, user=user, max_media=max_media)
+        )
+
+        matches: list[dict[str, Any]] = []
+        for media_group in payload.get("media_comments", []):
+            if not isinstance(media_group, dict):
+                continue
+            for comment in media_group.get("comments", []):
+                if not isinstance(comment, dict):
+                    continue
+                text = self._comment_text(comment)
+                matched_words = self.find_vietnamese_bad_words(text)
+                if not matched_words:
+                    continue
+
+                comment_id = self._coerce_optional_str(comment.get("id") or comment.get("comment_id"))
+                result: dict[str, Any] = {
+                    "deleted": False,
+                    "skipped": dry_run,
+                    "provider_payload": None,
+                    "error": None,
+                }
+                if comment_id and not dry_run:
+                    try:
+                        result["provider_payload"] = self.delete_comment(
+                            platform=platform,
+                            user=user,
+                            comment_id=comment_id,
+                            post_id=self._coerce_optional_str(media_group.get("post_id")) or post_id,
+                            post_url=self._coerce_optional_str(media_group.get("post_url")) or post_url,
+                        )
+                        result["deleted"] = bool(result["provider_payload"].get("success", True))
+                    except HTTPException as exc:
+                        result["error"] = exc.detail
+                elif not comment_id:
+                    result["error"] = "Comment does not include an id/comment_id."
+
+                matches.append(
+                    {
+                        "post_id": media_group.get("post_id") or post_id,
+                        "post_url": media_group.get("post_url") or post_url,
+                        "comment_id": comment_id,
+                        "text": text,
+                        "matched_bad_words": matched_words,
+                        "comment": comment,
+                        **result,
+                    }
+                )
+
+        deleted_count = sum(1 for item in matches if item["deleted"])
+        failed_count = sum(1 for item in matches if item["error"] and not item["skipped"])
+
+        return {
+            "success": failed_count == 0,
+            "platform": platform,
+            "user": user,
+            "dry_run": dry_run,
+            "bad_words": list(self.VIETNAMESE_BAD_WORDS),
+            "scanned_media_count": len(payload.get("media_comments", [])),
+            "matched_count": len(matches),
+            "deleted_count": deleted_count,
+            "failed_count": failed_count,
+            "matches": matches,
+            "comments_payload": payload,
+        }
+
+    def delete_comment(
+        self,
+        platform: str,
+        user: str,
+        comment_id: str,
+        post_id: str | None = None,
+        post_url: str | None = None,
+    ) -> dict[str, Any]:
+        body: dict[str, Any] = {
+            "platform": platform,
+            "user": user,
+            "comment_id": comment_id,
+        }
+        if post_id:
+            body["post_id"] = post_id
+        if post_url:
+            body["post_url"] = post_url
+
+        return self._request_json(
+            "DELETE",
+            "/uploadposts/comments",
+            headers=self._api_key_headers(),
+            body=body,
+        )
+
+    def find_vietnamese_bad_words(self, text: str) -> list[str]:
+        normalized_text = f" {self._normalize_vietnamese_text(text)} "
+        matches: list[str] = []
+        for word in self.VIETNAMESE_BAD_WORDS:
+            normalized_word = self._normalize_vietnamese_text(word)
+            if normalized_word and f" {normalized_word} " in normalized_text:
+                matches.append(word)
+        return matches
 
     def _api_key_headers(self) -> dict[str, str]:
         api_key = os.getenv("UPLOAD_POST_API_KEY")
@@ -385,6 +628,33 @@ class UploadPostApiService:
             pass
         return HTTPException(status_code=exc.code, detail=detail)
 
+    def _extract_media_items(self, payload: dict[str, Any]) -> list[dict[str, Any]]:
+        for key in ("media", "items", "data", "posts", "results"):
+            value = payload.get(key)
+            if isinstance(value, list):
+                return [item for item in value if isinstance(item, dict)]
+        return []
+
+    def _extract_comments(self, payload: dict[str, Any]) -> list[dict[str, Any]]:
+        for key in ("comments", "items", "data", "results"):
+            value = payload.get(key)
+            if isinstance(value, list):
+                return [item for item in value if isinstance(item, dict)]
+        return []
+
+    def _comment_text(self, comment: dict[str, Any]) -> str:
+        for key in ("text", "message", "comment", "body", "content"):
+            value = comment.get(key)
+            if value is not None:
+                return str(value)
+        return ""
+
+    def _normalize_vietnamese_text(self, value: str) -> str:
+        lowered = value.lower().replace("đ", "d")
+        decomposed = unicodedata.normalize("NFD", lowered)
+        without_marks = "".join(char for char in decomposed if unicodedata.category(char) != "Mn")
+        return re.sub(r"[^a-z0-9]+", " ", without_marks).strip()
+
     def _normalize_profile(self, payload: dict[str, Any] | None) -> UploadPostProfile:
         if payload is None:
             raise HTTPException(status_code=502, detail="Upload-Post returned an empty profile payload.")
@@ -455,3 +725,8 @@ class UploadPostApiService:
             return int(value)
         except (TypeError, ValueError):
             return None
+
+    def _coerce_optional_str(self, value: Any) -> str | None:
+        if value is None or value == "":
+            return None
+        return str(value)

@@ -245,6 +245,42 @@ async def get_upload_post_comments(
     return UploadPostCommentsEnvelope(payload=payload)
 
 
+@router.get("/interactions/comments/all", response_model=UploadPostCommentsEnvelope)
+async def get_all_upload_post_comments(
+    platform: str = Query(default="instagram", min_length=1),
+    user: str = Query(..., min_length=1),
+    max_media: int = Query(default=20, ge=1, le=100),
+    continue_on_error: bool = Query(default=True),
+):
+    payload = UploadPostApiService().get_all_comments(
+        platform=platform,
+        user=user,
+        max_media=max_media,
+        continue_on_error=continue_on_error,
+    )
+    return UploadPostCommentsEnvelope(payload=payload)
+
+
+@router.delete("/interactions/comments/bad-words", response_model=UploadPostCommentsEnvelope)
+async def delete_upload_post_bad_word_comments(
+    platform: str = Query(default="instagram", min_length=1),
+    user: str = Query(..., min_length=1),
+    post_id: str | None = Query(default=None),
+    post_url: str | None = Query(default=None),
+    max_media: int = Query(default=20, ge=1, le=100),
+    dry_run: bool = Query(default=False),
+):
+    payload = UploadPostApiService().delete_bad_word_comments(
+        platform=platform,
+        user=user,
+        post_id=post_id,
+        post_url=post_url,
+        max_media=max_media,
+        dry_run=dry_run,
+    )
+    return UploadPostCommentsEnvelope(payload=payload)
+
+
 def _normalize_list_query(values: list[str] | None) -> list[str]:
     if not values:
         return []

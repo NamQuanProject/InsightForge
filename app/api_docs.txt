@@ -547,6 +547,152 @@ GET /api/v1/upload-post/publish-jobs?user_id=<uuid>&generated_content_id=<uuid>&
 
 GET /api/v1/upload-post/publish-jobs/{publish_job_id}
 
+----------------------------------------
+4. GET COMMENTS FOR ONE POST
+----------------------------------------
+
+GET /api/v1/upload-post/interactions/comments?platform=instagram&user=blhoang23&post_id=17890455123456789
+
+Alternative with post URL:
+GET /api/v1/upload-post/interactions/comments?platform=instagram&user=blhoang23&post_url=https://www.instagram.com/p/ABC123/
+
+Query parameters:
+- platform: required. Upload-Post currently documents comments for instagram.
+- user: required Upload-Post profile username.
+- post_id: optional numeric media id. Required if post_url is not provided.
+- post_url: optional full post URL. Required if post_id is not provided.
+
+Purpose:
+- Fetch comments for a single social post through Upload-Post.
+
+Response:
+{
+  "source": "upload_post",
+  "payload": {
+    "success": true,
+    "comments": [
+      {
+        "id": "comment-id",
+        "text": "Comment text",
+        "timestamp": "timestamp",
+        "user": {
+          "id": "commenter-id",
+          "username": "commenter"
+        }
+      }
+    ]
+  }
+}
+
+----------------------------------------
+5. GET COMMENTS ACROSS RECENT MEDIA
+----------------------------------------
+
+GET /api/v1/upload-post/interactions/comments/all?platform=instagram&user=blhoang23&max_media=20
+
+Query parameters:
+- platform: optional, default instagram.
+- user: required Upload-Post profile username.
+- max_media: optional, default 20, min 1, max 100.
+- continue_on_error: optional, default true. If true, one failed media comments request does not stop the whole response.
+
+Purpose:
+- Fetch recent media through Upload-Post.
+- For each media item, fetch comments through Upload-Post.
+- Return one grouped response with media metadata and comments.
+
+Response:
+{
+  "source": "upload_post",
+  "payload": {
+    "success": true,
+    "platform": "instagram",
+    "user": "blhoang23",
+    "media_count": 20,
+    "total_comments": 12,
+    "media_comments": [
+      {
+        "media": {},
+        "post_id": "17890455123456789",
+        "post_url": "https://www.instagram.com/p/ABC123/",
+        "success": true,
+        "comments": [],
+        "payload": {}
+      }
+    ]
+  }
+}
+
+Notes:
+- Upload-Post rate limits comment requests per post. If the provider returns a rate-limit error for one media item, use continue_on_error=true to keep the rest of the response.
+
+----------------------------------------
+6. DELETE COMMENTS WITH VIETNAMESE BAD WORDS
+----------------------------------------
+
+Dry run first:
+DELETE /api/v1/upload-post/interactions/comments/bad-words?platform=instagram&user=blhoang23&dry_run=true
+
+Delete matched comments across recent media:
+DELETE /api/v1/upload-post/interactions/comments/bad-words?platform=instagram&user=blhoang23&max_media=20
+
+Delete matched comments for one post only:
+DELETE /api/v1/upload-post/interactions/comments/bad-words?platform=instagram&user=blhoang23&post_id=17890455123456789
+
+Alternative with post URL:
+DELETE /api/v1/upload-post/interactions/comments/bad-words?platform=instagram&user=blhoang23&post_url=https://www.instagram.com/p/ABC123/
+
+Query parameters:
+- platform: optional, default instagram.
+- user: required Upload-Post profile username.
+- post_id: optional. If provided, only this post is scanned.
+- post_url: optional. If provided, only this post is scanned.
+- max_media: optional, default 20, min 1, max 100. Used only when post_id/post_url is not provided.
+- dry_run: optional, default false. If true, scans and returns matches without deleting.
+
+Purpose:
+- Retrieve comments through Upload-Post.
+- Detect comments containing hard-coded Vietnamese bad words.
+- Attempt to delete each matched comment through the Upload-Post delete-comments path.
+
+Current hard-coded bad-word examples:
+- địt, đụ, đéo, đĩ, lồn, cặc, buồi
+- mẹ mày, con mẹ mày, bố mày
+- óc chó, chó má, đồ chó
+- ngu, đồ ngu, khốn nạn, cút, mất dạy, súc vật
+
+Response:
+{
+  "source": "upload_post",
+  "payload": {
+    "success": true,
+    "platform": "instagram",
+    "user": "blhoang23",
+    "dry_run": false,
+    "scanned_media_count": 20,
+    "matched_count": 2,
+    "deleted_count": 2,
+    "failed_count": 0,
+    "matches": [
+      {
+        "post_id": "17890455123456789",
+        "post_url": "https://www.instagram.com/p/ABC123/",
+        "comment_id": "comment-id",
+        "text": "comment text",
+        "matched_bad_words": ["bad-word"],
+        "deleted": true,
+        "skipped": false,
+        "provider_payload": {},
+        "error": null
+      }
+    ]
+  }
+}
+
+Important:
+- Upload-Post officially documents retrieving comments and replying to comments. A delete-comments endpoint was not found in the public Upload-Post docs. This backend attempts DELETE /uploadposts/comments and returns the provider error if Upload-Post does not support it for the account.
+- Use dry_run=true before deleting.
+
 ==================================================
 11. RECOMMENDED TEST ORDER
 ==================================================
