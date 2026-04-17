@@ -26,12 +26,14 @@ class InsightForgeA2AClient:
             return str(response)
 
     async def posting(self, prompt: str, config_id: str, decisions: str = ""):
-        
         await self.post_client.check_agent_exists()
         print("Connected to Posting Agent Server!\n")
+
         print(f"Sending prompt: '{prompt}'...\n")
         message = UserMessage(
             content=prompt, meta={"decision": decisions, "config": config_id}
         )
         response: A2AAgentOutput = await self.post_client.run(message)
-        return response
+        response_text = response.event.parts[0].root.text
+
+        return response_text

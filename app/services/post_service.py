@@ -54,11 +54,10 @@ class PostService:
     async def posting(self, query: PostRequest):
         if self.client is None:
             from app.services.a2a_client import InsightForgeA2AClient
-
             self.client = InsightForgeA2AClient()
-        result = await self.client.posting(
-            prompt=query.prompt, config_id=query.config_id, decisions=query.decision
-        )
+        
+
+        result = await self.client.posting(query.prompt, query.config_id, query.decision)
 
         return PostResponse(
             status="success",
