@@ -1,4 +1,7 @@
+import os
+
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.agents import router as agents_router
 from app.api.content import router as content_router
@@ -12,6 +15,26 @@ from app.api.post import router as post_router
 app = FastAPI(
     title="InsightForge API",
     version="0.1.0",
+)
+
+DEFAULT_CORS_ORIGINS = (
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+)
+
+
+def get_cors_origins() -> list[str]:
+    raw_origins = os.getenv("CORS_ALLOW_ORIGINS", "")
+    origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
+    return origins or list(DEFAULT_CORS_ORIGINS)
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=get_cors_origins(),
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
