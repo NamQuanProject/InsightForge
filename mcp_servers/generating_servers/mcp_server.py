@@ -175,5 +175,32 @@ async def generate_images_batch(
     except Exception as e:
         return {"success": False, "error": f"Lỗi không xác định: {str(e)}"}
 
+
+BASE_URL = "http://localhost:8000"  # adjust to your API base URL
+@mcp.tool()
+async def get_latest_generated_content(user_id: str) -> dict:
+    """
+    Fetches the most recent generated content for a given user.
+    Returns the latest content item if it exists, or an empty result if none found.
+    Used to personalize content generation based on the user's history.
+
+    Args:
+        user_id: The UUID string of the user whose content history to fetch.
+    """
+    async with httpx.AsyncClient() as client:
+        response = await client.get(
+            f"{BASE_URL}/generated-contents",
+            params={"user_id": user_id, "limit": 1},
+        )
+        response.raise_for_status()
+        data = response.json()
+
+    items = data.get("items", [])
+    if not items:
+        return {"has_history": False, "latest_content": None}
+
+    return {"has_history": True, "latest_content": items[0]}
+
+
 if __name__ == "__main__":
     mcp.run(transport = "stdio")

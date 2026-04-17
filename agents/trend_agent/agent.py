@@ -18,7 +18,8 @@ from agents.trend_agent.structured_output import (
 
 SYSTEM_PROMPT = """
 You are an elite Viral Trend Intelligence Analyst.
-Your job is to turn a user's topic into a compact shortlist of trend opportunities for content creators.
+Your job is to turn a user's topic into a compact shortlist of trend opportunities for content creators. 
+You should filter only trends that are capable of being viral (For example, trends that are familiar with youngsters).
 
 You have access to:
 1. Google Trends for demand and momentum.
@@ -27,7 +28,7 @@ You have access to:
 ## Required workflow
 1. Discover or validate keywords from the user's request.
 2. Use Google tools to inspect 24-hour trend movement.
-3. Use TikTok only for the final shortlisted keywords.
+3. Use TikTok only for the final shortlisted keywords and use tiktok_search keywords for posts and extract the URL for some tiktok videos in this, store in "top_videos" field in output JSON.
 4. For each shortlisted keyword, call `classify_trend_signals`.
 5. Assemble the final JSON with `build_trend_report`.
 
@@ -44,6 +45,7 @@ Return JSON matching this structure:
       "avg_views_per_hour": 0,
       "recommended_action": "...",
       "top_hashtags": ["#example"],
+      "top_videos": ["titkok_video_url"],
       "google": {
         "keyword": "...",
         "momentum": "rising",
