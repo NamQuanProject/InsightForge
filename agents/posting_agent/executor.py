@@ -16,26 +16,24 @@ class PostingAgentExecutor(AgentExecutor):
         if self._agent is None:
             import os
 
-            self._agent = PostingAgent(api_key=os.getenv("GOOGLE_API_KEY"))
+            self._agent = PostingAgent(api_key=os.getenv("KH_OPENAI_API_KEY"))
             await self._agent.initialize()
         return self._agent
 
     async def _ensure_initialized(self) -> None:
         """Lazy initialization of the agent."""
         if self.agent is None:
-            self.agent = await PostingAgent(api_key=os.getenv("GOOGLE_API_KEY")).initialize()
+            self.agent = await PostingAgent(api_key=os.getenv("KH_OPENAI_API_KEY")).initialize()
 
     async def execute(self, context: RequestContext, event_queue: EventQueue) -> None:
-        
         await self._ensure_initialized()
-        
         meta_data = context._params
         print(meta_data.message)
-        if meta_data.message.metadata.get("decision", "") == "approve":
+        config_id = meta_data.message.metadata.get("config", "")
+        decision = meta_data.message.metadata.get("decision", "")
+        config = {"configurable": {"thread_id": str(config_id)}}
 
-            decision = meta_data.message.metadata.get("decision", "")
-            config_id = meta_data.message.metadata.get("config", "")
-
+        if decision == "approve":
             print("🧠 Incoming decision:", decision)
             print("🧩 Incoming config_id:", config_id)
             print("📦 Full metadata:", meta_data.message.metadata)
@@ -46,16 +44,22 @@ class PostingAgentExecutor(AgentExecutor):
                 config = {"configurable": {"thread_id": str(config_id)}}
                 print("⚙️ Resume config:", config)
 
-                result = await self.agent.resume(
+                answer = await self.agent.resume(
                     config=config,
                     decisions=[{"type": "approve"}]
                 )
-                print(result)
-                
+                print(f"Resume result: {answer[:100]}...")
+
         else:
             prompt = context.get_user_input()
-            config, result = await self.agent.chat(prompt)
-        await event_queue.enqueue_event(new_agent_text_message(result))
+            print("🧠 Incoming decision:", decision)
+            print("🧩 Incoming config_id:", config_id)
+            print("📦 Full metadata:", meta_data.message.metadata)
+            config, answer = await self.agent.chat(prompt, config=config)
+            print(f"Chat result: {answer}")
+
+        if answer:
+            await event_queue.enqueue_event(new_agent_text_message(answer))
     
         
         

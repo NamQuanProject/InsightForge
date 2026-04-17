@@ -12,11 +12,20 @@ class InsightForgeA2AClient:
         self,
         base_url: str | None = None,
         timeout: float | None = None,
+        post_url: str | None = None,
     ) -> None:
         host = os.environ.get("AGENT_HOST", "localhost")
         port = os.environ.get("ROUTING_AGENT_PORT", "9996")
+        post_host = os.environ.get("POSTING_AGENT_HOST", host)
+        post_port = os.environ.get("POSTING_AGENT_PORT", "9995")
         self.base_url = (base_url or f"http://{host}:{port}").rstrip("/")
         self.timeout = timeout or float(os.environ.get("ORCHESTRATOR_TIMEOUT", "420"))
+        self.post_url = (
+            post_url
+            or os.environ.get("POSTING_AGENT_URL")
+            or f"http://{post_host}:{post_port}"
+        ).rstrip("/")
+        self._post_client: Any | None = None
 
     async def ask(self, prompt: str) -> dict[str, Any]:
         payload = self._build_message_send(prompt)
@@ -265,36 +274,23 @@ class InsightForgeA2AClient:
                         return part["text"]
 
         return ""
-# from a2a.client import A2AClient
-# import asyncio
-# from beeai_framework.adapters.a2a.agents import A2AAgent, A2AAgentOutput
-# from beeai_framework.memory.base_memory import BaseMemory
-# from beeai_framework.memory.unconstrained_memory import UnconstrainedMemory
-# from beeai_framework.memory.summarize_memory import SummarizeMemory
-# from beeai_framework.backend import SystemMessage, UserMessage, AssistantMessage
 
-# class InsightForgeA2AClient:
-#     def __init__(self, base_url: str = "http://localhost:5000/", post_url : str = "http://localhost:9995/") -> None:
-#         self.base_url = base_url
-#         self.post_url = post_url
+    async def posting(self, prompt: str, config_id: str, decisions: str = "") -> Any:
+        from beeai_framework.adapters.a2a.agents import A2AAgent
+        from beeai_framework.backend import UserMessage
+        from beeai_framework.memory.unconstrained_memory import UnconstrainedMemory
 
-#     async def ask(self, prompt: str) -> str:
-#         async with httpx.AsyncClient(timeout=60.0) as httpx_client:
-#             client = A2AClient(url=self.base_url, httpx_client=httpx_client)
-#             response = await client.send_message(prompt)
-#             return str(response)
+        if self._post_client is None:
+            self._post_client = A2AAgent(
+                url=self.post_url,
+                memory=UnconstrainedMemory(),
+            )
 
-
-#     async def posting(self, prompt: str, config_id: str, decisions: str = ""):
-#         client = A2AAgent(url="http://0.0.0.0:9995", memory=UnconstrainedMemory())
-
-#         await client.check_agent_exists()
-#         print("Connected to Product Agent Server!\n")
-#         prompt = "Upload for me a photo at sample_data/image.png with current username to instagram with description 'Test post from API'?"
-#         print(f"Sending prompt: '{prompt}'...\n")
-#         message = UserMessage(content=prompt, meta={"decision": decisions, "config" : config_id})
-#         response : A2AAgentOutput = await client.run(message)
-
-#         return str(response)
-
-        
+        await self._post_client.check_agent_exists()
+        print("Connected to Posting Agent Server!\n")
+        print(f"Sending prompt: '{prompt}'...\n")
+        message = UserMessage(
+            content=prompt, meta={"decision": decisions, "config": config_id}
+        )
+        response = await self._post_client.run(message)
+        return response

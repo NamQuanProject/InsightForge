@@ -30,7 +30,6 @@ def get_all_upload_images():
     return results
 
 
-
 async def photo_convert(photos: list[str]) -> list[str]:
     api_key = os.getenv("IMG_BB_API_KEY", "")
     if not api_key:
@@ -45,6 +44,7 @@ async def photo_convert(photos: list[str]) -> list[str]:
             continue
 
         try:
+
             def read_file():
                 with open(photo, "rb") as f:
                     return base64.b64encode(f.read()).decode("utf-8")
@@ -66,7 +66,6 @@ async def photo_convert(photos: list[str]) -> list[str]:
             raise Exception(f"Error processing {photo}: {str(e)}")
 
     return result_urls
-
 
 
 async def _upload_post_request(endpoint: str, data: dict, files: dict = None) -> dict:
@@ -110,10 +109,6 @@ async def _get_request(endpoint: str, params: dict = None) -> dict:
             return response.json()
         except Exception as e:
             return {"success": False, "error": str(e)}
-
-
-
-
 
 
 @mcp.tool()
@@ -281,6 +276,7 @@ async def get_analytics(
     result = await _get_request(f"analytics/{profile_username}", params)
     return result
 
+
 @mcp.tool()
 async def get_user_profile() -> dict:
     """Get user profile."""
@@ -288,9 +284,8 @@ async def get_user_profile() -> dict:
     return result
 
 
-@mcp.tool()
-async def image_rag(query: str) -> dict:
-    """Retrieve information to help answer a query.""" 
+async def _image_search(query: str) -> dict:
+    """Internal function for image RAG search."""
     embedding_folder = "./sample_data/embeddings/"
     metadata_path = "./sample_data/metadata.json"
 
@@ -298,7 +293,7 @@ async def image_rag(query: str) -> dict:
     def load_local_data():
         with open(metadata_path, "r") as f:
             meta = json.load(f)
-        
+
         vectors, meta_list = [], []
         for file in sorted(os.listdir(embedding_folder)):
             if file.endswith(".npy"):
@@ -314,19 +309,27 @@ async def image_rag(query: str) -> dict:
     if not db_vectors:
         return {"query": query, "results": [], "message": "No embeddings found"}
 
-    # 2. EMBED QUERY (CRITICAL: MUST BE AWAITED)
-    # This was your error: you were calling it like a normal function
+    # 2. EMBED QUERY
     query_vec = await embedder.embed_text(query)
-    
+
     # 3. SEARCH
     results = embedder.search(
-        query_vec=query_vec,
-        db_vectors=db_vectors,
-        metadata=db_metadata,   
-        top_k=1
+        query_vec=query_vec, db_vectors=db_vectors, metadata=db_metadata, top_k=1
     )
 
     return {"query": query, "results": results}
+
+
+@mcp.tool()
+async def image_rag(query: str) -> dict:
+    """Search for relevant images using RAG. Use this to find images that match a query."""
+    return await _image_search(query)
+
+
+@mcp.tool()
+async def image_retrieval(query: str) -> dict:
+    """Retrieve information to help answer a query."""
+    return await _image_search(query)
 
 
 if __name__ == "__main__":

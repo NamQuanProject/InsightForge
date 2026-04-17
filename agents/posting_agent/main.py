@@ -26,8 +26,8 @@ def main():
     skill = AgentSkill(
         id="create_post",
         name="Create Post",
-        description="Create and publish social media posts with human approval workflow. Supports TikTok, Instagram, YouTube, Facebook, X, Threads, LinkedIn, Bluesky, Reddit, Pinterest.",
-        tags=["posting", "social-media", "publishing", "human-in-the-loop"],
+        description="Publish social media posts with human approval workflow. Supports TikTok, Instagram, YouTube, Facebook, X, Threads, LinkedIn, Bluesky, Reddit, Pinterest",
+        tags=["posting", "social-media", "publishing", "human-in-the-loop", "retrieval image"],
         examples=[
             "Post a video about AI trends on TikTok",
             "Schedule a text post for tomorrow on all platforms",

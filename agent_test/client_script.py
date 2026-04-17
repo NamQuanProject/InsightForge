@@ -11,19 +11,21 @@ async def call_healthcare_agent():
     await client.check_agent_exists()
     print("✅ Connected to Product Agent Server!\n")
 
-    prompt = "Upload for me the photo about bird with current username to instagram with description 'Test post from API'?"
+    prompt_1 = "Upload for me the photo about bird with current username to instagram with description 'Test post from API'?"
 
-    prompt = "Call for me the get image url tools with the text is some kind of iphone"
+    prompt_2 = "Okay can you post for me that picture"
 
-    print(f"Sending prompt: '{prompt}'...\n")
-
-
-    normal_message = UserMessage(content=prompt)
-
-    approve_message = UserMessage(content=prompt, meta={"decision": "approve", "config" : "019d925b-0d81-7d72-b673-72ae6652ed46"})
     
 
-    response = await client.run(normal_message)
+    print(f"Sending prompt: '{prompt_2}'...\n")
+
+
+    normal_message = UserMessage(content=prompt_2, meta={"decision": "asking", "config" : "019d925b-0d81-7d72-b673-72ae6652ed46"})
+
+    approve_message = UserMessage(content=prompt_2, meta={"decision": "approve", "config" : "019d925b-0d81-7d72-b673-72ae6652ed46"})
+    
+
+    response = await client.run(approve_message)
 
     # 4. Print the result
     print("=== Final Response ===")

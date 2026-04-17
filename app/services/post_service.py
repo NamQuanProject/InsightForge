@@ -7,6 +7,7 @@ import base64
 import asyncio
 import httpx
 
+
 async def photo_convert(photos: list[str]) -> list[str]:
     api_key = os.getenv("IMG_BB_API_KEY", "")
     if not api_key:
@@ -55,10 +56,12 @@ class PostService:
             from app.services.a2a_client import InsightForgeA2AClient
 
             self.client = InsightForgeA2AClient()
-        result = await self.client.posting(query)
+        result = await self.client.posting(
+            prompt=query.prompt, config_id=query.config_id, decisions=query.decision
+        )
 
         return PostResponse(
             status="success",
             source="a2a-agent",
-            result_markdown=result,
+            result_markdown=str(result),
         )
