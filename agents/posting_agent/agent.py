@@ -170,7 +170,7 @@ class PostingAgent:
         print(tools)
         self.agent = create_agent(
             ChatLiteLLM(
-                model="gpt-5.4",
+                model="gemini/gemini-2.5-flash",
                 max_tokens=10000,
                 api_key=self.api_key
             ),

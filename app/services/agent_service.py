@@ -1,9 +1,11 @@
+import copy
 import socket
 import os
 import uuid
 
 from app.schema.common import AgentProcessStatus, AgentsStatusResponse, OrchestratorResponse
 from app.services.a2a_client import InsightForgeA2AClient
+from app.services.image_store_service import ImageStoreService
 from app.services.postgres_service import PostgresService
 
 
@@ -11,6 +13,7 @@ class AgentService:
     def __init__(self) -> None:
         host = os.environ.get("AGENT_HOST", "localhost")
         self.postgres = PostgresService()
+        self.image_store = ImageStoreService()
         self.processes = [
             ("routing_orchestrator", host, int(os.environ.get("ROUTING_AGENT_PORT", 9996))),
             ("trend_agent", host, int(os.environ.get("TREND_AGENT_PORT", 9997))),
@@ -67,19 +70,24 @@ class AgentService:
         #     status="failed" if generated_content.get("error") else "generated",
         # )
         generated_content = output["generated_content"]
+        video_script = await self.image_store.attach_section_images(generated_content["video_script"])
+        generated_content_to_save = copy.deepcopy(generated_content)
+        generated_content_to_save["video_script"] = video_script
+        output["generated_content"] = generated_content_to_save
+
         # video_script is stored whole: it contains title, duration_estimate, hook,
         # sections (each with its own thumbnail dict), call_to_action, captions_style,
         # and music_mood.  There is no separate top-level thumbnail field.
         generated_record = await self.postgres.save_generated_content(
-            raw_output=generated_content,
-            video_script=generated_content["video_script"],
-            platform_posts=generated_content["platform_posts"],
+            raw_output=generated_content_to_save,
+            video_script=video_script,
+            platform_posts=generated_content_to_save["platform_posts"],
             user_id=user_id,
             trend_analysis_id=trend_record.id,
-            selected_keyword=generated_content.get("selected_keyword") or self._best_keyword(trend_analysis),
-            main_title=generated_content.get("main_title"),
-            music_background=generated_content.get("music_background"),
-            status="failed" if generated_content.get("error") else "generated",
+            selected_keyword=generated_content_to_save.get("selected_keyword") or self._best_keyword(trend_analysis),
+            main_title=generated_content_to_save.get("main_title"),
+            music_background=generated_content_to_save.get("music_background"),
+            status="failed" if generated_content_to_save.get("error") else "generated",
         )
 
         raw_file = None

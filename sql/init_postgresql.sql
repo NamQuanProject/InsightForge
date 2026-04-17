@@ -67,6 +67,18 @@ CREATE TABLE IF NOT EXISTS publish_jobs (
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+CREATE TABLE IF NOT EXISTS image_store (
+    id TEXT PRIMARY KEY,
+    image_url TEXT NOT NULL,
+    description TEXT NOT NULL DEFAULT '',
+    local_path TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+ALTER TABLE image_store
+    ADD COLUMN IF NOT EXISTS description TEXT NOT NULL DEFAULT '',
+    ADD COLUMN IF NOT EXISTS local_path TEXT;
+
 CREATE INDEX IF NOT EXISTS idx_trend_analyses_user_id ON trend_analyses (user_id);
 CREATE INDEX IF NOT EXISTS idx_trend_analyses_created_at ON trend_analyses (created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_generated_contents_user_id ON generated_contents (user_id);
@@ -75,3 +87,6 @@ CREATE INDEX IF NOT EXISTS idx_publish_jobs_user_id ON publish_jobs (user_id);
 CREATE INDEX IF NOT EXISTS idx_publish_jobs_generated_content_id ON publish_jobs (generated_content_id);
 CREATE INDEX IF NOT EXISTS idx_publish_jobs_profile_username ON publish_jobs (profile_username);
 CREATE INDEX IF NOT EXISTS idx_publish_jobs_status ON publish_jobs (status);
+CREATE INDEX IF NOT EXISTS idx_image_store_created_at ON image_store (created_at DESC);
+
+NOTIFY pgrst, 'reload schema';

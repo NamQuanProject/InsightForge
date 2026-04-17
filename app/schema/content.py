@@ -34,7 +34,7 @@ from pydantic import BaseModel, ConfigDict, Field
 import uuid
 from datetime import datetime
 from typing import Any, List, Dict, Optional
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, model_validator
 
 # ---------------------------------------------------------------------------
 # Request
@@ -48,10 +48,18 @@ class ContentGenerateRequest(BaseModel):
 
 # --- Phân cấp nhỏ nhất: Thumbnail ---
 class ThumbnailSchema(BaseModel):
-    prompt: str = ""
-    style: str = "vivid"
-    size: str = "1792x1024"
-    output_path: str = ""
+    id: str = ""
+    description: str = ""
+    image_url: str = ""
+    local_path: str = ""
+    created_at: str = ""
+
+    @model_validator(mode="before")
+    @classmethod
+    def default_description_from_prompt(cls, value):
+        if isinstance(value, dict) and not value.get("description"):
+            value = {**value, "description": value.get("prompt") or ""}
+        return value
 
 # --- Phân đoạn Video ---
 class VideoSectionSchema(BaseModel):
@@ -64,7 +72,7 @@ class VideoSectionSchema(BaseModel):
 # --- Kịch bản Video tổng thể ---
 class VideoScriptSchema(BaseModel):
     title: str = ""
-    duration_estimate: str = "60s"
+    duration_estimate: str = "30s"
     hook: str = ""
     sections: List[VideoSectionSchema] = Field(default_factory=list)
     call_to_action: str = ""

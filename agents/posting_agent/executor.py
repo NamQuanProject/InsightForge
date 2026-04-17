@@ -16,14 +16,14 @@ class PostingAgentExecutor(AgentExecutor):
         if self._agent is None:
             import os
 
-            self._agent = PostingAgent(api_key=os.getenv("KH_OPENAI_API_KEY"))
+            self._agent = PostingAgent(api_key=os.getenv("GOOGLE_API_KEY"))
             await self._agent.initialize()
         return self._agent
 
     async def _ensure_initialized(self) -> None:
         """Lazy initialization of the agent."""
         if self.agent is None:
-            self.agent = await PostingAgent(api_key=os.getenv("KH_OPENAI_API_KEY")).initialize()
+            self.agent = await PostingAgent(api_key=os.getenv("GOOGLE_API_KEY")).initialize()
 
     async def execute(self, context: RequestContext, event_queue: EventQueue) -> None:
         await self._ensure_initialized()

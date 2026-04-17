@@ -120,12 +120,14 @@
 #             created_at=record.created_at,
 #         )
 import asyncio
+import copy
 import json
 import os
 import uuid
 from typing import TYPE_CHECKING
 
 from app.schema.content import GeneratedContentResponse
+from app.services.image_store_service import ImageStoreService
 from app.services.postgres_service import PostgresService
 
 if TYPE_CHECKING:
@@ -138,6 +140,7 @@ class ContentService:
 
     def __init__(self) -> None:
         self.postgres = PostgresService()
+        self.image_store = ImageStoreService()
 
     async def generate(
         self,
@@ -158,10 +161,13 @@ class ContentService:
         platform_posts = result.get("platform_posts") or {}
         main_title = result.get("main_title")
         music_background = result.get("music_background")
+        enriched_video_script = await self.image_store.attach_section_images(video_script)
+        raw_output = copy.deepcopy(result) if isinstance(result, dict) else {}
+        raw_output["video_script"] = enriched_video_script
 
         record = await self.postgres.save_generated_content(
-            raw_output=result,
-            video_script=video_script,
+            raw_output=raw_output,
+            video_script=enriched_video_script,
             platform_posts=platform_posts if isinstance(platform_posts, dict) else {"default": platform_posts},
             user_id=user_id,
             trend_analysis_id=trend_analysis_id,

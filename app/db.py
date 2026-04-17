@@ -61,6 +61,34 @@ async def init_db() -> None:
                 """
             )
         )
+        await connection.execute(
+            text(
+                """
+                CREATE TABLE IF NOT EXISTS image_store (
+                    id TEXT PRIMARY KEY,
+                    image_url TEXT NOT NULL,
+                    description TEXT NOT NULL DEFAULT '',
+                    local_path TEXT,
+                    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+                )
+                """
+            )
+        )
+        await connection.execute(
+            text(
+                """
+                ALTER TABLE image_store
+                ADD COLUMN IF NOT EXISTS description TEXT NOT NULL DEFAULT '',
+                ADD COLUMN IF NOT EXISTS local_path TEXT
+                """
+            )
+        )
+        await connection.execute(
+            text(
+                "CREATE INDEX IF NOT EXISTS idx_image_store_created_at ON image_store (created_at DESC)"
+            )
+        )
+        await connection.execute(text("NOTIFY pgrst, 'reload schema'"))
 
 
 def _normalize_database_url(url: str) -> str:

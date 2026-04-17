@@ -31,7 +31,8 @@ def get_all_upload_images():
 
 
 async def photo_convert(photos: list[str]) -> list[str]:
-    api_key = os.getenv("IMG_BB_API_KEY", "")
+    load_dotenv(override=True)
+    api_key = _clean_env_secret(os.getenv("IMG_BB_API_KEY", ""))
     if not api_key:
         raise Exception("IMG_BB_API_KEY not configured")
 
@@ -51,10 +52,10 @@ async def photo_convert(photos: list[str]) -> list[str]:
 
             image_data = await asyncio.to_thread(read_file)
 
-            payload = {"key": api_key, "image": image_data}
+            payload = {"image": image_data}
 
             async with httpx.AsyncClient(timeout=60.0) as client:
-                response = await client.post(url, data=payload)
+                response = await client.post(url, params={"key": api_key}, data=payload)
                 result = response.json()
 
             if result.get("success"):
@@ -66,6 +67,10 @@ async def photo_convert(photos: list[str]) -> list[str]:
             raise Exception(f"Error processing {photo}: {str(e)}")
 
     return result_urls
+
+
+def _clean_env_secret(value: str) -> str:
+    return value.strip().strip("\"'")
 
 
 async def _upload_post_request(endpoint: str, data: dict, files: dict = None) -> dict:
@@ -314,7 +319,7 @@ async def _image_search(query: str) -> dict:
 
     # 3. SEARCH
     results = embedder.search(
-        query_vec=query_vec, db_vectors=db_vectors, metadata=db_metadata, top_k=1
+        query_vec=query_vec, db_vectors=db_vectors, metadata=db_metadata, top_k=5
     )
 
     return {"query": query, "results": results}

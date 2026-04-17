@@ -25,7 +25,7 @@ class InsightForgeA2AClient:
             or os.environ.get("POSTING_AGENT_URL")
             or f"http://{post_host}:{post_port}"
         ).rstrip("/")
-        self._post_client: Any | None = None
+        self.post_client: Any | None = None
 
     async def ask(self, prompt: str) -> dict[str, Any]:
         payload = self._build_message_send(prompt)
@@ -201,7 +201,7 @@ class InsightForgeA2AClient:
             "main_title": str(content.get("main_title") or video_script.get("title") or ""),
             "video_script": {
                 "title": str(video_script.get("title") or ""),
-                "duration_estimate": str(video_script.get("duration_estimate") or "60s"),
+                "duration_estimate": str(video_script.get("duration_estimate") or "30s"),
                 "hook": str(video_script.get("hook") or ""),
                 "sections": video_script.get("sections") if isinstance(video_script.get("sections"), list) else [],
                 "call_to_action": str(video_script.get("call_to_action") or ""),
@@ -280,17 +280,20 @@ class InsightForgeA2AClient:
         from beeai_framework.backend import UserMessage
         from beeai_framework.memory.unconstrained_memory import UnconstrainedMemory
 
-        if self._post_client is None:
-            self._post_client = A2AAgent(
+        if self.post_client is None:
+            self.post_client = A2AAgent(
                 url=self.post_url,
                 memory=UnconstrainedMemory(),
             )
 
-        await self._post_client.check_agent_exists()
+        await self.post_client.check_agent_exists()
         print("Connected to Posting Agent Server!\n")
+
         print(f"Sending prompt: '{prompt}'...\n")
         message = UserMessage(
             content=prompt, meta={"decision": decisions, "config": config_id}
         )
-        response = await self._post_client.run(message)
-        return response
+        response = await self.post_client.run(message)
+        response_text = response.event.parts[0].root.text
+
+        return response_text

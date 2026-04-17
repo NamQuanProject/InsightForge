@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile, File
+from fastapi import APIRouter, UploadFile, File, Form
 from typing import Optional
 import os
 import uuid
@@ -21,7 +21,10 @@ async def post(payload: PostRequest):
 
 
 @router.post("/upload_image")
-async def upload_image_to_store(file: UploadFile = File(...)):
+async def upload_image_to_store(
+    file: UploadFile = File(...),
+    description: str = Form(default=""),
+):
     base_dir = "sample_data"
     image_dir = os.path.join(base_dir, "img_db")
     embedding_dir = os.path.join(base_dir, "embeddings")
@@ -51,12 +54,26 @@ async def upload_image_to_store(file: UploadFile = File(...)):
     uploaded_urls = await photo_convert([image_path])
     image_url = uploaded_urls[0]
 
-    image_info = ImageInfo(id=image_id, image_url=image_url, created_at=datetime.now())
+    image_info = ImageInfo(
+        id=image_id,
+        image_url=image_url,
+        description=description,
+        local_path=image_path,
+        created_at=datetime.now(),
+    )
     db_data = image_info.model_dump()
     db_data["created_at"] = db_data["created_at"].isoformat()
     db.insert("image_store", db_data)
 
-    metadata = {image_id: {"image_url": image_url}}
+    metadata = {
+        image_id: {
+            "id": image_id,
+            "image_url": image_url,
+            "description": description,
+            "local_path": image_path,
+            "created_at": db_data["created_at"],
+        }
+    }
 
     if os.path.exists(metadata_path):
         with open(metadata_path, "r") as f:
@@ -67,4 +84,10 @@ async def upload_image_to_store(file: UploadFile = File(...)):
     with open(metadata_path, "w") as f:
         json.dump(metadata, f, indent=2)
 
-    return {"id": image_id, "image_url": image_url, "embedding_path": embedding_path}
+    return {
+        "id": image_id,
+        "image_url": image_url,
+        "description": description,
+        "local_path": image_path,
+        "created_at": db_data["created_at"],
+    }

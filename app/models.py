@@ -87,7 +87,7 @@ class GeneratedContent(Base):
         "main_title": str,
         "video_script": {
             "title": str,
-            "duration_estimate": str,          # e.g. "60s"
+            "duration_estimate": str,          # e.g. "30s"
             "hook": str,
             "sections": [
                 {

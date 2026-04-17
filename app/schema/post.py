@@ -18,4 +18,6 @@ class PostResponse(BaseModel):
 class ImageInfo(BaseModel):
     id: str
     image_url: str
+    description: str = ""
+    local_path: str = ""
     created_at: datetime

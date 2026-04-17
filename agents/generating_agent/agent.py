@@ -31,7 +31,7 @@ CẤU TRÚC JSON BẮT BUỘC:
   "main_title": "Tiêu đề chính hấp dẫn",
   "video_script": {
     "title": "Tiêu đề kịch bản",
-    "duration_estimate": "60s",
+    "duration_estimate": "30s",
     "hook": "Câu mở đầu thu hút",
     "sections": [
       {
@@ -41,6 +41,7 @@ CẤU TRÚC JSON BẮT BUỘC:
         "notes": "Ghi chú hình ảnh/hiệu ứng",
         "thumbnail": {
             "prompt": "Mô tả hình ảnh bằng tiếng Anh (chi tiết về ánh sáng, bố cục, SDXL style)",
+            "description": "Same value as prompt, saved to image_store.description",
             "style": "vivid",
             "size": "1792x1024",
             "output_path": "section_1.png" 
@@ -62,6 +63,7 @@ CẤU TRÚC JSON BẮT BUỘC:
 QUY TẮC CỐ ĐỊNH:
 - Ngôn ngữ: Toàn bộ nội dung cho người dùng phải bằng tiếng Việt tự nhiên, không dùng từ ngữ máy móc.
 - Image Prompts: Phải viết bằng tiếng Anh để mô hình Stable Diffusion hiểu tốt nhất.
+- Thumbnail Description: Mỗi thumbnail.description phải giống thumbnail.prompt để backend lưu vào image_store.description.
 - Output Path: Mỗi section PHẢI có tên file output_path riêng biệt (vd: section_1.png, section_2.png...).
 - Phải dùng tools generate_image_patches để tạo ảnh cho từng video section
 - Không bao quanh JSON bằng markdown fences (```json).
@@ -76,7 +78,7 @@ Hãy chuyển đổi văn bản kế hoạch nội dung sau đây thành định
   "main_title": "",
   "video_script": {
     "title": "",
-    "duration_estimate": "60s",
+    "duration_estimate": "30s",
     "hook": "",
     "sections": [
       {
@@ -86,6 +88,7 @@ Hãy chuyển đổi văn bản kế hoạch nội dung sau đây thành định
         "notes": "",
         "thumbnail": {
           "prompt": "",
+          "description": "",
           "style": "vivid",
           "size": "1792x1024",
           "output_path": ""
