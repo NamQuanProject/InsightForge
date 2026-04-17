@@ -150,6 +150,7 @@ class PostingAgent:
         self.api_key = api_key
         self.agent = None
         self.mcp_client = None
+        self.thread_informations = {}
 
     async def initialize(self):
         self.mcp_client = MultiServerMCPClient(
@@ -169,7 +170,7 @@ class PostingAgent:
         print(tools)
         self.agent = create_agent(
             ChatLiteLLM(
-                model="gemini/gemini-2.5-pro",
+                model="gpt-5.4",
                 max_tokens=10000,
                 api_key=self.api_key
             ),
@@ -190,7 +191,12 @@ class PostingAgent:
         print("PostingAgent initialized with tools:", [t.name for t in tools])
         return self
 
-    async def chat(self, user_input: str) -> Tuple[Any, Any]:
+    async def get_context_from_thread(self, thread_id: str):
+        memory = self.thread_informations.get(thread_id, "")
+        return memory
+
+
+    async def chat(self, user_input: str, config: dict) -> Tuple[Any, Any]:
         """Main chat method - returns (config, result) tuple.
 
         Returns:
@@ -199,10 +205,13 @@ class PostingAgent:
         """
         if self.agent is None:
             raise RuntimeError("Agent not initialized")
-
-        config = {"configurable": {"thread_id": str(uuid7())}}
+        
+        # CONFIG config = {"configurable": {"thread_id": thread_id}}
+        thread_id = config.get("configurable", "").get("thread_id", "")
+        addition_context = self.get_context_from_thread(thread_id)
+        final_input = str(addition_context) + user_input
         result = await self.agent.ainvoke(
-            {"messages": [HumanMessage(content=user_input)]},
+            {"messages": [HumanMessage(content=final_input)]},
             config=config,
             version="v2",
         )   
@@ -211,20 +220,17 @@ class PostingAgent:
         answer = result["messages"][-1].content
         
         if result.interrupts:
-            answer = "The pipeline run successfully but it need approval from user"
-            
-
-
-
-
-
-            thread_id = config.get("configurable", "").get("thread_id", "")
-            thread = Thread(id=thread_id, description="user_input", status="pending")
+            messages = result["messages"]
+            thread_id = config.get("configurable", {}).get("thread_id", "")
+            thread = Thread(id=thread_id, description=str(answer), status="pending")
             response = db.insert("agent_thread",thread.to_dict())
             print(f"Data inserted: {response}")
-            
+
+            # Include thread_id in response so client can extract it
+            answer = f"{answer}\n\n[THREAD_ID: {thread_id}]"
+
         else:
-            print(f"Response: {answer[:200]}...")
+            print(f"Response: {answer}")
 
         return config, answer
 
