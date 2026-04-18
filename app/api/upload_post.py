@@ -49,12 +49,10 @@ async def get_upload_post_account():
 
     app_user = await PostgresService().upsert_user(
         email=str(email),
-        name=upload_post_service.get_configured_profile_username(),
-        plan=account.get("plan"),
-        upload_post_account=account,
-        profiles=bundle["profiles"],
-        social_accounts=bundle["social_accounts"],
-        connected_platforms=bundle["connected_platforms"],
+        display_name=upload_post_service.get_configured_profile_username(),
+        options={
+            "linked_platforms": bundle["connected_platforms"],
+        },
     )
     return {
         **account,

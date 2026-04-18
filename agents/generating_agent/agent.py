@@ -1,6 +1,6 @@
 """
 Content Generation Agent
-Transforms trend analysis into JSON matching generated_content_sample.json.
+Transforms trend analysis and user context into a multi-image social post bundle.
 """
 
 import json
@@ -8,124 +8,168 @@ import os
 from typing import Any
 
 from dotenv import load_dotenv
-from langchain_litellm import ChatLiteLLM
 from langchain.agents import create_agent
+from langchain_litellm import ChatLiteLLM
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain_mcp_adapters.sessions import StdioConnection
-from pathlib import Path
 
 load_dotenv()
 
-SYSTEM_PROMPT = """Bạn là một Chuyên gia Chiến lược Nội dung và Giám đốc Sáng tạo xuất sắc.
-Nhiệm vụ của bạn là biến một báo cáo xu hướng (trend report) thành một bộ nội dung sản xuất hoàn chỉnh.
+SYSTEM_PROMPT = """
+You are InsightForge's Content Generation Agent: a senior Vietnamese content
+strategist and creative director.
 
-══════════════════════════════════════════
-BƯỚC 0 – KIỂM TRA LỊCH SỬ NỘI DUNG (BẮT BUỘC TRƯỚC MỌI BƯỚC KHÁC)
-══════════════════════════════════════════
-Trước khi làm bất cứ điều gì, hãy gọi tool `get_latest_generated_content(user_id)`.
+Your job is to turn a trend report into a personalized, production-ready
+multi-image social post. The output is NOT a video script anymore.
 
-- Nếu `has_history = true` (Người dùng đã có lịch sử):
-    - Đọc `latest_content` để hiểu phong cách, tone, cấu trúc, từ khóa và chủ đề mà người dùng đã dùng trước đây.
-    - Dùng nó như một "style reference" – duy trì sự nhất quán về giọng văn, độ dài phân đoạn,
-      cách đặt hook, và phong cách caption cho từng nền tảng và tiếp tục quy trình bên dưới
+MANDATORY TOOL ORDER
+1. Before writing content, call `get_user_profile(user_id)`.
+2. Then call `get_latest_generated_content(user_id)`.
+3. Use `generate_images_batch(prompts, output_paths)` to generate the images
+   for the post image set when image prompts are ready.
 
-- Nếu `has_history = false` (người dùng mới hoặc chưa có lịch sử):
-    - Bỏ qua bước cá nhân hóa, tiến thẳng vào phân tích trend report theo quy trình bên dưới.
-    - Không thêm "personalization_note" vào JSON output.
+PERSONALIZATION PRIORITY
+Use the user profile as the primary creative context, not as an afterthought.
+Strongly adapt the content using:
+- about_me: point of view, credibility, lived context, and brand voice.
+- content_preferences.content_groups: topic lanes to stay within.
+- content_preferences.priority_formats: preferred content format cues.
+- content_preferences.keyword_hashtags: keywords and hashtag language to reuse.
+- content_preferences.audience_persona: who the post is speaking to.
+- content_preferences.focus_content_goal: what the content must achieve.
+- options.timezone and options.default_post_times: best posting time.
+- options.linked_platforms: platforms to prepare.
+- options.default_visibility and options.weekly_content_frequency: publishing plan.
 
-QUY TRÌNH TỪNG BƯỚC:
-1. Phân tích xu hướng: Chọn từ khóa có `trend_score` cao nhất.
-2. Video Script: Tạo kịch bản chi tiết với nhiều phân đoạn. Mỗi phân đoạn gồm: timestamp, label, narration, notes.
-3. Hình ảnh (Thumbnails): Với MỖI phân đoạn video, tạo một mô tả hình ảnh (prompt) riêng biệt để đưa vào công cụ generate_image_batches và phải generate ra ảnh.
-4. Platform Posts: Viết nội dung quảng bá cho TikTok, Facebook, Instagram.
+If the user has previous generated content, use it as a style reference for
+voice, hook style, caption length, and recurring keywords. Do not repeat the
+same post idea; build continuity.
 
-CẤU TRÚC JSON BẮT BUỘC:
+CONTENT RULES
+- User-facing text must be natural Vietnamese.
+- Image prompts must be English for the image model.
+- Create a carousel or multi-image post with 3 to 6 images.
+- Every image needs a user-facing `description` explaining what the image
+  communicates, plus an English `prompt` for generation.
+- Every image item must include a unique `output_path`, for example
+  `post_image_1.png`, `post_image_2.png`.
+- The content should connect the trend to the user's own expertise, keywords,
+  target audience, and content direction.
+- Avoid generic advice. Make the angle feel like it belongs to this specific user.
+- Return pure JSON only. Do not wrap the JSON in markdown fences.
+
+REQUIRED JSON SHAPE
 {
-  "selected_keyword": "Từ khóa được chọn",
-  "main_title": "Tiêu đề chính hấp dẫn",
-  "video_script": {
-    "title": "Tiêu đề kịch bản",
-    "duration_estimate": "30s",
-    "hook": "Câu mở đầu thu hút",
-    "sections": [
-      {
-        "timestamp": "0:00-0:10",
-        "label": "Tên phân đoạn",
-        "narration": "Lời bình tiếng Việt",
-        "notes": "Ghi chú hình ảnh/hiệu ứng",
-        "thumbnail": {
-            "prompt": "Mô tả hình ảnh bằng tiếng Anh (chi tiết về ánh sáng, bố cục, SDXL style)",
-            "description": "Same value as prompt, saved to image_store.description",
-            "style": "vivid",
-            "size": "1792x1024",
-            "output_path": "section_1.png" 
-        }
-      }
-    ],
-    "call_to_action": "Lời kêu gọi hành động",
-    "captions_style": "Phong cách phụ đề",
-    "music_mood": "Tâm trạng âm nhạc"
+  "selected_keyword": "chosen trend keyword",
+  "main_title": "main post title",
+  "post_content": {
+    "post_type": "multi_image_post",
+    "title": "post title",
+    "hook": "opening line",
+    "caption": "full caption for the main post",
+    "description": "short summary of the post angle",
+    "body": "core post copy or carousel narrative",
+    "call_to_action": "CTA",
+    "hashtags": ["#tag"],
+    "tone": "tone description",
+    "personalization_notes": [
+      "how user profile, keywords, audience, or goals shaped the content"
+    ]
   },
+  "image_set": [
+    {
+      "index": 1,
+      "title": "image title",
+      "description": "Vietnamese description of what this image should show",
+      "prompt": "English image-generation prompt with composition, lighting, style",
+      "style": "vivid",
+      "size": "1792x1024",
+      "output_path": "post_image_1.png"
+    }
+  ],
   "platform_posts": {
-    "tiktok": { "caption": "", "hashtags": [], "cta": "", "best_post_time": "", "thumbnail_description": "" },
-    "facebook": { "caption": "", "hashtags": [], "cta": "", "best_post_time": "", "thumbnail_description": "" },
-    "instagram": { "caption": "", "hashtags": [], "cta": "", "best_post_time": "", "thumbnail_description": "" }
+    "tiktok": {
+      "caption": "",
+      "hashtags": [],
+      "cta": "",
+      "best_post_time": "",
+      "image_notes": ""
+    },
+    "facebook": {
+      "caption": "",
+      "hashtags": [],
+      "cta": "",
+      "best_post_time": "",
+      "image_notes": ""
+    },
+    "instagram": {
+      "caption": "",
+      "hashtags": [],
+      "cta": "",
+      "best_post_time": "",
+      "image_notes": ""
+    }
   },
-  "music_background": "Mô tả nhạc nền"
+  "publishing": {
+    "default_visibility": "",
+    "recommended_platforms": [],
+    "timezone": "",
+    "weekly_content_frequency": 0
+  },
+  "error": null
 }
 
-QUY TẮC CỐ ĐỊNH:
-- Ngôn ngữ: Toàn bộ nội dung cho người dùng phải bằng tiếng Việt tự nhiên, không dùng từ ngữ máy móc.
-- Image Prompts: Phải viết bằng tiếng Anh để mô hình Stable Diffusion hiểu tốt nhất.
-- Thumbnail Description: Mỗi thumbnail.description phải giống thumbnail.prompt để backend lưu vào image_store.description.
-- Output Path: Mỗi section PHẢI có tên file output_path riêng biệt (vd: section_1.png, section_2.png...).
-- Phải dùng tools generate_image_patches để tạo ảnh cho từng video section
-- Không bao quanh JSON bằng markdown fences (```json).
-- Chỉ trả về duy nhất dữ liệu JSON.
+If image generation fails, still return the full `image_set` with prompts and
+descriptions, and include a concise error object in `error`.
 """
 
-JSON_REPAIR_PROMPT = """Bạn là một chuyên gia sửa lỗi định dạng JSON.
-Hãy chuyển đổi văn bản kế hoạch nội dung sau đây thành định dạng JSON hợp lệ, khớp chính xác với cấu trúc này:
+JSON_REPAIR_PROMPT = """
+You repair malformed content-planning text into valid JSON.
 
+Return pure JSON only, matching this exact shape:
 {
   "selected_keyword": "",
   "main_title": "",
-  "video_script": {
+  "post_content": {
+    "post_type": "multi_image_post",
     "title": "",
-    "duration_estimate": "30s",
     "hook": "",
-    "sections": [
-      {
-        "timestamp": "",
-        "label": "",
-        "narration": "",
-        "notes": "",
-        "thumbnail": {
-          "prompt": "",
-          "description": "",
-          "style": "vivid",
-          "size": "1792x1024",
-          "output_path": ""
-        }
-      }
-    ],
+    "caption": "",
+    "description": "",
+    "body": "",
     "call_to_action": "",
-    "captions_style": "",
-    "music_mood": ""
+    "hashtags": [],
+    "tone": "",
+    "personalization_notes": []
   },
+  "image_set": [
+    {
+      "index": 1,
+      "title": "",
+      "description": "",
+      "prompt": "",
+      "style": "vivid",
+      "size": "1792x1024",
+      "output_path": "post_image_1.png"
+    }
+  ],
   "platform_posts": {
-    "tiktok": { "caption": "", "hashtags": [], "cta": "", "best_post_time": "", "thumbnail_description": "" },
-    "facebook": { "caption": "", "hashtags": [], "cta": "", "best_post_time": "", "thumbnail_description": "" },
-    "instagram": { "caption": "", "hashtags": [], "cta": "", "best_post_time": "", "thumbnail_description": "" }
+    "tiktok": { "caption": "", "hashtags": [], "cta": "", "best_post_time": "", "image_notes": "" },
+    "facebook": { "caption": "", "hashtags": [], "cta": "", "best_post_time": "", "image_notes": "" },
+    "instagram": { "caption": "", "hashtags": [], "cta": "", "best_post_time": "", "image_notes": "" }
   },
-  "music_background": ""
+  "publishing": {
+    "default_visibility": "",
+    "recommended_platforms": [],
+    "timezone": "",
+    "weekly_content_frequency": 0
+  },
+  "error": null
 }
 
-QUY TẮC:
-- Trả về JSON thuần túy, không có văn bản giải thích hay dấu ngoặc markdown.
-- Đảm bảo mỗi section trong video_script đều có object thumbnail riêng.
-- Nội dung hiển thị bằng tiếng Việt, Prompt hình ảnh bằng tiếng Anh.
+Vietnamese for user-facing content. English for image prompts.
 """
+
 
 class ContentGenerationAgent:
     def __init__(self, api_key: str | None = None):
@@ -136,7 +180,7 @@ class ContentGenerationAgent:
                 "image_generation": StdioConnection(
                     transport="stdio",
                     command="python",
-                    args=["-m", "mcp_servers.generating_servers.mcp_server"]
+                    args=["-m", "mcp_servers.generating_servers.mcp_server"],
                 )
             }
         )
@@ -152,14 +196,14 @@ class ContentGenerationAgent:
         self.model = ChatLiteLLM(
             model=self.model_name,
             max_tokens=4000,
-            api_key=self.api_key
+            api_key=self.api_key,
         )
         self.repair_model = self.model
         self.agent = create_agent(
-            model = self.model,
-            tools = tools,
-            name = "ContentGenerationAgent",
-            system_prompt=SYSTEM_PROMPT
+            model=self.model,
+            tools=tools,
+            name="ContentGenerationAgent",
+            system_prompt=SYSTEM_PROMPT,
         )
         print("Agent initialized with tools: \n", tools)
         print("Model:", self.model_name)
@@ -173,16 +217,11 @@ class ContentGenerationAgent:
         try:
             response = await self.agent.ainvoke({"messages": [{"role": "user", "content": prompt}]})
         except Exception as exc:
-            return {
-                "error": "Failed to invoke content model",
-                "message": str(exc),
-                "selected_keyword": "",
-                "main_title": "",
-                "video_script": {},
-                "platform_posts": {},
-                "thumbnail": {},
-                "music_background": "",
-            }
+            return self._empty_response(
+                error="Failed to invoke content model",
+                message=str(exc),
+            )
+
         print(response)
         raw_content = response["messages"][-1].content
         if isinstance(raw_content, list):
@@ -198,16 +237,10 @@ class ContentGenerationAgent:
             repaired = await self._repair_to_json(prompt=prompt, raw_content=str(raw_content))
             if repaired is not None:
                 return repaired
-            return {
-                "error": "Failed to parse content agent response",
-                "raw": str(raw_content),
-                "selected_keyword": "",
-                "main_title": "",
-                "video_script": {},
-                "platform_posts": {},
-                "thumbnail": {},
-                "music_background": "",
-            }
+            return self._empty_response(
+                error="Failed to parse content agent response",
+                raw=str(raw_content),
+            )
 
     async def _repair_to_json(self, prompt: str, raw_content: str) -> dict[str, Any] | None:
         if self.repair_model is None:
@@ -237,50 +270,28 @@ class ContentGenerationAgent:
         except Exception:
             return None
 
+    def _empty_response(self, **error_fields: Any) -> dict[str, Any]:
+        return {
+            "selected_keyword": "",
+            "main_title": "",
+            "post_content": {},
+            "image_set": [],
+            "platform_posts": {},
+            "publishing": {},
+            "error": error_fields or None,
+        }
+
 
 if __name__ == "__main__":
     import asyncio
-    import json
 
     async def test_agent():
-        # 1. Khởi tạo Agent
-        # Đảm bảo bạn đã có GOOGLE_API_KEY hoặc GEMINI_API_KEY trong file .env
         agent = ContentGenerationAgent()
-        
-        try:
-            print("--- Đang khởi tạo ContentGenerationAgent ---")
-            await agent.initialize()
-            
-            # 2. Tạo một báo cáo xu hướng mẫu (Trend Report) để test
-            sample_trend_report = """
-            Trend Report: Sự trỗi dậy của AI Agents trong năm 2026.
-            Trend Score: 98
-            Keywords: AI Automation, Agentic Workflows, Productivity, Future of Work.
-            Bối cảnh: Người dùng đang chuyển dịch từ việc 'chat' với AI sang việc sử dụng AI để thực hiện các tác vụ tự động (Task Execution).
-            """
-            
-            print(f"--- Đang phân tích xu hướng và tạo nội dung cho: {agent.model_name} ---")
-            
-            # 3. Thực thi query
-            result = await agent.answer_query(sample_trend_report)
-            
-            # 4. In kết quả ra console dưới dạng JSON đẹp mắt
-            print("\n" + "="*50)
-            print("KẾT QUẢ GENERATED CONTENT BUNDLE:")
-            print("="*50)
-            print(json.dumps(result, indent=2, ensure_ascii=False))
-            with open(f"Generating_agent.json", "w", encoding = 'utf-8') as f:
-                json.dumps(result, indent=4, ensure_ascii=False)
-            
-            # Kiểm tra nhanh các trường dữ liệu quan trọng
-            if "error" not in result:
-                print("\n[✓] Thành công: Cấu trúc JSON hợp lệ.")
-                print(f"[i] Số lượng video sections: {len(result.get('video_script', {}).get('sections', []))}")
-            else:
-                print(f"\n[!] Có lỗi xảy ra: {result.get('message')}")
-                
-        except Exception as e:
-            print(f"\n[X] Lỗi hệ thống khi chạy test: {e}")
+        await agent.initialize()
+        result = await agent.answer_query(
+            "Trend Report: wellness habits for busy founders. "
+            "Trend Score: 91. Keywords: daily wellness, healthy routines."
+        )
+        print(json.dumps(result, indent=2, ensure_ascii=False))
 
-    # Chạy hàm test
     asyncio.run(test_agent())

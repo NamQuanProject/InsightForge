@@ -45,7 +45,7 @@ Return JSON matching this structure:
       "avg_views_per_hour": 0,
       "recommended_action": "...",
       "top_hashtags": ["#example"],
-      "top_videos": ["titkok_video_url"],
+      "top_videos": ["titkok_video_url1", "tiktok_video_url2"],
       "google": {
         "keyword": "...",
         "momentum": "rising",

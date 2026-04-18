@@ -21,17 +21,17 @@ def main():
     skill = AgentSkill(
         id="generate_content",
         name="Generate Content",
-        description="Find and analyze the latest trend using Google Trends and validation through Social Media Trends based on the user's query.",
-        tags=["content", "generation", "video", "text"],
+        description="Generate personalized multi-image social post content from trend analysis and user profile context.",
+        tags=["content", "generation", "multi-image", "post"],
         examples=[
-            "Generate a video script for covering today news.",
-            "Generate post content for my Tiktok.",
+            "Generate a multi-image post for today's wellness trend.",
+            "Generate personalized Instagram carousel content from this trend report.",
         ],
     )
 
     agent_card = AgentCard(
         name="ContentGeneratingAgent",
-        description="An agent that comprehends trend analysis and recommended actions to produce media content materials including video scripts, post and images",
+        description="An agent that uses trend analysis, content history, and user profile context to produce personalized multi-image post bundles.",
         url=f"http://{host}:{port}/",
         version="1.0.0",
         default_input_modes=["text"],

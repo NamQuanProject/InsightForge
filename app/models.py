@@ -13,12 +13,13 @@ class User(Base):
 
     id: Mapped[uuid.UUID] = mapped_column(PG_UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     email: Mapped[str] = mapped_column(String(255), unique=True, index=True)
-    name: Mapped[str | None] = mapped_column(String(255), nullable=True)
-    plan: Mapped[str | None] = mapped_column(String(50), nullable=True)
-    upload_post_account: Mapped[dict] = mapped_column(JSONB, default=dict, server_default=text("'{}'::jsonb"))
-    profiles: Mapped[list[dict]] = mapped_column(JSONB, default=list, server_default=text("'[]'::jsonb"))
-    social_accounts: Mapped[dict] = mapped_column(JSONB, default=dict, server_default=text("'{}'::jsonb"))
-    connected_platforms: Mapped[list[str]] = mapped_column(JSONB, default=list, server_default=text("'[]'::jsonb"))
+    display_name: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    phone_number: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    location: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    avatar_url: Mapped[str | None] = mapped_column(Text(), nullable=True)
+    about_me: Mapped[str | None] = mapped_column(Text(), nullable=True)
+    content_preferences: Mapped[dict] = mapped_column(JSONB, default=dict, server_default=text("'{}'::jsonb"))
+    options: Mapped[dict] = mapped_column(JSONB, default=dict, server_default=text("'{}'::jsonb"))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
     trend_analyses: Mapped[list["TrendAnalysis"]] = relationship(back_populates="user")
@@ -79,46 +80,13 @@ class TrendAnalysis(Base):
 
 class GeneratedContent(Base):
     """
-    Stores the full structured output produced by the content generation agent.
- 
-    JSON schema reference (Generating_agent.json):
-    {
-        "selected_keyword": str,
-        "main_title": str,
-        "video_script": {
-            "title": str,
-            "duration_estimate": str,          # e.g. "30s"
-            "hook": str,
-            "sections": [
-                {
-                    "timestamp": str,
-                    "label": str,
-                    "narration": str,
-                    "notes": str,
-                    "thumbnail": {             # per-section thumbnail, lives here
-                        "prompt": str,
-                        "style": str,
-                        "size": str,
-                        "output_path": str
-                    }
-                },
-                ...
-            ],
-            "call_to_action": str,
-            "captions_style": str,
-            "music_mood": str
-        },
-        "platform_posts": {
-            "tiktok":     { "caption": str, "hashtags": [...], "cta": str,
-                            "best_post_time": str, "thumbnail_description": str },
-            "facebook":   { ... },
-            "instagram":  { ... }
-        },
-        "music_background": str               # top-level background music description
-    }
- 
-    Note: thumbnails are embedded inside each video_script.sections[*].thumbnail.
-    There is no separate top-level thumbnail field.
+    Stores the structured output produced by the content generation agent.
+
+    The current content format is a personalized multi-image social post:
+    post_content carries copy and strategy, image_set carries the carousel
+    image descriptions/prompts/stored image metadata, and platform_posts carries
+    per-platform captions. Legacy video fields stay nullable/defaulted for old
+    rows and integrations that have not moved yet.
     """
  
     __tablename__ = "generated_contents"
@@ -148,22 +116,23 @@ class GeneratedContent(Base):
     # ------------------------------------------------------------------ #
     selected_keyword: Mapped[str | None] = mapped_column(String(255), nullable=True)
     main_title: Mapped[str | None] = mapped_column(String(500), nullable=True)
+    content_kind: Mapped[str] = mapped_column(
+        String(50),
+        default="multi_image_post",
+        server_default=text("'multi_image_post'"),
+    )
  
     # ------------------------------------------------------------------ #
     # Structured JSON fields                                               #
     # ------------------------------------------------------------------ #
- 
-    # Full video script object:
-    #   title, duration_estimate, hook, sections (with per-section thumbnail),
-    #   call_to_action, captions_style, music_mood
-    video_script: Mapped[dict] = mapped_column(JSONB)
- 
-    # Platform-specific posts: tiktok / facebook / instagram
-    #   Each entry contains: caption, hashtags, cta, best_post_time,
-    #   thumbnail_description
-    platform_posts: Mapped[dict] = mapped_column(JSONB)
- 
-    # Top-level background music description (separate from video_script.music_mood)
+
+    post_content: Mapped[dict] = mapped_column(JSONB, default=dict, server_default=text("'{}'::jsonb"))
+    image_set: Mapped[list[dict]] = mapped_column(JSONB, default=list, server_default=text("'[]'::jsonb"))
+    publishing: Mapped[dict] = mapped_column(JSONB, default=dict, server_default=text("'{}'::jsonb"))
+
+    # Legacy compatibility fields.
+    video_script: Mapped[dict] = mapped_column(JSONB, default=dict, server_default=text("'{}'::jsonb"))
+    platform_posts: Mapped[dict] = mapped_column(JSONB, default=dict, server_default=text("'{}'::jsonb"))
     music_background: Mapped[str | None] = mapped_column(Text(), nullable=True)
  
     # ------------------------------------------------------------------ #

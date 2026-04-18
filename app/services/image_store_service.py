@@ -117,6 +117,41 @@ class ImageStoreService:
 
         return enriched
 
+    async def attach_post_images(self, image_set: Any) -> list[dict[str, Any]]:
+        if not isinstance(image_set, list):
+            return []
+
+        enriched = copy.deepcopy(image_set)
+        for index, image in enumerate(enriched):
+            if not isinstance(image, dict):
+                continue
+
+            description = str(image.get("description") or image.get("prompt") or "").strip()
+            image["description"] = description
+
+            output_path = str(image.get("output_path") or "").strip()
+            if not output_path or image.get("id"):
+                continue
+
+            try:
+                stored = await self.save_local_image(
+                    output_path,
+                    metadata={
+                        "source": "generated_content_post_image",
+                        "image_index": image.get("index") or index + 1,
+                        "image_title": image.get("title"),
+                        "prompt": image.get("prompt"),
+                        "description": description,
+                    },
+                )
+            except Exception as exc:
+                image["image_store_error"] = str(exc)
+                continue
+
+            image.update(stored)
+
+        return enriched
+
     def resolve_source_path(self, source_path: str | Path) -> Path | None:
         path = Path(source_path)
         candidates = [

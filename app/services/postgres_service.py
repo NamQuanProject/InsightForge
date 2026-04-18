@@ -12,22 +12,24 @@ class PostgresService:
     async def create_user(
         self,
         email: str,
-        name: str | None = None,
-        plan: str | None = None,
-        upload_post_account: dict[str, Any] | None = None,
-        profiles: list[dict[str, Any]] | None = None,
-        social_accounts: dict[str, Any] | None = None,
-        connected_platforms: list[str] | None = None,
+        display_name: str | None = None,
+        phone_number: str | None = None,
+        location: str | None = None,
+        avatar_url: str | None = None,
+        about_me: str | None = None,
+        content_preferences: dict[str, Any] | None = None,
+        options: dict[str, Any] | None = None,
     ) -> User:
         async with get_session_factory()() as session:
             user = User(
                 email=email,
-                name=name,
-                plan=plan,
-                upload_post_account=upload_post_account or {},
-                profiles=profiles or [],
-                social_accounts=social_accounts or {},
-                connected_platforms=connected_platforms or [],
+                display_name=display_name,
+                phone_number=phone_number,
+                location=location,
+                avatar_url=avatar_url,
+                about_me=about_me,
+                content_preferences=content_preferences or {},
+                options=options or {},
             )
             session.add(user)
             await session.commit()
@@ -37,12 +39,13 @@ class PostgresService:
     async def upsert_user(
         self,
         email: str,
-        name: str | None = None,
-        plan: str | None = None,
-        upload_post_account: dict[str, Any] | None = None,
-        profiles: list[dict[str, Any]] | None = None,
-        social_accounts: dict[str, Any] | None = None,
-        connected_platforms: list[str] | None = None,
+        display_name: str | None = None,
+        phone_number: str | None = None,
+        location: str | None = None,
+        avatar_url: str | None = None,
+        about_me: str | None = None,
+        content_preferences: dict[str, Any] | None = None,
+        options: dict[str, Any] | None = None,
     ) -> User:
         async with get_session_factory()() as session:
             result = await session.execute(select(User).where(User.email == email))
@@ -50,27 +53,36 @@ class PostgresService:
             if user is None:
                 user = User(
                     email=email,
-                    name=name,
-                    plan=plan,
-                    upload_post_account=upload_post_account or {},
-                    profiles=profiles or [],
-                    social_accounts=social_accounts or {},
-                    connected_platforms=connected_platforms or [],
+                    display_name=display_name,
+                    phone_number=phone_number,
+                    location=location,
+                    avatar_url=avatar_url,
+                    about_me=about_me,
+                    content_preferences=content_preferences or {},
+                    options=options or {},
                 )
                 session.add(user)
             else:
-                if name is not None:
-                    user.name = name
-                if plan is not None:
-                    user.plan = plan
-                if upload_post_account is not None:
-                    user.upload_post_account = upload_post_account
-                if profiles is not None:
-                    user.profiles = profiles
-                if social_accounts is not None:
-                    user.social_accounts = social_accounts
-                if connected_platforms is not None:
-                    user.connected_platforms = connected_platforms
+                if display_name is not None:
+                    user.display_name = display_name
+                if phone_number is not None:
+                    user.phone_number = phone_number
+                if location is not None:
+                    user.location = location
+                if avatar_url is not None:
+                    user.avatar_url = avatar_url
+                if about_me is not None:
+                    user.about_me = about_me
+                if content_preferences is not None:
+                    user.content_preferences = {
+                        **(user.content_preferences or {}),
+                        **content_preferences,
+                    }
+                if options is not None:
+                    user.options = {
+                        **(user.options or {}),
+                        **options,
+                    }
 
             await session.commit()
             await session.refresh(user)
@@ -195,8 +207,12 @@ class PostgresService:
     async def save_generated_content(
         self,
         raw_output: dict[str, Any],
-        video_script: dict[str, Any],
-        platform_posts: dict[str, Any],
+        video_script: dict[str, Any] | None = None,
+        platform_posts: dict[str, Any] | None = None,
+        post_content: dict[str, Any] | None = None,
+        image_set: list[dict[str, Any]] | None = None,
+        publishing: dict[str, Any] | None = None,
+        content_kind: str = "multi_image_post",
         user_id: uuid.UUID | str | None = None,
         trend_analysis_id: uuid.UUID | str | None = None,
         selected_keyword: str | None = None,
@@ -206,15 +222,6 @@ class PostgresService:
     ) -> GeneratedContent:
         """
         Persist a GeneratedContent record.
- 
-        Per the Generating_agent.json schema:
-        - ``video_script`` is the full object including ``sections``, each of
-          which carries its own ``thumbnail`` dict (prompt, style, size,
-          output_path).  There is no separate top-level thumbnail argument.
-        - ``platform_posts`` holds per-platform dicts (tiktok / facebook /
-          instagram) with caption, hashtags, cta, best_post_time, and
-          thumbnail_description.
-        - ``music_background`` is the top-level music description string.
         """
         async with get_session_factory()() as session:
             content = GeneratedContent(
@@ -222,8 +229,12 @@ class PostgresService:
                 trend_analysis_id=self._coerce_uuid(trend_analysis_id) if trend_analysis_id else None,
                 selected_keyword=selected_keyword,
                 main_title=main_title,
-                video_script=video_script,
-                platform_posts=platform_posts,
+                content_kind=content_kind,
+                post_content=post_content or {},
+                image_set=image_set or [],
+                publishing=publishing or {},
+                video_script=video_script or {},
+                platform_posts=platform_posts or {},
                 music_background=music_background,
                 raw_output=raw_output,
                 status=status,
@@ -342,11 +353,12 @@ class PostgresService:
         return {
             "id": user.id,
             "email": user.email,
-            "name": user.name,
-            "plan": user.plan,
-            "upload_post_account": user.upload_post_account or {},
-            "profiles": user.profiles or [],
-            "social_accounts": user.social_accounts or {},
-            "connected_platforms": user.connected_platforms or [],
+            "display_name": user.display_name,
+            "phone_number": user.phone_number,
+            "location": user.location,
+            "avatar_url": user.avatar_url,
+            "about_me": user.about_me,
+            "content_preferences": user.content_preferences or {},
+            "options": user.options or {},
             "created_at": user.created_at,
         }

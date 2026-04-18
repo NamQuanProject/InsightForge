@@ -1,58 +1,43 @@
-from datetime import datetime
-import uuid
-from typing import Any
-
-from pydantic import BaseModel, ConfigDict, Field
-
-
-# class ContentGenerateRequest(BaseModel):
-#     user_id: uuid.UUID | None = None
-#     trend_analysis_id: uuid.UUID | None = None
-#     selected_keyword: str | None = None
-#     prompt: str | None = Field(default=None, min_length=5)
-
-
-# class GeneratedContentResponse(BaseModel):
-#     model_config = ConfigDict(from_attributes=True)
-
-#     id: uuid.UUID
-#     user_id: uuid.UUID | None = None
-#     trend_analysis_id: uuid.UUID | None = None
-#     selected_keyword: str | None = None
-#     main_title: str | None = None
-#     video_script: dict[str, Any] | list[Any] = Field(default_factory=dict)
-#     platform_posts: dict[str, Any] = Field(default_factory=dict)
-#     thumbnail: dict[str, Any] | None = None
-#     music_background: str | None = None
-#     raw_output: dict[str, Any] = Field(default_factory=dict)
-#     status: str
-#     created_at: datetime
-
-
-# class GeneratedContentsListResponse(BaseModel):
-#     items: list[GeneratedContentResponse] = Field(default_factory=list)
 import uuid
 from datetime import datetime
-from typing import Any, List, Dict, Optional
-from pydantic import BaseModel, Field, ConfigDict, model_validator
+from typing import Dict, List, Optional
 
-# ---------------------------------------------------------------------------
-# Request
-# ---------------------------------------------------------------------------
- 
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
+
 class ContentGenerateRequest(BaseModel):
     user_id: Optional[uuid.UUID] = None
     trend_analysis_id: Optional[uuid.UUID] = None
     selected_keyword: Optional[str] = None
     prompt: Optional[str] = Field(default=None, min_length=5)
 
-# --- Phân cấp nhỏ nhất: Thumbnail ---
-class ThumbnailSchema(BaseModel):
-    id: str = ""
+
+class PostContentSchema(BaseModel):
+    post_type: str = "multi_image_post"
+    title: str = ""
+    hook: str = ""
+    caption: str = ""
     description: str = ""
+    body: str = ""
+    call_to_action: str = ""
+    hashtags: List[str] = Field(default_factory=list)
+    tone: str = ""
+    personalization_notes: List[str] = Field(default_factory=list)
+
+
+class PostImageSchema(BaseModel):
+    index: int = 0
+    title: str = ""
+    description: str = ""
+    prompt: str = ""
+    style: str = "vivid"
+    size: str = "1792x1024"
+    output_path: str = ""
+    id: str = ""
     image_url: str = ""
     local_path: str = ""
     created_at: str = ""
+    image_store_error: str = ""
 
     @model_validator(mode="before")
     @classmethod
@@ -61,33 +46,22 @@ class ThumbnailSchema(BaseModel):
             value = {**value, "description": value.get("prompt") or ""}
         return value
 
-# --- Phân đoạn Video ---
-class VideoSectionSchema(BaseModel):
-    timestamp: str = ""
-    label: str = ""
-    narration: str = ""
-    notes: str = ""
-    thumbnail: ThumbnailSchema = Field(default_factory=ThumbnailSchema)
 
-# --- Kịch bản Video tổng thể ---
-class VideoScriptSchema(BaseModel):
-    title: str = ""
-    duration_estimate: str = "30s"
-    hook: str = ""
-    sections: List[VideoSectionSchema] = Field(default_factory=list)
-    call_to_action: str = ""
-    captions_style: str = ""
-    music_mood: str = ""
-
-# --- Chi tiết bài đăng mạng xã hội ---
 class PlatformPostDetailSchema(BaseModel):
     caption: str = ""
     hashtags: List[str] = Field(default_factory=list)
     cta: str = ""
     best_post_time: str = ""
-    thumbnail_description: str = ""
+    image_notes: str = ""
 
-# --- Schema chính cho kết quả trả về ---
+
+class PublishingSchema(BaseModel):
+    default_visibility: str = ""
+    recommended_platforms: List[str] = Field(default_factory=list)
+    timezone: str = ""
+    weekly_content_frequency: int = 0
+
+
 class GeneratedContentResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
@@ -96,9 +70,10 @@ class GeneratedContentResponse(BaseModel):
     trend_analysis_id: Optional[uuid.UUID] = None
     selected_keyword: str = ""
     main_title: str = ""
-    video_script: VideoScriptSchema = Field(default_factory=VideoScriptSchema)
+    post_content: PostContentSchema = Field(default_factory=PostContentSchema)
+    image_set: List[PostImageSchema] = Field(default_factory=list)
     platform_posts: Dict[str, PlatformPostDetailSchema] = Field(default_factory=dict)
-    music_background: str = ""
+    publishing: PublishingSchema = Field(default_factory=PublishingSchema)
     status: str = "completed"
     created_at: datetime = Field(default_factory=datetime.utcnow)
 

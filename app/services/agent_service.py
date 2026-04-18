@@ -45,7 +45,12 @@ class AgentService:
     ) -> OrchestratorResponse:
         resolved_user_id = resolve_user_id(user_id)
         client = InsightForgeA2AClient()
-        result = await client.ask(prompt)
+        routed_prompt = (
+            f"user_id: {resolved_user_id}\n"
+            "Use this user_id when generating content so the content agent can fetch profile and history.\n"
+            f"{prompt}"
+        )
+        result = await client.ask(routed_prompt)
         output = client.normalize_orchestrator_output(result["output"], prompt=prompt)
 
         trend_analysis = output["trend_analysis"]
@@ -58,37 +63,23 @@ class AgentService:
             error=trend_analysis.get("error"),
         )
 
-        # generated_content = output["generated_content"]
-        # generated_record = await self.postgres.save_generated_content(
-        #     raw_output=generated_content,
-        #     video_script=generated_content["video_script"],
-        #     platform_posts=generated_content["platform_posts"],
-        #     thumbnail=generated_content["thumbnail"],
-        #     user_id=user_id,
-        #     trend_analysis_id=trend_record.id,
-        #     selected_keyword=generated_content.get("selected_keyword") or self._best_keyword(trend_analysis),
-        #     main_title=generated_content.get("main_title"),
-        #     music_background=generated_content.get("music_background"),
-        #     status="failed" if generated_content.get("error") else "generated",
-        # )
         generated_content = output["generated_content"]
-        video_script = await self.image_store.attach_section_images(generated_content["video_script"])
+        image_set = await self.image_store.attach_post_images(generated_content.get("image_set"))
         generated_content_to_save = copy.deepcopy(generated_content)
-        generated_content_to_save["video_script"] = video_script
+        generated_content_to_save["image_set"] = image_set
         output["generated_content"] = generated_content_to_save
 
-        # video_script is stored whole: it contains title, duration_estimate, hook,
-        # sections (each with its own thumbnail dict), call_to_action, captions_style,
-        # and music_mood.  There is no separate top-level thumbnail field.
         generated_record = await self.postgres.save_generated_content(
             raw_output=generated_content_to_save,
-            video_script=video_script,
-            platform_posts=generated_content_to_save["platform_posts"],
+            post_content=generated_content_to_save.get("post_content") or {},
+            image_set=image_set,
+            platform_posts=generated_content_to_save.get("platform_posts") or {},
+            publishing=generated_content_to_save.get("publishing") or {},
+            video_script={},
             user_id=resolved_user_id,
             trend_analysis_id=trend_record.id,
             selected_keyword=generated_content_to_save.get("selected_keyword") or self._best_keyword(trend_analysis),
             main_title=generated_content_to_save.get("main_title"),
-            music_background=generated_content_to_save.get("music_background"),
             status="failed" if generated_content_to_save.get("error") else "generated",
         )
 

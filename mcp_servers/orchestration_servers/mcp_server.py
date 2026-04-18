@@ -120,9 +120,9 @@ async def call_content_agent(trend_analysis_and_actions: str) -> StringToolOutpu
     Calls the ContentGeneratingAgent to produce media content from trend insights.
 
     Use this tool when you already have trend analysis output and need to generate:
-    - A detailed video script (hook, narration per section, visuals direction, CTA)
-    - Post content (caption, hashtags, best posting time)
-    - A hero image prompt (sent to DALL-E 3)
+    - Personalized post content based on user profile and content direction
+    - A multi-image post image set with per-image descriptions and prompts
+    - Platform captions, hashtags, best posting time, and publishing guidance
 
     IMPORTANT: This tool expects the FULL output of call_trend_agent as its input,
     optionally enriched with extra creative direction from the user.
@@ -134,11 +134,11 @@ async def call_content_agent(trend_analysis_and_actions: str) -> StringToolOutpu
                                     platform, or style.
 
     Returns:
-        JSON object containing video_script, post_content, and image_generation fields.
+        JSON object containing post_content, image_set, platform_posts, and publishing fields.
     """
     prompt = (
-        "Based on the following trend analysis, generate a detailed video script, "
-        "post content, and a hero image.\n\n"
+        "Based on the following trend analysis, generate a personalized multi-image social post. "
+        "Do not create a video script. Return post_content, image_set, platform_posts, and publishing.\n\n"
         f"## Trend Analysis & Recommended Actions\n{trend_analysis_and_actions}"
     )
     result = await _call_a2a(CONTENT_AGENT_URL, prompt)

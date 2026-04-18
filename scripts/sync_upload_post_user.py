@@ -22,12 +22,10 @@ async def main() -> None:
 
     user = await PostgresService().upsert_user(
         email=str(email),
-        name=upload_post.get_configured_profile_username(),
-        plan=account.get("plan"),
-        upload_post_account=account,
-        profiles=bundle["profiles"],
-        social_accounts=bundle["social_accounts"],
-        connected_platforms=bundle["connected_platforms"],
+        display_name=upload_post.get_configured_profile_username(),
+        options={
+            "linked_platforms": bundle["connected_platforms"],
+        },
     )
 
     print(
@@ -35,11 +33,8 @@ async def main() -> None:
             {
                 "user_id": str(user.id),
                 "email": user.email,
-                "plan": user.plan,
-                "profile_count": len(user.profiles or []),
-                "profile_usernames": [profile.get("username") for profile in (user.profiles or [])],
-                "connected_platforms": user.connected_platforms or [],
-                "social_account_platforms": sorted((user.social_accounts or {}).keys()),
+                "display_name": user.display_name,
+                "linked_platforms": (user.options or {}).get("linked_platforms", []),
             },
             ensure_ascii=True,
         )

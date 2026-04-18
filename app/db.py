@@ -54,10 +54,24 @@ async def init_db() -> None:
             text(
                 """
                 ALTER TABLE users
-                ADD COLUMN IF NOT EXISTS upload_post_account JSONB NOT NULL DEFAULT '{}'::jsonb,
-                ADD COLUMN IF NOT EXISTS profiles JSONB NOT NULL DEFAULT '[]'::jsonb,
-                ADD COLUMN IF NOT EXISTS social_accounts JSONB NOT NULL DEFAULT '{}'::jsonb,
-                ADD COLUMN IF NOT EXISTS connected_platforms JSONB NOT NULL DEFAULT '[]'::jsonb
+                ADD COLUMN IF NOT EXISTS display_name TEXT,
+                ADD COLUMN IF NOT EXISTS phone_number TEXT,
+                ADD COLUMN IF NOT EXISTS location TEXT,
+                ADD COLUMN IF NOT EXISTS avatar_url TEXT,
+                ADD COLUMN IF NOT EXISTS about_me TEXT,
+                ADD COLUMN IF NOT EXISTS content_preferences JSONB NOT NULL DEFAULT '{}'::jsonb,
+                ADD COLUMN IF NOT EXISTS options JSONB NOT NULL DEFAULT '{}'::jsonb
+                """
+            )
+        )
+        await connection.execute(
+            text(
+                """
+                ALTER TABLE generated_contents
+                ADD COLUMN IF NOT EXISTS content_kind TEXT NOT NULL DEFAULT 'multi_image_post',
+                ADD COLUMN IF NOT EXISTS post_content JSONB NOT NULL DEFAULT '{}'::jsonb,
+                ADD COLUMN IF NOT EXISTS image_set JSONB NOT NULL DEFAULT '[]'::jsonb,
+                ADD COLUMN IF NOT EXISTS publishing JSONB NOT NULL DEFAULT '{}'::jsonb
                 """
             )
         )

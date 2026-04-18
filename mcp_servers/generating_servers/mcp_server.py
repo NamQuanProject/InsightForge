@@ -229,5 +229,51 @@ async def get_latest_generated_content(user_id: str) -> dict:
     return {"has_history": True, "latest_content": items[0]}
 
 
+@mcp.tool()
+async def get_user_profile(user_id: str) -> dict:
+    """
+    Fetches the user profile used to personalize generated content.
+
+    Args:
+        user_id: The UUID string of the user. Invalid placeholders fall back to
+            INSIGHTFORGE_DEFAULT_USER_ID when configured.
+    """
+    resolved_user_id = _resolve_user_id(user_id)
+    if resolved_user_id is None:
+        return {
+            "has_profile": False,
+            "user_id": None,
+            "user_profile": None,
+            "error": "No valid user id or INSIGHTFORGE_DEFAULT_USER_ID configured.",
+        }
+
+    async with httpx.AsyncClient() as client:
+        response = await client.get(f"{BASE_URL}/api/v1/users/{resolved_user_id}")
+
+    if response.status_code == 404:
+        return {
+            "has_profile": False,
+            "user_id": resolved_user_id,
+            "user_profile": None,
+            "error": "User profile not found.",
+        }
+
+    try:
+        response.raise_for_status()
+    except httpx.HTTPStatusError as exc:
+        return {
+            "has_profile": False,
+            "user_id": resolved_user_id,
+            "user_profile": None,
+            "error": str(exc),
+        }
+
+    return {
+        "has_profile": True,
+        "user_id": resolved_user_id,
+        "user_profile": response.json(),
+    }
+
+
 if __name__ == "__main__":
     mcp.run(transport = "stdio")

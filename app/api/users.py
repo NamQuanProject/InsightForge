@@ -13,12 +13,13 @@ async def create_user(payload: UserCreateRequest):
     service = PostgresService()
     return await service.create_user(
         email=payload.email,
-        name=payload.name,
-        plan=payload.plan,
-        upload_post_account=payload.upload_post_account,
-        profiles=payload.profiles,
-        social_accounts=payload.social_accounts,
-        connected_platforms=payload.connected_platforms,
+        display_name=payload.display_name,
+        phone_number=payload.phone_number,
+        location=payload.location,
+        avatar_url=payload.avatar_url,
+        about_me=payload.about_me,
+        content_preferences=payload.content_preferences.model_dump(),
+        options=payload.options.model_dump(),
     )
 
 

@@ -129,12 +129,14 @@ async def call_trend_agent(query: str) -> StringToolOutput:
 @tool
 async def call_content_agent(trend_analysis_and_actions: str) -> StringToolOutput:
     """
-    Calls the ContentGeneratingAgent to produce media content from trend insights.
+    Calls the ContentGeneratingAgent to produce a personalized multi-image post from trend insights.
     """
     prompt = (
-        "Dua tren bao cao xu huong sau, hay tao goi noi dung dung dinh dang JSON.\n"
+        "Dua tren bao cao xu huong sau, hay tao goi noi dung bai post nhieu hinh dung dinh dang JSON.\n"
+        "Neu co user_id trong ngu canh, bat buoc truyen user_id do de content agent doc profile va lich su.\n"
         "Neu co nhieu ket qua trend, uu tien ket qua co trend_score cao nhat.\n"
         "Phai giu sat chu de trong bao cao, khong duoc chuyen sang chu de khac.\n"
+        "Khong tao video script. Can tra ve post_content, image_set, platform_posts, publishing.\n"
         "Chi tra ve JSON dung format content generation.\n\n"
         f"## Trend Analysis\n{trend_analysis_and_actions}"
     )

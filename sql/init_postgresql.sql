@@ -3,20 +3,24 @@ CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 CREATE TABLE IF NOT EXISTS users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     email TEXT NOT NULL UNIQUE,
-    name TEXT,
-    plan TEXT,
-    upload_post_account JSONB NOT NULL DEFAULT '{}'::jsonb,
-    profiles JSONB NOT NULL DEFAULT '[]'::jsonb,
-    social_accounts JSONB NOT NULL DEFAULT '{}'::jsonb,
-    connected_platforms JSONB NOT NULL DEFAULT '[]'::jsonb,
+    display_name TEXT,
+    phone_number TEXT,
+    location TEXT,
+    avatar_url TEXT,
+    about_me TEXT,
+    content_preferences JSONB NOT NULL DEFAULT '{}'::jsonb,
+    options JSONB NOT NULL DEFAULT '{}'::jsonb,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 ALTER TABLE users
-    ADD COLUMN IF NOT EXISTS upload_post_account JSONB NOT NULL DEFAULT '{}'::jsonb,
-    ADD COLUMN IF NOT EXISTS profiles JSONB NOT NULL DEFAULT '[]'::jsonb,
-    ADD COLUMN IF NOT EXISTS social_accounts JSONB NOT NULL DEFAULT '{}'::jsonb,
-    ADD COLUMN IF NOT EXISTS connected_platforms JSONB NOT NULL DEFAULT '[]'::jsonb;
+    ADD COLUMN IF NOT EXISTS display_name TEXT,
+    ADD COLUMN IF NOT EXISTS phone_number TEXT,
+    ADD COLUMN IF NOT EXISTS location TEXT,
+    ADD COLUMN IF NOT EXISTS avatar_url TEXT,
+    ADD COLUMN IF NOT EXISTS about_me TEXT,
+    ADD COLUMN IF NOT EXISTS content_preferences JSONB NOT NULL DEFAULT '{}'::jsonb,
+    ADD COLUMN IF NOT EXISTS options JSONB NOT NULL DEFAULT '{}'::jsonb;
 
 CREATE TABLE IF NOT EXISTS trend_analyses (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -35,7 +39,11 @@ CREATE TABLE IF NOT EXISTS generated_contents (
     trend_analysis_id UUID REFERENCES trend_analyses(id) ON DELETE SET NULL,
     selected_keyword TEXT,
     main_title TEXT,
-    video_script JSONB NOT NULL,
+    content_kind TEXT NOT NULL DEFAULT 'multi_image_post',
+    post_content JSONB NOT NULL DEFAULT '{}'::jsonb,
+    image_set JSONB NOT NULL DEFAULT '[]'::jsonb,
+    publishing JSONB NOT NULL DEFAULT '{}'::jsonb,
+    video_script JSONB NOT NULL DEFAULT '{}'::jsonb,
     platform_posts JSONB NOT NULL,
     thumbnail JSONB,
     music_background TEXT,
@@ -43,6 +51,12 @@ CREATE TABLE IF NOT EXISTS generated_contents (
     status TEXT NOT NULL DEFAULT 'generated',
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+ALTER TABLE generated_contents
+    ADD COLUMN IF NOT EXISTS content_kind TEXT NOT NULL DEFAULT 'multi_image_post',
+    ADD COLUMN IF NOT EXISTS post_content JSONB NOT NULL DEFAULT '{}'::jsonb,
+    ADD COLUMN IF NOT EXISTS image_set JSONB NOT NULL DEFAULT '[]'::jsonb,
+    ADD COLUMN IF NOT EXISTS publishing JSONB NOT NULL DEFAULT '{}'::jsonb;
 
 CREATE TABLE IF NOT EXISTS publish_jobs (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

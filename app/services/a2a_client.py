@@ -193,38 +193,38 @@ class InsightForgeA2AClient:
             if isinstance(parsed, dict):
                 content = parsed
 
-        video_script = content.get("video_script") if isinstance(content.get("video_script"), dict) else {}
+        post_content = content.get("post_content") if isinstance(content.get("post_content"), dict) else {}
+        image_set = content.get("image_set") if isinstance(content.get("image_set"), list) else []
         platform_posts = content.get("platform_posts") if isinstance(content.get("platform_posts"), dict) else {}
-        thumbnail = content.get("thumbnail") if isinstance(content.get("thumbnail"), dict) else {}
+        publishing = content.get("publishing") if isinstance(content.get("publishing"), dict) else {}
+
+        if not post_content and isinstance(content.get("video_script"), dict):
+            video_script = content["video_script"]
+            post_content = {
+                "post_type": "multi_image_post",
+                "title": video_script.get("title") or "",
+                "hook": video_script.get("hook") or "",
+                "caption": "",
+                "description": video_script.get("call_to_action") or "",
+                "body": "",
+                "call_to_action": video_script.get("call_to_action") or "",
+                "hashtags": [],
+                "tone": video_script.get("captions_style") or "",
+                "personalization_notes": [],
+            }
+            image_set = self._image_set_from_legacy_sections(video_script.get("sections"))
 
         return {
             "selected_keyword": str(content.get("selected_keyword") or ""),
-            "main_title": str(content.get("main_title") or video_script.get("title") or ""),
-            "video_script": {
-                "title": str(video_script.get("title") or ""),
-                "duration_estimate": str(video_script.get("duration_estimate") or "30s"),
-                "hook": str(video_script.get("hook") or ""),
-                "sections": video_script.get("sections") if isinstance(video_script.get("sections"), list) else [],
-                "call_to_action": str(video_script.get("call_to_action") or ""),
-                "captions_style": str(video_script.get("captions_style") or ""),
-                "music_mood": str(video_script.get("music_mood") or ""),
-            },
+            "main_title": str(content.get("main_title") or post_content.get("title") or ""),
+            "post_content": self._normalize_post_content(post_content),
+            "image_set": self._normalize_image_set(image_set),
             "platform_posts": {
                 "tiktok": self._normalize_platform_post(platform_posts.get("tiktok")),
                 "facebook": self._normalize_platform_post(platform_posts.get("facebook")),
                 "instagram": self._normalize_platform_post(platform_posts.get("instagram")),
             },
-            "thumbnail": {
-                "prompt": str(thumbnail.get("prompt") or ""),
-                "style": str(thumbnail.get("style") or "vivid"),
-                "size": str(thumbnail.get("size") or "1792x1024"),
-                "output_path": str(thumbnail.get("output_path") or "content_output.png"),
-            },
-            "music_background": str(
-                content.get("music_background")
-                or video_script.get("music_mood")
-                or ""
-            ),
+            "publishing": self._normalize_publishing(publishing),
             "error": content.get("error"),
         }
 
@@ -235,8 +235,75 @@ class InsightForgeA2AClient:
             "hashtags": self._to_str_list(post.get("hashtags")),
             "cta": str(post.get("cta") or ""),
             "best_post_time": str(post.get("best_post_time") or ""),
-            "thumbnail_description": str(post.get("thumbnail_description") or ""),
+            "image_notes": str(post.get("image_notes") or post.get("thumbnail_description") or ""),
         }
+
+    def _normalize_post_content(self, post: Any) -> dict[str, Any]:
+        post = post if isinstance(post, dict) else {}
+        return {
+            "post_type": str(post.get("post_type") or "multi_image_post"),
+            "title": str(post.get("title") or ""),
+            "hook": str(post.get("hook") or ""),
+            "caption": str(post.get("caption") or ""),
+            "description": str(post.get("description") or ""),
+            "body": str(post.get("body") or ""),
+            "call_to_action": str(post.get("call_to_action") or ""),
+            "hashtags": self._to_str_list(post.get("hashtags")),
+            "tone": str(post.get("tone") or ""),
+            "personalization_notes": self._to_str_list(post.get("personalization_notes")),
+        }
+
+    def _normalize_image_set(self, image_set: Any) -> list[dict[str, Any]]:
+        if not isinstance(image_set, list):
+            return []
+
+        normalized = []
+        for index, image in enumerate(image_set):
+            if not isinstance(image, dict):
+                continue
+            normalized.append(
+                {
+                    "index": self._to_int(image.get("index") or index + 1),
+                    "title": str(image.get("title") or ""),
+                    "description": str(image.get("description") or image.get("prompt") or ""),
+                    "prompt": str(image.get("prompt") or ""),
+                    "style": str(image.get("style") or "vivid"),
+                    "size": str(image.get("size") or "1792x1024"),
+                    "output_path": str(image.get("output_path") or f"post_image_{index + 1}.png"),
+                }
+            )
+        return normalized
+
+    def _normalize_publishing(self, publishing: Any) -> dict[str, Any]:
+        publishing = publishing if isinstance(publishing, dict) else {}
+        return {
+            "default_visibility": str(publishing.get("default_visibility") or ""),
+            "recommended_platforms": self._to_str_list(publishing.get("recommended_platforms")),
+            "timezone": str(publishing.get("timezone") or ""),
+            "weekly_content_frequency": self._to_int(publishing.get("weekly_content_frequency")),
+        }
+
+    def _image_set_from_legacy_sections(self, sections: Any) -> list[dict[str, Any]]:
+        if not isinstance(sections, list):
+            return []
+
+        image_set = []
+        for index, section in enumerate(sections):
+            if not isinstance(section, dict):
+                continue
+            thumbnail = section.get("thumbnail") if isinstance(section.get("thumbnail"), dict) else {}
+            image_set.append(
+                {
+                    "index": index + 1,
+                    "title": str(section.get("label") or f"Image {index + 1}"),
+                    "description": str(thumbnail.get("description") or thumbnail.get("prompt") or section.get("notes") or ""),
+                    "prompt": str(thumbnail.get("prompt") or ""),
+                    "style": str(thumbnail.get("style") or "vivid"),
+                    "size": str(thumbnail.get("size") or "1792x1024"),
+                    "output_path": str(thumbnail.get("output_path") or f"post_image_{index + 1}.png"),
+                }
+            )
+        return image_set
 
     def _to_float(self, value: Any) -> float:
         try:
@@ -253,6 +320,12 @@ class InsightForgeA2AClient:
         if not isinstance(value, list):
             return []
         return [str(item) for item in value]
+
+    def _to_int(self, value: Any) -> int:
+        try:
+            return int(value or 0)
+        except (TypeError, ValueError):
+            return 0
 
     def _extract_final_text(self, response_json: dict[str, Any]) -> str:
         result = response_json.get("result", {})
