@@ -1,0 +1,247 @@
+{
+  "fcdc9ca0-7df4-4a08-82d4-23effcc6c7d3": {
+    "id": "fcdc9ca0-7df4-4a08-82d4-23effcc6c7d3",
+    "image_url": "https://i.ibb.co/TDShn8Lk/71af289dc527.png",
+    "description": "Mô tả nội dung cho Đường và Calo Khổng Lồ: ảnh này cần truyền tải rõ ý chính của phần trong bài post, giúp người xem hiểu nhanh thông điệp và muốn tiếp tục xem các ảnh tiếp theo.",
+    "local_path": "sample_data\\img_db\\fcdc9ca0-7df4-4a08-82d4-23effcc6c7d3.png",
+    "created_at": "2026-04-18T07:32:38.890335+00:00"
+  },
+  "dd3bd6b5-653f-49d1-9197-5e80c01cdc93": {
+    "id": "dd3bd6b5-653f-49d1-9197-5e80c01cdc93",
+    "image_url": "https://i.ibb.co/dNqWftS/c33e9f24f5a8.png",
+    "description": "Mô tả nội dung cho Nguy Cơ Tiểu Đường và Bệnh Tim Mạch: ảnh này cần truyền tải rõ ý chính của phần trong bài post, giúp người xem hiểu nhanh thông điệp và muốn tiếp tục xem các ảnh tiếp theo.",
+    "local_path": "sample_data\\img_db\\dd3bd6b5-653f-49d1-9197-5e80c01cdc93.png",
+    "created_at": "2026-04-18T07:32:45.134465+00:00"
+  },
+  "b9071da9-171c-495e-ad2f-92b93ba1801d": {
+    "id": "b9071da9-171c-495e-ad2f-92b93ba1801d",
+    "image_url": "https://i.ibb.co/MD3Kn3Zk/f39c3a92d30b.png",
+    "description": "Mô tả nội dung cho Vấn Đề Về Da và Tiêu Hóa: ảnh này cần truyền tải rõ ý chính của phần trong bài post, giúp người xem hiểu nhanh thông điệp và muốn tiếp tục xem các ảnh tiếp theo.",
+    "local_path": "sample_data\\img_db\\b9071da9-171c-495e-ad2f-92b93ba1801d.png",
+    "created_at": "2026-04-18T07:32:54.748930+00:00"
+  },
+  "4b0db791-3cf0-4c16-ad16-cd68bbae1ee8": {
+    "id": "4b0db791-3cf0-4c16-ad16-cd68bbae1ee8",
+    "image_url": "https://i.ibb.co/RT2KV3wd/0d7ba258ec47.png",
+    "description": "Mô tả nội dung cho Giải Pháp Thay Thế Lành Mạnh: ảnh này cần truyền tải rõ ý chính của phần trong bài post, giúp người xem hiểu nhanh thông điệp và muốn tiếp tục xem các ảnh tiếp theo.",
+    "local_path": "sample_data\\img_db\\4b0db791-3cf0-4c16-ad16-cd68bbae1ee8.png",
+    "created_at": "2026-04-18T07:33:00.429738+00:00"
+  },
+  "2e9ada1e-26cb-4933-bb98-8390c5156250": {
+    "id": "2e9ada1e-26cb-4933-bb98-8390c5156250",
+    "image_url": "https://i.ibb.co/BbBGsKg/15c5ecab5048.png",
+    "description": "Ảnh mở đầu giúp người xem nhận ra cảm giác mệt, khô môi, thiếu tập trung có thể đến từ việc uống nước quá ít.",
+    "local_path": "sample_data\\img_db\\2e9ada1e-26cb-4933-bb98-8390c5156250.png",
+    "created_at": "2026-04-18T08:31:01.140673+00:00"
+  },
+  "9e95af2c-0ba0-469f-8493-7fd9bc19a7d4": {
+    "id": "9e95af2c-0ba0-469f-8493-7fd9bc19a7d4",
+    "image_url": "https://i.ibb.co/TBz0mHPB/8310d8e27dd4.png",
+    "description": "Ảnh minh họa hệ thống uống nước đơn giản theo ba mốc trong ngày, dễ áp dụng cho người bận rộn.",
+    "local_path": "sample_data\\img_db\\9e95af2c-0ba0-469f-8493-7fd9bc19a7d4.png",
+    "created_at": "2026-04-18T08:31:17.129212+00:00"
+  },
+  "609651d7-954c-4a34-9d44-b5a7cd2e4137": {
+    "id": "609651d7-954c-4a34-9d44-b5a7cd2e4137",
+    "image_url": "https://i.ibb.co/mrq3M42D/c52d956585f5.png",
+    "description": "Ảnh cho thấy cách đặt ly nước cạnh các hoạt động quen thuộc để biến việc uống nước thành phản xạ tự nhiên.",
+    "local_path": "sample_data\\img_db\\609651d7-954c-4a34-9d44-b5a7cd2e4137.png",
+    "created_at": "2026-04-18T08:31:38.724703+00:00"
+  },
+  "4cf3b8a0-1469-4012-824e-06842d4ec722": {
+    "id": "4cf3b8a0-1469-4012-824e-06842d4ec722",
+    "image_url": "https://i.ibb.co/bp1zf5B/09c196cca588.png",
+    "description": "Ảnh kết thúc truyền cảm giác nhẹ nhàng, khỏe khoắn khi người xem duy trì được một thay đổi nhỏ.",
+    "local_path": "sample_data\\img_db\\4cf3b8a0-1469-4012-824e-06842d4ec722.png",
+    "created_at": "2026-04-18T08:31:56.339188+00:00"
+  },
+  "7e0d3933-74c3-459e-a99e-c6652a3c8276": {
+    "id": "7e0d3933-74c3-459e-a99e-c6652a3c8276",
+    "image_url": "https://i.ibb.co/tTVM3w94/e51e7a3a0ea0.png",
+    "description": "Ảnh chỉ ra cảm giác quá tải khi nhìn cả căn phòng bừa bộn, tạo sự đồng cảm ngay từ đầu.",
+    "local_path": "sample_data\\img_db\\7e0d3933-74c3-459e-a99e-c6652a3c8276.png",
+    "created_at": "2026-04-18T08:32:16.570770+00:00"
+  },
+  "27475a3c-88bb-496e-bf6b-3655abe8445a": {
+    "id": "27475a3c-88bb-496e-bf6b-3655abe8445a",
+    "image_url": "https://i.ibb.co/ynkqGnNx/ea5a8e4a4449.png",
+    "description": "Ảnh hướng người xem tập trung vào một khu vực cụ thể thay vì cố dọn cả căn nhà.",
+    "local_path": "sample_data\\img_db\\27475a3c-88bb-496e-bf6b-3655abe8445a.png",
+    "created_at": "2026-04-18T08:32:32.648871+00:00"
+  },
+  "dafbd772-3dc8-4614-a354-624a1abe5671": {
+    "id": "dafbd772-3dc8-4614-a354-624a1abe5671",
+    "image_url": "https://i.ibb.co/qLc6hGq3/c8c91dece28d.png",
+    "description": "Ảnh minh họa ba thao tác đơn giản trong một khoảng thời gian ngắn, tạo cảm giác làm được ngay.",
+    "local_path": "sample_data\\img_db\\dafbd772-3dc8-4614-a354-624a1abe5671.png",
+    "created_at": "2026-04-18T08:32:51.450372+00:00"
+  },
+  "e0bf9449-b7d9-434f-831f-edb9f717697b": {
+    "id": "e0bf9449-b7d9-434f-831f-edb9f717697b",
+    "image_url": "https://i.ibb.co/xR5ybGt/07ecf97196d3.png",
+    "description": "Ảnh kết thúc bằng một góc nhà đã gọn gàng, tạo cảm giác nhẹ nhõm và có thành quả rõ.",
+    "local_path": "sample_data\\img_db\\e0bf9449-b7d9-434f-831f-edb9f717697b.png",
+    "created_at": "2026-04-18T08:33:07.399044+00:00"
+  },
+  "9cf4d29e-7115-479c-8d22-5630bd39193d": {
+    "id": "9cf4d29e-7115-479c-8d22-5630bd39193d",
+    "image_url": "https://i.ibb.co/JFwpRgQX/228f300e4088.png",
+    "description": "Ảnh mở đầu kể cảm giác áp lực khi nhiều việc nhỏ bị trì hoãn và dồn lại.",
+    "local_path": "sample_data\\img_db\\9cf4d29e-7115-479c-8d22-5630bd39193d.png",
+    "created_at": "2026-04-18T08:33:23.518957+00:00"
+  },
+  "ea7d3f25-9adf-420c-9a00-ac3543a0cd22": {
+    "id": "ea7d3f25-9adf-420c-9a00-ac3543a0cd22",
+    "image_url": "https://i.ibb.co/8gMpFNzL/a8fe2c2666db.png",
+    "description": "Ảnh minh họa hành động khởi động cực nhỏ: mở tài liệu, lấy bút, viết dòng đầu tiên.",
+    "local_path": "sample_data\\img_db\\ea7d3f25-9adf-420c-9a00-ac3543a0cd22.png",
+    "created_at": "2026-04-18T08:33:39.626406+00:00"
+  },
+  "3209bc53-a83e-4403-860c-6423201fce53": {
+    "id": "3209bc53-a83e-4403-860c-6423201fce53",
+    "image_url": "https://i.ibb.co/HL15yGBh/73d0c621dc23.png",
+    "description": "Ảnh truyền tải khoảnh khắc người xem nhận ra việc không đáng sợ như mình tưởng sau khi đã bắt đầu.",
+    "local_path": "sample_data\\img_db\\3209bc53-a83e-4403-860c-6423201fce53.png",
+    "created_at": "2026-04-18T08:33:54.609052+00:00"
+  },
+  "13ef5e36-8697-4191-b48c-4b2976e9b85e": {
+    "id": "13ef5e36-8697-4191-b48c-4b2976e9b85e",
+    "image_url": "https://i.ibb.co/j95KwvsQ/be5cf733e845.png",
+    "description": "Ảnh kết luận bằng một checklist có dòng đầu tiên được tick, nhấn mạnh sự tiến bộ nhỏ nhưng thật.",
+    "local_path": "sample_data\\img_db\\13ef5e36-8697-4191-b48c-4b2976e9b85e.png",
+    "created_at": "2026-04-18T08:34:10.860646+00:00"
+  },
+  "930b5d0f-8c78-4e7b-b446-66a236f8e9c8": {
+    "id": "930b5d0f-8c78-4e7b-b446-66a236f8e9c8",
+    "image_url": "https://i.ibb.co/zh1yx1fc/7ec83809314a.png",
+    "description": "Ảnh tạo tình huống quen thuộc khi người xem cầm một chai đồ uống đẹp mắt nhưng chưa biết lượng đường thật.",
+    "local_path": "sample_data\\img_db\\930b5d0f-8c78-4e7b-b446-66a236f8e9c8.png",
+    "created_at": "2026-04-18T08:34:28.738144+00:00"
+  },
+  "832a4113-1a17-42e4-a5e2-c4b27223e874": {
+    "id": "832a4113-1a17-42e4-a5e2-c4b27223e874",
+    "image_url": "https://i.ibb.co/FkKX3P1Y/39fa5b8d67f4.png",
+    "description": "Ảnh zoom vào phần serving size trên nhãn, giúp người xem nhớ cần kiểm tra số khẩu phần trong cả chai.",
+    "local_path": "sample_data\\img_db\\832a4113-1a17-42e4-a5e2-c4b27223e874.png",
+    "created_at": "2026-04-18T08:34:44.897877+00:00"
+  },
+  "8c461f09-586a-41cc-a877-c425274f6c7e": {
+    "id": "8c461f09-586a-41cc-a877-c425274f6c7e",
+    "image_url": "https://i.ibb.co/9mrmysbw/efefe4ece5e4.png",
+    "description": "Ảnh minh họa các tên gọi khác nhau của đường trên nhãn thành phần một cách dễ hiểu.",
+    "local_path": "sample_data\\img_db\\8c461f09-586a-41cc-a877-c425274f6c7e.png",
+    "created_at": "2026-04-18T08:35:00.041091+00:00"
+  },
+  "1e14019d-1589-4133-b0ce-65972fae4744": {
+    "id": "1e14019d-1589-4133-b0ce-65972fae4744",
+    "image_url": "https://i.ibb.co/4nDxRmLc/bc3827c36db7.png",
+    "description": "Ảnh kết thúc đưa lựa chọn nhẹ nhàng: đồ uống ít đường cạnh nước lọc, không cực đoan hóa vấn đề.",
+    "local_path": "sample_data\\img_db\\1e14019d-1589-4133-b0ce-65972fae4744.png",
+    "created_at": "2026-04-18T08:35:17.463237+00:00"
+  },
+  "a6329a48-f42f-477e-8189-a7ce16f95611": {
+    "id": "a6329a48-f42f-477e-8189-a7ce16f95611",
+    "image_url": "https://i.ibb.co/yBQ6PcfT/f431a5ff3ada.png",
+    "description": "Ảnh mở đầu dùng chiếc lọ rỗng như biểu tượng cho thời gian và năng lượng hữu hạn của mỗi người.",
+    "local_path": "sample_data\\img_db\\a6329a48-f42f-477e-8189-a7ce16f95611.png",
+    "created_at": "2026-04-18T08:35:35.152986+00:00"
+  },
+  "9c8bbe91-1f1b-4e60-8020-963c96648c4c": {
+    "id": "9c8bbe91-1f1b-4e60-8020-963c96648c4c",
+    "image_url": "https://i.ibb.co/Qv4KWJzJ/5458a97e520b.png",
+    "description": "Ảnh minh họa các ưu tiên lớn cần được đặt vào trước như sức khỏe, gia đình và công việc quan trọng.",
+    "local_path": "sample_data\\img_db\\9c8bbe91-1f1b-4e60-8020-963c96648c4c.png",
+    "created_at": "2026-04-18T08:35:51.122711+00:00"
+  },
+  "dec49f0a-0035-4ad2-b384-fc709468273c": {
+    "id": "dec49f0a-0035-4ad2-b384-fc709468273c",
+    "image_url": "https://i.ibb.co/gbyNQ458/9f685ec53578.png",
+    "description": "Ảnh cho thấy nhiều việc vụn có thể lấp đầy ngày nếu được đặt lên trước.",
+    "local_path": "sample_data\\img_db\\dec49f0a-0035-4ad2-b384-fc709468273c.png",
+    "created_at": "2026-04-18T08:36:07.790057+00:00"
+  },
+  "daae9426-7236-4092-b949-9bcac8583b7a": {
+    "id": "daae9426-7236-4092-b949-9bcac8583b7a",
+    "image_url": "https://i.ibb.co/NdnPrd01/22e2e24df4e0.png",
+    "description": "Ảnh kết thúc thể hiện chiếc lọ đã xếp hợp lý, gửi thông điệp ưu tiên điều lớn trước việc nhỏ.",
+    "local_path": "sample_data\\img_db\\daae9426-7236-4092-b949-9bcac8583b7a.png",
+    "created_at": "2026-04-18T08:36:24.964178+00:00"
+  },
+  "2181c8ab-4789-4609-8b1b-3666c62e7a8b": {
+    "id": "2181c8ab-4789-4609-8b1b-3666c62e7a8b",
+    "image_url": "https://i.ibb.co/tw6HCtYz/67b33d74d9e7.png",
+    "description": "Hình ảnh một người phụ nữ Việt Nam trẻ tuổi trông căng thẳng, mệt mỏi với công việc và giấy tờ xung quanh, thể hiện sự quá tải trong cuộc sống hàng ngày.",
+    "local_path": "sample_data\\img_db\\2181c8ab-4789-4609-8b1b-3666c62e7a8b.png",
+    "created_at": "2026-04-18T09:14:27.279542+00:00"
+  },
+  "cd8dbbce-a063-47ec-804a-763e7d7bb5fa": {
+    "id": "cd8dbbce-a063-47ec-804a-763e7d7bb5fa",
+    "image_url": "https://i.ibb.co/jkLmqNry/d5b06333d708.png",
+    "description": "Minh họa đơn giản về hệ hô hấp, nhấn mạnh vai trò của cơ hoành trong việc hít thở sâu, như một giải pháp mang lại sự bình yên.",
+    "local_path": "sample_data\\img_db\\cd8dbbce-a063-47ec-804a-763e7d7bb5fa.png",
+    "created_at": "2026-04-18T09:14:33.792269+00:00"
+  },
+  "ff31a12a-1fe7-412a-89ee-99e6b39cce5e": {
+    "id": "ff31a12a-1fe7-412a-89ee-99e6b39cce5e",
+    "image_url": "https://i.ibb.co/M5hdDLb1/8ff1150dea2f.png",
+    "description": "Người phụ nữ ngồi thoải mái, một tay đặt lên ngực và một tay đặt lên bụng, minh họa tư thế chuẩn bị cho việc thở bụng.",
+    "local_path": "sample_data\\img_db\\ff31a12a-1fe7-412a-89ee-99e6b39cce5e.png",
+    "created_at": "2026-04-18T09:14:38.948337+00:00"
+  },
+  "a55894c0-7e9f-43b0-a0b7-5fd9656a6f93": {
+    "id": "a55894c0-7e9f-43b0-a0b7-5fd9656a6f93",
+    "image_url": "https://i.ibb.co/gM924GLK/725070a26a9d.png",
+    "description": "Cận cảnh phần thân trên của người phụ nữ khi hít vào, tập trung vào chuyển động phình lên nhẹ nhàng của bụng.",
+    "local_path": "sample_data\\img_db\\a55894c0-7e9f-43b0-a0b7-5fd9656a6f93.png",
+    "created_at": "2026-04-18T09:14:41.271877+00:00"
+  },
+  "8acd69b7-5a6e-468a-9f2e-7f5c0ef03ac5": {
+    "id": "8acd69b7-5a6e-468a-9f2e-7f5c0ef03ac5",
+    "image_url": "https://i.ibb.co/fzhVCcwv/783edb954839.png",
+    "description": "Cận cảnh phần thân trên của người phụ nữ khi thở ra, bụng xẹp xuống, thể hiện sự thư thái sau khi hít thở.",
+    "local_path": "sample_data\\img_db\\8acd69b7-5a6e-468a-9f2e-7f5c0ef03ac5.png",
+    "created_at": "2026-04-18T09:14:45.905244+00:00"
+  },
+  "614eb5ae-61cc-4e31-a069-72e5f90f123b": {
+    "id": "614eb5ae-61cc-4e31-a069-72e5f90f123b",
+    "image_url": "https://i.ibb.co/ccvqNbZ8/22fd31b769ed.png",
+    "description": "Người phụ nữ trông thư thái, tươi tắn và bình yên, ngồi thoải mái trong không gian sống của mình, thể hiện kết quả của việc thực hành thở bụng.",
+    "local_path": "sample_data\\img_db\\614eb5ae-61cc-4e31-a069-72e5f90f123b.png",
+    "created_at": "2026-04-18T09:14:50.921169+00:00"
+  },
+  "8a9f3d04-91df-4c4e-9ec2-fe07be7bd195": {
+    "id": "8a9f3d04-91df-4c4e-9ec2-fe07be7bd195",
+    "image_url": "https://i.ibb.co/3yCsC25Q/20e2f8e49453.png",
+    "description": "Hình ảnh mở đầu thu hút, thể hiện một làn da khỏe mạnh, tràn đầy sức sống, gợi mở về khả năng đạt được làn da đẹp dễ dàng cho người bận rộn.",
+    "local_path": "sample_data\\img_db\\8a9f3d04-91df-4c4e-9ec2-fe07be7bd195.png",
+    "created_at": "2026-04-18T09:17:49.946273+00:00"
+  },
+  "4d59dbb5-d2db-42b4-9a72-af97de58c93d": {
+    "id": "4d59dbb5-d2db-42b4-9a72-af97de58c93d",
+    "image_url": "https://i.ibb.co/4wCSzFRm/e2d406df300a.png",
+    "description": "Minh họa bước làm sạch da mặt cơ bản nhưng quan trọng, nhấn mạnh sự nhẹ nhàng và hiệu quả, phù hợp với người có ít thời gian.",
+    "local_path": "sample_data\\img_db\\4d59dbb5-d2db-42b4-9a72-af97de58c93d.png",
+    "created_at": "2026-04-18T09:17:55.739266+00:00"
+  },
+  "86bca149-0c45-4dc8-96e7-34e13c7ac8d7": {
+    "id": "86bca149-0c45-4dc8-96e7-34e13c7ac8d7",
+    "image_url": "https://i.ibb.co/JR2GR7N2/cd2d8392067f.png",
+    "description": "Hình ảnh tập trung vào sản phẩm cấp ẩm, gợi ý về việc bổ sung độ ẩm nhanh chóng cho làn da bận rộn chỉ trong vài giây.",
+    "local_path": "sample_data\\img_db\\86bca149-0c45-4dc8-96e7-34e13c7ac8d7.png",
+    "created_at": "2026-04-18T09:18:00.426579+00:00"
+  },
+  "5cab0e8d-bf94-4028-8227-b0618c16f7a4": {
+    "id": "5cab0e8d-bf94-4028-8227-b0618c16f7a4",
+    "image_url": "https://i.ibb.co/WWYWMLZD/55b0966e2028.png",
+    "description": "Nhấn mạnh tầm quan trọng của việc chống nắng hàng ngày, một bước không thể thiếu để duy trì làn da khỏe mạnh, ngay cả khi bận rộn.",
+    "local_path": "sample_data\\img_db\\5cab0e8d-bf94-4028-8227-b0618c16f7a4.png",
+    "created_at": "2026-04-18T09:18:05.657355+00:00"
+  },
+  "83e47f5f-a330-4dcb-a2af-eed3d2eb8057": {
+    "id": "83e47f5f-a330-4dcb-a2af-eed3d2eb8057",
+    "image_url": "https://i.ibb.co/d44jVg0k/0f902a481ff1.png",
+    "description": "Tổng kết các mẹo vặt, khuyến khích sự đơn giản và nhất quán trong chu trình chăm sóc da, thể hiện tinh thần 'sống thông minh'.",
+    "local_path": "sample_data\\img_db\\83e47f5f-a330-4dcb-a2af-eed3d2eb8057.png",
+    "created_at": "2026-04-18T09:18:11.157326+00:00"
+  }
+}

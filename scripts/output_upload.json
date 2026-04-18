@@ -1,0 +1,17 @@
+[
+   {
+      "status": "success",
+      "source": "a2a-agent",
+      "result_markdown": "Preview:\nUser: tiktok_user\nPlatform: Instagram\nCaption: \"Bí quyết cho làn da rạng rỡ! ✨ Đừng bỏ qua các bước chăm sóc da mặt cơ bản nhưng cực kỳ quan trọng này nhé. Từ làm sạch nhẹ nhàng đến chống nắng hàng ngày, mỗi bước đều giúp bạn có được làn da khỏe mạnh và tươi trẻ. #chamsocda #skincare #lamdep #dadep\"\nImages:\n- https://i.ibb.co/4wCSzFRm/e2d406df300a.png\n- https://i.ibb.co/d44jVg0k/0f902a481ff1.png\n- https://i.ibb.co/WWYWMLZD/55b0966e2028.png\n\nDo you want to post this?"
+   },
+   {
+      "status": "success",
+      "source": "a2a-agent",
+      "result_markdown": "\n\n[THREAD_ID: 550e8400-e29b-41d4-a716-446655440000]"
+   },
+   {
+      "status": "success",
+      "source": "a2a-agent",
+      "result_markdown": "Đã đăng bài viết của bạn lên Instagram."
+   }
+]

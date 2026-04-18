@@ -1,0 +1,188 @@
+{
+  "status": "success",
+  "output": {
+    "trend_analysis": {
+      "query": "mẹo vặt sức khỏe",
+      "results": [
+        {
+          "main_keyword": "Chăm sóc da mặt",
+          "why_the_trend_happens": "Chăm sóc da mặt luôn là chủ đề được quan tâm, đặc biệt là giới trẻ, với nhiều mẹo vặt, đánh giá sản phẩm và quy trình mới thường xuyên trở nên thịnh hành.",
+          "trend_score": 25.3,
+          "interest_over_day": [
+            13.0,
+            18.0,
+            23.0,
+            28.0,
+            33.0,
+            38.0
+          ],
+          "avg_views_per_hour": 1576.53644,
+          "recommended_action": "Tạo nội dung video ngắn hướng dẫn chăm sóc da mặt hoặc chuỗi bài viết chi tiết về các mẹo vặt liên quan đến làm đẹp và sức khỏe da.",
+          "top_videos": [],
+          "top_hashtags": [],
+          "google": {
+            "keyword": "Chăm sóc da mặt",
+            "momentum": "stable",
+            "peak_region": null
+          },
+          "tiktok": null,
+          "threads": null
+        }
+      ],
+      "markdown_summary": "Xu hướng về 'mẹo vặt sức khỏe' hiện đang tập trung mạnh vào chủ đề 'Chăm sóc da mặt'. Với điểm số xu hướng là 25.3 và lượng xem trung bình mỗi giờ là 1576.5, đây là một chủ đề ổn định và có lượng quan tâm đáng kể, đặc biệt từ giới trẻ. Mặc dù dữ liệu 'interest_over_day' ban đầu trống, một ước tính dựa trên điểm xu hướng cho thấy sự tăng trưởng đều đặn. Khuyến nghị tạo nội dung video ngắn hoặc hướng dẫn chi tiết về các mẹo chăm sóc da mặt để thu hút đối tượng này.",
+      "error": null
+    },
+    "generated_content": {
+      "selected_keyword": "Chăm sóc da mặt",
+      "main_title": "Mẹo Vặt Chăm Sóc Da Mặt: Làn Da Rạng Rỡ Không Tốn Nhiều Thời Gian!",
+      "post_content": {
+        "post_type": "multi_image_post",
+        "title": "Mẹo Vặt Chăm Sóc Da Mặt Cho Người Bận Rộn",
+        "hook": "Bạn bận rộn đến mấy cũng có thể sở hữu làn da rạng rỡ, khỏe mạnh. Bí quyết nằm ở những mẹo nhỏ cực kỳ hiệu quả này!",
+        "caption": "Trong cuộc sống hối hả, việc dành hàng giờ cho quy trình chăm sóc da mặt phức tạp dường như là điều không tưởng đối với nhiều người bận rộn. Nhưng bạn biết không, sở hữu một làn da khỏe đẹp không nhất thiết phải tốn nhiều thời gian và công sức!\n\nGóc Nhỏ Thông Minh sẽ mách bạn những mẹo vặt chăm sóc da mặt đơn giản nhưng cực kỳ hiệu quả, dễ dàng tích hợp vào lịch trình hàng ngày của bạn. Đây là những thói quen nhỏ giúp bạn sống thông minh hơn, từ đó cải thiện cả sức khỏe và vẻ ngoài của mình.\n\nSwipe qua để khám phá các mẹo và bắt đầu hành trình sở hữu làn da rạng rỡ ngay hôm nay nhé!",
+        "description": "Bài post cung cấp các mẹo vặt chăm sóc da mặt đơn giản, hiệu quả cho người bận rộn, giúp họ duy trì làn da khỏe đẹp mà không tốn nhiều thời gian.",
+        "body": "Slide 1: Làn da rạng rỡ không khó\nSlide 2: Mẹo 1: Làm sạch đúng cách và nhanh gọn\nSlide 3: Mẹo 2: Cấp ẩm 'siêu tốc' sau vài giây\nSlide 4: Mẹo 3: Bảo vệ da khỏi nắng mỗi ngày\nSlide 5: Đơn giản hóa chu trình, hiệu quả bất ngờ!",
+        "call_to_action": "Hãy thử ngay một mẹo chăm sóc da hôm nay và chia sẻ cảm nhận của bạn ở phần bình luận nhé!",
+        "hashtags": [
+          "#chamsocdamat",
+          "#meovatsuckhoe",
+          "#songthongminh",
+          "#meohaymoingay",
+          "#thoiquentot",
+          "#lifehack",
+          "#depkhongkho"
+        ],
+        "tone": "Gần gũi, thực tế, có tính giáo dục, hữu ích",
+        "personalization_notes": [
+          "Nội dung được cá nhân hóa dựa trên 'about_me' của người dùng với phong cách gần gũi, thực tế, tập trung vào 'mẹo vặt' và 'câu chuyện ngắn có bài học'.",
+          "Khắc sâu định hướng 'sống gọn gàng, thông minh và bình tĩnh hơn' bằng cách cung cấp các mẹo chăm sóc da 'dễ làm' cho đối tượng 'bận rộn' (22-40 tuổi) trong 'audience_persona'.",
+          "Sử dụng các hashtag từ 'keyword_hashtags' như #meovatcuocsong, #songthongminh, #thoiquentot, #meohaymoingay để tăng khả năng tiếp cận và nhất quán thương hiệu.",
+          "Đáp ứng 'priority_formats' là 'Bài post nhiều ảnh'.",
+          "Tránh trùng lặp với các nội dung gần đây về 'mẹo thở giảm căng thẳng', 'chiếc lọ ưu tiên' và 'đường ẩn trong đồ uống' bằng cách tập trung hoàn toàn vào chủ đề 'Chăm sóc da mặt' với các mẹo thực tế, không lặp lại hook hay CTA."
+        ]
+      },
+      "image_set": [
+        {
+          "index": 1,
+          "title": "Làn da rạng rỡ không khó",
+          "description": "Hình ảnh mở đầu thu hút, thể hiện một làn da khỏe mạnh, tràn đầy sức sống, gợi mở về khả năng đạt được làn da đẹp dễ dàng cho người bận rộn.",
+          "prompt": "A young person with radiant, healthy skin, looking confident and happy. Soft natural lighting, close-up, studio shot, vibrant, clean aesthetic. (Style: photo-realistic, vivid)",
+          "style": "vivid",
+          "size": "1792x1024",
+          "output_path": "post_image_1.png",
+          "id": "8a9f3d04-91df-4c4e-9ec2-fe07be7bd195",
+          "image_url": "https://i.ibb.co/3yCsC25Q/20e2f8e49453.png",
+          "local_path": "sample_data\\img_db\\8a9f3d04-91df-4c4e-9ec2-fe07be7bd195.png",
+          "created_at": "2026-04-18T09:17:49.946273+00:00"
+        },
+        {
+          "index": 2,
+          "title": "Mẹo 1: Làm sạch đúng cách",
+          "description": "Minh họa bước làm sạch da mặt cơ bản nhưng quan trọng, nhấn mạnh sự nhẹ nhàng và hiệu quả, phù hợp với người có ít thời gian.",
+          "prompt": "Close-up of hands gently washing a face with a mild cleanser, showing soft foam and clean skin. Fresh, bright bathroom setting. (Style: photo-realistic, vivid)",
+          "style": "vivid",
+          "size": "1792x1024",
+          "output_path": "post_image_2.png",
+          "id": "4d59dbb5-d2db-42b4-9a72-af97de58c93d",
+          "image_url": "https://i.ibb.co/4wCSzFRm/e2d406df300a.png",
+          "local_path": "sample_data\\img_db\\4d59dbb5-d2db-42b4-9a72-af97de58c93d.png",
+          "created_at": "2026-04-18T09:17:55.739266+00:00"
+        },
+        {
+          "index": 3,
+          "title": "Mẹo 2: Cấp ẩm \"siêu tốc\"",
+          "description": "Hình ảnh tập trung vào sản phẩm cấp ẩm, gợi ý về việc bổ sung độ ẩm nhanh chóng cho làn da bận rộn chỉ trong vài giây.",
+          "prompt": "A hand holding a small bottle of serum or moisturizer, a drop falling onto the skin, emphasizing hydration. Focus on texture and glow. (Style: photo-realistic, vivid)",
+          "style": "vivid",
+          "size": "1792x1024",
+          "output_path": "post_image_3.png",
+          "id": "86bca149-0c45-4dc8-96e7-34e13c7ac8d7",
+          "image_url": "https://i.ibb.co/JR2GR7N2/cd2d8392067f.png",
+          "local_path": "sample_data\\img_db\\86bca149-0c45-4dc8-96e7-34e13c7ac8d7.png",
+          "created_at": "2026-04-18T09:18:00.426579+00:00"
+        },
+        {
+          "index": 4,
+          "title": "Mẹo 3: Bảo vệ da khỏi nắng",
+          "description": "Nhấn mạnh tầm quan trọng của việc chống nắng hàng ngày, một bước không thể thiếu để duy trì làn da khỏe mạnh, ngay cả khi bận rộn.",
+          "prompt": "A person gently applying sunscreen to their face, perhaps outdoors or near a window, suggesting daily protection. (Style: photo-realistic, vivid)",
+          "style": "vivid",
+          "size": "1792x1024",
+          "output_path": "post_image_4.png",
+          "id": "5cab0e8d-bf94-4028-8227-b0618c16f7a4",
+          "image_url": "https://i.ibb.co/WWYWMLZD/55b0966e2028.png",
+          "local_path": "sample_data\\img_db\\5cab0e8d-bf94-4028-8227-b0618c16f7a4.png",
+          "created_at": "2026-04-18T09:18:05.657355+00:00"
+        },
+        {
+          "index": 5,
+          "title": "Đơn giản hóa chu trình của bạn",
+          "description": "Tổng kết các mẹo vặt, khuyến khích sự đơn giản và nhất quán trong chu trình chăm sóc da, thể hiện tinh thần 'sống thông minh'.",
+          "prompt": "A minimalist flat lay with simple skincare essentials (e.g., cleanser, moisturizer, sunscreen), a small plant, and a handwritten note \"Skincare simplified\". Warm, inviting lighting, clean and organized. (Style: photo-realistic, vivid)",
+          "style": "vivid",
+          "size": "1792x1024",
+          "output_path": "post_image_5.png",
+          "id": "83e47f5f-a330-4dcb-a2af-eed3d2eb8057",
+          "image_url": "https://i.ibb.co/d44jVg0k/0f902a481ff1.png",
+          "local_path": "sample_data\\img_db\\83e47f5f-a330-4dcb-a2af-eed3d2eb8057.png",
+          "created_at": "2026-04-18T09:18:11.157326+00:00"
+        }
+      ],
+      "platform_posts": {
+        "tiktok": {
+          "caption": "Bạn bận đến mấy cũng phải đẹp! 💆\u200d♀️✨ Xem ngay carousel này để bỏ túi các mẹo chăm sóc da mặt 'siêu tốc' giúp bạn có làn da rạng rỡ mà không tốn nhiều thời gian. #chamsocdamat #meovatsuckhoe #songthongminh #meohaymoingay",
+          "hashtags": [
+            "#chamsocdamat",
+            "#meovatsuckhoe",
+            "#songthongminh",
+            "#meohaymoingay"
+          ],
+          "cta": "Thử ngay một mẹo hôm nay và cảm nhận sự khác biệt!",
+          "best_post_time": "19:30",
+          "image_notes": "Carousel 5 ảnh: 1. Giới thiệu làn da khỏe, 2. Mẹo làm sạch, 3. Mẹo cấp ẩm, 4. Mẹo chống nắng, 5. Tổng kết đơn giản hóa."
+        },
+        "facebook": {
+          "caption": "Trong cuộc sống hối hả, việc dành hàng giờ cho quy trình chăm sóc da mặt phức tạp dường như là điều không tưởng. Nhưng bạn biết không, sở hữu một làn da khỏe đẹp không nhất thiết phải tốn nhiều thời gian và công sức!\n\nGóc Nhỏ Thông Minh sẽ mách bạn những mẹo vặt chăm sóc da mặt đơn giản nhưng cực kỳ hiệu quả, dễ dàng tích hợp vào lịch trình hàng ngày của bạn. Đây là những thói quen nhỏ giúp bạn sống thông minh hơn, từ đó cải thiện cả sức khỏe và vẻ ngoài của mình.\n\nSwipe qua để khám phá các mẹo và bắt đầu hành trình sở hữu làn da rạng rỡ ngay hôm nay nhé!\n\n#chamsocdamat #meovatsuckhoe #songthongminh #meohaymoingay #thoiquentot #lifehack #depkhongkho",
+          "hashtags": [
+            "#chamsocdamat",
+            "#meovatsuckhoe",
+            "#songthongminh",
+            "#meohaymoingay",
+            "#thoiquentot",
+            "#lifehack",
+            "#depkhongkho"
+          ],
+          "cta": "Hãy thử ngay một mẹo chăm sóc da hôm nay và chia sẻ cảm nhận của bạn ở phần bình luận nhé!",
+          "best_post_time": "20:00",
+          "image_notes": "Carousel 5 ảnh: 1. Làn da rạng rỡ không khó, 2. Mẹo 1: Làm sạch đúng cách, 3. Mẹo 2: Cấp ẩm 'siêu tốc', 4. Mẹo 3: Bảo vệ da khỏi nắng, 5. Đơn giản hóa chu trình của bạn."
+        },
+        "instagram": {
+          "caption": "Bạn bận rộn đến mấy cũng có thể sở hữu làn da rạng rỡ, khỏe mạnh! ✨ Bí quyết nằm ở những mẹo nhỏ cực kỳ hiệu quả này. Góc Nhỏ Thông Minh mang đến cho bạn chuỗi ảnh về các mẹo chăm sóc da mặt đơn giản, giúp bạn 'F5' làn da mà không tốn nhiều thời gian. #chamsocdamat #meovatsuckhoe #songthongminh #meohaymoingay #thoiquentot",
+          "hashtags": [
+            "#chamsocdamat",
+            "#meovatsuckhoe",
+            "#songthongminh",
+            "#meohaymoingay",
+            "#thoiquentot"
+          ],
+          "cta": "Swipe ngay để bỏ túi các mẹo và thử áp dụng hôm nay!",
+          "best_post_time": "21:00",
+          "image_notes": "Carousel 5 ảnh: 1. Hình ảnh hook về làn da đẹp, 2. Mẹo làm sạch hiệu quả, 3. Mẹo cấp ẩm nhanh, 4. Mẹo chống nắng cần thiết, 5. Kết thúc với sự đơn giản hóa."
+        }
+      },
+      "publishing": {
+        "default_visibility": "public",
+        "recommended_platforms": [
+          "facebook",
+          "instagram",
+          "tiktok"
+        ],
+        "timezone": "Asia/Saigon",
+        "weekly_content_frequency": 5
+      },
+      "error": null
+    }
+  },
+  "trend_analysis_id": "8ba842d2-92f5-4f71-b5be-ad1a8d9299d7",
+  "generated_content_id": "980cf0b8-cfa3-434e-8b6e-d340fdcf75e9"
+}
