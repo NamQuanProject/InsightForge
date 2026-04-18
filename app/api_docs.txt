@@ -380,12 +380,13 @@ Expected response:
 {
   "status": "success",
   "source": "a2a-agent",
-  "result_markdown": "Preview:\nUser: tiktok_user\nPlatform: Instagram\nCaption: ...\nImages:\n- https://...\n\nDo you want to post this?"
+  "result_markdown": "Preview:\nUser: tiktok_user\nPlatform: Instagram\nCaption: ...\nImages:\n- https://...\n- https://...\n- https://...\n- https://...\n- https://...\n\nDo you want to post this?"
 }
 
 UI display:
 - result_markdown as preview text.
 - Parse image URLs inside result_markdown if UI wants to render preview images.
+- Demo preview returns 5 Instagram carousel images.
 - Show confirm button after preview.
 
 Demo step 2 - get thread id:
@@ -592,7 +593,31 @@ UI display:
 - items[].status
 - items[].created_at
 
-GET /api/v1/trends/{analysis_id}
+POST /api/v1/trends/history/search
+
+Purpose:
+- Tim trend analyses da tung luu bang substring text.
+- Khong chay trend agent lai.
+- Search substring trong query, markdown_summary, va results payload.
+- Search case-insensitive, khong can match nguyen tu.
+- Dung khi UI co o search trong man hinh trend history.
+
+Request:
+{
+  "keyword": "mặt",
+  "limit": 20
+}
+
+Request fields:
+- text: required string neu khong gui keyword. Keyword/substr can tim. Khong can match nguyen tu.
+- keyword: optional alias cua text.
+- user_id: optional UUID. Neu co, chi search trend cua user do.
+- limit: optional number, 1-100. Default 20.
+
+Response:
+- Same shape as GET /api/v1/trends/history.
+
+GET /api/v1/trends/history.
 
 
 11. UI ERROR RULES
