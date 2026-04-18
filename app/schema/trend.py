@@ -11,6 +11,21 @@ class TrendAnalyzeRequest(BaseModel):
     user_id: uuid.UUID | None = None
 
 
+class TrendHistorySearchRequest(BaseModel):
+    text: str | None = Field(default=None, description="Substring to search in saved trend history.")
+    keyword: str | None = Field(default=None, description="Alias for text.")
+    user_id: uuid.UUID | None = None
+    limit: int = Field(default=20, ge=1, le=100)
+
+    @model_validator(mode="after")
+    def normalize_search_text(self) -> "TrendHistorySearchRequest":
+        value = str(self.text or self.keyword or "").strip()
+        if not value:
+            raise ValueError("text or keyword is required")
+        self.text = value
+        return self
+
+
 class TrendResultItemResponse(BaseModel):
     main_keyword: str
     why_the_trend_happens: str

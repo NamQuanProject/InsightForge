@@ -7,6 +7,7 @@ from app.schema.trend import (
     TrendAnalysisRecordResponse,
     TrendAnalyzeRequest,
     TrendAnalyzeResponse,
+    TrendHistorySearchRequest,
     TrendOverviewResponse,
 )
 from app.services.trend_service import TrendService
@@ -27,6 +28,16 @@ async def list_trend_history(
 ):
     service = TrendService()
     return await service.list_history(user_id=user_id, limit=limit)
+
+
+@router.post("/history/search", response_model=TrendAnalysesListResponse)
+async def search_trend_history(payload: TrendHistorySearchRequest):
+    service = TrendService()
+    return await service.search_history(
+        text=payload.text or "",
+        user_id=payload.user_id,
+        limit=payload.limit,
+    )
 
 
 @router.get("/mock/overview", response_model=TrendOverviewResponse)

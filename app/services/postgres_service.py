@@ -1,7 +1,7 @@
 import uuid
 from typing import Any
 
-from sqlalchemy import func, select
+from sqlalchemy import String, cast, func, or_, select
 
 from app.db import get_session_factory
 from app.models import GeneratedContent, PublishJob, TrendAnalysis, User
@@ -152,6 +152,35 @@ class PostgresService:
     ) -> list[TrendAnalysis]:
         async with get_session_factory()() as session:
             statement = select(TrendAnalysis).order_by(TrendAnalysis.created_at.desc()).limit(limit)
+            if user_id:
+                statement = statement.where(TrendAnalysis.user_id == self._coerce_uuid(user_id))
+            result = await session.execute(statement)
+            return list(result.scalars().all())
+
+    async def search_trend_analyses(
+        self,
+        text: str,
+        user_id: uuid.UUID | str | None = None,
+        limit: int = 20,
+    ) -> list[TrendAnalysis]:
+        search_text = str(text or "").strip()
+        if not search_text:
+            return []
+
+        pattern = f"%{search_text}%"
+        async with get_session_factory()() as session:
+            statement = (
+                select(TrendAnalysis)
+                .where(
+                    or_(
+                        TrendAnalysis.query.ilike(pattern),
+                        TrendAnalysis.summary.ilike(pattern),
+                        cast(TrendAnalysis.results, String).ilike(pattern),
+                    )
+                )
+                .order_by(TrendAnalysis.created_at.desc())
+                .limit(limit)
+            )
             if user_id:
                 statement = statement.where(TrendAnalysis.user_id == self._coerce_uuid(user_id))
             result = await session.execute(statement)

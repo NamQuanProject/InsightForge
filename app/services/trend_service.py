@@ -69,6 +69,15 @@ class TrendService:
         records = await self.postgres.list_trend_analyses(user_id=user_id, limit=limit)
         return TrendAnalysesListResponse(items=[self._to_record_response(record) for record in records])
 
+    async def search_history(
+        self,
+        text: str,
+        user_id: uuid.UUID | None = None,
+        limit: int = 20,
+    ) -> TrendAnalysesListResponse:
+        records = await self.postgres.search_trend_analyses(text=text, user_id=user_id, limit=limit)
+        return TrendAnalysesListResponse(items=[self._to_record_response(record) for record in records])
+
     async def get_detail(self, analysis_id: uuid.UUID) -> TrendAnalysisRecordResponse | None:
         record = await self.postgres.get_trend_analysis(analysis_id)
         if record is None:
