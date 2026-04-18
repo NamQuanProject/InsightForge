@@ -76,13 +76,13 @@ async def upload_image_to_store(
     }
 
     if os.path.exists(metadata_path):
-        with open(metadata_path, "r") as f:
+        with open(metadata_path, "r", encoding="utf-8") as f:
             existing_data = json.load(f)
         existing_data.update(metadata)
         metadata = existing_data
 
-    with open(metadata_path, "w") as f:
-        json.dump(metadata, f, indent=2)
+    with open(metadata_path, "w", encoding="utf-8") as f:
+        json.dump(metadata, f, indent=2, ensure_ascii=False)
 
     return {
         "id": image_id,

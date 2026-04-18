@@ -296,7 +296,7 @@ async def _image_search(query: str) -> dict:
 
     # 1. Load data (using to_thread to keep MCP responsive)
     def load_local_data():
-        with open(metadata_path, "r") as f:
+        with open(metadata_path, "r", encoding="utf-8") as f:
             meta = json.load(f)
 
         vectors, meta_list = [], []
