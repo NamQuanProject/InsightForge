@@ -7,6 +7,7 @@ from app.schema.common import AgentProcessStatus, AgentsStatusResponse, Orchestr
 from app.services.a2a_client import InsightForgeA2AClient
 from app.services.image_store_service import ImageStoreService
 from app.services.postgres_service import PostgresService
+from app.services.user_context import resolve_user_id
 
 
 class AgentService:
@@ -42,6 +43,7 @@ class AgentService:
         save_files: bool = True,
         user_id: uuid.UUID | None = None,
     ) -> OrchestratorResponse:
+        resolved_user_id = resolve_user_id(user_id)
         client = InsightForgeA2AClient()
         result = await client.ask(prompt)
         output = client.normalize_orchestrator_output(result["output"], prompt=prompt)
@@ -51,7 +53,7 @@ class AgentService:
             query=trend_analysis["query"],
             results=trend_analysis["results"],
             summary=trend_analysis["markdown_summary"],
-            user_id=user_id,
+            user_id=resolved_user_id,
             status="failed" if trend_analysis.get("error") else "completed",
             error=trend_analysis.get("error"),
         )
@@ -82,7 +84,7 @@ class AgentService:
             raw_output=generated_content_to_save,
             video_script=video_script,
             platform_posts=generated_content_to_save["platform_posts"],
-            user_id=user_id,
+            user_id=resolved_user_id,
             trend_analysis_id=trend_record.id,
             selected_keyword=generated_content_to_save.get("selected_keyword") or self._best_keyword(trend_analysis),
             main_title=generated_content_to_save.get("main_title"),

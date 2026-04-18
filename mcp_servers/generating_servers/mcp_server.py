@@ -1,6 +1,7 @@
 import os
 import httpx
 import logging
+import uuid
 from dotenv import load_dotenv
 from typing import List
 from mcp.server.fastmcp import FastMCP
@@ -176,7 +177,29 @@ async def generate_images_batch(
         return {"success": False, "error": f"Lỗi không xác định: {str(e)}"}
 
 
-BASE_URL = "http://localhost:8000"  # adjust to your API base URL
+BASE_URL = os.getenv("INSIGHTFORGE_API_BASE_URL", "http://localhost:8000").rstrip("/")
+DEFAULT_USER_ID = os.getenv(
+    "INSIGHTFORGE_DEFAULT_USER_ID",
+    "cd129113-895c-4800-b4e4-48d63bf46d12",
+)
+
+
+def _is_valid_user_id(user_id: str) -> bool:
+    try:
+        uuid.UUID(str(user_id))
+        return True
+    except (TypeError, ValueError):
+        return False
+
+
+def _resolve_user_id(user_id: str) -> str | None:
+    if _is_valid_user_id(user_id):
+        return str(user_id)
+    if _is_valid_user_id(DEFAULT_USER_ID):
+        return DEFAULT_USER_ID
+    return None
+
+
 @mcp.tool()
 async def get_latest_generated_content(user_id: str) -> dict:
     """
@@ -187,10 +210,14 @@ async def get_latest_generated_content(user_id: str) -> dict:
     Args:
         user_id: The UUID string of the user whose content history to fetch.
     """
+    resolved_user_id = _resolve_user_id(user_id)
+    if resolved_user_id is None:
+        return {"has_history": False, "latest_content": None}
+
     async with httpx.AsyncClient() as client:
         response = await client.get(
-            f"{BASE_URL}/generated-contents",
-            params={"user_id": user_id, "limit": 1},
+            f"{BASE_URL}/api/v1/contents",
+            params={"user_id": resolved_user_id, "limit": 1},
         )
         response.raise_for_status()
         data = response.json()

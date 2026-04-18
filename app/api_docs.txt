@@ -72,6 +72,15 @@ Optional output settings:
 
 ORCHESTRATOR_TIMEOUT=420
 ORCHESTRATOR_OUTPUT_DIR=.
+INSIGHTFORGE_API_BASE_URL=http://localhost:8000
+INSIGHTFORGE_DEFAULT_USER_ID=cd129113-895c-4800-b4e4-48d63bf46d12
+
+Default user behavior:
+- If POST /api/v1/agents/orchestrate, POST /api/v1/trends/analyze, or
+  POST /api/v1/contents/generate omits user_id, the backend uses
+  INSIGHTFORGE_DEFAULT_USER_ID.
+- Content Agent history lookup also uses INSIGHTFORGE_DEFAULT_USER_ID when the
+  model/tool call supplies a placeholder or invalid user id.
 
 ==================================================
 3. HOW TO RUN
@@ -210,7 +219,8 @@ Request:
 Request fields:
 - prompt: user prompt sent to the routing orchestrator
 - save_files: if true, backend saves raw and extracted outputs to local JSON files
-- user_id: optional app user UUID. If provided, saved trend/content rows are linked to this user
+- user_id: optional app user UUID. If omitted, backend uses INSIGHTFORGE_DEFAULT_USER_ID.
+  Saved trend/content rows are linked to the resolved user id.
 
 Response:
 {
@@ -221,7 +231,8 @@ Response:
     "trend_analysis": {
       "query": "string",
       "results": [],
-      "markdown_summary": "string"
+      "markdown_summary": "string",
+      "error": null
     },
     "generated_content": {
       "selected_keyword": "string",
@@ -229,7 +240,8 @@ Response:
       "video_script": {},
       "platform_posts": {},
       "thumbnail": {},
-      "music_background": "string"
+      "music_background": "string",
+      "error": null
     }
   },
   "raw_response": {},
@@ -260,6 +272,8 @@ Notes:
   - trend_analysis
   - generated_content
 - Even if the model returns raw text, backend wraps it into the expected shape and marks errors where needed.
+- output.generated_content.thumbnail is a normalized compatibility object. Persisted generated content stores
+  images on each video_script.sections[].thumbnail instead of a separate top-level thumbnail column.
 - This endpoint saves to Supabase tables:
   - trend_analyses
   - generated_contents
@@ -282,6 +296,7 @@ Notes:
       "interest_over_day": [15, 18, 14, 19],
       "avg_views_per_hour": 64750.38,
       "recommended_action": "Nen tao noi dung du doan va phan tich tran dau",
+      "top_videos": ["https://www.tiktok.com/@creator/video/123"],
       "top_hashtags": ["#c1", "#football"],
       "google": {
         "keyword": "ban ket c1",
@@ -315,8 +330,14 @@ Notes:
         "timestamp": "0:00-0:10",
         "label": "Hook",
         "narration": "Noi dung loi thoai",
-        "visuals": "Mo ta hinh anh",
-        "notes": "Ghi chu nhịp do/tone"
+        "notes": "Ghi chu nhip do/tone",
+        "thumbnail": {
+          "id": "image-store-id",
+          "description": "Image prompt or stored image description",
+          "image_url": "https://...",
+          "local_path": "D:\\Product Demo\\InsightForge\\images\\section_1.png",
+          "created_at": "timestamp"
+        }
       }
     ],
     "call_to_action": "CTA cuoi video",
@@ -346,14 +367,14 @@ Notes:
       "thumbnail_description": "Mo ta thumbnail"
     }
   },
-  "thumbnail": {
-    "prompt": "Prompt tao thumbnail",
-    "style": "vivid",
-    "size": "1792x1024",
-    "output_path": "content_output.png"
-  },
   "music_background": "Nhac nen the thao, kich tinh"
 }
+
+Notes:
+- Current generated content stores thumbnails per section at video_script.sections[].thumbnail.
+- Direct /api/v1/contents responses do not expose a top-level thumbnail or raw_output field.
+- The orchestrator output may include a top-level generated_content.thumbnail compatibility object,
+  but database persistence uses section thumbnails.
 
 ==================================================
 7. USERS API
@@ -420,6 +441,11 @@ Request:
   "user_id": "optional-user-uuid"
 }
 
+Request fields:
+- query: topic or keyword to analyze
+- limit: number of ranked trend items, 1-5
+- user_id: optional app user UUID. If omitted, backend uses INSIGHTFORGE_DEFAULT_USER_ID for persistence.
+
 Response:
 {
   "analysis_id": "uuid",
@@ -471,27 +497,74 @@ Option B: from saved trend analysis
   "selected_keyword": "ban ket c1"
 }
 
+Request fields:
+- user_id: optional app user UUID. If omitted, backend uses INSIGHTFORGE_DEFAULT_USER_ID for persistence.
+- prompt: free-form content prompt. Required if trend_analysis_id is not supplied.
+- trend_analysis_id: saved trend analysis UUID used to build the content prompt.
+- selected_keyword: optional keyword to prefer from the saved trend analysis.
+
 Response:
 {
   "id": "uuid",
-  "user_id": "uuid-or-null",
+  "user_id": "uuid",
   "trend_analysis_id": "uuid-or-null",
-  "selected_keyword": "string-or-null",
-  "main_title": "string-or-null",
-  "video_script": {},
-  "platform_posts": {},
-  "thumbnail": {},
-  "music_background": "string-or-null",
-  "raw_output": {},
+  "selected_keyword": "string",
+  "main_title": "string",
+  "video_script": {
+    "title": "string",
+    "duration_estimate": "30s",
+    "hook": "string",
+    "sections": [
+      {
+        "timestamp": "0:00-0:10",
+        "label": "Hook",
+        "narration": "string",
+        "notes": "string",
+        "thumbnail": {
+          "id": "image-store-id",
+          "description": "string",
+          "image_url": "https://...",
+          "local_path": "D:\\Product Demo\\InsightForge\\images\\section_1.png",
+          "created_at": "timestamp"
+        }
+      }
+    ],
+    "call_to_action": "string",
+    "captions_style": "string",
+    "music_mood": "string"
+  },
+  "platform_posts": {
+    "tiktok": {
+      "caption": "string",
+      "hashtags": [],
+      "cta": "string",
+      "best_post_time": "string",
+      "thumbnail_description": "string"
+    }
+  },
+  "music_background": "string",
   "status": "generated",
   "created_at": "timestamp"
 }
+
+Response notes:
+- Direct content responses do not include top-level thumbnail or raw_output fields.
+- Generated section images are exposed through video_script.sections[].thumbnail.
+- The database still stores raw_output internally for debugging/reprocessing.
 
 ----------------------------------------
 2. LIST GENERATED CONTENT
 ----------------------------------------
 
 GET /api/v1/contents?user_id=<uuid>&limit=20
+
+Compatibility alias:
+GET /generated-contents?user_id=<uuid>&limit=20
+
+Notes:
+- /api/v1/contents is the canonical route.
+- /generated-contents exists for older Content Agent/MCP callers.
+- If the legacy alias receives an invalid user_id, it returns {"items": []}.
 
 ----------------------------------------
 3. GET ONE GENERATED CONTENT

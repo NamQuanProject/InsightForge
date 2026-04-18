@@ -170,6 +170,7 @@ class InsightForgeA2AClient:
             "interest_over_day": self._to_float_list(item.get("interest_over_day")),
             "avg_views_per_hour": self._to_float(item.get("avg_views_per_hour") or item.get("avg_velocity")),
             "recommended_action": str(item.get("recommended_action") or item.get("action") or ""),
+            "top_videos": self._to_str_list(item.get("top_videos") or item.get("videos")),
             "top_hashtags": self._to_str_list(item.get("top_hashtags") or item.get("hashtags")),
             "google": item.get("google") if isinstance(item.get("google"), dict) else {
                 "keyword": main_keyword,

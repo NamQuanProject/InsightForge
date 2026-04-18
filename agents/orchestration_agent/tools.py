@@ -134,7 +134,7 @@ async def call_content_agent(trend_analysis_and_actions: str) -> StringToolOutpu
     prompt = (
         "Dua tren bao cao xu huong sau, hay tao goi noi dung dung dinh dang JSON.\n"
         "Neu co nhieu ket qua trend, uu tien ket qua co trend_score cao nhat.\n"
-        "Phai giu sat chu de the thao trong bao cao, khong duoc chuyen sang chu de khac.\n"
+        "Phai giu sat chu de trong bao cao, khong duoc chuyen sang chu de khac.\n"
         "Chi tra ve JSON dung format content generation.\n\n"
         f"## Trend Analysis\n{trend_analysis_and_actions}"
     )

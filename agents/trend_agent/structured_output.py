@@ -19,8 +19,8 @@ class TrendResult(BaseModel):
     interest_over_day: List[float] = Field(default_factory=list)
     avg_views_per_hour: float
     recommended_action: str
-    top_videos: List[str]
-    top_hashtags: List[str]
+    top_videos: List[str] = Field(default_factory=list)
+    top_hashtags: List[str] = Field(default_factory=list)
     google: GoogleSummary
     tiktok: Optional[TikTokSummary] = None
     threads: Optional[dict] = None

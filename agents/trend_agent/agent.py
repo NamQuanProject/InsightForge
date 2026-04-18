@@ -157,6 +157,7 @@ def build_trend_report(
             interest_over_day=[float(value) for value in item.get("interest_over_day", [])],
             avg_views_per_hour=float(item.get("avg_views_per_hour", 0)),
             recommended_action=item.get("recommended_action", ""),
+            top_videos=item.get("top_videos", []),
             top_hashtags=item.get("top_hashtags", []),
             google=GoogleSummary(
                 keyword=item.get("google", {}).get("keyword", item["main_keyword"]),

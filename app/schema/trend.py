@@ -18,7 +18,7 @@ class TrendResultItemResponse(BaseModel):
     interest_over_day: list[Any] = Field(default_factory=list)
     avg_views_per_hour: float
     recommended_action: str
-    top_videos: list[str] 
+    top_videos: list[str] = Field(default_factory=list)
     top_hashtags: list[str] = Field(default_factory=list)
     google: dict[str, Any] | None = None
     tiktok: dict[str, Any] | None = None

@@ -10,6 +10,7 @@ from app.schema.trend import (
     TrendOverviewResponse,
 )
 from app.services.postgres_service import PostgresService
+from app.services.user_context import resolve_user_id
 
 if TYPE_CHECKING:
     from agents.trend_agent.agent import TrendAgent
@@ -28,6 +29,7 @@ class TrendService:
         limit: int = 3,
         user_id: uuid.UUID | None = None,
     ) -> TrendAnalyzeResponse:
+        resolved_user_id = resolve_user_id(user_id)
         agent = await self._get_agent()
         prompt = self._build_prompt(query=query, limit=limit)
         result = await agent.answer_query(prompt)
@@ -44,7 +46,7 @@ class TrendService:
             query=response.query,
             results=[item.model_dump() if hasattr(item, "model_dump") else dict(item) for item in response.results],
             summary=response.markdown_summary,
-            user_id=user_id,
+            user_id=resolved_user_id,
             status="completed" if response.error is None else "failed",
             error=response.error,
         )

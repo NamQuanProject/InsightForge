@@ -55,6 +55,7 @@ from app.schema.content import (
 from app.services.content_service import ContentService
 
 router = APIRouter(prefix="/api/v1/contents", tags=["contents"])
+legacy_router = APIRouter(tags=["contents"])
 
 
 @router.post("/generate", response_model=GeneratedContentResponse)
@@ -76,6 +77,33 @@ async def list_generated_contents(
     user_id: uuid.UUID | None = Query(default=None),
     limit: int = Query(default=20, ge=1, le=100),
 ):
+    return await _list_generated_contents(user_id=user_id, limit=limit)
+
+
+@legacy_router.get("/generated-contents", response_model=GeneratedContentsListResponse)
+async def list_generated_contents_legacy(
+    user_id: str | None = Query(default=None),
+    limit: int = Query(default=20, ge=1, le=100),
+):
+    parsed_user_id = _parse_optional_uuid(user_id)
+    if user_id and parsed_user_id is None:
+        return GeneratedContentsListResponse(items=[])
+    return await _list_generated_contents(user_id=parsed_user_id, limit=limit)
+
+
+def _parse_optional_uuid(value: str | None) -> uuid.UUID | None:
+    if not value:
+        return None
+    try:
+        return uuid.UUID(value)
+    except ValueError:
+        return None
+
+
+async def _list_generated_contents(
+    user_id: uuid.UUID | None,
+    limit: int,
+) -> GeneratedContentsListResponse:
     service = ContentService()
     items = await service.list_contents(user_id=user_id, limit=limit)
     return GeneratedContentsListResponse(items=items)

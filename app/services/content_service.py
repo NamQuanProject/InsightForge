@@ -129,6 +129,7 @@ from typing import TYPE_CHECKING
 from app.schema.content import GeneratedContentResponse
 from app.services.image_store_service import ImageStoreService
 from app.services.postgres_service import PostgresService
+from app.services.user_context import resolve_user_id
 
 if TYPE_CHECKING:
     from agents.generating_agent.agent import ContentGenerationAgent
@@ -149,6 +150,7 @@ class ContentService:
         trend_analysis_id: uuid.UUID | None = None,
         selected_keyword: str | None = None,
     ) -> GeneratedContentResponse:
+        resolved_user_id = resolve_user_id(user_id)
         final_prompt = prompt or await self._build_prompt_from_trend(trend_analysis_id, selected_keyword)
         agent = await self._get_agent()
         result = await agent.answer_query(final_prompt)
@@ -169,7 +171,7 @@ class ContentService:
             raw_output=raw_output,
             video_script=enriched_video_script,
             platform_posts=platform_posts if isinstance(platform_posts, dict) else {"default": platform_posts},
-            user_id=user_id,
+            user_id=resolved_user_id,
             trend_analysis_id=trend_analysis_id,
             selected_keyword=selected_keyword,
             main_title=main_title,
