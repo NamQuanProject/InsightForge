@@ -43,7 +43,8 @@ class PostImageSchema(BaseModel):
     @classmethod
     def default_description_from_prompt(cls, value):
         if isinstance(value, dict) and not value.get("description"):
-            value = {**value, "description": value.get("prompt") or ""}
+            title = value.get("title") or value.get("index") or "ảnh"
+            value = {**value, "description": f"Mô tả nội dung cho {title}."}
         return value
 
 
@@ -65,7 +66,7 @@ class PublishingSchema(BaseModel):
 class GeneratedContentResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
-    id: uuid.UUID = Field(default_factory=uuid.uuid4)
+    id: Optional[uuid.UUID] = None
     user_id: Optional[uuid.UUID] = None
     trend_analysis_id: Optional[uuid.UUID] = None
     selected_keyword: str = ""

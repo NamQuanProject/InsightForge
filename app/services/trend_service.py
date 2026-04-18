@@ -42,13 +42,21 @@ class TrendService:
             error=structured.get("error"),
         )
 
+        if response.error is not None or result.get("status") not in {"success", "repaired"}:
+            if response.error is None:
+                response.error = {
+                    "type": "agent_status",
+                    "message": f"Trend agent returned status: {result.get('status')}",
+                }
+            return response
+
         record = await self.postgres.save_trend_analysis(
             query=response.query,
             results=[item.model_dump() if hasattr(item, "model_dump") else dict(item) for item in response.results],
             summary=response.markdown_summary,
             user_id=resolved_user_id,
-            status="completed" if response.error is None else "failed",
-            error=response.error,
+            status="completed",
+            error=None,
         )
         response.analysis_id = record.id
         return response

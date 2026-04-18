@@ -200,6 +200,43 @@ def _resolve_user_id(user_id: str) -> str | None:
     return None
 
 
+def _clamp_history_limit(limit: int | None) -> int:
+    try:
+        parsed = int(limit or 10)
+    except (TypeError, ValueError):
+        parsed = 10
+    return max(1, min(parsed, 10))
+
+
+def _compact_generated_content(item: dict, position: int) -> dict:
+    post_content = item.get("post_content") if isinstance(item.get("post_content"), dict) else {}
+    platform_posts = item.get("platform_posts") if isinstance(item.get("platform_posts"), dict) else {}
+    image_set = item.get("image_set") if isinstance(item.get("image_set"), list) else []
+
+    return {
+        "position": position,
+        "id": item.get("id"),
+        "created_at": item.get("created_at"),
+        "selected_keyword": item.get("selected_keyword") or "",
+        "main_title": item.get("main_title") or post_content.get("title") or "",
+        "post_title": post_content.get("title") or "",
+        "hook": post_content.get("hook") or "",
+        "description": post_content.get("description") or "",
+        "call_to_action": post_content.get("call_to_action") or "",
+        "hashtags": post_content.get("hashtags") if isinstance(post_content.get("hashtags"), list) else [],
+        "platform_captions": {
+            platform: post.get("caption") or ""
+            for platform, post in platform_posts.items()
+            if isinstance(post, dict)
+        },
+        "image_titles": [
+            image.get("title") or ""
+            for image in image_set
+            if isinstance(image, dict)
+        ],
+    }
+
+
 @mcp.tool()
 async def get_latest_generated_content(user_id: str) -> dict:
     """
@@ -227,6 +264,65 @@ async def get_latest_generated_content(user_id: str) -> dict:
         return {"has_history": False, "latest_content": None}
 
     return {"has_history": True, "latest_content": items[0]}
+
+
+@mcp.tool()
+async def get_recent_generated_contents(user_id: str, limit: int = 10) -> dict:
+    """
+    Fetches recent generated content for a user so the content agent can avoid
+    repeating old ideas, keywords, hooks, and image sequences.
+
+    The first 1-3 items are the recent-series window: the agent may continue a
+    topic if it uses a fresh angle. Items 5-10 are the cooldown window: avoid
+    repeating their keywords, titles, hooks, and core content angles.
+
+    Args:
+        user_id: The UUID string of the user whose content history to fetch.
+        limit: Number of recent items to fetch. Clamped to 1-10.
+    """
+    resolved_user_id = _resolve_user_id(user_id)
+    safe_limit = _clamp_history_limit(limit)
+    if resolved_user_id is None:
+        return {
+            "has_history": False,
+            "user_id": None,
+            "limit": safe_limit,
+            "recent_contents": [],
+            "series_window": [],
+            "avoid_window": [],
+        }
+
+    async with httpx.AsyncClient() as client:
+        response = await client.get(
+            f"{BASE_URL}/api/v1/contents",
+            params={"user_id": resolved_user_id, "limit": safe_limit},
+        )
+        response.raise_for_status()
+        data = response.json()
+
+    items = data.get("items", [])
+    if not isinstance(items, list):
+        items = []
+
+    compact_items = [
+        _compact_generated_content(item, index + 1)
+        for index, item in enumerate(items)
+        if isinstance(item, dict)
+    ]
+
+    return {
+        "has_history": bool(compact_items),
+        "user_id": resolved_user_id,
+        "limit": safe_limit,
+        "recent_contents": compact_items,
+        "series_window": compact_items[:3],
+        "avoid_window": compact_items[4:10],
+        "guidance": (
+            "May reuse a broad topic in positions 1-3 only as a short series "
+            "with a fresh angle. Avoid repeating keywords, titles, hooks, CTAs, "
+            "and core ideas from positions 5-10."
+        ),
+    }
 
 
 @mcp.tool()

@@ -36,6 +36,17 @@ class ContentService:
         agent = await self._get_agent()
         result = await agent.answer_query(final_prompt)
 
+        failures = self._collect_failures(result)
+        if failures:
+            result = self._mark_failure(result, failures)
+            return self._response_from_result(
+                result=result,
+                user_id=resolved_user_id,
+                trend_analysis_id=trend_analysis_id,
+                selected_keyword=selected_keyword,
+                status="failed",
+            )
+
         post_content = self._normalize_post_content(result.get("post_content"))
         image_set = await self.image_store.attach_post_images(result.get("image_set"))
         platform_posts = self._normalize_platform_posts(result.get("platform_posts"))
@@ -48,6 +59,22 @@ class ContentService:
         raw_output["platform_posts"] = platform_posts
         raw_output["publishing"] = publishing
 
+        failures = self._collect_failures(raw_output)
+        if failures:
+            raw_output = self._mark_failure(raw_output, failures)
+            return self._response_from_parts(
+                result=raw_output,
+                post_content=post_content,
+                image_set=image_set,
+                platform_posts=platform_posts,
+                publishing=publishing,
+                user_id=resolved_user_id,
+                trend_analysis_id=trend_analysis_id,
+                selected_keyword=result.get("selected_keyword") or selected_keyword,
+                main_title=main_title,
+                status="failed",
+            )
+
         record = await self.postgres.save_generated_content(
             raw_output=raw_output,
             post_content=post_content,
@@ -59,7 +86,7 @@ class ContentService:
             trend_analysis_id=trend_analysis_id,
             selected_keyword=result.get("selected_keyword") or selected_keyword,
             main_title=main_title,
-            status="failed" if result.get("error") else "generated",
+            status="generated",
         )
         return self._to_response(record)
 
@@ -143,10 +170,99 @@ class ContentService:
             return prompt
         return (
             f"user_id: {user_id}\n"
-            "Before generating, call get_user_profile(user_id) and get_latest_generated_content(user_id). "
+            "Before generating, call get_user_profile(user_id) and get_recent_generated_contents(user_id, limit=10). "
             "Use about_me, content preferences, keywords, audience persona, and content goal heavily.\n"
             f"{prompt}"
         )
+
+    def _response_from_result(
+        self,
+        result: dict[str, Any],
+        user_id: uuid.UUID | None,
+        trend_analysis_id: uuid.UUID | None,
+        selected_keyword: str | None,
+        status: str,
+    ) -> GeneratedContentResponse:
+        post_content = self._normalize_post_content(result.get("post_content") if isinstance(result, dict) else None)
+        return self._response_from_parts(
+            result=result,
+            post_content=post_content,
+            image_set=result.get("image_set") if isinstance(result, dict) and isinstance(result.get("image_set"), list) else [],
+            platform_posts=self._normalize_platform_posts(result.get("platform_posts") if isinstance(result, dict) else None),
+            publishing=self._normalize_publishing(result.get("publishing") if isinstance(result, dict) else None),
+            user_id=user_id,
+            trend_analysis_id=trend_analysis_id,
+            selected_keyword=(result.get("selected_keyword") if isinstance(result, dict) else None) or selected_keyword,
+            main_title=(result.get("main_title") if isinstance(result, dict) else None) or post_content.get("title") or "",
+            status=status,
+        )
+
+    def _response_from_parts(
+        self,
+        result: dict[str, Any],
+        post_content: dict[str, Any],
+        image_set: list,
+        platform_posts: dict[str, dict[str, Any]],
+        publishing: dict[str, Any],
+        user_id: uuid.UUID | None,
+        trend_analysis_id: uuid.UUID | None,
+        selected_keyword: str | None,
+        main_title: str,
+        status: str,
+    ) -> GeneratedContentResponse:
+        return GeneratedContentResponse(
+            user_id=user_id,
+            trend_analysis_id=trend_analysis_id,
+            selected_keyword=selected_keyword or "",
+            main_title=main_title,
+            post_content=post_content,
+            image_set=image_set,
+            platform_posts=platform_posts,
+            publishing=publishing,
+            status=status,
+        )
+
+    def _has_failure(self, value: Any) -> bool:
+        return bool(self._collect_failures(value))
+
+    def _collect_failures(self, value: Any, path: str = "output") -> list[str]:
+        failures: list[str] = []
+        if isinstance(value, dict):
+            for key, item in value.items():
+                normalized_key = str(key).lower()
+                if normalized_key in {"error", "image_store_error"} and self._is_failure_value(item):
+                    failures.append(f"{path}.{key}: {item}")
+                if normalized_key in {"status", "state"} and isinstance(item, str):
+                    if item.lower() in {"failed", "fail", "error", "partial_success"}:
+                        failures.append(f"{path}.{key}: {item}")
+                failures.extend(self._collect_failures(item, f"{path}.{key}"))
+            return failures
+
+        if isinstance(value, list):
+            for index, item in enumerate(value):
+                failures.extend(self._collect_failures(item, f"{path}[{index}]"))
+            return failures
+
+        return failures
+
+    def _is_failure_value(self, value: Any) -> bool:
+        if value is None or value is False:
+            return False
+        if isinstance(value, str):
+            return bool(value.strip())
+        if isinstance(value, (list, dict)):
+            return bool(value)
+        return True
+
+    def _mark_failure(self, result: dict[str, Any], failures: list[str]) -> dict[str, Any]:
+        marked = copy.deepcopy(result) if isinstance(result, dict) else {}
+        if not marked.get("error"):
+            marked["error"] = {
+                "type": "persistence_skipped",
+                "message": "Output contains failure markers; skipped database persistence.",
+                "details": failures[:10],
+            }
+        return marked
 
     def _normalize_post_content(self, value: Any) -> dict[str, Any]:
         if not isinstance(value, dict):

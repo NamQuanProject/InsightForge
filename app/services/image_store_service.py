@@ -1,12 +1,14 @@
 import asyncio
 import copy
 import json
+import os
 import shutil
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import httpx
 import numpy as np
 
 from app.services.post_service import photo_convert
@@ -18,6 +20,14 @@ class ImageStoreService:
         self.image_dir = self.base_dir / "img_db"
         self.embedding_dir = self.base_dir / "embeddings"
         self.metadata_path = self.base_dir / "metadata.json"
+        self.project_root = Path(__file__).resolve().parents[2]
+        self.generated_image_dir = self.project_root / "images"
+        self.cloudflare_account_id = os.getenv("CLOUDFLARE_ACCOUNT_ID")
+        self.cloudflare_api_token = os.getenv("CLOUDFLARE_API_TOKEN")
+        self.cloudflare_model = os.getenv(
+            "CLOUDFLARE_IMAGE_MODEL",
+            "@cf/stabilityai/stable-diffusion-xl-base-1.0",
+        )
 
     async def save_local_image(
         self,
@@ -126,7 +136,13 @@ class ImageStoreService:
             if not isinstance(image, dict):
                 continue
 
-            description = str(image.get("description") or image.get("prompt") or "").strip()
+            prompt = str(image.get("prompt") or "").strip()
+            description = self._normalize_post_image_description(
+                image.get("description"),
+                prompt=prompt,
+                title=str(image.get("title") or ""),
+                index=index + 1,
+            )
             image["description"] = description
 
             output_path = str(image.get("output_path") or "").strip()
@@ -134,6 +150,10 @@ class ImageStoreService:
                 continue
 
             try:
+                await self.ensure_post_image_file(
+                    output_path=output_path,
+                    prompt=prompt,
+                )
                 stored = await self.save_local_image(
                     output_path,
                     metadata={
@@ -152,6 +172,113 @@ class ImageStoreService:
 
         return enriched
 
+    async def ensure_post_image_file(self, output_path: str, prompt: str) -> Path:
+        existing = self.resolve_source_path(output_path)
+        if existing is not None:
+            return existing
+
+        if not prompt:
+            raise FileNotFoundError(f"Image file not found and prompt is empty: {output_path}")
+
+        target_path = self._generated_output_path(output_path)
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+
+        if not self.cloudflare_account_id or not self.cloudflare_api_token:
+            raise RuntimeError(
+                "Image file not found and Cloudflare credentials are not configured. "
+                "Set CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN."
+            )
+
+        url = (
+            f"https://api.cloudflare.com/client/v4/accounts/"
+            f"{self.cloudflare_account_id}/ai/run/{self.cloudflare_model}"
+        )
+        headers = {
+            "Authorization": f"Bearer {self.cloudflare_api_token}",
+            "Content-Type": "application/json",
+        }
+        payload = {
+            "prompt": prompt,
+            "num_steps": int(os.getenv("CLOUDFLARE_IMAGE_NUM_STEPS", "20")),
+            "guidance": float(os.getenv("CLOUDFLARE_IMAGE_GUIDANCE", "7.5")),
+        }
+
+        async with httpx.AsyncClient(timeout=300.0) as client:
+            response = await client.post(url, headers=headers, json=payload)
+
+        if response.status_code != 200:
+            raise RuntimeError(f"Cloudflare image generation failed {response.status_code}: {response.text}")
+
+        await asyncio.to_thread(target_path.write_bytes, response.content)
+        return target_path.resolve()
+
+    def _generated_output_path(self, output_path: str) -> Path:
+        path = Path(output_path)
+        if path.is_absolute():
+            return path
+        return self.generated_image_dir / path.name
+
+    def _normalize_post_image_description(
+        self,
+        value: Any,
+        prompt: str,
+        title: str = "",
+        index: int = 1,
+    ) -> str:
+        description = str(value or "").strip()
+        prompt_text = str(prompt or "").strip()
+
+        if (
+            not description
+            or description.lower() == prompt_text.lower()
+            or self._looks_like_generation_prompt(description)
+        ):
+            label = title.strip() or f"ảnh {index}"
+            return (
+                f"Mô tả nội dung cho {label}: ảnh này cần truyền tải rõ ý chính "
+                "của phần trong bài post, giúp người xem hiểu nhanh thông điệp "
+                "và muốn tiếp tục xem các ảnh tiếp theo."
+            )
+        return description
+
+    def _looks_like_generation_prompt(self, value: str) -> bool:
+        lowered = value.lower()
+        markers = [
+            "sdxl",
+            "lighting",
+            "camera",
+            "composition",
+            "vibrant colors",
+            "minimalist",
+            "background",
+            "style:",
+            "photorealistic",
+        ]
+        return any(marker in lowered for marker in markers)
+
+    def _normalize_post_image_description(
+        self,
+        value: Any,
+        prompt: str,
+        title: str = "",
+        index: int = 1,
+    ) -> str:
+        description = str(value or "").strip()
+        prompt_text = str(prompt or "").strip()
+
+        if (
+            not description
+            or description.lower() == prompt_text.lower()
+            or self._looks_like_generation_prompt(description)
+        ):
+            label = title.strip() or f"ảnh {index}"
+            return (
+                f"Mô tả nội dung cho {label}: ảnh này cần truyền tải rõ ý chính "
+                "của phần trong bài post, giúp người xem hiểu nhanh thông điệp "
+                "và muốn tiếp tục xem các ảnh tiếp theo."
+            )
+        return description
+
     def resolve_source_path(self, source_path: str | Path) -> Path | None:
         path = Path(source_path)
         candidates = [
@@ -159,6 +286,9 @@ class ImageStoreService:
             Path.cwd() / path,
             Path.cwd() / "images" / path,
             Path.cwd() / self.image_dir / path,
+            self.project_root / path,
+            self.project_root / "images" / path,
+            self.project_root / self.image_dir / path,
         ]
         for candidate in candidates:
             if candidate.exists() and candidate.is_file():

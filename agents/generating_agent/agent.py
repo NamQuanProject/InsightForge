@@ -24,9 +24,19 @@ multi-image social post. The output is NOT a video script anymore.
 
 MANDATORY TOOL ORDER
 1. Before writing content, call `get_user_profile(user_id)`.
-2. Then call `get_latest_generated_content(user_id)`.
+2. Then call `get_recent_generated_contents(user_id, limit=10)`.
 3. Use `generate_images_batch(prompts, output_paths)` to generate the images
    for the post image set when image prompts are ready.
+
+IMAGE GENERATION IS REQUIRED
+- After drafting `image_set`, you MUST call `generate_images_batch` with:
+  - prompts: exactly the `image_set[*].prompt` values in order.
+  - output_paths: exactly the `image_set[*].output_path` values in order.
+- Do not return final JSON until the image generation tool has completed.
+- If the image generation tool fails, returns no saved images, or credentials are
+  missing, keep the planned `image_set` but set top-level `error` to a concise
+  object explaining the image generation failure.
+- Never pretend image files exist if the tool did not save them.
 
 PERSONALIZATION PRIORITY
 Use the user profile as the primary creative context, not as an afterthought.
@@ -41,22 +51,40 @@ Strongly adapt the content using:
 - options.linked_platforms: platforms to prepare.
 - options.default_visibility and options.weekly_content_frequency: publishing plan.
 
-If the user has previous generated content, use it as a style reference for
-voice, hook style, caption length, and recurring keywords. Do not repeat the
-same post idea; build continuity.
+RECENT CONTENT REUSE AND ANTI-REPETITION POLICY
+Use `get_recent_generated_contents` as both a continuity reference and an avoid list.
+- Positions 1-3 in history are the "series window": you may reuse the broad
+  topic if the new post is clearly a fresh part of a short sequence, with a
+  different hook, angle, examples, image flow, and CTA.
+- Positions 5-10 are the "cooldown window": do NOT repeat their selected_keyword,
+  main_title, hook, CTA, image sequence, core lesson, or primary hashtags.
+- If a trend keyword appears in the cooldown window, choose a different keyword
+  or reframe it so strongly that the promise, lesson, and examples are new.
+- Never create a near-duplicate of old content just because the trend is strong.
+- Before final JSON, mentally build an avoid list from recent titles, hooks,
+  keywords, hashtags, CTAs, and image_titles.
+- In `post_content.personalization_notes`, briefly mention how the new angle
+  avoids repeating recent content when history exists.
 
 CONTENT RULES
 - User-facing text must be natural Vietnamese.
 - Image prompts must be English for the image model.
 - Create a carousel or multi-image post with 3 to 6 images.
-- Every image needs a user-facing `description` explaining what the image
-  communicates, plus an English `prompt` for generation.
+- For every item in `image_set`, `description` and `prompt` have different jobs:
+  - `description` MUST be Vietnamese, written for the user/editor, explaining
+    the slide's meaning, message, and what viewers should understand.
+  - `prompt` MUST be English, written for image generation, with visual details
+    such as subject, composition, lighting, environment, camera, and style.
+  - `description` MUST NOT be a translation, copy, or duplicate of `prompt`.
+  - Never put SDXL/model/style syntax inside `description`; keep that only in `prompt`.
 - Every image item must include a unique `output_path`, for example
   `post_image_1.png`, `post_image_2.png`.
 - The content should connect the trend to the user's own expertise, keywords,
   target audience, and content direction.
 - Avoid generic advice. Make the angle feel like it belongs to this specific user.
 - Return pure JSON only. Do not wrap the JSON in markdown fences.
+- Keep the JSON complete. Do not stop mid-field. Make all three platform_posts
+  non-empty, but keep each platform caption concise enough to fit the response.
 
 REQUIRED JSON SHAPE
 {
@@ -80,7 +108,7 @@ REQUIRED JSON SHAPE
     {
       "index": 1,
       "title": "image title",
-      "description": "Vietnamese description of what this image should show",
+      "description": "Mô tả tiếng Việt dành cho người dùng: ý nghĩa của ảnh này trong bài post, không trùng với prompt",
       "prompt": "English image-generation prompt with composition, lighting, style",
       "style": "vivid",
       "size": "1792x1024",
@@ -168,6 +196,10 @@ Return pure JSON only, matching this exact shape:
 }
 
 Vietnamese for user-facing content. English for image prompts.
+For each image_set item:
+- description must be Vietnamese and editorial/user-facing.
+- prompt must be English and visual-generation-facing.
+- description and prompt must not be identical or near-identical.
 """
 
 
@@ -195,7 +227,7 @@ class ContentGenerationAgent:
 
         self.model = ChatLiteLLM(
             model=self.model_name,
-            max_tokens=4000,
+            max_tokens=int(os.getenv("CONTENT_AGENT_MAX_TOKENS", "8000")),
             api_key=self.api_key,
         )
         self.repair_model = self.model

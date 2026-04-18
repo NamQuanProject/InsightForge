@@ -42,6 +42,7 @@ class AgentService:
         prompt: str,
         save_files: bool = True,
         user_id: uuid.UUID | None = None,
+        include_raw_response: bool = False,
     ) -> OrchestratorResponse:
         resolved_user_id = resolve_user_id(user_id)
         client = InsightForgeA2AClient()
@@ -54,20 +55,73 @@ class AgentService:
         output = client.normalize_orchestrator_output(result["output"], prompt=prompt)
 
         trend_analysis = output["trend_analysis"]
+        generated_content = output["generated_content"]
+        if self._is_empty_generated_content(generated_content):
+            output = self._mark_failure(
+                output,
+                ["output.generated_content: empty generated content"],
+            )
+            raw_file, output_file = self._save_debug_files_if_requested(
+                client=client,
+                raw_response=result["raw_response"],
+                output=output,
+                save_files=save_files,
+            )
+            return OrchestratorResponse(
+                status="failed",
+                output=output,
+                raw_response=result["raw_response"] if include_raw_response else None,
+                raw_response_file=raw_file,
+                output_file=output_file,
+            )
+
+        failures = self._collect_failures(output)
+        if failures:
+            output = self._mark_failure(output, failures)
+            raw_file, output_file = self._save_debug_files_if_requested(
+                client=client,
+                raw_response=result["raw_response"],
+                output=output,
+                save_files=save_files,
+            )
+            return OrchestratorResponse(
+                status="failed",
+                output=output,
+                raw_response=result["raw_response"] if include_raw_response else None,
+                raw_response_file=raw_file,
+                output_file=output_file,
+            )
+
+        image_set = await self.image_store.attach_post_images(generated_content.get("image_set"))
+        generated_content_to_save = copy.deepcopy(generated_content)
+        generated_content_to_save["image_set"] = image_set
+        output["generated_content"] = generated_content_to_save
+
+        failures = self._collect_failures(output)
+        if failures:
+            output = self._mark_failure(output, failures)
+            raw_file, output_file = self._save_debug_files_if_requested(
+                client=client,
+                raw_response=result["raw_response"],
+                output=output,
+                save_files=save_files,
+            )
+            return OrchestratorResponse(
+                status="failed",
+                output=output,
+                raw_response=result["raw_response"] if include_raw_response else None,
+                raw_response_file=raw_file,
+                output_file=output_file,
+            )
+
         trend_record = await self.postgres.save_trend_analysis(
             query=trend_analysis["query"],
             results=trend_analysis["results"],
             summary=trend_analysis["markdown_summary"],
             user_id=resolved_user_id,
-            status="failed" if trend_analysis.get("error") else "completed",
-            error=trend_analysis.get("error"),
+            status="completed",
+            error=None,
         )
-
-        generated_content = output["generated_content"]
-        image_set = await self.image_store.attach_post_images(generated_content.get("image_set"))
-        generated_content_to_save = copy.deepcopy(generated_content)
-        generated_content_to_save["image_set"] = image_set
-        output["generated_content"] = generated_content_to_save
 
         generated_record = await self.postgres.save_generated_content(
             raw_output=generated_content_to_save,
@@ -80,24 +134,22 @@ class AgentService:
             trend_analysis_id=trend_record.id,
             selected_keyword=generated_content_to_save.get("selected_keyword") or self._best_keyword(trend_analysis),
             main_title=generated_content_to_save.get("main_title"),
-            status="failed" if generated_content_to_save.get("error") else "generated",
+            status="generated",
         )
 
-        raw_file = None
-        output_file = None
-        if save_files:
-            raw_file, output_file = client.save_response_files(
-                raw_response=result["raw_response"],
-                output=output,
-                output_dir=os.environ.get("ORCHESTRATOR_OUTPUT_DIR", "."),
-            )
+        raw_file, output_file = self._save_debug_files_if_requested(
+            client=client,
+            raw_response=result["raw_response"],
+            output=output,
+            save_files=save_files,
+        )
 
         return OrchestratorResponse(
             status="success",
             output=output,
             trend_analysis_id=trend_record.id,
             generated_content_id=generated_record.id,
-            raw_response=result["raw_response"],
+            raw_response=result["raw_response"] if include_raw_response else None,
             raw_response_file=raw_file,
             output_file=output_file,
         )
@@ -110,6 +162,91 @@ class AgentService:
         if not isinstance(best, dict):
             return None
         return best.get("main_keyword")
+
+    def _is_empty_generated_content(self, generated_content) -> bool:
+        if not isinstance(generated_content, dict):
+            return True
+        post_content = generated_content.get("post_content")
+        image_set = generated_content.get("image_set")
+        main_title = str(generated_content.get("main_title") or "").strip()
+        post_title = ""
+        caption = ""
+        if isinstance(post_content, dict):
+            post_title = str(post_content.get("title") or "").strip()
+            caption = str(post_content.get("caption") or "").strip()
+        return not (main_title or post_title or caption or image_set)
+
+    def _save_debug_files_if_requested(
+        self,
+        client: InsightForgeA2AClient,
+        raw_response: dict,
+        output: dict,
+        save_files: bool,
+    ) -> tuple[str | None, str | None]:
+        if not save_files:
+            return None, None
+        return client.save_response_files(
+            raw_response=raw_response,
+            output=output,
+            output_dir=os.environ.get("ORCHESTRATOR_OUTPUT_DIR", "."),
+        )
+
+    def _has_failure(self, value) -> bool:
+        return bool(self._collect_failures(value))
+
+    def _collect_failures(self, value, path: str = "output") -> list[str]:
+        failures: list[str] = []
+        if isinstance(value, dict):
+            for key, item in value.items():
+                normalized_key = str(key).lower()
+                if normalized_key in {"error", "image_store_error"} and self._is_failure_value(item):
+                    failures.append(f"{path}.{key}: {item}")
+                if normalized_key in {"status", "state"} and isinstance(item, str):
+                    if item.lower() in {"failed", "fail", "error", "partial_success"}:
+                        failures.append(f"{path}.{key}: {item}")
+                failures.extend(self._collect_failures(item, f"{path}.{key}"))
+            return failures
+
+        if isinstance(value, list):
+            for index, item in enumerate(value):
+                failures.extend(self._collect_failures(item, f"{path}[{index}]"))
+            return failures
+
+        return failures
+
+    def _is_failure_value(self, value) -> bool:
+        if value is None or value is False:
+            return False
+        if isinstance(value, str):
+            return bool(value.strip())
+        if isinstance(value, (list, dict)):
+            return bool(value)
+        return True
+
+    def _mark_failure(self, output: dict, failures: list[str]) -> dict:
+        marked = copy.deepcopy(output)
+        message = "Output contains failure markers; skipped database persistence."
+        details = failures[:10]
+        generated_content = marked.get("generated_content")
+        if isinstance(generated_content, dict) and not generated_content.get("error"):
+            generated_content["error"] = {
+                "type": "persistence_skipped",
+                "message": message,
+                "details": details,
+            }
+        elif not isinstance(generated_content, dict):
+            marked["generated_content"] = {
+                "error": {
+                    "type": "persistence_skipped",
+                    "message": message,
+                    "details": details,
+                }
+            }
+        marked["persistence_skipped"] = {
+            "reason": message,
+            "details": details,
+        }
+        return marked
 
     def get_status(self) -> AgentsStatusResponse:
         statuses = []

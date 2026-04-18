@@ -148,6 +148,17 @@ class InsightForgeA2AClient:
         error = trend.get("error")
         if raw_text and not normalized_results:
             error = error or {"type": "raw_text", "message": str(raw_text)}
+        if not normalized_results and not error:
+            error = {
+                "type": "empty_results",
+                "message": "Trend analysis returned no results.",
+            }
+
+        if not normalized_results and self._is_recoverable_trend_error(error):
+            return self._fallback_trend_analysis(
+                query=str(trend.get("query") or prompt),
+                error=error,
+            )
 
         return {
             "query": str(trend.get("query") or prompt),
@@ -161,22 +172,92 @@ class InsightForgeA2AClient:
             "error": error,
         }
 
+    def _is_recoverable_trend_error(self, error: Any) -> bool:
+        if not isinstance(error, dict):
+            return False
+        message = str(error.get("message") or error)
+        error_type = str(error.get("type") or "").lower()
+        return error_type == "empty_results" or "list index out of range" in message.lower()
+
+    def _fallback_trend_analysis(self, query: str, error: dict[str, Any]) -> dict[str, Any]:
+        keyword = self._fallback_keyword(query)
+        trend_score = 32.0
+        avg_views_per_hour = 2500.0
+        return {
+            "query": query,
+            "results": [
+                {
+                    "main_keyword": keyword,
+                    "why_the_trend_happens": (
+                        "Nguồn trend trả dữ liệu không đầy đủ nên hệ thống dùng fallback bảo thủ "
+                        "dựa trên chủ đề người dùng để tiếp tục pipeline."
+                    ),
+                    "trend_score": trend_score,
+                    "interest_over_day": self._normalize_interest_over_day(
+                        [],
+                        trend_score=trend_score,
+                        momentum="stable",
+                        avg_views_per_hour=avg_views_per_hour,
+                    ),
+                    "avg_views_per_hour": avg_views_per_hour,
+                    "recommended_action": (
+                        "Tạo bài post nhiều ảnh về một mẹo sức khỏe dễ áp dụng, có cảnh báo "
+                        "không thay thế tư vấn y tế, và đưa ra hành động nhỏ người xem có thể thử ngay."
+                    ),
+                    "top_videos": [],
+                    "top_hashtags": ["#meovatcuocsong", "#suckhoe", "#thoiquentot"],
+                    "google": {
+                        "keyword": keyword,
+                        "momentum": "stable",
+                        "peak_region": None,
+                    },
+                    "tiktok": None,
+                    "threads": None,
+                }
+            ],
+            "markdown_summary": (
+                f"Trend agent gặp lỗi dữ liệu tạm thời ({error.get('message')}). "
+                f"Hệ thống dùng fallback an toàn cho chủ đề '{keyword}' để tiếp tục tạo nội dung."
+            ),
+            "error": None,
+            "fallback": True,
+            "fallback_reason": error.get("message"),
+        }
+
+    def _fallback_keyword(self, query: str) -> str:
+        lowered = query.lower()
+        if "trà sữa" in lowered or "tra sua" in lowered:
+            return "tác hại trà sữa"
+        if "sức khỏe" in lowered or "suc khoe" in lowered:
+            return "mẹo vặt sức khỏe tại nhà"
+        if "mẹo vặt" in lowered or "lifehack" in lowered:
+            return "mẹo vặt cuộc sống"
+        return "thói quen tốt mỗi ngày"
+
     def _normalize_trend_item(self, item: dict[str, Any]) -> dict[str, Any]:
         main_keyword = str(item.get("main_keyword") or item.get("keyword") or "")
+        trend_score = self._to_float(item.get("trend_score"))
+        avg_views_per_hour = self._to_float(item.get("avg_views_per_hour") or item.get("avg_velocity"))
+        google = item.get("google") if isinstance(item.get("google"), dict) else {
+            "keyword": main_keyword,
+            "momentum": "stable",
+            "peak_region": None,
+        }
         return {
             "main_keyword": main_keyword,
             "why_the_trend_happens": str(item.get("why_the_trend_happens") or item.get("reasoning") or ""),
-            "trend_score": self._to_float(item.get("trend_score")),
-            "interest_over_day": self._to_float_list(item.get("interest_over_day")),
-            "avg_views_per_hour": self._to_float(item.get("avg_views_per_hour") or item.get("avg_velocity")),
+            "trend_score": trend_score,
+            "interest_over_day": self._normalize_interest_over_day(
+                item.get("interest_over_day"),
+                trend_score=trend_score,
+                momentum=str(google.get("momentum") or "stable"),
+                avg_views_per_hour=avg_views_per_hour,
+            ),
+            "avg_views_per_hour": avg_views_per_hour,
             "recommended_action": str(item.get("recommended_action") or item.get("action") or ""),
             "top_videos": self._to_str_list(item.get("top_videos") or item.get("videos")),
             "top_hashtags": self._to_str_list(item.get("top_hashtags") or item.get("hashtags")),
-            "google": item.get("google") if isinstance(item.get("google"), dict) else {
-                "keyword": main_keyword,
-                "momentum": "stable",
-                "peak_region": None,
-            },
+            "google": google,
             "tiktok": item.get("tiktok") if isinstance(item.get("tiktok"), dict) else None,
             "threads": item.get("threads") if isinstance(item.get("threads"), dict) else None,
         }
@@ -261,12 +342,19 @@ class InsightForgeA2AClient:
         for index, image in enumerate(image_set):
             if not isinstance(image, dict):
                 continue
+            prompt = str(image.get("prompt") or "")
+            description = self._normalize_image_description(
+                image.get("description"),
+                prompt=prompt,
+                title=str(image.get("title") or ""),
+                index=index + 1,
+            )
             normalized.append(
                 {
                     "index": self._to_int(image.get("index") or index + 1),
                     "title": str(image.get("title") or ""),
-                    "description": str(image.get("description") or image.get("prompt") or ""),
-                    "prompt": str(image.get("prompt") or ""),
+                    "description": description,
+                    "prompt": prompt,
                     "style": str(image.get("style") or "vivid"),
                     "size": str(image.get("size") or "1792x1024"),
                     "output_path": str(image.get("output_path") or f"post_image_{index + 1}.png"),
@@ -292,18 +380,140 @@ class InsightForgeA2AClient:
             if not isinstance(section, dict):
                 continue
             thumbnail = section.get("thumbnail") if isinstance(section.get("thumbnail"), dict) else {}
+            prompt = str(thumbnail.get("prompt") or "")
             image_set.append(
                 {
                     "index": index + 1,
                     "title": str(section.get("label") or f"Image {index + 1}"),
-                    "description": str(thumbnail.get("description") or thumbnail.get("prompt") or section.get("notes") or ""),
-                    "prompt": str(thumbnail.get("prompt") or ""),
+                    "description": self._normalize_image_description(
+                        thumbnail.get("description") or section.get("notes"),
+                        prompt=prompt,
+                        title=str(section.get("label") or ""),
+                        index=index + 1,
+                    ),
+                    "prompt": prompt,
                     "style": str(thumbnail.get("style") or "vivid"),
                     "size": str(thumbnail.get("size") or "1792x1024"),
                     "output_path": str(thumbnail.get("output_path") or f"post_image_{index + 1}.png"),
                 }
             )
         return image_set
+
+    def _normalize_image_description(
+        self,
+        value: Any,
+        prompt: str,
+        title: str = "",
+        index: int = 1,
+    ) -> str:
+        description = str(value or "").strip()
+        prompt_text = str(prompt or "").strip()
+
+        if (
+            not description
+            or description.lower() == prompt_text.lower()
+            or self._looks_like_image_prompt(description)
+        ):
+            label = title.strip() or f"ảnh {index}"
+            return (
+                f"Mô tả nội dung cho {label}: ảnh này cần truyền tải rõ ý chính "
+                "của phần trong bài post, giúp người xem hiểu nhanh thông điệp "
+                "và muốn tiếp tục xem các ảnh tiếp theo."
+            )
+        return description
+
+    def _looks_like_image_prompt(self, value: str) -> bool:
+        lowered = value.lower()
+        prompt_markers = [
+            "sdxl",
+            "lighting",
+            "camera",
+            "composition",
+            "vibrant colors",
+            "minimalist",
+            "background",
+            "style:",
+            "photorealistic",
+        ]
+        return any(marker in lowered for marker in prompt_markers)
+
+    def _fallback_trend_analysis(self, query: str, error: dict[str, Any]) -> dict[str, Any]:
+        keyword = self._fallback_keyword(query)
+        trend_score = 32.0
+        avg_views_per_hour = 2500.0
+        return {
+            "query": query,
+            "results": [
+                {
+                    "main_keyword": keyword,
+                    "why_the_trend_happens": (
+                        "Nguồn trend trả dữ liệu không đầy đủ nên hệ thống dùng fallback bảo thủ "
+                        "dựa trên chủ đề người dùng để tiếp tục pipeline."
+                    ),
+                    "trend_score": trend_score,
+                    "interest_over_day": self._normalize_interest_over_day(
+                        [],
+                        trend_score=trend_score,
+                        momentum="stable",
+                        avg_views_per_hour=avg_views_per_hour,
+                    ),
+                    "avg_views_per_hour": avg_views_per_hour,
+                    "recommended_action": (
+                        "Tạo bài post nhiều ảnh về một mẹo sức khỏe dễ áp dụng, có cảnh báo "
+                        "không thay thế tư vấn y tế, và đưa ra hành động nhỏ người xem có thể thử ngay."
+                    ),
+                    "top_videos": [],
+                    "top_hashtags": ["#meovatcuocsong", "#suckhoe", "#thoiquentot"],
+                    "google": {
+                        "keyword": keyword,
+                        "momentum": "stable",
+                        "peak_region": None,
+                    },
+                    "tiktok": None,
+                    "threads": None,
+                }
+            ],
+            "markdown_summary": (
+                f"Trend agent gặp lỗi dữ liệu tạm thời ({error.get('message')}). "
+                f"Hệ thống dùng fallback an toàn cho chủ đề '{keyword}' để tiếp tục tạo nội dung."
+            ),
+            "error": None,
+            "fallback": True,
+            "fallback_reason": error.get("message"),
+        }
+
+    def _fallback_keyword(self, query: str) -> str:
+        lowered = query.lower()
+        if "trà sữa" in lowered or "tra sua" in lowered:
+            return "tác hại trà sữa"
+        if "sức khỏe" in lowered or "suc khoe" in lowered:
+            return "mẹo vặt sức khỏe tại nhà"
+        if "mẹo vặt" in lowered or "lifehack" in lowered:
+            return "mẹo vặt cuộc sống"
+        return "thói quen tốt mỗi ngày"
+
+    def _normalize_image_description(
+        self,
+        value: Any,
+        prompt: str,
+        title: str = "",
+        index: int = 1,
+    ) -> str:
+        description = str(value or "").strip()
+        prompt_text = str(prompt or "").strip()
+
+        if (
+            not description
+            or description.lower() == prompt_text.lower()
+            or self._looks_like_image_prompt(description)
+        ):
+            label = title.strip() or f"ảnh {index}"
+            return (
+                f"Mô tả nội dung cho {label}: ảnh này cần truyền tải rõ ý chính "
+                "của phần trong bài post, giúp người xem hiểu nhanh thông điệp "
+                "và muốn tiếp tục xem các ảnh tiếp theo."
+            )
+        return description
 
     def _to_float(self, value: Any) -> float:
         try:
@@ -315,6 +525,42 @@ class InsightForgeA2AClient:
         if not isinstance(value, list):
             return []
         return [self._to_float(item) for item in value]
+
+    def _normalize_interest_over_day(
+        self,
+        value: Any,
+        trend_score: float,
+        momentum: str = "stable",
+        avg_views_per_hour: float = 0,
+    ) -> list[float]:
+        values = self._to_float_list(value)
+        values = [max(0.0, item) for item in values]
+        if len(values) >= 3 and any(item > 0 for item in values):
+            return [round(item, 2) for item in values]
+
+        score = self._clamp_float(trend_score, minimum=1.0, maximum=100.0)
+        velocity_lift = min(18.0, max(avg_views_per_hour, 0.0) / 5000.0)
+        base = self._clamp_float(score * 0.62 + velocity_lift, minimum=8.0, maximum=88.0)
+        normalized_momentum = str(momentum or "stable").lower()
+
+        if normalized_momentum == "rising":
+            factors = [0.58, 0.68, 0.8, 0.93, 1.08, 1.22]
+        elif normalized_momentum == "declining":
+            factors = [1.18, 1.08, 0.96, 0.84, 0.73, 0.62]
+        else:
+            factors = [0.86, 0.94, 1.02, 0.97, 1.06, 1.0]
+
+        return [
+            round(self._clamp_float(base * factor, minimum=1.0, maximum=100.0), 2)
+            for factor in factors
+        ]
+
+    def _clamp_float(self, value: Any, minimum: float, maximum: float) -> float:
+        try:
+            parsed = float(value)
+        except (TypeError, ValueError):
+            parsed = minimum
+        return min(maximum, max(minimum, parsed))
 
     def _to_str_list(self, value: Any) -> list[str]:
         if not isinstance(value, list):
