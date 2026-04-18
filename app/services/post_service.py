@@ -1,4 +1,5 @@
 import csv
+import json
 from pathlib import Path
 from urllib.parse import quote_plus
 import os
@@ -58,8 +59,14 @@ class PostService:
     def __init__(self) -> None:
         self.client = None
         self.mock_data_dir = Path(__file__).resolve().parents[1] / "mock_data"
+        self.demo_scripts_dir = Path(__file__).resolve().parents[2] / "scripts"
 
     async def posting(self, query: PostRequest):
+        if self._demo_fast_path_enabled():
+            demo_response = self._demo_posting_response(query)
+            if demo_response is not None:
+                return demo_response
+
         if self.client is None:
             from app.services.a2a_client import InsightForgeA2AClient
             self.client = InsightForgeA2AClient()
@@ -72,3 +79,31 @@ class PostService:
             source="a2a-agent",
             result_markdown=str(result),
         )
+
+    def _demo_posting_response(self, query: PostRequest) -> PostResponse | None:
+        script_path = self.demo_scripts_dir / "script_upload.json"
+        output_path = self.demo_scripts_dir / "output_upload.json"
+        try:
+            scripts = json.loads(script_path.read_text(encoding="utf-8"))
+            outputs = json.loads(output_path.read_text(encoding="utf-8"))
+            if not isinstance(scripts, list) or not isinstance(outputs, list):
+                return None
+
+            for index, item in enumerate(scripts):
+                if not isinstance(item, dict) or index >= len(outputs):
+                    continue
+                prompt_matches = self._normalize_prompt(query.prompt) == self._normalize_prompt(item.get("prompt", ""))
+                config_matches = str(query.config_id) == str(item.get("config_id", ""))
+                decision_matches = query.decision == item.get("decision")
+                if prompt_matches and config_matches and decision_matches:
+                    return PostResponse(**outputs[index])
+        except Exception:
+            return None
+        return None
+
+    def _normalize_prompt(self, value: str) -> str:
+        return " ".join(str(value or "").split()).casefold()
+
+    def _demo_fast_path_enabled(self) -> bool:
+        value = os.environ.get("DEMO_FAST_PATH_ENABLED", "true")
+        return value.strip().lower() not in {"0", "false", "no", "off"}

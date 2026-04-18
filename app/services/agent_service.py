@@ -1,7 +1,9 @@
 import copy
+import json
 import socket
 import os
 import uuid
+from pathlib import Path
 
 from app.schema.common import AgentProcessStatus, AgentsStatusResponse, OrchestratorResponse
 from app.services.a2a_client import InsightForgeA2AClient
@@ -15,6 +17,7 @@ class AgentService:
         host = os.environ.get("AGENT_HOST", "localhost")
         self.postgres = PostgresService()
         self.image_store = ImageStoreService()
+        self.demo_scripts_dir = Path(__file__).resolve().parents[2] / "scripts"
         self.processes = [
             ("routing_orchestrator", host, int(os.environ.get("ROUTING_AGENT_PORT", 9996))),
             ("trend_agent", host, int(os.environ.get("TREND_AGENT_PORT", 9997))),
@@ -44,6 +47,11 @@ class AgentService:
         user_id: uuid.UUID | None = None,
         include_raw_response: bool = False,
     ) -> OrchestratorResponse:
+        if self._demo_fast_path_enabled():
+            demo_response = self._demo_orchestrator_response(prompt)
+            if demo_response is not None:
+                return demo_response
+
         resolved_user_id = resolve_user_id(user_id)
         client = InsightForgeA2AClient()
         routed_prompt = (
@@ -162,6 +170,31 @@ class AgentService:
         if not isinstance(best, dict):
             return None
         return best.get("main_keyword")
+
+    def _demo_orchestrator_response(self, prompt: str) -> OrchestratorResponse | None:
+        script_path = self.demo_scripts_dir / "script_orchestrator.json"
+        output_path = self.demo_scripts_dir / "output_orchestrator.json"
+        try:
+            script = json.loads(script_path.read_text(encoding="utf-8"))
+            expected_prompt = script.get("prompt")
+            if not isinstance(expected_prompt, str):
+                return None
+            if self._normalize_prompt(prompt) != self._normalize_prompt(expected_prompt):
+                return None
+
+            payload = json.loads(output_path.read_text(encoding="utf-8"))
+            if not isinstance(payload, dict):
+                return None
+            return OrchestratorResponse(**payload)
+        except Exception:
+            return None
+
+    def _normalize_prompt(self, value: str) -> str:
+        return " ".join(str(value or "").split()).casefold()
+
+    def _demo_fast_path_enabled(self) -> bool:
+        value = os.environ.get("DEMO_FAST_PATH_ENABLED", "true")
+        return value.strip().lower() not in {"0", "false", "no", "off"}
 
     def _is_empty_generated_content(self, generated_content) -> bool:
         if not isinstance(generated_content, dict):

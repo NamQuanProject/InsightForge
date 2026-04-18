@@ -7,7 +7,7 @@ http://127.0.0.1:8000
 Muc tieu:
 - Tai lieu ngan gon cho UI goi API.
 - Mo ta field nao nen display len UI.
-- Goi /api/v1/agents/orchestrate se chay agent workflow that.
+- Huong dan UI dung demo fast-path de tra ket qua nhanh.
 
 
 1. RUN REQUIREMENT
@@ -26,6 +26,19 @@ http://localhost:9996
 
 4. FastAPI Backend
 http://127.0.0.1:8000
+
+Demo fast-path:
+- Mac dinh backend bat DEMO_FAST_PATH_ENABLED=true.
+- Neu UI gui dung prompt/body mau ben duoi, backend se tra ket qua co dinh tu folder scripts/ ngay lap tuc.
+- Neu prompt/body khong khop mau, backend se chay agent workflow that nhu binh thuong.
+- Backend dev co the tat fast-path bang env:
+  DEMO_FAST_PATH_ENABLED=false
+
+Files dang dung cho demo fast-path:
+- scripts/script_orchestrator.json: request mau cho /api/v1/agents/orchestrate
+- scripts/output_orchestrator.json: response mau tra ve cho /api/v1/agents/orchestrate
+- scripts/script_upload.json: request mau cho /api/v1/post/post
+- scripts/output_upload.json: response mau tra ve cho /api/v1/post/post
 
 
 2. HEALTH CHECK
@@ -93,13 +106,14 @@ POST /api/v1/agents/orchestrate
 
 Purpose:
 - UI gui prompt cua user.
-- Backend goi Routing Orchestrator.
-- Routing Orchestrator goi Trend Agent va Content Agent.
-- Backend normalize output, sinh/luu anh neu can, luu trend/content vao database, roi tra ve response.
+- Neu prompt khop demo prompt, backend tra ngay response co dinh tu scripts/output_orchestrator.json.
+- Neu prompt khong khop demo prompt, backend goi Routing Orchestrator, Trend Agent va Content Agent.
+- Backend normalize output, sinh/luu anh neu can, luu trend/content vao database, roi tra ve response khi chay workflow that.
 
 Important:
-- Endpoint nay chay agent workflow that, co the lau.
-- Frontend nen set timeout cao, khoang 420 giay.
+- Demo fast-path tra nhanh, dung cho UI demo.
+- Workflow that co the lau; frontend nen set timeout cao, khoang 420 giay.
+- Prompt demo duoc normalize khoang trang/hoa thuong, nhung noi dung chu nen giu dung nhu vi du.
 
 Query parameters:
 - include_raw_response: optional boolean, default false.
@@ -121,6 +135,21 @@ Request fields:
 
 Example:
 POST http://127.0.0.1:8000/api/v1/agents/orchestrate?include_raw_response=false&save_files=false
+
+Demo fast-path request:
+{
+  "prompt": "Chủ đề cụ thể đang trend trong ngày hôm nay về mẹo vặt sức khỏe là gì và tôi nên tạo nội dung như thế nào?",
+  "save_files": false,
+  "user_id": "eb892952-0f26-45e1-860b-1dc7d572c553"
+}
+
+Demo fast-path expected response highlights:
+- status: "success"
+- output.trend_analysis.results[0].main_keyword: "Chăm sóc da mặt"
+- output.generated_content.selected_keyword: "Chăm sóc da mặt"
+- output.generated_content.image_set length: 5
+- trend_analysis_id: "8ba842d2-92f5-4f71-b5be-ad1a8d9299d7"
+- generated_content_id: "980cf0b8-cfa3-434e-8b6e-d340fdcf75e9"
 
 Response success:
 {
@@ -322,7 +351,81 @@ Error display:
 - output.persistence_skipped.details
 
 
-6. GENERATED CONTENT HISTORY
+6. POST TO SOCIAL / UPLOAD FLOW
+==================================================
+
+POST /api/v1/post/post
+
+Purpose:
+- UI gui lenh dang bai / xac nhan dang bai.
+- Neu request khop demo request trong scripts/script_upload.json, backend tra ngay response co dinh tu scripts/output_upload.json.
+- Neu request khong khop demo request, backend se goi posting agent that.
+
+Request fields:
+- prompt: string. Lenh cua user.
+- config_id: string. Thread/config id cua flow dang bai.
+- decision: "asking" | "approve" | "deny".
+
+Demo step 1 - preview:
+POST http://127.0.0.1:8000/api/v1/post/post
+
+Request:
+{
+  "prompt": "Đăng cho tôi các ảnh về chăm sóc da mặt lên Instagram",
+  "config_id": "550e8400-e29b-41d4-a716-446655440000",
+  "decision": "asking"
+}
+
+Expected response:
+{
+  "status": "success",
+  "source": "a2a-agent",
+  "result_markdown": "Preview:\nUser: tiktok_user\nPlatform: Instagram\nCaption: ...\nImages:\n- https://...\n\nDo you want to post this?"
+}
+
+UI display:
+- result_markdown as preview text.
+- Parse image URLs inside result_markdown if UI wants to render preview images.
+- Show confirm button after preview.
+
+Demo step 2 - get thread id:
+Request:
+{
+  "prompt": "Đăng luôn cho tôi",
+  "config_id": "550e8400-e29b-41d4-a716-446655440000",
+  "decision": "asking"
+}
+
+Expected response:
+{
+  "status": "success",
+  "source": "a2a-agent",
+  "result_markdown": "\n\n[THREAD_ID: 550e8400-e29b-41d4-a716-446655440000]"
+}
+
+UI display:
+- Store thread id/config id for final approve step.
+
+Demo step 3 - approve:
+Request:
+{
+  "prompt": "",
+  "config_id": "550e8400-e29b-41d4-a716-446655440000",
+  "decision": "approve"
+}
+
+Expected response:
+{
+  "status": "success",
+  "source": "a2a-agent",
+  "result_markdown": "Đã đăng bài viết của bạn lên Instagram."
+}
+
+UI display:
+- result_markdown as success message.
+
+
+7. GENERATED CONTENT HISTORY
 ==================================================
 
 GET /api/v1/contents?user_id=<uuid>&limit=20
@@ -364,7 +467,7 @@ UI display:
 - items[].created_at
 
 
-7. GET ONE GENERATED CONTENT
+8. GET ONE GENERATED CONTENT
 ==================================================
 
 GET /api/v1/contents/{content_id}
@@ -374,7 +477,7 @@ Purpose:
 - Response shape giong mot item trong /api/v1/contents.
 
 
-8. USERS
+9. USERS
 ==================================================
 
 GET /api/v1/users
@@ -443,7 +546,7 @@ Purpose:
 - Lay chi tiet mot user profile.
 
 
-9. SAVED TREND ENDPOINTS
+10. SAVED TREND ENDPOINTS
 ==================================================
 
 GET /api/v1/trends/history?user_id=<uuid>&limit=20
@@ -492,7 +595,7 @@ UI display:
 GET /api/v1/trends/{analysis_id}
 
 
-10. UI ERROR RULES
+11. UI ERROR RULES
 ==================================================
 
 If status = "failed":
