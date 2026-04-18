@@ -27,9 +27,67 @@
           },
           "tiktok": null,
           "threads": null
+        },
+        {
+          "main_keyword": "Giấc ngủ chất lượng",
+          "why_the_trend_happens": "Các mẹo cải thiện giấc ngủ đang được quan tâm vì nhiều người trẻ và dân văn phòng gặp căng thẳng, dùng thiết bị điện tử nhiều và muốn tìm cách phục hồi năng lượng tự nhiên.",
+          "trend_score": 42.8,
+          "interest_over_day": [
+            24.0,
+            27.0,
+            33.0,
+            39.0,
+            44.0,
+            48.0
+          ],
+          "avg_views_per_hour": 2148.72,
+          "recommended_action": "Tạo chuỗi nội dung nhiều ảnh về các thói quen trước khi ngủ, cách giảm ánh sáng xanh, thư giãn nhanh và xây dựng lịch ngủ đều đặn.",
+          "top_videos": [],
+          "top_hashtags": [
+            "#giacnguchatluong",
+            "#ngungon",
+            "#meovatsuckhoe",
+            "#songkhoe"
+          ],
+          "google": {
+            "keyword": "Giấc ngủ chất lượng",
+            "momentum": "rising",
+            "peak_region": null
+          },
+          "tiktok": null,
+          "threads": null
+        },
+        {
+          "main_keyword": "Uống nước đúng cách",
+          "why_the_trend_happens": "Nội dung về uống nước đúng cách dễ lan truyền vì đơn giản, gần gũi và liên quan trực tiếp đến năng lượng, làn da, tiêu hóa và thói quen sống lành mạnh mỗi ngày.",
+          "trend_score": 34.6,
+          "interest_over_day": [
+            21.0,
+            24.0,
+            28.0,
+            31.0,
+            35.0,
+            39.0
+          ],
+          "avg_views_per_hour": 1836.45,
+          "recommended_action": "Tạo bài post carousel giải thích các dấu hiệu cơ thể thiếu nước, thời điểm nên uống nước và mẹo duy trì thói quen uống nước đều trong ngày.",
+          "top_videos": [],
+          "top_hashtags": [
+            "#uongnuocdungcach",
+            "#meovatsuckhoe",
+            "#thoiquentot",
+            "#songthongminh"
+          ],
+          "google": {
+            "keyword": "Uống nước đúng cách",
+            "momentum": "stable",
+            "peak_region": null
+          },
+          "tiktok": null,
+          "threads": null
         }
       ],
-      "markdown_summary": "Xu hướng về 'mẹo vặt sức khỏe' hiện đang tập trung mạnh vào chủ đề 'Chăm sóc da mặt'. Với điểm số xu hướng là 25.3 và lượng xem trung bình mỗi giờ là 1576.5, đây là một chủ đề ổn định và có lượng quan tâm đáng kể, đặc biệt từ giới trẻ. Mặc dù dữ liệu 'interest_over_day' ban đầu trống, một ước tính dựa trên điểm xu hướng cho thấy sự tăng trưởng đều đặn. Khuyến nghị tạo nội dung video ngắn hoặc hướng dẫn chi tiết về các mẹo chăm sóc da mặt để thu hút đối tượng này.",
+      "markdown_summary": "Xu hướng về 'mẹo vặt sức khỏe' hiện có 3 keyword nổi bật: 'Giấc ngủ chất lượng' dẫn đầu với trend_score 42.8 và interest_over_day tăng từ 24 lên 48; 'Uống nước đúng cách' đạt trend_score 34.6 với mức quan tâm tăng đều từ 21 lên 39; 'Chăm sóc da mặt' đạt trend_score 25.3 và vẫn giữ tín hiệu ổn định. Khuyến nghị ưu tiên carousel hoặc chuỗi bài ngắn cho các mẹo dễ áp dụng hằng ngày, trong đó mỗi keyword nên có một góc tiếp cận riêng để tránh trùng nội dung.",
       "error": null
     },
     "generated_content": {
