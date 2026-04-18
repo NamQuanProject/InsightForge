@@ -1,175 +1,57 @@
-INSIGHTFORGE API DOCS
-FastAPI + A2A Agents + Supabase Postgres + Upload-Post
+INSIGHTFORGE API DOCS - UI QUICK GUIDE
+INSIGHTFORGE_DEFAULT_USER_ID=eb892952-0f26-45e1-860b-1dc7d572c553
 
-Base FastAPI URL:
+Base URL:
 http://127.0.0.1:8000
 
-==================================================
-1. SYSTEM OVERVIEW
+Muc tieu:
+- Tai lieu ngan gon cho UI goi API.
+- Mo ta field nao nen display len UI.
+- Goi /api/v1/agents/orchestrate se chay agent workflow that.
+
+
+1. RUN REQUIREMENT
 ==================================================
 
-Current system has 4 runtime parts:
+De dung endpoint orchestrate binh thuong, can chay:
 
 1. Trend Agent
-- A2A server
-- default URL: http://localhost:9997
-- analyzes trends and returns trend_analysis JSON
+http://localhost:9997
 
 2. Content Agent
-- A2A server
-- default URL: http://localhost:9998
-- receives trend context and returns generated_content JSON
+http://localhost:9998
 
-3. Orchestrator
-- A2A server
-- default URL: http://localhost:9996
-- routes user prompt to Trend Agent and Content Agent
-- final output shape:
-{
-  "trend_analysis": {},
-  "generated_content": {}
-}
+3. Routing Orchestrator
+http://localhost:9996
 
 4. FastAPI Backend
-- API server
-- default URL: http://127.0.0.1:8000
-- exposes normal HTTP endpoints for frontend / Thunder Client
-- new orchestrator endpoint calls the running A2A orchestrator
+http://127.0.0.1:8000
 
-Important:
-- The orchestrator endpoint does not replace the agents.
-- You must run the 3 agent servers first, then run FastAPI.
-- Supabase is used as PostgreSQL through SQLAlchemy.
 
-==================================================
-2. REQUIRED ENV VARS
+2. HEALTH CHECK
 ==================================================
 
-Minimal agent env:
+GET /health
 
-GOOGLE_API_KEY=your_gemini_key
-SERP_API_KEY=your_serpapi_key
-ENSEMBLEDATA_API_KEY=your_ensembledata_key
+Purpose:
+- Kiem tra backend con song hay khong.
 
-Agent runtime:
+Response:
+{
+  "status": "ok"
+}
 
-AGENT_HOST=localhost
-ROUTING_AGENT_PORT=9996
-TREND_AGENT_PORT=9997
-CONTENT_AGENT_PORT=9998
+UI display:
+- status
 
-Optional model overrides:
 
-ROUTING_AGENT_MODEL=gemini:gemini-2.5-flash
-TREND_AGENT_MODEL=gemini/gemini-2.5-flash
-CONTENT_AGENT_MODEL=gemini/gemini-2.5-flash
-
-Backend database:
-
-DATABASE_URL=postgresql+asyncpg://postgres.<project-ref>:<encoded-password>@aws-1-<region>.pooler.supabase.com:5432/postgres?ssl=require
-
-Optional output settings:
-
-ORCHESTRATOR_TIMEOUT=420
-ORCHESTRATOR_OUTPUT_DIR=.
-INSIGHTFORGE_API_BASE_URL=http://localhost:8000
-INSIGHTFORGE_DEFAULT_USER_ID=cd129113-895c-4800-b4e4-48d63bf46d12
-
-Default user behavior:
-- If POST /api/v1/agents/orchestrate, POST /api/v1/trends/analyze, or
-  POST /api/v1/contents/generate omits user_id, the backend uses
-  INSIGHTFORGE_DEFAULT_USER_ID.
-- Content Agent history lookup also uses INSIGHTFORGE_DEFAULT_USER_ID when the
-  model/tool call supplies a placeholder or invalid user id.
-
+3. AGENT STATUS
 ==================================================
-3. HOW TO RUN
-==================================================
-
-Open 4 terminals.
-
-----------------------------------------
-TERMINAL 1: TREND AGENT
-----------------------------------------
-
-cd "D:\Product Demo\InsightForge"
-& "D:\Product Demo\.venv\Scripts\python.exe" -m agents.trend_agent.main
-
-Expected:
-- server listens on http://localhost:9997
-- agent card: http://localhost:9997/.well-known/agent-card.json
-
-----------------------------------------
-TERMINAL 2: CONTENT AGENT
-----------------------------------------
-
-cd "D:\Product Demo\InsightForge"
-& "D:\Product Demo\.venv\Scripts\python.exe" -m agents.generating_agent.main
-
-Expected:
-- server listens on http://localhost:9998
-- agent card: http://localhost:9998/.well-known/agent-card.json
-
-----------------------------------------
-TERMINAL 3: ORCHESTRATOR
-----------------------------------------
-
-cd "D:\Product Demo\InsightForge"
-& "D:\Product Demo\.venv\Scripts\python.exe" main.py
-
-Expected:
-- server listens on http://localhost:9996
-- agent card: http://localhost:9996/.well-known/agent-card.json
-
-----------------------------------------
-TERMINAL 4: FASTAPI BACKEND
-----------------------------------------
-
-cd "D:\Product Demo\InsightForge"
-& "D:\Product Demo\.venv\Scripts\python.exe" -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
-
-Expected:
-- backend listens on http://127.0.0.1:8000
-- docs: http://127.0.0.1:8000/docs
-- health: http://127.0.0.1:8000/health
-
-==================================================
-4. THUNDER CLIENT
-==================================================
-
-Import this file into Thunder Client:
-
-D:\Product Demo\InsightForge\thunder_client_insightforge_agents.json
-
-Included requests:
-
-1. Health Check
-GET http://127.0.0.1:8000/health
-
-2. Agents Status
-GET http://127.0.0.1:8000/api/v1/agents/status
-
-3. Orchestrate Trend + Content
-POST http://127.0.0.1:8000/api/v1/agents/orchestrate
-
-4. Orchestrate Trend Only
-POST http://127.0.0.1:8000/api/v1/agents/orchestrate
-
-==================================================
-5. AGENT ORCHESTRATOR API
-==================================================
-
-Route prefix:
-/api/v1/agents
-
-----------------------------------------
-1. AGENTS STATUS
-----------------------------------------
 
 GET /api/v1/agents/status
 
 Purpose:
-- check whether the 3 A2A servers are reachable from FastAPI
+- Kiem tra 3 agent server co reachable hay khong.
 
 Response:
 {
@@ -196,33 +78,51 @@ Response:
   ]
 }
 
-Field meanings:
-- status: ok if all processes are reachable, degraded otherwise
-- name: process label used by backend
-- url: A2A server URL
-- reachable: true if socket connection succeeds
-- detail: readable status text
+UI display:
+- status
+- processes[].name
+- processes[].url
+- processes[].reachable
+- processes[].detail
 
-----------------------------------------
-2. ORCHESTRATE TREND + CONTENT
-----------------------------------------
+
+4. MAIN ENDPOINT: ORCHESTRATE
+==================================================
 
 POST /api/v1/agents/orchestrate
 
-Request:
+Purpose:
+- UI gui prompt cua user.
+- Backend goi Routing Orchestrator.
+- Routing Orchestrator goi Trend Agent va Content Agent.
+- Backend normalize output, sinh/luu anh neu can, luu trend/content vao database, roi tra ve response.
+
+Important:
+- Endpoint nay chay agent workflow that, co the lau.
+- Frontend nen set timeout cao, khoang 420 giay.
+
+Query parameters:
+- include_raw_response: optional boolean, default false.
+  - false: response gon hon, khong tra raw A2A JSON-RPC.
+  - true: tra them raw_response de debug.
+- save_files: optional boolean, default false.
+  - true: ghi orchestrator_output.json va orchestrator_raw_response.json.
+
+Request body:
 {
-  "prompt": "Chu de dang trend trong ngay hom nay ve the thao la gi va toi nen tao noi dung nhu the nao?",
-  "save_files": true,
+  "prompt": "Chủ đề cụ thể đang trend trong ngày hôm nay về mẹo vặt sức khỏe là gì và tôi nên tạo nội dung như thế nào?",
   "user_id": null
 }
 
 Request fields:
-- prompt: user prompt sent to the routing orchestrator
-- save_files: if true, backend saves raw and extracted outputs to local JSON files
-- user_id: optional app user UUID. If omitted, backend uses INSIGHTFORGE_DEFAULT_USER_ID.
-  Saved trend/content rows are linked to the resolved user id.
+- prompt: cau hoi / yeu cau cua user.
+- user_id: optional UUID. Neu null, backend dung INSIGHTFORGE_DEFAULT_USER_ID.
+- save_files: field nay co trong schema, nhung route hien tai dung query param save_files.
 
-Response:
+Example:
+POST http://127.0.0.1:8000/api/v1/agents/orchestrate?include_raw_response=false&save_files=false
+
+Response success:
 {
   "status": "success",
   "trend_analysis_id": "uuid",
@@ -230,610 +130,382 @@ Response:
   "output": {
     "trend_analysis": {
       "query": "string",
-      "results": [],
+      "results": [
+        {
+          "main_keyword": "string",
+          "why_the_trend_happens": "string",
+          "trend_score": 42,
+          "interest_over_day": [24, 28.5, 31, 34.5, 38, 42],
+          "avg_views_per_hour": 4100,
+          "recommended_action": "string",
+          "top_videos": [],
+          "top_hashtags": ["#tag"],
+          "google": {
+            "keyword": "string",
+            "momentum": "rising",
+            "peak_region": "Vietnam"
+          },
+          "tiktok": {
+            "platform": "TikTok",
+            "top_velocity": 4100,
+            "avg_engagement_rate": 0.04
+          },
+          "threads": null
+        }
+      ],
       "markdown_summary": "string",
       "error": null
     },
     "generated_content": {
       "selected_keyword": "string",
       "main_title": "string",
-      "video_script": {},
-      "platform_posts": {},
-      "thumbnail": {},
-      "music_background": "string",
+      "post_content": {
+        "post_type": "multi_image_post",
+        "title": "string",
+        "hook": "string",
+        "caption": "string",
+        "description": "string",
+        "body": "string",
+        "call_to_action": "string",
+        "hashtags": ["#tag"],
+        "tone": "string",
+        "personalization_notes": ["string"]
+      },
+      "image_set": [
+        {
+          "index": 1,
+          "title": "string",
+          "description": "string",
+          "prompt": "English image prompt",
+          "style": "vivid",
+          "size": "1792x1024",
+          "output_path": "post_image_1.png",
+          "id": "image-store-id",
+          "image_url": "https://...",
+          "local_path": "sample_data/img_db/image-id.png",
+          "created_at": "timestamp",
+          "image_store_error": ""
+        }
+      ],
+      "platform_posts": {
+        "tiktok": {
+          "caption": "string",
+          "hashtags": ["#tag"],
+          "cta": "string",
+          "best_post_time": "19:30",
+          "image_notes": "string"
+        },
+        "facebook": {
+          "caption": "string",
+          "hashtags": ["#tag"],
+          "cta": "string",
+          "best_post_time": "20:00",
+          "image_notes": "string"
+        },
+        "instagram": {
+          "caption": "string",
+          "hashtags": ["#tag"],
+          "cta": "string",
+          "best_post_time": "21:00",
+          "image_notes": "string"
+        }
+      },
+      "publishing": {
+        "default_visibility": "public",
+        "recommended_platforms": ["facebook", "instagram", "tiktok"],
+        "timezone": "Asia/Saigon",
+        "weekly_content_frequency": 5
+      },
       "error": null
     }
-  },
-  "raw_response": {},
-  "raw_response_file": "orchestrator_raw_response.json",
-  "output_file": "orchestrator_output.json"
+  }
 }
 
-Response fields:
-- status: backend request status
-- trend_analysis_id: Supabase/Postgres id for the saved trend_analyses row
-- generated_content_id: Supabase/Postgres id for the saved generated_contents row
-- output: extracted final business JSON from orchestrator
-- output.trend_analysis: trend agent result block
-- output.generated_content: content agent result block
-- raw_response: full A2A JSON-RPC response, useful for debugging
-- raw_response_file: local file path for full A2A response when save_files=true
-- output_file: local file path for extracted final JSON when save_files=true
-
-Saved files:
-- orchestrator_raw_response.json
-- orchestrator_output.json
-
-Notes:
-- This endpoint can take several minutes.
-- Trend Agent and Content Agent are called sequentially.
-- Recommended client timeout: 420 seconds.
-- Backend normalizes output before saving, so output_file always has:
-  - trend_analysis
-  - generated_content
-- Even if the model returns raw text, backend wraps it into the expected shape and marks errors where needed.
-- output.generated_content.thumbnail is a normalized compatibility object. Persisted generated content stores
-  images on each video_script.sections[].thumbnail instead of a separate top-level thumbnail column.
-- This endpoint saves to Supabase tables:
-  - trend_analyses
-  - generated_contents
-
-==================================================
-6. EXPECTED AGENT OUTPUT SHAPES
-==================================================
-
-----------------------------------------
-1. trend_analysis
-----------------------------------------
-
+Response failed:
 {
-  "query": "bong da",
-  "results": [
-    {
-      "main_keyword": "ban ket c1",
-      "why_the_trend_happens": "Ly do xu huong dang xay ra",
-      "trend_score": 50.5,
-      "interest_over_day": [15, 18, 14, 19],
-      "avg_views_per_hour": 64750.38,
-      "recommended_action": "Nen tao noi dung du doan va phan tich tran dau",
-      "top_videos": ["https://www.tiktok.com/@creator/video/123"],
-      "top_hashtags": ["#c1", "#football"],
-      "google": {
-        "keyword": "ban ket c1",
-        "momentum": "rising",
-        "peak_region": "unknown"
-      },
-      "tiktok": {
-        "platform": "TikTok",
-        "top_velocity": 158366.28,
-        "avg_engagement_rate": 0.0251
-      },
-      "threads": null
-    }
-  ],
-  "markdown_summary": "Tom tat xu huong"
-}
-
-----------------------------------------
-2. generated_content
-----------------------------------------
-
-{
-  "selected_keyword": "ban ket c1",
-  "main_title": "Tieu de chinh",
-  "video_script": {
-    "title": "Tieu de video",
-    "duration_estimate": "60s",
-    "hook": "Cau mo dau",
-    "sections": [
-      {
-        "timestamp": "0:00-0:10",
-        "label": "Hook",
-        "narration": "Noi dung loi thoai",
-        "notes": "Ghi chu nhip do/tone",
-        "thumbnail": {
-          "id": "image-store-id",
-          "description": "Image prompt or stored image description",
-          "image_url": "https://...",
-          "local_path": "D:\\Product Demo\\InsightForge\\images\\section_1.png",
-          "created_at": "timestamp"
-        }
+  "status": "failed",
+  "output": {
+    "trend_analysis": {},
+    "generated_content": {
+      "error": {
+        "type": "persistence_skipped",
+        "message": "Output contains failure markers; skipped database persistence.",
+        "details": []
       }
-    ],
-    "call_to_action": "CTA cuoi video",
-    "captions_style": "Phong cach phu de",
-    "music_mood": "Tam trang am nhac"
-  },
-  "platform_posts": {
-    "tiktok": {
-      "caption": "Caption TikTok",
-      "hashtags": ["#c1", "#bongda"],
-      "cta": "Binh luan du doan cua ban",
-      "best_post_time": "19:00",
-      "thumbnail_description": "Mo ta thumbnail"
     },
-    "facebook": {
-      "caption": "Caption Facebook",
-      "hashtags": ["#bongda"],
-      "cta": "Thao luan ngay",
-      "best_post_time": "20:00",
-      "thumbnail_description": "Mo ta thumbnail"
-    },
-    "instagram": {
-      "caption": "Caption Instagram",
-      "hashtags": ["#football"],
-      "cta": "Luu bai viet",
-      "best_post_time": "21:00",
-      "thumbnail_description": "Mo ta thumbnail"
+    "persistence_skipped": {
+      "reason": "string",
+      "details": []
     }
-  },
-  "music_background": "Nhac nen the thao, kich tinh"
+  }
 }
 
-Notes:
-- Current generated content stores thumbnails per section at video_script.sections[].thumbnail.
-- Direct /api/v1/contents responses do not expose a top-level thumbnail or raw_output field.
-- The orchestrator output may include a top-level generated_content.thumbnail compatibility object,
-  but database persistence uses section thumbnails.
 
-==================================================
-7. USERS API
+5. UI FIELD MAPPING FOR ORCHESTRATE
 ==================================================
 
-Route prefix:
-/api/v1/users
+Page state:
+- status
+- trend_analysis_id
+- generated_content_id
 
-----------------------------------------
-1. CREATE USER
-----------------------------------------
+Trend summary:
+- output.trend_analysis.query
+- output.trend_analysis.markdown_summary
+- output.trend_analysis.results[0].main_keyword
+- output.trend_analysis.results[0].why_the_trend_happens
+- output.trend_analysis.results[0].trend_score
+- output.trend_analysis.results[0].interest_over_day
+- output.trend_analysis.results[0].avg_views_per_hour
+- output.trend_analysis.results[0].recommended_action
+- output.trend_analysis.results[0].top_hashtags
+- output.trend_analysis.results[0].top_videos
+- output.trend_analysis.results[0].google.momentum
+- output.trend_analysis.results[0].google.peak_region
+- output.trend_analysis.results[0].tiktok.top_velocity
+- output.trend_analysis.results[0].tiktok.avg_engagement_rate
 
-POST /api/v1/users
+Generated content header:
+- output.generated_content.selected_keyword
+- output.generated_content.main_title
+- output.generated_content.post_content.title
+- output.generated_content.post_content.hook
+- output.generated_content.post_content.description
+- output.generated_content.post_content.tone
 
-Request:
-{
-  "email": "user@example.com",
-  "name": "Demo User",
-  "plan": "pro"
-}
+Main post preview:
+- output.generated_content.post_content.caption
+- output.generated_content.post_content.body
+- output.generated_content.post_content.call_to_action
+- output.generated_content.post_content.hashtags
+- output.generated_content.post_content.personalization_notes
 
-Response:
-{
-  "id": "uuid",
-  "email": "user@example.com",
-  "name": "Demo User",
-  "plan": "pro",
-  "created_at": "2026-04-16T00:00:00+00:00"
-}
+Image carousel:
+- output.generated_content.image_set[].index
+- output.generated_content.image_set[].title
+- output.generated_content.image_set[].description
+- output.generated_content.image_set[].image_url
+- output.generated_content.image_set[].local_path
+- output.generated_content.image_set[].prompt
+- output.generated_content.image_set[].style
+- output.generated_content.image_set[].size
+- output.generated_content.image_set[].image_store_error
 
-----------------------------------------
-2. LIST USERS
-----------------------------------------
+Platform tabs:
+- output.generated_content.platform_posts.tiktok.caption
+- output.generated_content.platform_posts.tiktok.hashtags
+- output.generated_content.platform_posts.tiktok.cta
+- output.generated_content.platform_posts.tiktok.best_post_time
+- output.generated_content.platform_posts.tiktok.image_notes
+- output.generated_content.platform_posts.facebook.caption
+- output.generated_content.platform_posts.facebook.hashtags
+- output.generated_content.platform_posts.facebook.cta
+- output.generated_content.platform_posts.facebook.best_post_time
+- output.generated_content.platform_posts.facebook.image_notes
+- output.generated_content.platform_posts.instagram.caption
+- output.generated_content.platform_posts.instagram.hashtags
+- output.generated_content.platform_posts.instagram.cta
+- output.generated_content.platform_posts.instagram.best_post_time
+- output.generated_content.platform_posts.instagram.image_notes
 
-GET /api/v1/users
+Publishing panel:
+- output.generated_content.publishing.default_visibility
+- output.generated_content.publishing.recommended_platforms
+- output.generated_content.publishing.timezone
+- output.generated_content.publishing.weekly_content_frequency
 
-----------------------------------------
-3. GET USER
-----------------------------------------
+Error display:
+- output.trend_analysis.error
+- output.generated_content.error
+- output.generated_content.image_set[].image_store_error
+- output.persistence_skipped.reason
+- output.persistence_skipped.details
 
-GET /api/v1/users/{user_id}
 
+6. GENERATED CONTENT HISTORY
 ==================================================
-8. TREND ANALYSIS API
-==================================================
-
-Route prefix:
-/api/v1/trends
-
-Note:
-- This is the direct FastAPI-to-TrendAgent route.
-- The new recommended full pipeline route is /api/v1/agents/orchestrate.
-
-----------------------------------------
-1. ANALYZE TREND DIRECTLY
-----------------------------------------
-
-POST /api/v1/trends/analyze
-
-Request:
-{
-  "query": "bong da",
-  "limit": 3,
-  "user_id": "optional-user-uuid"
-}
-
-Request fields:
-- query: topic or keyword to analyze
-- limit: number of ranked trend items, 1-5
-- user_id: optional app user UUID. If omitted, backend uses INSIGHTFORGE_DEFAULT_USER_ID for persistence.
-
-Response:
-{
-  "analysis_id": "uuid",
-  "query": "bong da",
-  "results": [],
-  "markdown_summary": "string",
-  "error": null
-}
-
-----------------------------------------
-2. LIST TREND HISTORY
-----------------------------------------
-
-GET /api/v1/trends/history?user_id=<uuid>&limit=20
-
-----------------------------------------
-3. GET ONE TREND ANALYSIS
-----------------------------------------
-
-GET /api/v1/trends/{analysis_id}
-
-==================================================
-9. CONTENT GENERATION API
-==================================================
-
-Route prefix:
-/api/v1/contents
-
-Note:
-- This is the direct FastAPI-to-ContentAgent route.
-- The new recommended full pipeline route is /api/v1/agents/orchestrate.
-
-----------------------------------------
-1. GENERATE CONTENT DIRECTLY
-----------------------------------------
-
-POST /api/v1/contents/generate
-
-Option A: free prompt
-{
-  "user_id": "optional-user-uuid",
-  "prompt": "Generate Vietnamese TikTok script about football trends"
-}
-
-Option B: from saved trend analysis
-{
-  "user_id": "optional-user-uuid",
-  "trend_analysis_id": "trend-analysis-uuid",
-  "selected_keyword": "ban ket c1"
-}
-
-Request fields:
-- user_id: optional app user UUID. If omitted, backend uses INSIGHTFORGE_DEFAULT_USER_ID for persistence.
-- prompt: free-form content prompt. Required if trend_analysis_id is not supplied.
-- trend_analysis_id: saved trend analysis UUID used to build the content prompt.
-- selected_keyword: optional keyword to prefer from the saved trend analysis.
-
-Response:
-{
-  "id": "uuid",
-  "user_id": "uuid",
-  "trend_analysis_id": "uuid-or-null",
-  "selected_keyword": "string",
-  "main_title": "string",
-  "video_script": {
-    "title": "string",
-    "duration_estimate": "30s",
-    "hook": "string",
-    "sections": [
-      {
-        "timestamp": "0:00-0:10",
-        "label": "Hook",
-        "narration": "string",
-        "notes": "string",
-        "thumbnail": {
-          "id": "image-store-id",
-          "description": "string",
-          "image_url": "https://...",
-          "local_path": "D:\\Product Demo\\InsightForge\\images\\section_1.png",
-          "created_at": "timestamp"
-        }
-      }
-    ],
-    "call_to_action": "string",
-    "captions_style": "string",
-    "music_mood": "string"
-  },
-  "platform_posts": {
-    "tiktok": {
-      "caption": "string",
-      "hashtags": [],
-      "cta": "string",
-      "best_post_time": "string",
-      "thumbnail_description": "string"
-    }
-  },
-  "music_background": "string",
-  "status": "generated",
-  "created_at": "timestamp"
-}
-
-Response notes:
-- Direct content responses do not include top-level thumbnail or raw_output fields.
-- Generated section images are exposed through video_script.sections[].thumbnail.
-- The database still stores raw_output internally for debugging/reprocessing.
-
-----------------------------------------
-2. LIST GENERATED CONTENT
-----------------------------------------
 
 GET /api/v1/contents?user_id=<uuid>&limit=20
 
-Compatibility alias:
+Legacy alias:
 GET /generated-contents?user_id=<uuid>&limit=20
 
-Notes:
-- /api/v1/contents is the canonical route.
-- /generated-contents exists for older Content Agent/MCP callers.
-- If the legacy alias receives an invalid user_id, it returns {"items": []}.
+Purpose:
+- Lay danh sach generated content da luu trong database.
+- UI co the dung endpoint nay cho history/sidebar.
 
-----------------------------------------
-3. GET ONE GENERATED CONTENT
-----------------------------------------
+Response:
+{
+  "items": [
+    {
+      "id": "uuid",
+      "user_id": "uuid",
+      "trend_analysis_id": "uuid",
+      "selected_keyword": "string",
+      "main_title": "string",
+      "post_content": {},
+      "image_set": [],
+      "platform_posts": {},
+      "publishing": {},
+      "status": "generated",
+      "created_at": "timestamp"
+    }
+  ]
+}
+
+UI display:
+- items[].id
+- items[].selected_keyword
+- items[].main_title
+- items[].post_content.title
+- items[].post_content.hook
+- items[].image_set[0].image_url
+- items[].status
+- items[].created_at
+
+
+7. GET ONE GENERATED CONTENT
+==================================================
 
 GET /api/v1/contents/{content_id}
 
+Purpose:
+- Lay chi tiet mot generated content row.
+- Response shape giong mot item trong /api/v1/contents.
+
+
+8. USERS
 ==================================================
-10. PUBLISHING / UPLOAD-POST API
-==================================================
 
-Route prefix:
-/api/v1/upload-post
-
-----------------------------------------
-1. PUBLISH CONTENT
-----------------------------------------
-
-POST /api/v1/upload-post/publish
-
-Request type:
-multipart/form-data
-
-Important form fields:
-- user: required Upload-Post profile username
-- platforms: required comma-separated platforms
-- title: required
-- description: optional
-- tags: optional comma-separated tags
-- first_comment: optional
-- schedule_post: optional
-- asset_urls: optional comma-separated URLs
-- files: optional uploaded files
-- user_id: optional app user uuid
-- generated_content_id: optional generated content uuid
-
-Response:
-{
-  "source": "upload_post",
-  "publish_job": {},
-  "provider_payload": {}
-}
-
-----------------------------------------
-2. LIST SAVED PUBLISH JOBS
-----------------------------------------
-
-GET /api/v1/upload-post/publish-jobs?user_id=<uuid>&generated_content_id=<uuid>&limit=20
-
-----------------------------------------
-3. GET ONE SAVED PUBLISH JOB
-----------------------------------------
-
-GET /api/v1/upload-post/publish-jobs/{publish_job_id}
-
-----------------------------------------
-4. GET COMMENTS FOR ONE POST
-----------------------------------------
-
-GET /api/v1/upload-post/interactions/comments?platform=instagram&user=blhoang23&post_id=17890455123456789
-
-Alternative with post URL:
-GET /api/v1/upload-post/interactions/comments?platform=instagram&user=blhoang23&post_url=https://www.instagram.com/p/ABC123/
-
-Query parameters:
-- platform: required. Upload-Post currently documents comments for instagram.
-- user: required Upload-Post profile username.
-- post_id: optional numeric media id. Required if post_url is not provided.
-- post_url: optional full post URL. Required if post_id is not provided.
+GET /api/v1/users
 
 Purpose:
-- Fetch comments for a single social post through Upload-Post.
+- Lay danh sach user profile.
 
 Response:
 {
-  "source": "upload_post",
-  "payload": {
-    "success": true,
-    "comments": [
-      {
-        "id": "comment-id",
-        "text": "Comment text",
-        "timestamp": "timestamp",
-        "user": {
-          "id": "commenter-id",
-          "username": "commenter"
-        }
-      }
-    ]
-  }
+  "users": [
+    {
+      "id": "uuid",
+      "email": "string",
+      "display_name": "string",
+      "phone_number": "string",
+      "location": "string",
+      "avatar_url": "string",
+      "about_me": "string",
+      "content_preferences": {
+        "content_groups": [],
+        "priority_formats": [],
+        "keyword_hashtags": [],
+        "audience_persona": "string",
+        "focus_content_goal": "string"
+      },
+      "options": {
+        "timezone": "Asia/Saigon",
+        "linked_platforms": [],
+        "default_visibility": "public",
+        "default_post_times": {},
+        "weekly_content_frequency": 5
+      },
+      "trend_analysis_count": 0,
+      "generated_content_count": 0,
+      "publish_job_count": 0,
+      "created_at": "timestamp"
+    }
+  ]
 }
 
-----------------------------------------
-5. GET COMMENTS ACROSS RECENT MEDIA
-----------------------------------------
+UI display:
+- users[].id
+- users[].email
+- users[].display_name
+- users[].phone_number
+- users[].location
+- users[].avatar_url
+- users[].about_me
+- users[].content_preferences.content_groups
+- users[].content_preferences.priority_formats
+- users[].content_preferences.keyword_hashtags
+- users[].content_preferences.audience_persona
+- users[].content_preferences.focus_content_goal
+- users[].options.timezone
+- users[].options.linked_platforms
+- users[].options.default_visibility
+- users[].options.default_post_times
+- users[].options.weekly_content_frequency
+- users[].trend_analysis_count
+- users[].generated_content_count
+- users[].publish_job_count
 
-GET /api/v1/upload-post/interactions/comments/all?platform=instagram&user=blhoang23&max_media=20
-
-Query parameters:
-- platform: optional, default instagram.
-- user: required Upload-Post profile username.
-- max_media: optional, default 20, min 1, max 100.
-- continue_on_error: optional, default true. If true, one failed media comments request does not stop the whole response.
+GET /api/v1/users/{user_id}
 
 Purpose:
-- Fetch recent media through Upload-Post.
-- For each media item, fetch comments through Upload-Post.
-- Return one grouped response with media metadata and comments.
+- Lay chi tiet mot user profile.
 
-Response:
-{
-  "source": "upload_post",
-  "payload": {
-    "success": true,
-    "platform": "instagram",
-    "user": "blhoang23",
-    "media_count": 20,
-    "total_comments": 12,
-    "media_comments": [
-      {
-        "media": {},
-        "post_id": "17890455123456789",
-        "post_url": "https://www.instagram.com/p/ABC123/",
-        "success": true,
-        "comments": [],
-        "payload": {}
-      }
-    ]
-  }
-}
 
-Notes:
-- Upload-Post rate limits comment requests per post. If the provider returns a rate-limit error for one media item, use continue_on_error=true to keep the rest of the response.
+9. SAVED TREND ENDPOINTS
+==================================================
 
-----------------------------------------
-6. DELETE COMMENTS WITH VIETNAMESE BAD WORDS
-----------------------------------------
-
-Dry run first:
-DELETE /api/v1/upload-post/interactions/comments/bad-words?platform=instagram&user=blhoang23&dry_run=true
-
-Delete matched comments across recent media:
-DELETE /api/v1/upload-post/interactions/comments/bad-words?platform=instagram&user=blhoang23&max_media=20
-
-Delete matched comments for one post only:
-DELETE /api/v1/upload-post/interactions/comments/bad-words?platform=instagram&user=blhoang23&post_id=17890455123456789
-
-Alternative with post URL:
-DELETE /api/v1/upload-post/interactions/comments/bad-words?platform=instagram&user=blhoang23&post_url=https://www.instagram.com/p/ABC123/
-
-Query parameters:
-- platform: optional, default instagram.
-- user: required Upload-Post profile username.
-- post_id: optional. If provided, only this post is scanned.
-- post_url: optional. If provided, only this post is scanned.
-- max_media: optional, default 20, min 1, max 100. Used only when post_id/post_url is not provided.
-- dry_run: optional, default false. If true, scans and returns matches without deleting.
+GET /api/v1/trends/history?user_id=<uuid>&limit=20
 
 Purpose:
-- Retrieve comments through Upload-Post.
-- Detect comments containing hard-coded Vietnamese bad words.
-- Attempt to delete each matched comment through the Upload-Post delete-comments path.
+- List tat ca trend analyses da tung luu trong database.
+- UI chi dung endpoint nay de list trend history.
+- Khong dung /api/v1/trends/analyze trong UI.
 
-Current hard-coded bad-word examples:
-- địt, đụ, đéo, đĩ, lồn, cặc, buồi
-- mẹ mày, con mẹ mày, bố mày
-- óc chó, chó má, đồ chó
-- ngu, đồ ngu, khốn nạn, cút, mất dạy, súc vật
+Query parameters:
+- user_id: optional UUID. Neu co, chi list trend cua user do.
+- limit: optional number, 1-100. Default 20.
+
+Example:
+GET /api/v1/trends/history
+GET /api/v1/trends/history?user_id=<uuid>&limit=20
 
 Response:
 {
-  "source": "upload_post",
-  "payload": {
-    "success": true,
-    "platform": "instagram",
-    "user": "blhoang23",
-    "dry_run": false,
-    "scanned_media_count": 20,
-    "matched_count": 2,
-    "deleted_count": 2,
-    "failed_count": 0,
-    "matches": [
-      {
-        "post_id": "17890455123456789",
-        "post_url": "https://www.instagram.com/p/ABC123/",
-        "comment_id": "comment-id",
-        "text": "comment text",
-        "matched_bad_words": ["bad-word"],
-        "deleted": true,
-        "skipped": false,
-        "provider_payload": {},
-        "error": null
-      }
-    ]
-  }
+  "items": [
+    {
+      "analysis_id": "uuid",
+      "query": "string",
+      "results": [],
+      "markdown_summary": "string",
+      "error": null,
+      "status": "completed",
+      "user_id": "uuid",
+      "created_at": "timestamp"
+    }
+  ]
 }
 
-Important:
-- Upload-Post officially documents retrieving comments and replying to comments. A delete-comments endpoint was not found in the public Upload-Post docs. This backend attempts DELETE /uploadposts/comments and returns the provider error if Upload-Post does not support it for the account.
-- Use dry_run=true before deleting.
+UI display:
+- items[].analysis_id
+- items[].query
+- items[].markdown_summary
+- items[].results[0].main_keyword
+- items[].results[0].trend_score
+- items[].results[0].interest_over_day
+- items[].results[0].recommended_action
+- items[].results[0].top_hashtags
+- items[].status
+- items[].created_at
 
-==================================================
-11. RECOMMENDED TEST ORDER
-==================================================
+GET /api/v1/trends/{analysis_id}
 
-1. Start the 4 terminals.
 
-2. Thunder Client:
-GET /health
-
-3. Thunder Client:
-GET /api/v1/agents/status
-
-Expected:
-- routing_orchestrator reachable=true
-- trend_agent reachable=true
-- content_agent reachable=true
-
-4. Thunder Client:
-POST /api/v1/agents/orchestrate
-
-5. Check generated files:
-- orchestrator_raw_response.json
-- orchestrator_output.json
-
-6. If needed, test direct routes:
-- POST /api/v1/trends/analyze
-- POST /api/v1/contents/generate
-
-==================================================
-12. COMMON ISSUES
+10. UI ERROR RULES
 ==================================================
 
-1. Port already in use
+If status = "failed":
+- Hien thi error message.
+- Khong assume trend_analysis_id/generated_content_id ton tai.
+- Kiem tra:
+  - output.trend_analysis.error
+  - output.generated_content.error
+  - output.persistence_skipped
 
-Check:
-netstat -ano | findstr :9996
-netstat -ano | findstr :9997
-netstat -ano | findstr :9998
-netstat -ano | findstr :8000
+If image item has image_store_error:
+- Van co the display title, description, prompt.
+- Khong display broken image_url.
 
-Stop process:
-Stop-Process -Id <PID>
-
-2. Agents status degraded
-
-Make sure all 3 agent terminals are running:
-- trend agent
-- content agent
-- orchestrator
-
-3. Orchestrator timeout
-
-This pipeline can take several minutes.
-Use timeout >= 420 seconds.
-
-4. Output file still old
-
-Delete or ignore old:
-- orchestrator_raw_response.json
-- orchestrator_output.json
-
-Then run the request again.
-
-5. Model/key issue
-
-Current default is Gemini:
-- ROUTING_AGENT_MODEL=gemini:gemini-2.5-flash
-- TREND_AGENT_MODEL=gemini/gemini-2.5-flash
-- CONTENT_AGENT_MODEL=gemini/gemini-2.5-flash
-
-Make sure GOOGLE_API_KEY or GEMINI_API_KEY exists in .env.
+If status = "success":
+- trend_analysis_id va generated_content_id la row id da luu vao database.
