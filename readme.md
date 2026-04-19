@@ -2,7 +2,7 @@
 
 InsightForge is a FastAPI backend for an agentic content workflow: it can analyze trends, generate personalized Vietnamese social content, manage generated assets, and support a human-approved posting flow.
 
-The repository is intentionally backend-first. The frontend should talk to the API only; API usage details live in [app/api_docs.txt](app/api_docs.txt).
+The repository is intentionally backend. It connects with the InsightForce frontend ([Chris-KH/InsightForce](https://github.com/Chris-KH/InsightForce)). The frontend should talk to the API only; API usage details live in [app/api_docs.txt](app/api_docs.txt).
 
 ## What This Backend Provides
 
