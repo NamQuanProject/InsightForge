@@ -1,68 +1,124 @@
 export default function Dashboard() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="px-6 py-8 bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-gray-900">
-            InsightForge
-          </h1>
-          <nav className="flex space-x-4">
-            <a href="/dashboard" className="text-gray-600 hover:text-gray-900">
-              Generate
-            </a>
-            <a href="/dashboard/history" className="text-gray-600 hover:text-gray-900">
-              History
-            </a>
-            <a href="/dashboard/approvals" className="text-gray-600 hover:text-gray-900">
-              Approvals
-            </a>
-          </nav>
+    <div className="space-y-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Generate Content</h1>
+          <p className="mt-1 text-gray-500">Create new AI-powered content and reports</p>
         </div>
-      </header>
+      </div>
 
-      <main className="max-w-7xl mx-auto px-6 py-12">
-        <div className="space-y-8">
-          <div className="text-center py-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Welcome to InsightForge
-            </h2>
-            <p className="text-gray-600 max-w-xl mx-auto">
-              Transform your data into actionable insights with our AI-powered analytics platform.
-            </p>
-            <div className="mt-8 flex justify-center space-x-4">
-              <a href="/dashboard" className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors">
-                Start Generating
-              </a>
-              <a href="/dashboard/history" className="px-6 py-3 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors">
-                View History
-              </a>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow border border-gray-100">
+          <div className="flex items-start space-x-4">
+            <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <span className="text-2xl">📝</span>
             </div>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
-              <h3 className="font-semibold text-gray-900 mb-3">Generate Insights</h3>
-              <p className="text-gray-600">
-                Create custom reports and visualizations from your data sources.
+            <div className="flex-1">
+              <h3 className="font-semibold text-gray-900 text-lg">New Report</h3>
+              <p className="mt-1 text-gray-600 text-sm">
+                Generate custom reports from your data sources with AI-powered insights.
               </p>
-            </div>
-            
-            <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
-              <h3 className="font-semibold text-gray-900 mb-3">Historical Analysis</h3>
-              <p className="text-gray-600">
-                Review past reports and track performance trends over time.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
-              <h3 className="font-semibold text-gray-900 mb-3">Approval Workflow</h3>
-              <p className="text-gray-600">
-                Collaborate with team members and approve reports before publishing.
-              </p>
+              <button className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors text-sm font-medium">
+                Create Report
+              </button>
             </div>
           </div>
         </div>
-      </main>
+
+        <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow border border-gray-100">
+          <div className="flex items-start space-x-4">
+            <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <span className="text-2xl">✍️</span>
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-gray-900 text-lg">Content Generator</h3>
+              <p className="mt-1 text-gray-600 text-sm">
+                Generate marketing copy, blog posts, and social media content.
+              </p>
+              <button className="mt-4 px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors text-sm font-medium">
+                Generate Content
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow border border-gray-100">
+          <div className="flex items-start space-x-4">
+            <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <span className="text-2xl">📊</span>
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-gray-900 text-lg">Data Analysis</h3>
+              <p className="mt-1 text-gray-600 text-sm">
+                Upload datasets and get automated insights and visualizations.
+              </p>
+              <button className="mt-4 px-4 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700 transition-colors text-sm font-medium">
+                Analyze Data
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow border border-gray-100">
+          <div className="flex items-start space-x-4">
+            <div className="w-12 h-12 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <span className="text-2xl">📋</span>
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-gray-900 text-lg">From Template</h3>
+              <p className="mt-1 text-gray-600 text-sm">
+                Use pre-built templates for common content types and reports.
+              </p>
+              <button className="mt-4 px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors text-sm font-medium">
+                Browse Templates
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h2>
+        <div className="space-y-4">
+          <div className="flex items-center space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+            <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
+              <span className="text-sm">📄</span>
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-medium text-gray-900">Q4 Sales Report</p>
+              <p className="text-xs text-gray-500">Created 2 hours ago</p>
+            </div>
+            <span className="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full">
+              Completed
+            </span>
+          </div>
+          <div className="flex items-center space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+            <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
+              <span className="text-sm">✍️</span>
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-medium text-gray-900">Product Launch Blog Post</p>
+              <p className="text-xs text-gray-500">Created 5 hours ago</p>
+            </div>
+            <span className="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-medium rounded-full">
+              Pending Review
+            </span>
+          </div>
+          <div className="flex items-center space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+            <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+              <span className="text-sm">📊</span>
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-medium text-gray-900">Monthly Analytics Summary</p>
+              <p className="text-xs text-gray-500">Created yesterday</p>
+            </div>
+            <span className="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full">
+              Completed
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
