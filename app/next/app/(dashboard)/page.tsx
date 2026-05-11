@@ -1,4 +1,20 @@
+'use client'
+
+import { QueryInput } from '@/components'
+import { triggerOrchestration } from '@/lib/api'
+
 export default function Dashboard() {
+  const handleSubmit = async (query: string) => {
+    console.log('Submitting query:', query)
+    
+    try {
+      const response = await triggerOrchestration(query)
+      console.log('Orchestration triggered:', response)
+    } catch (error) {
+      console.error('Failed to trigger orchestration:', error)
+    }
+  }
+
   return (
     <div className="space-y-8">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -6,6 +22,14 @@ export default function Dashboard() {
           <h1 className="text-2xl font-bold text-gray-900">Generate Content</h1>
           <p className="mt-1 text-gray-500">Create new AI-powered content and reports</p>
         </div>
+      </div>
+
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">What would you like to create?</h2>
+        <QueryInput 
+          onSubmit={handleSubmit}
+          placeholder="Describe what content you'd like to generate. For example: 'Generate a comprehensive Q4 sales performance report including revenue breakdown, top 5 products, and regional comparisons.'"
+        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
