@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabase/client'
 
@@ -16,24 +18,21 @@ export function useUser() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Get current session
     const getUser = async () => {
       try {
         const { data: { session } } = await supabase.auth.getSession()
         
         if (session?.user) {
-          // Fetch profile from user_profiles table
           const { data: profile, error } = await supabase
             .from('user_profiles')
             .select('*')
             .eq('id', session.user.id)
             .single()
 
-          if (error && error.code !== 'PGRST116') { // PGRST116 means no rows returned
+          if (error && error.code !== 'PGRST116') {
             console.error('Error fetching user profile:', error)
             setUser(null)
           } else {
-            // Combine auth user with profile data
             setUser({
               id: session.user.id,
               email: session.user.email ?? '',
@@ -57,10 +56,9 @@ export function useUser() {
 
     getUser()
 
-    // Subscribe to auth changes
     const {
       data: { subscription }
-    } = supabase.auth.onAuthStateChange(async (_event, session) => {
+    } = supabase.auth.onAuthStateChange(async (_event: string, session: any) => {
       if (session?.user) {
         const { data: profile, error } = await supabase
           .from('user_profiles')
