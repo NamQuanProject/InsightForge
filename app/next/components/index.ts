@@ -1,3 +1,5 @@
 export { Sidebar } from './Sidebar'
 export { QueryInput } from './QueryInput'
 export { TrendReportCard } from './TrendReportCard'
+export { VideoScriptPreview } from './VideoScriptPreview'
+export { ThumbnailGrid } from './ThumbnailGrid'

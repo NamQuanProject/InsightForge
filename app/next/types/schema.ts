@@ -34,10 +34,19 @@ export interface ContentBundle {
   music_background: MusicBackground
 }
 
+export interface VideoScriptSection {
+  timestamp_start_seconds: number
+  timestamp_end_seconds: number
+  label: string
+  narration: string
+  visual_description?: string
+}
+
 export interface VideoScript {
   intro: string
   hook: string
   main_content: string[]
+  sections?: VideoScriptSection[]
   call_to_action: string
   duration_estimate_seconds: number
 }
